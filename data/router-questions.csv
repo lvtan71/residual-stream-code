@@ -1,0 +1,221 @@
+lang,route,question
+en,serving,How big is the KV cache for a 70B model?
+en,serving,Why is decode slower per token than prefill?
+en,serving,Does vLLM use paged attention?
+en,serving,How does continuous batching raise throughput?
+en,serving,What limits the batch size on one GPU?
+en,serving,Is SGLang faster than TensorRT-LLM?
+en,serving,Why is my chatbot slow to answer long prompts?
+en,serving,How much memory does speculative decoding save?
+en,serving,What does quantization do to latency?
+en,serving,Why does the first token take so long?
+en,serving,How do I serve a model to many users?
+en,serving,Where does prefix caching help?
+en,serving,How many concurrent requests can one H100 handle for an 8B model?
+en,serving,What happens when the KV cache runs out of memory?
+en,serving,Why does batching help the MLP but not attention during decode?
+en,serving,How do I pick the block size for paged attention?
+en,serving,What is the difference between time to first token and time per output token?
+en,serving,Should I run INT4 or FP8 weights for serving?
+en,serving,How does RadixAttention reuse a shared system prompt?
+en,serving,Can two requests share the same cached prefix?
+en,serving,Why did my throughput drop when I raised the context length?
+en,serving,What is in-flight batching in TensorRT-LLM?
+en,serving,How does vLLM preempt a request under memory pressure?
+en,serving,Is tensor parallelism worth it for a 13B model?
+en,serving,How much GPU memory does a 4096-token conversation take at inference?
+en,serving,Does grouped-query attention make generation faster?
+en,serving,Why is generating one token memory-bound?
+en,serving,What does a draft model do in speculative decoding?
+en,serving,How do I stream tokens to the browser as they are generated?
+en,serving,When should I split prefill and decode onto different machines?
+en,serving,How much does it cost to generate a thousand tokens on one GPU?
+en,serving,What is the ridge point of an H100?
+en,serving,Why do longer answers cost more than longer questions?
+en,serving,How do I cap the latency of each request?
+en,serving,Does copy-on-write matter for beam search memory?
+en,serving,Why does my server get slower when more users join?
+en,serving,What does a CUDA graph save at decode time?
+en,serving,How are rejected draft tokens removed from the cache?
+en,serving,Is llama.cpp fast enough to run a 7B model on a laptop?
+en,serving,What does GGUF Q4_K_M mean?
+en,serving,How do I fit more users on the same GPU?
+en,serving,Why does quantizing the weights help decode but not prefill?
+en,serving,What is goodput in LLM serving?
+en,serving,Can I serve many LoRA adapters from one base model?
+en,serving,How does chunked prefill reduce stalls for other users?
+en,serving,Why is the answer fast for short prompts and slow for long ones?
+en,serving,What is the memory cost of each extra concurrent chat?
+en,serving,How does the scheduler choose which request runs next?
+en,serving,Why did vLLM rewrite its engine in V1?
+en,serving,How many tokens per second should I expect from a 70B model?
+en,architecture,What is a residual stream?
+en,architecture,Why scale attention by the square root of d_k?
+en,architecture,How does BPE pick which pair to merge?
+en,architecture,What does the tokenizer do with emoji?
+en,architecture,How is softmax computed?
+en,architecture,What do the query key and value matrices do?
+en,architecture,Why do transformers need positional information?
+en,architecture,How does multi-head attention differ from single-head attention?
+en,architecture,What does the causal mask prevent?
+en,architecture,How is cross-attention different from self-attention?
+en,architecture,What does the MLP inside each block do?
+en,architecture,Why is layer norm applied before attention?
+en,architecture,How does a token become a vector?
+en,architecture,What is the unembedding matrix?
+en,architecture,Why did transformers replace recurrent networks?
+en,architecture,How does rotary position embedding encode distance?
+en,architecture,What is linear attention and what does it lose?
+en,architecture,How does Mamba differ from attention?
+en,architecture,Is sliding-window attention exact?
+en,architecture,What is an attention sink?
+en,architecture,How many parameters are in one transformer layer?
+en,architecture,Why does BPE start from bytes instead of characters?
+en,architecture,What is the difference between an encoder and a decoder?
+en,architecture,How does attention decide which words matter?
+en,architecture,What does each attention head learn?
+en,architecture,Why is the feed-forward layer four times wider?
+en,architecture,What does the vocabulary size change in a model?
+en,architecture,How does the model turn the last vector into a word?
+en,architecture,What is a mixture of experts layer?
+en,architecture,Why do models use SwiGLU instead of ReLU?
+en,architecture,How do hybrid models mix attention and recurrent layers?
+en,architecture,What does FlashAttention change about the math?
+en,architecture,Why are special tokens not merged by the tokenizer?
+en,architecture,How long a sequence can attention handle?
+en,architecture,What does the residual connection add to each layer?
+en,architecture,How is RMSNorm different from LayerNorm?
+en,architecture,Why do attention scores get too sharp without scaling?
+en,architecture,How is the attention output mixed back into the stream?
+en,architecture,What is the dimension of a head in Llama?
+en,architecture,Why does linear attention become a recurrent network?
+en,architecture,How does the delta rule update the state?
+en,architecture,What makes DeepSeek sparse attention different from sliding windows?
+en,architecture,How does a model read a sentence all at once?
+en,architecture,What is the difference between self-attention and a convolution?
+en,architecture,Why do tokenizers split rare words into pieces?
+en,architecture,How is the embedding table trained?
+en,architecture,What do the rows of the attention matrix sum to?
+en,architecture,Why is attention quadratic in sequence length?
+en,architecture,What changes between GPT-2 and Llama 3 architectures?
+en,architecture,How does the model know word order after tokenization?
+en,agents,What is the difference between an agent and a workflow?
+en,agents,How does the memory tool in context engineering work?
+en,agents,What does compaction keep from the transcript?
+en,agents,Should I cache the embeddings of every post?
+en,agents,When should I clear old tool results from the context?
+en,agents,How does an agent decide which tool to call?
+en,agents,What should go in a system prompt?
+en,agents,How do I stop an agent from looping forever?
+en,agents,What is MCP and why would I use it?
+en,agents,How does retrieval-augmented generation find the right paragraph?
+en,agents,What is a good chunk size for retrieval?
+en,agents,How do I give a chatbot long-term memory?
+en,agents,When is a multi-agent setup worth the extra cost?
+en,agents,What is a subagent for?
+en,agents,How does function calling work?
+en,agents,Why does my agent forget what it did an hour ago?
+en,agents,What is context rot?
+en,agents,How do I summarize a long conversation without losing facts?
+en,agents,Should the agent plan first or act step by step?
+en,agents,How does a ReAct agent interleave reasoning and actions?
+en,agents,What is an agent skill?
+en,agents,How do I let an agent run code safely?
+en,agents,How should an agent search a large codebase?
+en,agents,What is prompt chaining?
+en,agents,How do I stop a prompt injection hidden in a retrieved page?
+en,agents,How does hybrid search combine keywords and embeddings?
+en,agents,What does a reranker add after vector search?
+en,agents,How do I keep tool definitions from filling the context?
+en,agents,When should an agent ask the user for help?
+en,agents,How do I write a definition of done for an agent task?
+en,agents,What goes into the context window of a coding agent?
+en,agents,How do I measure how much context an agent is using?
+en,agents,Why does the agent get worse as the transcript grows?
+en,agents,How is a vector database different from a normal database?
+en,agents,Can an agent use the blog's posts as a knowledge base?
+en,agents,How does the agent loop know when to stop?
+en,agents,What should an agent write to its memory file?
+en,agents,How do I trace every tool call an agent makes?
+en,agents,What is a reflection agent?
+en,agents,How do I evaluate an agent that takes many steps?
+en,agents,Is GraphRAG better than plain retrieval?
+en,agents,How do I give an agent access to a database through MCP?
+en,agents,Why does chain-of-thought help on hard questions?
+en,agents,How does an orchestrator split work between workers?
+en,agents,What is agentic RAG?
+en,agents,How do I compact a transcript at the right moment?
+en,agents,What is the difference between context engineering and prompt engineering?
+en,agents,How does a computer-use agent click on the screen?
+en,agents,How do I keep an agent's answers grounded in sources?
+en,agents,When should I fine-tune instead of using retrieval?
+en,foundations,How does backpropagation work?
+en,foundations,How much GPU memory does training a 7B model need?
+en,foundations,Why did the chess model need a leakage contract?
+en,foundations,What is gradient descent?
+en,foundations,Why use cross-entropy instead of squared error for classification?
+en,foundations,What is overfitting and how do I spot it?
+en,foundations,How do I choose a learning rate?
+en,foundations,What is the difference between L1 and L2 regularization?
+en,foundations,What do precision and recall measure?
+en,foundations,Why do I need a validation set?
+en,foundations,What is logistic regression?
+en,foundations,How does a loss function measure error?
+en,foundations,What is a feature in machine learning?
+en,foundations,Why should I standardize my inputs?
+en,foundations,What is the difference between supervised and unsupervised learning?
+en,foundations,How does stochastic gradient descent differ from batch gradient descent?
+en,foundations,What is a confusion matrix?
+en,foundations,What does it mean for a model to be calibrated?
+en,foundations,How does dropout prevent overfitting?
+en,foundations,What is batch normalization?
+en,foundations,Why do deep networks have vanishing gradients?
+en,foundations,What does the Adam optimizer do?
+en,foundations,How do I split data into train and test sets?
+en,foundations,What is data leakage?
+en,foundations,What is the bias term in a neuron?
+en,foundations,How does the chain rule compute gradients?
+en,foundations,What is a one-hot encoding?
+en,foundations,When is accuracy a misleading metric?
+en,foundations,What is the F1 score?
+en,foundations,What is maximum likelihood estimation?
+en,foundations,Why does my training loss go to zero but test loss go up?
+en,foundations,What is weight decay?
+en,foundations,How is a neural network initialized?
+en,foundations,What is reinforcement learning?
+en,foundations,What is contrastive learning?
+en,foundations,What is an epoch?
+en,foundations,How do I know if my model is underfitting?
+en,foundations,Why is my loss not decreasing?
+en,foundations,What does the learning rate schedule do?
+en,foundations,What is a baseline model and why build one first?
+en,foundations,How many examples do I need to train a classifier?
+en,foundations,What is the sigmoid function for?
+en,foundations,What is a decision boundary?
+en,foundations,How do I pick a threshold for a classifier?
+en,foundations,What is the difference between a parameter and a hyperparameter?
+en,foundations,How does autograd compute gradients in PyTorch?
+en,foundations,What is the condition number of a problem?
+en,foundations,What is a Brier score?
+en,foundations,Why should I look at the data before modeling?
+en,foundations,What is cross-validation?
+vi,serving,KV cache của mô hình 70B lớn cỡ nào?
+vi,serving,Tại sao decode chậm hơn prefill trên mỗi token?
+vi,serving,Làm sao phục vụ một mô hình cho nhiều người dùng cùng lúc?
+vi,serving,Vì sao token đầu tiên ra chậm như vậy?
+vi,serving,Lượng tử hóa ảnh hưởng thế nào đến độ trễ?
+vi,serving,Một GPU H100 chạy được bao nhiêu yêu cầu đồng thời?
+vi,serving,Continuous batching tăng thông lượng ra sao?
+vi,serving,vLLM có dùng paged attention không?
+vi,serving,Tại sao máy chủ chậm lại khi có thêm người dùng?
+vi,serving,Speculative decoding tiết kiệm được bao nhiêu thời gian?
+vi,architecture,Residual stream là gì?
+vi,architecture,Tại sao phải chia điểm attention cho căn bậc hai của d_k?
+vi,architecture,BPE chọn cặp nào để gộp?
+vi,agents,Agent khác workflow ở điểm nào?
+vi,agents,Nén ngữ cảnh giữ lại những gì của cuộc hội thoại?
+vi,agents,MCP là gì và dùng để làm gì?
+vi,foundations,Gradient descent hoạt động thế nào?
+vi,foundations,Overfitting là gì và làm sao phát hiện?
+vi,foundations,Precision và recall đo cái gì?
+vi,foundations,Tại sao cần tập validation?

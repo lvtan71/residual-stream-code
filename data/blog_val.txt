@@ -1,0 +1,1154 @@
+Every post on this blog begins with a sequence of token IDs. [The residual
+stream post](/posts/residual-stream-explained/) opens by looking up row $i$
+of an embedding matrix and explicitly refuses to say where $i$ came from.
+This post is that missing floor: how a string of text becomes a list of
+integers a model can embed, and why the particular way modern LLMs do it —
+**byte-level byte-pair encoding (BPE)** — looks the way it does.
+
+The plan is to build the whole thing from primitives and watch it run. The
+implementation traced here is a from-scratch one written for Stanford's
+CS336 assignment 1, checked against the course's reference merges and
+against OpenAI's `tiktoken`, so every number below is a real output, not an
+illustration. The corpus is 19 words long, small enough that you can check
+every merge by hand — and then the same code is pointed at 2.2 GB of
+children's stories to see what changes and what doesn't.
+
+## Table of contents
+
+## The problem: a finite vocabulary for infinite text
+
+A language model ends in a softmax over a fixed list of symbols — its
+**vocabulary** — and begins by embedding one of those symbols. So text has to
+be cut into pieces drawn from a finite set, and that cutting is the
+tokenizer's entire job. The two obvious ways to do it both fail:
+
+| Unit | Vocabulary | Sequence length | Fails on |
+| --- | --- | --- | --- |
+| one token per **word** | unbounded (every new word, name, typo, code identifier) | short | anything never seen in training becomes `<UNK>`, and the model can say nothing about it |
+| one token per **character** | tiny (~100 for English, ~150,000 for all of Unicode) | very long | a 10-word sentence is 50+ steps; attention cost grows with the square of that, and every long-range pattern must be learned across many more positions |
+
+Word-level fails on *coverage*; character-level fails on *cost*. Subword
+tokenization sits between them: a vocabulary of a few tens of thousands of
+pieces, where frequent words are one piece and rare words are several. The
+question is how to choose the pieces, and BPE's answer is almost
+embarrassingly simple — **learn them from the data by repeatedly gluing
+together whatever pair of adjacent pieces occurs most often.**
+
+That idea predates language models by decades. Philip Gage published it in
+1994 as a *compression* algorithm — replace the most common byte pair with an
+unused byte, repeat — and it is still, at heart, compression: a good BPE
+vocabulary is one that represents the training text in as few tokens as
+possible. Sennrich, Haddow & Birch brought it to neural machine translation
+in 2016, and GPT-2 (Radford et al., 2019) made two changes that every major
+LLM tokenizer since has kept: operate on **bytes**, and pre-split text with a
+**regex** before merging. Both are derived below.
+
+## Start from bytes, not characters
+
+The first decision is what the smallest, unmergeable unit is. Unicode assigns
+every character an integer **code point** — `ord("s")` is 115, `ord("牛")`
+is 29275 — and as of Unicode 17.0 there are 159,801 of them across 172
+scripts. Starting from code points would mean a base vocabulary of 150K
+symbols, most of them seen a handful of times, before a single merge.
+
+Instead, encode the text as **UTF-8** first. UTF-8 is a variable-length
+byte encoding of code points: ASCII characters take one byte, most European
+accented letters two, most CJK characters three, and emoji four. It is the
+encoding of over 98% of the web, and it has a property that matters later —
+a byte below 128 can only ever be a complete one-byte character, never the
+middle of a longer one.
+
+```python
+>>> "héllo".encode("utf-8")
+b'h\xc3\xa9llo'                      # 5 characters, 6 bytes: é is C3 A9
+>>> list("🙃".encode("utf-8"))
+[240, 159, 153, 131]                 # 1 character, 4 bytes
+>>> list("Xin chào".encode("utf-8"))
+[88, 105, 110, 32, 99, 104, 195, 160, 111]   # à is C3 A0
+```
+
+Now the alphabet is exactly **256 symbols** — every possible byte value —
+and *nothing is ever out of vocabulary*. Any string in any script, any
+emoji, any binary garbage has a representation as a sequence of integers in
+$[0, 255]$. The price is that a byte is an even smaller unit than a
+character, so sequences start out long. BPE's merges are what buy that
+length back.
+
+The base vocabulary is therefore fixed before any training happens:
+
+$$
+\text{vocab}_0 = \{\, i \mapsto \texttt{bytes}([i]) \;:\; i = 0, 1, \dots, 255 \,\}
+$$
+
+Token ID $i$ *is* byte $i$. Every merge will add one new entry with the
+next free ID, so after $m$ merges the vocabulary has $256 + m$ entries, plus
+however many special tokens are appended at the end.
+
+## The idea: merge the most frequent pair, repeat
+
+Given a corpus already turned into byte sequences, training is one loop:
+
+1. Count how often every **adjacent pair** of tokens occurs, across the whole
+   corpus.
+2. Take the most frequent pair $(A, B)$.
+3. Replace every occurrence of $A$ followed by $B$ with a single new token
+   $AB$; give $AB$ the next free ID.
+4. Record the merge $(A, B)$ in an ordered list. Repeat until the vocabulary
+   is the size you asked for.
+
+Two invariants make this produce something useful rather than nonsense, and
+both are easy to miss when the algorithm is stated this compactly.
+
+**Merges never cross a pre-token boundary.** If you ran the loop on the raw
+byte stream, the most frequent pair in English would quickly become
+something like `e␣` (letter-e followed by a space) — a fragment that spans
+the end of one word and the gap before the next, useless as a unit of
+meaning and a different token from `e` at the end of a word before a comma.
+So the corpus is first cut into **pre-tokens** (roughly: words, with their
+leading space; numbers; punctuation runs) and merges are only counted and
+applied *inside* a pre-token. This is the next section.
+
+**Merges are an ordered list, not a set.** The output of training is not
+just a vocabulary but the exact sequence in which it was built. Encoding new
+text later will replay these merges *in that order*, and a different order
+would tokenize the same text differently. This is why a tokenizer is
+shipped as two files — `vocab.json` and `merges.txt` — not one.
+
+## Step 1: pre-tokenization
+
+Pre-tokenization has a second, purely practical motivation the assignment
+handout states plainly: if the word `text` appears 10 times in the corpus,
+you would rather count the pair `(t, e)` once with weight 10 than find it 10
+separate times. So pre-tokenization also produces a **frequency table** of
+distinct pre-tokens, and every later step works on that table, weighted by
+counts, rather than on the corpus itself.
+
+The original 2016 BPE simply split on whitespace and appended an
+end-of-word marker `</w>` to each word. GPT-2 replaced that with a regular
+expression, and the assignment uses the same pattern (in the slightly
+tidier form from a `tiktoken` pull request):
+
+```python
+PAT = r"""'(?:[sdmt]|ll|ve|re)| ?\p{L}+| ?\p{N}+| ?[^\s\p{L}\p{N}]+|\s+(?!\S)|\s+"""
+```
+
+Read left to right, the alternatives are tried in order and the first that
+matches wins:
+
+| Alternative | Matches | Example |
+| --- | --- | --- |
+| `'(?:[sdmt]\|ll\|ve\|re)` | an English contraction suffix | `'s`, `'ll`, `'re` |
+| ` ?\p{L}+` | a run of letters, with **one optional leading space** | `low`, `␣lower` |
+| ` ?\p{N}+` | a run of digits, optional leading space | `␣2024` |
+| ` ?[^\s\p{L}\p{N}]+` | a run of anything that is not whitespace, letter, or digit — punctuation and symbols | `.`, `␣!!!` |
+| `\s+(?!\S)` | whitespace *not* followed by a non-space — trailing whitespace at the end of a chunk, or all but the last space of a longer run | `⏎`, `␣␣` |
+| `\s+` | any remaining whitespace | |
+
+The detail that surprises everyone the first time is the ` ?` at the start
+of the letter, digit and punctuation alternatives: **the space attaches to
+the word that follows it, not the one before.** `"low low"` is *not* two
+copies of `low` — it is `low` and `␣low`, two different pre-tokens with
+different byte sequences. That is a deliberate design choice. The space is
+part of the vocabulary (it is byte 32), so there is no need for an
+end-of-word marker; and because almost every word in running English text
+is preceded by a space, the learned vocabulary ends up full of tokens like
+`␣the` and `␣newest`, with the bare `the` reserved for line starts and
+after punctuation. The GPT-2 tokenizer that ships in `tiktoken` behaves
+exactly this way: `"accomplishment"` is three tokens, `"␣accomplishment"`
+is one.
+
+Here is the corpus, the stylized example from Sennrich et al. that the
+handout also uses:
+
+```
+low low low low low
+lower lower widest widest widest
+newest newest newest newest newest newest
+```
+
+Run `re.finditer(PAT, text)` over it and you get 19 matches, in order:
+
+```
+low ␣low ␣low ␣low ␣low ⏎ lower ␣lower ␣widest ␣widest ␣widest ⏎
+newest ␣newest ␣newest ␣newest ␣newest ␣newest ⏎
+```
+
+Encode each match to UTF-8, split into single bytes, and count:
+
+| Pre-token (as a tuple of bytes) | Count |
+| --- | --- |
+| `(␣, n, e, w, e, s, t)` | 5 |
+| `(␣, l, o, w)` | 4 |
+| `(⏎)` | 3 |
+| `(␣, w, i, d, e, s, t)` | 3 |
+| `(␣, l, o, w, e, r)` | 1 |
+| `(l, o, w)` | 1 |
+| `(l, o, w, e, r)` | 1 |
+| `(n, e, w, e, s, t)` | 1 |
+
+Eight distinct pre-tokens, 19 occurrences. If you expected `low: 5, lower:
+2, widest: 3, newest: 6`, this is where the leading-space rule bites: `low`
+at the start of line 1 and `␣low` in the middle of it are different rows.
+The three newlines are single-byte pre-tokens with no adjacent pairs at all,
+so they can never influence a merge — a trailing newline in a training file
+changes nothing.
+
+Everything after this point works only on this table. The corpus is never
+read again.
+
+## Step 2: count adjacent pairs
+
+For every row, take each adjacent pair of tokens and add the row's count to
+that pair's total. `(␣, n, e, w, e, s, t)` with count 5 contributes 5 to
+each of `(␣,n)`, `(n,e)`, `(e,w)`, `(w,e)`, `(e,s)`, `(s,t)`. Summing over
+all eight rows gives 14 distinct pairs:
+
+| Pair | Count | From rows |
+| --- | --- | --- |
+| `(e, s)` | 9 | `␣newest` ×5, `␣widest` ×3, `newest` ×1 |
+| `(s, t)` | 9 | same three rows |
+| `(w, e)` | 8 | `␣newest` ×5, `newest` ×1, `␣lower` ×1, `lower` ×1 |
+| `(l, o)` | 7 | `␣low` ×4, `low`, `␣lower`, `lower` |
+| `(o, w)` | 7 | same four rows |
+| `(e, w)` | 6 | `␣newest` ×5, `newest` ×1 |
+| `(n, e)` | 6 | same two rows |
+| `(␣, l)` | 5 | `␣low` ×4, `␣lower` ×1 |
+| `(␣, n)` | 5 | `␣newest` ×5 |
+| `(␣, w)`, `(w, i)`, `(i, d)`, `(d, e)` | 3 each | `␣widest` ×3 |
+| `(e, r)` | 2 | `␣lower`, `lower` |
+
+One subtlety that the implementation gets right and a naive one silently
+gets wrong: if the same pair occurs twice *inside one pre-token* — `(l, o)`
+in `(l, o, w, l, o, w)` — it must be counted twice. The pair list for a
+pre-token is built with duplicates kept, so `[(l,o), (o,w), (w,l), (l,o),
+(o,w)]`, not a set.
+
+## Step 3: the merge loop, one merge at a time
+
+Now the loop. The top of the table is a **tie**: `(e, s)` and `(s, t)` both
+occur 9 times. Something has to break it, and it has to be deterministic, or
+the result depends on the order Python happens to iterate a dictionary and
+no two training runs agree. The rule — used by Sennrich's original
+`subword-nmt` code and required by the assignment — is to take the
+**lexicographically greatest** pair:
+
+```python
+best = max(pair_counts, key=lambda pair: (pair_counts[pair], pair))
+```
+
+The key is a tuple: compare counts first; on a tie, compare the pairs
+themselves. Python compares `bytes` byte by byte, and tuples element by
+element, so `(b"s", b"t") > (b"e", b"s")` because `s` (115) is greater than
+`e` (101). No custom comparator is needed, and the rule keeps working once
+merges have produced multi-byte tokens like `b"low"` and `b"newest"`.
+
+Here are all eight merges, exactly as the implementation produces them.
+The vocabulary is `256 + 8 + 1` — eight merges, one special token — so the
+loop runs eight times.
+
+| # | id | Candidates at the top | Merge | New token | Count |
+| --- | --- | --- | --- | --- | --- |
+| 1 | 256 | `(e,s)` `(s,t)` — tie at 9 | `s` + `t` | `st` | 9 |
+| 2 | 257 | `(e,st)` — unique | `e` + `st` | `est` | 9 |
+| 3 | 258 | `(l,o)` `(o,w)` — tie at 7 | `o` + `w` | `ow` | 7 |
+| 4 | 259 | `(l,ow)` — unique | `l` + `ow` | `low` | 7 |
+| 5 | 260 | `(e,w)` `(n,e)` `(w,est)` — tie at 6 | `w` + `est` | `west` | 6 |
+| 6 | 261 | `(e,west)` `(n,e)` — tie at 6 | `n` + `e` | `ne` | 6 |
+| 7 | 262 | `(ne,west)` — unique | `ne` + `west` | `newest` | 6 |
+| 8 | 263 | `(␣,low)` `(␣,newest)` — tie at 5 | `␣` + `newest` | `␣newest` | 5 |
+
+Follow the table through the first four merges to see how a merge changes
+the *next* round's statistics:
+
+- **Merge 1, `st`.** Only the three rows containing `(s, t)` are touched:
+  `(␣,n,e,w,e,s,t)` becomes `(␣,n,e,w,e,st)`, and likewise for `␣widest` and
+  `newest`. The pair `(e, s)` — the other half of the tie — vanishes from the
+  table entirely, because every `e` that was followed by `s` is now followed
+  by `st`. In its place a new pair `(e, st)` appears with count 9.
+- **Merge 2, `est`.** `(e, st)` is now the unique maximum, and merging it
+  produces `est` in the same three rows. The suffix that `widest` and
+  `newest` share has been found before either word has.
+- **Merge 3, `ow`.** The next tie, `(l, o)` versus `(o, w)` at 7, breaks
+  toward `o` > `l`. Four rows change.
+- **Merge 4, `low`.** The remaining `(l, ow)` at 7 is unique, and `low` is
+  a single token — as is `␣low`'s tail, so `(␣, low)` enters the table at 5.
+
+Then `west`, `ne`, and `newest` fall out in three more merges, and the last
+one attaches the leading space: `␣newest`, the corpus's most common pre-token
+as a single token. Three things are worth noticing in the full table.
+
+**Frequency descends cleanly** — 9, 9, 7, 7, 6, 6, 6, 5 — and frequent
+whole words collapse before rarer structure is touched at all. That is the
+compression objective showing through: each merge removes exactly
+`count` tokens from the corpus's encoded length, so taking the maximum
+count is greedy compression.
+
+**Ties are common and the tie-break decides real structure.** Merge 5 is a
+three-way tie; had `(e, w)` won instead of `(w, est)`, the vocabulary would
+have grown `ew` instead of `west`, and `newest` would have been assembled
+from different pieces. Neither is more correct — but only one is
+reproducible.
+
+**`lower` never becomes a token.** It shares the `low` stem, but its `er`
+suffix only reaches count 2, far below everything else. After eight merges,
+`lower` is still `low` + `e` + `r`. The vocabulary is shaped by frequency
+in *this* corpus, not by what looks like a word to a human.
+
+Stepping through it yourself is the fastest way to make this stick. The
+widget below runs the same algorithm — same regex, same tie-break, same
+greedy merge — on any corpus you type. Click **Merge next** and watch which
+rows change, which pair vanishes from the statistics, and which new pair
+appears:
+
+Try replacing the corpus with a sentence of your own and asking for 20
+merges, and notice how quickly the top of the pair table becomes a series of
+ties once the frequent words are used up.
+
+## What the training produced
+
+Two artifacts come out of the loop, and both are needed later:
+
+```python
+vocab = {0: b'\x00', 1: b'\x01', ..., 255: b'\xff',      # the 256 bytes
+         256: b'st', 257: b'est', 258: b'ow', 259: b'low',
+         260: b'west', 261: b'ne', 262: b'newest', 263: b' newest',
+         264: b'<|endoftext|>'}                          # special token, appended last
+merges = [(b's', b't'), (b'e', b'st'), (b'o', b'w'), (b'l', b'ow'),
+          (b'w', b'est'), (b'n', b'e'), (b'ne', b'west'), (b' ', b'newest')]
+```
+
+The vocabulary is a `dict[int, bytes]` — IDs to *bytes*, never to strings,
+because a token like `b'\xc3'` (the first byte of `é`) is not valid text on
+its own. The merges are a `list`, in creation order, and that order is the
+tokenizer's real definition: `vocab` can be reconstructed from `merges` by
+replaying them, but not the other way around.
+
+## Encoding: replay the merges by rank, not by count
+
+Encoding new text mirrors training with one crucial difference. Training
+picked pairs by *frequency*; at encode time there is no corpus and no
+frequency. There is only the ordered merge list, so each merge gets a
+**rank** — its position in the list, 0 for the first learned — and the rule
+becomes:
+
+> Pre-tokenize the text with the same regex. For each pre-token, split it into
+> bytes, then repeatedly find every adjacent pair that appears in the merge
+> list and apply the one with the **lowest rank**. Stop when no pair is in the
+> list.
+
+Applying the earliest-learned merge first reproduces what training did to
+that pre-token, if training ever saw it — and does something sensible if it
+didn't. Here is `␣newest`, which training saw five times, going through six
+iterations back to a single token:
+
+```
+start:   (␣, n, e, w, e, s, t)
+iter 1:  candidates (n,e)#5 (s,t)#0        → apply rank 0 (s,t)    → (␣, n, e, w, e, st)
+iter 2:  candidates (n,e)#5 (e,st)#1       → apply rank 1 (e,st)   → (␣, n, e, w, est)
+iter 3:  candidates (n,e)#5 (w,est)#4      → apply rank 4 (w,est)  → (␣, n, e, west)
+iter 4:  candidates (n,e)#5                → apply rank 5 (n,e)    → (␣, ne, west)
+iter 5:  candidates (ne,west)#6            → apply rank 6          → (␣, newest)
+iter 6:  candidates (␣,newest)#7           → apply rank 7          → (␣newest)
+ids = [263]
+```
+
+Notice iteration 1: both `(n, e)` and `(s, t)` are learned merges, and
+`(n, e)` comes first in the pre-token, but `(s, t)` has the lower rank, so it
+goes first. Position in the string is irrelevant; only rank matters.
+
+Now a word training **never saw**, `lowest`:
+
+```
+start:   (l, o, w, e, s, t)
+iter 1:  candidates (o,w)#2 (s,t)#0        → apply rank 0 (s,t)    → (l, o, w, e, st)
+iter 2:  candidates (o,w)#2 (e,st)#1       → apply rank 1 (e,st)   → (l, o, w, est)
+iter 3:  candidates (o,w)#2 (w,est)#4      → apply rank 2 (o,w)    → (l, ow, est)
+iter 4:  candidates (l,ow)#3               → apply rank 3 (l,ow)   → (low, est)
+ids = [259, 257]
+```
+
+`lowest` comes out as `low` + `est` — two tokens that each mean something,
+assembled from a vocabulary that was never shown the word. At iteration 3
+there was a real choice: `(w, est)` would have produced `west` (rank 4), but
+`(o, w)` has rank 2 and wins, and once `w` is inside `ow` the `west` merge
+can never fire. This is the graceful degradation BPE was designed for: an
+unseen word becomes a few known pieces, never `<UNK>`.
+
+Two more, to calibrate what "graceful" means. `newer` becomes `ne` + `w` +
+`e` + `r` — four tokens, because nothing in this tiny corpus taught it
+`er`. And `zzqq` has no applicable merge at all, so it stays four raw bytes,
+`[122, 122, 113, 113]`. Nothing ever fails; things just get longer.
+
+Finally a whole string, including a special token, through the full
+`Tokenizer.encode`:
+
+```
+text:  'the lowest widest fox<|endoftext|>newest lower'
+split: ['the lowest widest fox', '<|endoftext|>', 'newest lower']
+ids:   [116, 104, 101, 32, 259, 257, 32, 119, 105, 100, 257, 32, 102, 111, 120,
+        264, 262, 32, 259, 101, 114]
+        t    h    e    ␣   low  est  ␣   w    i    d    est  ␣   f    o    x
+        <|endoftext|>  newest ␣  low  e    r
+```
+
+46 bytes in, 21 tokens out — 2.19 bytes per token. `the` and `fox` fall all
+the way to single bytes because the corpus never contained a `t`, an `h`, an
+`f` or an `x`. GPT-2's real vocabulary turns the same words into six
+tokens — `the | ␣lowest | ␣widest | ␣fox | ␣newest | ␣lower` — one per
+word.
+
+## Decoding: concatenate bytes, then decode UTF-8
+
+Decoding is the easy direction. Look every ID up in `vocab`, concatenate
+the byte strings, decode once as UTF-8:
+
+```python
+def decode(self, ids: list[int]) -> str:
+    return b"".join(self.vocab[i] for i in ids).decode("utf-8", errors="replace")
+```
+
+The one decision is `errors="replace"`. A model can emit any sequence of
+IDs, including one that splits a multi-byte character — the first two of
+`🙃`'s four bytes, say. That byte string is not valid UTF-8, and strict
+decoding would raise. With `replace`, the malformed bytes become the
+official Unicode replacement character `U+FFFD` (`�`) and everything else
+decodes normally:
+
+```
+'🙃' → ids [240, 159, 153, 131] → decode → '🙃'        (round-trip exact)
+first two bytes only [240, 159]  → decode → '�'
+```
+
+Round-tripping is exact whenever the IDs came from `encode`: the byte-level
+alphabet guarantees the concatenated bytes are precisely the original
+UTF-8, so `decode(encode(text)) == text` for *every* string, including the
+Vietnamese and emoji examples above. All 2,000 held-out TinyStories
+documents in the assignment's check decode back byte-for-byte.
+
+## Special tokens are boundaries, not text
+
+`<|endoftext|>` marks where one document ends and the next begins. It needs
+a single ID so the model can learn to emit it and a sampler can stop on it —
+but it must never be *learned about*. If special tokens took part in merge
+statistics, training could produce a token spanning `<|endoftext|>` and the
+first half of the next word, and encoding would then fail to keep the marker
+whole. So the implementation handles them in three places:
+
+1. **During training**, the text is split on special tokens *before*
+   pre-tokenization, and the special-token chunks are dropped entirely. They
+   contribute nothing to the counts and no merge can cross them. They are
+   appended to the vocabulary only after the last merge — which is why
+   `<|endoftext|>` has ID 264 above, after `␣newest` at 263.
+2. **During encoding**, the same split is done but the special chunks are
+   *kept* and mapped straight to their ID, never pre-tokenized, never run
+   through the merges. That is the `split:` line in the encode example.
+3. **Between documents in a large file**, they are the safe places to cut the
+   corpus into chunks for parallel processing (next section).
+
+The regex for the split is `(tok1|tok2|...)`, with the tokens sorted
+**longest first** — regex alternation takes the first alternative that
+matches, so if one special token were a prefix of another, the short one
+would eat part of the long one. And the alternatives must be
+`re.escape`d, since `|` is itself a regex metacharacter. There is also a
+trap in the empty case: with no special tokens, `"|".join([])` is the empty
+string, and `re.split("()", text)` matches at *every character position*,
+silently shredding the input into single characters. The implementation
+skips the split entirely when the list is empty.
+
+## Making it fast without changing the answer
+
+Nothing above depends on speed, and the naive version — recount every pair
+over the whole table, every merge — is correct and is what the minimal code
+at the end of this post does. It is also $O(\text{merges} \times
+\text{table})$, which for 10,000 merges over hundreds of thousands of
+distinct pre-tokens is far too slow. The implementation makes two changes
+that leave the output byte-identical.
+
+### Only touch the rows that contain the pair
+
+After a merge of `(A, B)`, the only pair counts that change are those in
+rows that actually contained `(A, B)`. So keep two indexes, built once:
+
+- `pair_counts: {(a, b): total}` — what the `max` runs over.
+- `pair_to_pretokens: {(a, b): {rows containing it}}` — **who to update**.
+
+One merge step then does, for each affected row only: subtract the row's
+old pairs from `pair_counts`, apply the merge, add the new row's pairs back.
+Everything else in the table is untouched. Two details matter for
+correctness. The set of affected rows is copied to a list before looping,
+because the loop mutates those very sets. And when two different old rows
+collapse to the same merged row, their counts must be *added*, not
+overwritten.
+
+The merge itself is **greedy, left to right, non-overlapping**: merging
+`(a, a)` in `(a, a, a)` gives `(aa, a)`, not two overlapping merges. That
+is the standard BPE convention, and the reason the merge routine advances by
+two positions on a hit.
+
+### Read the corpus in parallel, cutting only at special tokens
+
+A 2.2 GB file cannot be `read()` into a string on a laptop, and
+pre-tokenizing it in one process takes minutes. So it is split into byte
+ranges, one per worker. But a split at an arbitrary byte offset could land
+mid-document (merging statistics across two documents that were never
+adjacent) or mid-UTF-8-character (producing an undecodable chunk).
+
+The fix uses the special token twice over. Guess evenly spaced offsets,
+then walk each one *forward* to the next `<|endoftext|>`. Every boundary
+now sits at the start of a special token — and since that token is pure
+ASCII, every byte in it is below 128, which by construction of UTF-8 can
+never be a continuation byte. So each chunk begins on a fresh code point,
+and workers can decode in strict mode. (Using `errors="ignore"` here would
+hide a real bug by silently corrupting text.) Each worker returns a
+`Counter` of pre-tokens; the parent sums them. The result is verified
+identical to a single-process run at 1, 2, 4 and 8 workers.
+
+### Where the time actually goes
+
+Profiling the same code at two scales gives two different answers, which is
+itself the lesson:
+
+| Corpus, vocab | Pre-tokenization | Picking the max pair | Applying the merge |
+| --- | --- | --- | --- |
+| 5 MB, 1,000 | **74%** | 18% | 7% |
+| 22 MB, 10,000 | 7% | **89%** | 3% |
+
+The `max` over `pair_counts` is a linear scan of every distinct pair, once
+per merge: 9,743 merges × roughly 10,200 live pairs ≈ 100 million key
+evaluations. Its cost grows with vocabulary size *and* corpus diversity,
+while pre-tokenization grows only with corpus bytes — so which stage
+dominates depends entirely on where you are. The textbook fix is a heap
+over the pair counts with lazy deletion, $O(\log P)$ per merge instead of
+$O(P)$; the implementation traced here has not applied it yet, so those are
+honest baseline numbers.
+
+## Writing it to disk: why the vocab file is full of Ġ
+
+The tokens are `bytes`, and neither JSON nor a whitespace-separated
+`merges.txt` line can carry arbitrary bytes: byte 32 (space) would break the
+line split, byte 10 (newline) would break the line, and bytes 128–255 are
+not valid UTF-8 on their own. GPT-2 solved this with a fixed bijection from
+the 256 byte values to 256 *printable* Unicode characters. The 188 bytes that
+are already printable, non-whitespace characters map to themselves; the
+other 68 are shifted up by 256 into the Latin Extended block. Space becomes
+`Ġ`, newline becomes `Ċ`, byte 0 becomes `Ā`.
+
+```
+vocab.json (tail):  {..., "st": 256, "est": 257, "ow": 258, "low": 259, "west": 260,
+                     "ne": 261, "newest": 262, "Ġnewest": 263, "<|endoftext|>": 264}
+merges.txt:         s t
+                    e st
+                    o w
+                    l ow
+                    w est
+                    n e
+                    ne west
+                    Ġ newest
+```
+
+That is why every GPT-2-family vocabulary you open is full of `Ġ`: it is
+`b" "`, the leading space that pre-tokenization attached to almost every
+word. It is a property of the *file format*, not the tokenizer — the byte
+table is applied on save and inverted on load, and the tokenizer itself
+never sees those characters.
+
+## What happens at scale: TinyStories, 2.2 GB, 10,000 tokens
+
+The assignment's real run points the same code at TinyStories — 2.23 GB,
+2.7 million GPT-generated children's stories — with a vocabulary of 10,000
+and one special token, on a 10-core laptop:
+
+| | |
+| --- | --- |
+| Wall time | 103.5 s (handout's hint: under 2 minutes; budget: 30) |
+| Peak memory | 0.12 GB in the parent, 0.31 GB per worker |
+| Merges learned | 9,743 → vocabulary 10,000, `<\|endoftext\|>` is ID 9,999 |
+| Compression on 200 held-out stories | 163,896 bytes → 40,671 tokens = **4.03 bytes/token** |
+| Round-trip | 200 / 200 stories decode back byte-exact |
+
+The first twelve merges are pure frequency, and yet they are already
+recognizably English:
+
+```
+' t'  'he'  ' a'  ' s'  ' w'  'nd'  ' the'  'ed'  ' b'  ' to'  ' and'  ' h'
+```
+
+Every one of the ten longest tokens is a common word carrying its leading
+space — `␣accomplishment`, `␣disappointment`, `␣responsibility`,
+`␣uncomfortable`, `␣compassionate`, `␣understanding`, `␣neighbourhood`,
+`␣Unfortunately`, `␣determination`, `␣encouragement`. Does that make sense? Yes: TinyStories is deliberately
+small-vocabulary fiction, a few thousand whole words repeated millions of
+times, so BPE spends its budget making each of them one token, and the long
+ones are exactly the moral vocabulary those stories are about. A typical
+sentence is one token per word:
+
+```
+Once | ␣upon | ␣a | ␣time | ␣there | ␣was | ␣a | ␣little | ␣boat | .
+```
+
+Of the 9,743 merged tokens, **7,277 begin with a space** — three quarters of
+the vocabulary is "word with its preceding space." Their length
+distribution peaks at five bytes:
+
+Two comparisons put those numbers in context.
+
+**Against GPT-2's real tokenizer.** On the same 200 stories, GPT-2's
+50,257-token vocabulary achieves 3.98 bytes/token — barely better than the
+10,000-token one trained on this corpus, because GPT-2 spent most of its
+five-times-larger budget on web text these stories never use. The two
+tokenize the opening of a story almost identically: `Once | ␣upon | ␣a |
+␣time | , | ␣there | ␣was | ␣a | ␣little | ␣boat`. A tokenizer is only as
+good as the match between its training data and the text it meets.
+
+**Against a tokenizer trained on 1% of the data.** Training on the 22 MB
+validation set instead of the 2.2 GB training set takes 7 seconds and
+produces a vocabulary sharing **8,825 of 10,000** entries with the
+full-data one. Yet their merge *lists* diverge at merge number 6 — one
+picks `␣t` + `he` first, the other `n` + `d`, both at nearly identical
+counts. Greedy selection means tiny frequency differences flip early
+decisions, but the process converges on nearly the same vocabulary anyway.
+The practical upshot the handout recommends: debug on the small set, train
+once on the large one.
+
+There is a bilingual footnote to all this. Because the base alphabet is
+bytes, a script that was rare in the training data falls apart into them.
+GPT-2 turns `Xin chào thế giới` (17 characters) into 15 tokens: `à`
+survives as one token, but `ế` and `ớ` each shatter into three raw bytes,
+rendered as `�`. OpenAI's later
+vocabularies, trained on more multilingual data, do progressively better on
+the same string — 9 tokens with the 100K vocabulary behind GPT-4, 5 with
+the 200K one behind GPT-4o. Nothing about the algorithm changed; only the
+data and the budget did. Vietnamese text costs a GPT-2-era model roughly
+three times the tokens per character that English does, which is a
+tokenizer fact with real consequences for context length and price.
+
+## Reproducing this in code
+
+The full implementation is eleven modules because it also handles special
+tokens, parallel reading, the incremental indexes and the file format. The
+algorithm itself fits in sixty lines, and this version — naive recounting,
+no special tokens — produces exactly the merges and IDs traced above:
+
+```python
+from collections import Counter
+
+PAT = r"""'(?:[sdmt]|ll|ve|re)| ?\p{L}+| ?\p{N}+| ?[^\s\p{L}\p{N}]+|\s+(?!\S)|\s+"""
+
+def pretokenize(text):
+    """text -> Counter{tuple of single bytes: frequency}"""
+    counts = Counter()
+    for m in re.finditer(PAT, text):
+        counts[tuple(bytes([b]) for b in m.group().encode("utf-8"))] += 1
+    return counts
+
+def pair_counts(counts):
+    pc = Counter()
+    for tok, freq in counts.items():
+        for pair in zip(tok, tok[1:]):        # adjacent pairs, duplicates kept
+            pc[pair] += freq
+    return pc
+
+def merge(tok, pair, new):
+    """Replace every non-overlapping occurrence of `pair` in `tok`, left to right."""
+    out, i = [], 0
+    while i < len(tok):
+        if i < len(tok) - 1 and (tok[i], tok[i + 1]) == pair:
+            out.append(new); i += 2
+        else:
+            out.append(tok[i]); i += 1
+    return tuple(out)
+
+def train(text, num_merges):
+    counts = pretokenize(text)
+    vocab = {i: bytes([i]) for i in range(256)}
+    merges = []
+    for _ in range(num_merges):
+        pc = pair_counts(counts)                     # naive: recount everything each round
+        if not pc:
+            break
+        best = max(pc, key=lambda p: (pc[p], p))     # highest count; tie -> lexicographically greatest
+        new = best[0] + best[1]
+        merged = Counter()
+        for tok, freq in counts.items():
+            merged[merge(tok, best, new)] += freq
+        counts = merged
+        merges.append(best)
+        vocab[256 + len(merges) - 1] = new
+    return vocab, merges
+
+def encode(text, vocab, merges):
+    rank = {p: i for i, p in enumerate(merges)}
+    to_id = {tok: i for i, tok in vocab.items()}
+    ids = []
+    for m in re.finditer(PAT, text):
+        tok = tuple(bytes([b]) for b in m.group().encode("utf-8"))
+        while True:
+            cands = [p for p in zip(tok, tok[1:]) if p in rank]
+            if not cands:
+                break
+            p = min(cands, key=rank.get)             # earliest-learned merge wins
+            tok = merge(tok, p, p[0] + p[1])
+        ids += [to_id[t] for t in tok]
+    return ids
+
+def decode(ids, vocab):
+    return b"".join(vocab[i] for i in ids).decode("utf-8", errors="replace")
+
+corpus = "low low low low low\nlower lower widest widest widest\nnewest newest newest newest newest newest\n"
+vocab, merges = train(corpus, num_merges=8)
+print(merges)
+print({i: vocab[i] for i in range(256, 264)})
+ids = encode("the lowest widest fox", vocab, merges)
+print(ids)
+print([decode([i], vocab) for i in ids])
+print(decode(ids, vocab) == "the lowest widest fox")
+# [(b's', b't'), (b'e', b'st'), (b'o', b'w'), (b'l', b'ow'), (b'w', b'est'), (b'n', b'e'), (b'ne', b'west'), (b' ', b'newest')]
+# {256: b'st', 257: b'est', 258: b'ow', 259: b'low', 260: b'west', 261: b'ne', 262: b'newest', 263: b' newest'}
+# [116, 104, 101, 32, 259, 257, 32, 119, 105, 100, 257, 32, 102, 111, 120]
+# ['t', 'h', 'e', ' ', 'low', 'est', ' ', 'w', 'i', 'd', 'est', ' ', 'f', 'o', 'x']
+# True
+```
+
+Every design decision from the post is visible in it: bytes as the
+alphabet, the regex as the boundary, the `(count, pair)` key as the
+tie-break, the `i += 2` as the non-overlapping rule, and `min` over ranks
+rather than `max` over counts as the difference between encoding and
+training.
+
+## What this post leaves for later
+
+- **Other subword algorithms.** WordPiece (BERT) scores a candidate merge by
+  how much it increases the likelihood of the training data, roughly
+  $\text{count}(AB) / (\text{count}(A)\,\text{count}(B))$, rather than by raw
+  count. The Unigram model (Kudo, 2018) starts from a *large* vocabulary and
+  prunes pieces whose removal hurts likelihood least. SentencePiece is a
+  library that implements both and treats whitespace as an ordinary symbol
+  (`▁`). Same problem, different objectives; BPE's greedy count is the
+  simplest and remains the most common.
+- **Tokenizer pathologies.** Numbers split inconsistently (`\p{N}+` groups
+  all digits in a run; newer patterns cap it at three), trailing whitespace
+  and code indentation produce odd tokens, and the same word gets different
+  IDs depending on capitalization and its preceding space. These are
+  consequences of the regex and the data, and they shape what a model finds
+  easy or hard.
+- **What the model does with the IDs** — the embedding lookup, the residual
+  stream, attention — is where [the residual stream
+  post](/posts/residual-stream-explained/) picks up, one row of $W_E$ at a
+  time.
+
+## Takeaways
+
+- A tokenizer turns infinite text into a finite vocabulary. Word-level fails
+  on coverage, character-level on cost; **subword** vocabularies are the
+  middle, and BPE learns one from data by greedily merging the most frequent
+  adjacent pair.
+- Starting from **UTF-8 bytes** makes the base alphabet exactly 256 symbols
+  and guarantees nothing is ever out of vocabulary — any string encodes, and
+  every encoding decodes back exactly.
+- **Pre-tokenization** (GPT-2's regex) sets the boundaries merges can never
+  cross, attaches each space to the *following* word, and turns the corpus
+  into a weighted table so it is only read once.
+- Training picks pairs by **count**, breaking ties toward the
+  lexicographically greatest pair so results are reproducible. Encoding
+  replays the merges by **rank** — earliest learned first — so unseen words
+  degrade into known pieces instead of `<UNK>`.
+- **Special tokens** are boundaries, not text: split out before counting,
+  appended after all merges, mapped straight to an ID at encode time.
+- Speed comes from indexing which rows contain each pair and from parallel
+  reading cut only at special tokens; neither changes the output by a byte.
+  Where time goes depends on scale — pre-tokenization at small vocabularies,
+  the per-merge argmax at large ones.
+- A vocabulary reflects its corpus. Ten thousand tokens trained on
+  TinyStories compress those stories as well as GPT-2's fifty thousand, and
+  1% of the data yields 88% of the same vocabulary — while a script the data
+  lacked falls apart into bytes.
+
+## References
+
+- Gage, [_A New Algorithm for Data Compression_](https://www.derczynski.com/papers/archive/BPE_Gage.pdf), C Users Journal 12(2), February 1994 — byte-pair encoding as a compression algorithm, the origin of the idea.
+- Sennrich, Haddow & Birch, [_Neural Machine Translation of Rare Words with Subword Units_](https://arxiv.org/abs/1508.07909) (ACL 2016) — BPE for open-vocabulary translation; the `low / lower / newest / widest` example and the `(count, pair)` tie-break in the reference [`subword-nmt`](https://github.com/rsennrich/subword-nmt) code.
+- Radford et al., [_Language Models are Unsupervised Multitask Learners_](https://cdn.openai.com/better-language-models/language_models_are_unsupervised_multitask_learners.pdf) (GPT-2, 2019) — byte-level BPE, the regex pre-tokenizer, and the byte-to-printable-character table.
+- Wang, Cho & Gu, [_Neural Machine Translation with Byte-Level Subwords_](https://arxiv.org/abs/1909.03341) (2019) — byte-level BPE studied on its own terms.
+- Kudo, [_Subword Regularization_](https://arxiv.org/abs/1804.10959) (2018) and Kudo & Richardson, [_SentencePiece_](https://arxiv.org/abs/1808.06226) (2018) — the Unigram alternative and the library that implements both it and BPE.
+- Stanford CS336, [_Assignment 1: Basics_](https://github.com/stanford-cs336/assignment1-basics) — §2 of the handout specifies the byte-level BPE trained and traced here; the course test suite is what the implementation was checked against.
+- OpenAI, [`tiktoken`](https://github.com/openai/tiktoken) — the reference GPT-2 / GPT-4 / GPT-4o tokenizers used for the comparisons above.
+When an LLM generates text, it produces one token at a time, feeding each new
+token back in to produce the next. Done naively, every step re-runs attention
+over the *entire* sequence so far — an enormous amount of repeated work. The
+**KV cache** is the optimization that removes almost all of it, and it's the
+single most important reason LLM inference is practical at all. This post shows
+exactly what gets cached, why it's mathematically safe to do so, and what it
+costs in memory — worked through with the same matrices, step by step.
+
+This builds directly on
+[the Transformer's attention patterns](/posts/transformer-attention-patterns/) —
+if the terms $Q$, $K$, $V$, causal masking, or $\operatorname{softmax}(QK^\top/\sqrt{d_k})V$
+aren't familiar, start there.
+
+## Table of contents
+
+## The problem: decoding recomputes the past
+
+A decoder-only LLM generates autoregressively. To produce token $t$, it runs
+masked self-attention over tokens $1 \dots t$, takes the output at the last
+position, and samples the next token. Then it appends that token and repeats
+for $t+1$.
+
+Recall causal self-attention over a sequence $X$ with $n$ tokens:
+
+$$
+Q = XW_Q, \quad K = XW_K, \quad V = XW_V, \qquad
+Y = \operatorname{softmax}\!\left(\frac{QK^\top}{\sqrt{d_k}} + M\right)V
+$$
+
+Here's the wasteful part. At step $t$, the naive approach recomputes $Q$, $K$,
+and $V$ for **all** $t$ tokens — even though tokens $1 \dots t-1$ haven't
+changed since the previous step. Generating $n$ tokens this way computes
+$1 + 2 + \dots + n = \frac{n(n+1)}{2}$ rows of $K$ and $V$ — quadratic in
+sequence length, almost all of it redundant.
+
+> [!note] Not a technique from the original paper
+> Vaswani et al.'s 2017 paper describes *training*, where the whole target
+> sequence is available at once and the causal mask is applied in parallel —
+> it says nothing about inference. KV caching isn't traceable to one seminal
+> paper the way scaled dot-product attention or PagedAttention are; it's
+> closer to an engineering practice that hardened into a term of art once
+> decoder-only LLMs made autoregressive serving the default way people ran
+> these models. Every autoregressive model has always had *some* version of
+> "reuse state instead of recomputing it" — an RNN's hidden state does this
+> by construction — but a Transformer has no persistent hidden state to
+> carry forward for free, so the cache has to be built and managed
+> explicitly.
+
+## The insight: past keys and values never change
+
+Two facts make caching safe:
+
+1. **The projection weights $W_K$ and $W_V$ are fixed at inference time.** The
+   key and value for token $i$ are $K_i = X_i W_K$ and $V_i = X_i W_V$ — they
+   depend only on token $i$'s own embedding, nothing else.
+2. **The causal mask means token $i$ never attends to anything after it.** So
+   adding new tokens to the end of the sequence can't change what token $i$
+   attended to, and therefore can't change $X_i$ at later layers either. That
+   last step is an induction over layers: at layer 1, token $i$'s output
+   depends only on tokens $1 \dots i$ (the mask); that output is token $i$'s
+   input at layer 2, so its layer-2 key and value depend only on tokens
+   $1 \dots i$ too; and so on up the stack. Nothing at any layer, at any
+   position $\le i$, ever sees a token $> i$.
+
+Put together: once you've computed $K_i$ and $V_i$, they are **identical at
+every future step**. There is no reason to recompute them. Cache them once,
+reuse them forever.
+
+So at each decode step we only need to:
+
+1. Compute $K$ and $V$ for the **single new token**, and append them to the cache.
+2. Compute $Q$ for the **single new token** only (see below for why just one).
+3. Attend: that one new query against the **entire** cached $K$ and $V$.
+
+This turns $\frac{n(n+1)}{2}$ key/value computations into just $n$ — linear
+instead of quadratic. The gap between the two curves *is* the redundant work the
+cache removes, and it widens with every token:
+
+At just 64 tokens the naïve path already does **2080** row-computations to the
+cache's **64**; at a realistic 4096-token context it's over **8 million** versus
+**4096**. That widening gap is why the cache isn't a nice-to-have — it's the
+difference between quadratic and linear decoding.
+
+## Worked example: watching the cache grow
+
+Use the same projections as the attention post ($d_k = d_v = 2$):
+
+$$
+W_Q = \begin{bmatrix} 1 & 0 \\ 1 & 1 \end{bmatrix}, \quad
+W_K = \begin{bmatrix} 0 & 1 \\ 1 & 0 \end{bmatrix}, \quad
+W_V = \begin{bmatrix} 1 & 1 \\ 0 & 1 \end{bmatrix}
+$$
+
+and generate a 4-token sequence with embeddings:
+
+$$
+X = \begin{bmatrix} 1 & 0 \\ 0 & 1 \\ 1 & -1 \\ 0.5 & 0.5 \end{bmatrix}
+\;\Longrightarrow\;
+K = XW_K = \begin{bmatrix} 0 & 1 \\ 1 & 0 \\ -1 & 1 \\ 0.5 & 0.5 \end{bmatrix}, \quad
+V = XW_V = \begin{bmatrix} 1 & 1 \\ 0 & 1 \\ 1 & 0 \\ 0.5 & 1 \end{bmatrix}
+$$
+
+The whole point of the cache is that these $K$ and $V$ rows get built up **one
+row per step** and never change once written. The heatmap below is the $K$
+cache after all four steps — each row was computed at a different decode step
+and then frozen:
+
+At decode step 4, only the highlighted row (token 4's key) is computed. Rows
+1–3 are read straight from the cache — byte-for-byte identical to what they
+were at steps 1, 2, and 3. The $V$ cache grows the same way, in lockstep.
+
+### The attention at step 4
+
+Now the actual attention for the new token. We compute the query for **only**
+token 4:
+
+$$
+q_4 = X_4 W_Q = \begin{bmatrix} 0.5 & 0.5 \end{bmatrix} W_Q = \begin{bmatrix} 1 & 0.5 \end{bmatrix}
+$$
+
+then score it against the **full** cached $K$ (all 4 rows), scale by
+$\sqrt{d_k} = \sqrt 2$:
+
+$$
+\frac{q_4 K^\top}{\sqrt 2} = \begin{bmatrix} 0.354 & 0.707 & -0.354 & 0.530 \end{bmatrix}
+$$
+
+Softmax turns those four scores into weights over the four cached tokens — no
+mask needed, because token 4 is the last position and is allowed to see
+everything before it:
+
+$$
+a_4 = \operatorname{softmax}\!\left(\frac{q_4 K^\top}{\sqrt 2}\right)
+= \begin{bmatrix} 0.243 & 0.347 & 0.120 & 0.290 \end{bmatrix}
+$$
+
+This is the shape that matters for caching: a **single query row** attending
+across the **entire cached sequence**. The output for token 4 is that weighted
+sum of the cached values:
+
+$$
+Y_4 = a_4 V = \begin{bmatrix} 0.508 & 0.880 \end{bmatrix}
+$$
+
+The key thing to notice: computing $Y_4$ required exactly one new key, one new
+value, and one new query — everything else came from the cache. Compare that
+to the naive version, which would have rebuilt all four rows of $K$ and $V$
+from scratch just to produce this one token.
+
+### Cached and uncached give identical results
+
+Caching isn't an approximation — it produces bit-identical outputs to
+recomputing everything, because the cached rows *are* exactly what
+recomputation would produce. Here it is as actual code, not just an
+assertion — run it and compare the two columns yourself:
+
+```python
+
+def attention(Q, K, V):
+    d_k = K.shape[-1]
+    scores = Q @ K.T / np.sqrt(d_k)
+    w = np.exp(scores - scores.max(axis=-1, keepdims=True))
+    w /= w.sum(axis=-1, keepdims=True)
+    return w @ V
+
+def fmt(v):
+    return "[" + " ".join(f"{x:.3f}" for x in v) + "]"
+
+W_Q = np.array([[1, 0], [1, 1]], dtype=float)
+W_K = np.array([[0, 1], [1, 0]], dtype=float)
+W_V = np.array([[1, 1], [0, 1]], dtype=float)
+X = np.array([[1, 0], [0, 1], [1, -1], [0.5, 0.5]], dtype=float)
+
+n = len(X)
+K_cache, V_cache = [], []
+naive_rows = cached_rows = 0
+
+for t in range(1, n + 1):
+    # naive: recompute K and V for all t tokens from scratch, every step
+    Kt, Vt = X[:t] @ W_K, X[:t] @ W_V
+    y_naive = attention(X[t - 1:t] @ W_Q, Kt, Vt)[0]
+    naive_rows += t
+
+    # cached: compute K and V for only the new token, append to the cache
+    K_cache.append(X[t - 1] @ W_K)
+    V_cache.append(X[t - 1] @ W_V)
+    y_cached = attention(X[t - 1:t] @ W_Q, np.array(K_cache), np.array(V_cache))[0]
+    cached_rows += 1
+
+    print(f"step {t}  no-cache={fmt(y_naive)}  cached={fmt(y_cached)}  rows: {t} vs 1")
+
+print(f"total K/V rows computed: {naive_rows} (= n(n+1)/2)  vs  {cached_rows} (= n)")
+```
+
+```text
+step 1  no-cache=[1.000 1.000]  cached=[1.000 1.000]  rows: 1 vs 1
+step 2  no-cache=[0.500 1.000]  cached=[0.500 1.000]  rows: 2 vs 1
+step 3  no-cache=[0.497 0.752]  cached=[0.497 0.752]  rows: 3 vs 1
+step 4  no-cache=[0.508 0.880]  cached=[0.508 0.880]  rows: 4 vs 1
+total K/V rows computed: 10 (= n(n+1)/2)  vs  4 (= n)
+```
+
+Same outputs, 60% fewer key/value computations even at $n = 4$; at
+$n = 4096$ the naive approach does over 8 million row-computations versus
+4096 with the cache.
+
+## Why keys and values, but not queries?
+
+It's a fair question — why isn't there a "Q cache"? Because a query is only
+ever used **once**. Token $i$'s query $q_i$ is needed at exactly one moment:
+the step that generates token $i$, where $q_i$ scores against all keys so far.
+Once token $i$ is generated, its query is never consulted again — future steps
+use *their own* queries ($q_{i+1}$, $q_{i+2}$, …) against the same cached keys
+and values.
+
+Keys and values are the opposite: token $i$'s $K_i$ and $V_i$ are needed at
+step $i$ **and every step after it**, because every future query attends back
+over the whole history. That asymmetry — queries used once, keys/values used
+forever — is exactly why we cache K and V and not Q.
+
+## Two phases: prefill and decode
+
+The KV cache splits inference into two distinct phases with very different
+performance characteristics:
+
+- **Prefill** processes the entire prompt in one shot. All prompt tokens' keys
+  and values are computed together and written to the cache. Because there's a
+  lot of parallel matrix work here, prefill is **compute-bound**.
+- **Decode** generates one token at a time, each step doing a tiny amount of
+  compute (one token's projections) but reading the *entire* KV cache to attend
+  over it. Because it moves far more memory than it does math, decode is
+  **memory-bandwidth-bound** — and the bigger the cache, the more bytes get
+  streamed per token. This is why KV cache size directly limits throughput.
+
+Those two labels are load-bearing for everything else in this series, so
+here is where they come from. A GPU has two separate ceilings: how fast it
+can do arithmetic, and how fast it can move bytes in from memory. An H100
+SXM does about 989 TFLOPS of dense BF16 matrix math and streams 3.35 TB/s
+from its 80 GB of HBM3. Divide the two and you get the **ridge point**:
+
+$$
+\frac{989 \times 10^{12}\ \text{FLOP/s}}{3.35 \times 10^{12}\ \text{byte/s}} \approx 295\ \text{FLOP per byte}
+$$
+
+Any computation that performs fewer than about 295 floating-point operations
+per byte it reads is waiting on memory, not on arithmetic — the math units
+idle while bytes arrive. Now count what a decode step does. Every weight
+matrix in the model is read once per forward pass, at 2 bytes per parameter
+in BF16, and each parameter takes part in one multiply-add — 2 FLOPs — *per
+token in the pass*. So the arithmetic intensity of the weight traffic is:
+
+$$
+\frac{2 \times B\ \text{FLOP per parameter}}{2\ \text{bytes per parameter}} = B\ \text{FLOP per byte}
+$$
+
+where $B$ is the number of tokens processed in the pass. In decode, $B$ is
+the batch size — one token per active sequence — so a single-sequence decode
+step runs at about 1 FLOP per byte, nearly 300× below the ridge. Reading the
+KV cache is worse still: each cached key and value is read once and used by
+one query, about 1 FLOP per byte, and unlike weights, cache bytes belong to
+one sequence, so batching does not share them. In prefill, $B$ is the
+*prompt length* — hundreds or thousands of tokens — so the same weight read
+is amortized over hundreds of tokens' worth of math and the intensity clears
+the ridge comfortably. Same weights, same GPU: prefill is compute-bound and
+decode is memory-bound purely because of how many tokens share each byte
+read. That is also the entire reason serving systems batch decode steps
+across many sequences — every additional sequence adds FLOPs to the same
+weight traffic — and the next two posts are largely about making that batch
+as large as memory allows.
+
+## What it costs: the memory formula
+
+The cache stores one key vector and one value vector per token, per layer, per
+KV head. So the memory for a single sequence is:
+
+$$
+\text{bytes} = \underbrace{2}_{K \text{ and } V} \times\, n_{\text{layers}} \times n_{\text{kv-heads}} \times d_{\text{head}} \times \underbrace{p}_{\text{bytes/elem}} \times\, n_{\text{tokens}}
+$$
+
+with the whole thing multiplied by batch size for concurrent sequences. The
+leading factor of 2 is because we store *both* keys and values; $p$ is the
+precision (2 bytes for FP16/BF16).
+
+Plugging in **Llama-2-7B** (32 layers, 32 KV heads, $d_{\text{head}} = 128$,
+FP16):
+
+$$
+2 \times 32 \times 32 \times 128 \times 2 = 524{,}288 \text{ bytes} = 512 \text{ KB per token}
+$$
+
+That's **2 GB** for a single 4096-token context — and **32 GB** for a batch of
+16 such sequences, which is more than the weights of a quantized 7B model. The
+cache, not the model, is often what fills the GPU.
+
+This is also the pressure that motivated **grouped-query attention (GQA)**.
+Compare **Llama-2-70B**, which uses GQA with only 8 KV heads (shared across 64
+query heads), 80 layers:
+
+$$
+2 \times 80 \times 8 \times 128 \times 2 = 327{,}680 \text{ bytes} = 320 \text{ KB per token}
+$$
+
+If that same 70B model used full multi-head attention with 64 KV heads, its
+cache would be **2.5 MB per token** — 8× larger, 10 GB for a single 4096-token
+context. GQA exists in large part to keep the KV cache affordable.
+
+The striking part: the **70B** model with GQA (320 KB/token) has a *smaller*
+per-token cache than the **7B** model (512 KB), and one-eighth of what the same
+70B would cost with full multi-head attention. Sharing KV heads is what makes
+long contexts on large models affordable.
+
+## What a naive cache doesn't solve
+
+Two problems don't show up in the numbers above, because they're about
+*shape*, not size.
+
+**Batching means padding, unless you pay for paging.** A naive
+implementation stores a whole batch's KV cache as one fixed-shape tensor —
+`[batch, max_seq_len, ...]` — so every sequence in the batch is padded out
+to the length of the *longest* one, even if it finished ten tokens ago. The
+memory formula above tells you the cost of one sequence; a naive batched
+cache pays that cost for the longest sequence, once per slot, whether or
+not the shorter sequences need it. [Paged attention](/posts/paged-attention-explained/)
+exists specifically to break the cache out of one contiguous per-sequence
+tensor so this padding waste goes away.
+
+**The cache is normally append-only, but real serving isn't.** Everything
+in this post assumes tokens only ever get added to the end. That breaks the
+moment a serving system needs to *un-append* something: speculative decoding
+(see the [TensorRT-LLM post](/posts/tensorrt-llm-explained/)) proposes
+several draft tokens at once and rejects a suffix of them after
+verification, and a rejected token's key and value rows have to be evicted
+before decoding continues from the last accepted token. An agentic loop that
+lets a user edit or retract an earlier turn has the same problem at a
+coarser grain. A production cache has to support truncating back to an
+arbitrary earlier length, not just appending — a requirement the "grows by
+one row per step" framing in this post doesn't capture on its own.
+
+## Where this leads
+
+The KV cache trades computation for memory, and that trade is what the next
+several topics in this notebook are about managing:
+
+- The cache grows **linearly and unboundedly** with sequence length, and its
+  memory is allocated in one contiguous block per sequence — wasteful and
+  fragmentation-prone. **Paged attention** (as in vLLM) manages it like virtual
+  memory, in fixed-size blocks.
+- **GQA / MQA** shrink the cache at the source by sharing keys and values
+  across query heads, as the 70B numbers above show.
+- **KV cache quantization** stores the cached keys and values in fewer bits
+  (INT8, INT4) to fit longer contexts and bigger batches.
+
+Each is a different answer to the same question this post set up: the cache is
+what makes decoding fast, so managing its memory is what makes serving
+scalable.
+
+## Takeaways
+
+- Caching is exact, not an approximation — the cached $K_i$, $V_i$ rows are
+  bit-identical to what recomputing them from scratch would produce, because
+  the projection weights are fixed and the causal mask means a future token
+  can never change a past token's key or value.
+- Keys and values get cached, not queries, because a query is consulted once
+  (at the step that generates it) while a key/value is consulted at every
+  later step.
+- The cache turns $O(n^2)$ key/value computation into $O(n)$ by trading
+  compute for memory — and that memory, not FLOPs, is usually what fills the
+  GPU first (see the memory formula above).
+- A naive cache is append-only and one fixed-shape tensor per batch; real
+  serving systems need to pad, truncate, and share it, which is exactly what
+  paged attention, speculative decoding, and RadixAttention each patch in
+  their own way.
+
+## References
+
+- Vaswani et al., [_Attention Is All You Need_](https://arxiv.org/abs/1706.03762) (2017) — the original Transformer and scaled dot-product attention.
+- [_Transformer Inference Arithmetic_](https://kipp.ly/transformer-inference-arithmetic/) — kipply's derivation of the KV cache memory formula and the compute- vs memory-bound analysis of prefill/decode.
+- Shazeer, [_Fast Transformer Decoding: One Write-Head is All You Need_](https://arxiv.org/abs/1911.02150) (2019) — multi-query attention, the origin of KV-head sharing.
+- Ainslie et al., [_GQA: Training Generalized Multi-Query Transformer Models_](https://arxiv.org/abs/2305.13245) (2023) — grouped-query attention.
+- Kwon et al., [_Efficient Memory Management for LLM Serving with PagedAttention_](https://arxiv.org/abs/2309.06180) (2023) — vLLM and paged KV cache.
