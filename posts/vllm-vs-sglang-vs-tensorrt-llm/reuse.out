@@ -1,0 +1,6 @@
+2161 requests from 429 multi-turn conversations; 1,583,998 prompt tokens, 733 per request
+prompt tokens reused, by cache size and match granularity (tokens)
+cache size            1      16      32      64     128
+    65,536        80.5%   79.4%   77.7%   76.6%   74.2%
+   262,144        92.0%   90.9%   89.6%   87.8%   84.2%
+ unlimited        92.0%   90.9%   89.6%   87.8%   84.2%
