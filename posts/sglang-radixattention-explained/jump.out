@@ -1,0 +1,4 @@
+'{"title": "Paged Attention", "year": 2026, "summary": "This blog post discusses the concept of paged attention, which is a strategy for managing information overload by breaking down large amounts of data into smaller, more manageable chunks, allowing users to focus on specific aspects"}'
+plain       : 317 output tokens in 312 forward passes, 16.3 s
+jump-forward: 317 output tokens in 247 forward passes, 12.0 s
+outputs identical to plain decoding: 4 of 5; first differing token: [None, 50, None, None, None]

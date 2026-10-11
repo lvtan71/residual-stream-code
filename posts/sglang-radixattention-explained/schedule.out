@@ -1,0 +1,3 @@
+fcfs: hit rate  9.1%, prompt tokens computed 2,025,419 of 2,228,224; the first 128 arrivals all served by round 4 of 32
+lpm: hit rate 79.6%, prompt tokens computed 454,609 of 2,228,224; the first 128 arrivals all served by round 24 of 32
+lpm, as shipped: hit rate 12.4%, prompt tokens computed 1,951,691 of 2,228,224; the first 128 arrivals all served by round 4 of 32
