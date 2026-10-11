@@ -1,0 +1,5 @@
+as written: 1425 operations per decoded token;  39.7 ms per decoded token; prefill of 2,048 tokens 2289.3 ms
+fused     : 1055 operations per decoded token;  38.0 ms per decoded token; prefill of 2,048 tokens 2121.3 ms
+next-token logits over 512 positions: largest difference 0.051 (logits span -20 to 29); same top token at 510 of 512, where the top two differ by under 0.1 at 48
+greedy output: the first 23 of 128 tokens are the same
+weights read per decoded token: 3.09 GB; at 38.0 ms per token, 81 GB/s

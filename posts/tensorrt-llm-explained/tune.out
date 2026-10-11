@@ -1,0 +1,17 @@
+microseconds per call; rows: 1, 16, 256, 4096 (fastest marked *)
+  32 threads x 2     9.0      8.8     10.3    285.8 
+  32 threads x 4     6.6      6.2      8.3    289.3 
+  64 threads x 2     6.5      6.4      9.6    299.3 
+  64 threads x 4     5.6      5.1      8.3    284.9 
+ 128 threads x 2     5.5      5.3      9.6    285.1 
+ 128 threads x 4     4.7      4.3      8.2*   290.0 
+ 256 threads x 2     4.6      4.8     10.3    300.4 
+ 256 threads x 4     4.5      4.9      9.3    278.8 
+ 512 threads x 2     4.3      4.6     12.7    294.5 
+ 512 threads x 4     4.3      4.2*    11.0    275.1*
+1024 threads x 2     4.5      5.5     16.6    288.9 
+1024 threads x 4     4.2*     4.8     14.3    277.0 
+   1 rows: fastest   4.2 us, slowest 2.1x as long; within 5% of the fastest: 512x2, 512x4, 1024x4
+  16 rows: fastest   4.2 us, slowest 2.1x as long; within 5% of the fastest: 128x4, 512x4
+ 256 rows: fastest   8.2 us, slowest 2.0x as long; within 5% of the fastest: 32x4, 64x4, 128x4
+4096 rows: fastest 275.1 us, slowest 1.1x as long; within 5% of the fastest: 32x2, 64x4, 128x2, 256x4, 512x4, 1024x4

@@ -22,6 +22,7 @@ printed for the post (`.out`), and a README with the order to run them in.
 - [Paged Attention: Managing the KV Cache Like Virtual Memory](posts/paged-attention-explained/)
 - [vLLM Architecture: Continuous Batching and Serving at Scale](posts/vllm-architecture-explained/)
 - [SGLang and RadixAttention: Sharing the KV Cache Across Requests](posts/sglang-radixattention-explained/)
+- [TensorRT-LLM: Compiling Inference Engines Ahead of Time](posts/tensorrt-llm-explained/)
 
 ## Running locally
 
