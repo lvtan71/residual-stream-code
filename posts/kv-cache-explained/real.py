@@ -55,16 +55,17 @@ with torch.no_grad():
               f"({2 * L * KV * HD * 2 / 1024:.0f} KiB per token)")
 
     # 3. one step, with and without the cache
+    timed(lambda: model(torch.tensor([blog[:1024]], device=DEVICE), use_cache=False, logits_to_keep=1))  # warm up
     print("3. one generation step at context n:  with cache   without   ratio")
     for n in (256, 512, 1024, 2048, 4096):
         ids = torch.tensor([blog[:n + 1]], device=DEVICE)
         cache = DynamicCache()
         model(ids[:, :n], past_key_values=cache, use_cache=True, logits_to_keep=1)
-        def step():                                                     # reuse the same n-token cache
-            cache.crop(-1)
+        def step():                                                     # then drop the new token again
             model(ids[:, n:], past_key_values=cache, use_cache=True)
+            cache.crop(-1)
         with_cache = timed(step)
-        without = timed(lambda: model(ids))
+        without = timed(lambda: model(ids, use_cache=False, logits_to_keep=1))   # the same one row of logits
         print(f"   {n:5,d} tokens              {with_cache * 1e3:9.1f} ms  {without * 1e3:7.1f} ms  {without / with_cache:5.1f}x")
 
     # 4. batching: B sequences, 512 cached tokens each, one decode step
@@ -75,8 +76,8 @@ with torch.no_grad():
         cache = DynamicCache()
         model(seqs[:, :512], past_key_values=cache, use_cache=True, logits_to_keep=1)
         def step():
-            cache.crop(-1)
             model(seqs[:, 512:], past_key_values=cache, use_cache=True)
+            cache.crop(-1)
         t = timed(step)
         base = base or B / t
         print(f"   {B:5d}   {t * 1e3:11.1f} ms   {B / t:8.0f}   {B / t / base:6.1f}x")

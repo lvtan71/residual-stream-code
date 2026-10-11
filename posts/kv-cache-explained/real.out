@@ -4,13 +4,13 @@
    2,048 tokens      56.0 MiB       56.0 MiB (28 KiB per token)
    8,192 tokens     224.0 MiB      224.0 MiB (28 KiB per token)
 3. one generation step at context n:  with cache   without   ratio
-     256 tokens                   45.9 ms    350.4 ms    7.6x
-     512 tokens                   51.1 ms    630.8 ms   12.3x
-   1,024 tokens                   48.0 ms   1261.7 ms   26.3x
-   2,048 tokens                   47.7 ms   2578.7 ms   54.1x
-   4,096 tokens                   66.0 ms   5802.2 ms   87.9x
+     256 tokens                   45.9 ms    287.1 ms    6.3x
+     512 tokens                   47.5 ms    532.1 ms   11.2x
+   1,024 tokens                   48.8 ms   1052.7 ms   21.6x
+   2,048 tokens                   49.0 ms   2197.0 ms   44.9x
+   4,096 tokens                   64.5 ms   4727.3 ms   73.3x
 4. batch   one decode step   tokens/s   x batch 1
-       1          46.0 ms         22      1.0x
-       4          63.7 ms         63      2.9x
-      16          91.5 ms        175      8.0x
-      64         164.8 ms        388     17.9x
+       1          47.7 ms         21      1.0x
+       4          54.4 ms         74      3.5x
+      16          99.0 ms        162      7.7x
+      64         203.1 ms        315     15.0x
