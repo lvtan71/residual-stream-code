@@ -1,0 +1,125 @@
+{
+ "trajectory": [
+  [
+   1,
+   2145
+  ],
+  [
+   2,
+   2223
+  ],
+  [
+   3,
+   2351
+  ],
+  [
+   4,
+   32229
+  ],
+  [
+   5,
+   33102
+  ],
+  [
+   6,
+   33553
+  ],
+  [
+   7,
+   33986
+  ],
+  [
+   8,
+   34441
+  ],
+  [
+   9,
+   34831
+  ]
+ ],
+ "events": [
+  {
+   "turn": 4,
+   "kind": "clearing",
+   "results": 5,
+   "tokens": 59088
+  },
+  {
+   "turn": 5,
+   "kind": "clearing",
+   "results": 6,
+   "tokens": 73941
+  },
+  {
+   "turn": 6,
+   "kind": "clearing",
+   "results": 7,
+   "tokens": 88742
+  },
+  {
+   "turn": 7,
+   "kind": "clearing",
+   "results": 8,
+   "tokens": 103544
+  },
+  {
+   "turn": 8,
+   "kind": "clearing",
+   "results": 9,
+   "tokens": 118358
+  },
+  {
+   "turn": 9,
+   "kind": "clearing",
+   "results": 9,
+   "tokens": 118436
+  }
+ ],
+ "reads": [
+  [
+   3,
+   "/research/celegans_review.md"
+  ],
+  [
+   3,
+   "/research/drosophila_review.md"
+  ],
+  [
+   3,
+   "/research/yeast_review.md"
+  ],
+  [
+   3,
+   "/research/killifish_review.md"
+  ],
+  [
+   3,
+   "/research/mouse_review.md"
+  ],
+  [
+   3,
+   "/research/zebrafish_review.md"
+  ],
+  [
+   4,
+   "/research/celegans_review.md"
+  ],
+  [
+   5,
+   "/research/drosophila_review.md"
+  ],
+  [
+   6,
+   "/research/yeast_review.md"
+  ],
+  [
+   7,
+   "/research/killifish_review.md"
+  ]
+ ],
+ "peak": 34831,
+ "summaries": [],
+ "memories": {
+  "progress.md": "# Task progress\nFiles in /research/: celegans_review.md, drosophila_review.md, yeast_review.md, killifish_review.md, mouse_review.md, zebrafish_review.md\nNote: docs are ~95% repeated filler (\"Longitudinal survival analysis...\") - only Headline + Appendix matter. Docs seem to give lifespan only; throughput maybe absent.\n## Read so far\n- mouse: median lifespan 30 months (appendix: cage bank #692) [read]\n- zebrafish: median lifespan 42 months (appendix: raceway #158) [read]\n- celegans: median 18 days (appendix jar #414) [read, finding recorded]\n- (findings #1 mouse, #2 zebrafish recorded)\n- drosophila: median 60 days (rack #221) [read, finding #4 being recorded]\n- yeast: median 25 divisions (replicative; plate lot #877) [read, finding #5 being recorded]\n- killifish: median 16 weeks (tank block #305) [read, finding #6 recorded]\nALL 6 READ & RECORDED. Remaining: write final synthesis (note throughput not in docs; units differ; yeast = divisions).\n- (old line) drosophila, yeast, killifish: read once but output was cleared before noting -> need re-read (do one at a time)\n## Findings recorded via record_finding: none yet\n"
+ }
+}

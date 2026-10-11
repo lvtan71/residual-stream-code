@@ -1,0 +1,21 @@
+[session 1]
+  turn  1  context   2,113  memory
+  turn  2  context   2,191  read_file, read_file, read_file
+  turn  3  context  46,577  memory, record_finding
+  turn  4  context  47,431  final answer
+session 1: 3 file reads, peak 47,431; saved 1 file(s), 525 tokens
+[session 2, without memory]
+  turn  1  context   2,081  memory
+  turn  2  context   2,159  search_files, search_files
+  turn  3  context   2,471  read_file, read_file, read_file, read_file, read_file, read_file
+  turn  4  context  91,220  memory
+  turn  5  context  91,650  final answer
+session 2 without memory: 6 file reads, 5 turns, peak 91,650
+[session 2, with memory]
+  turn  1  context   2,081  memory
+  turn  2  context   2,169  memory, search_files
+  turn  3  context   3,006  read_file, read_file, read_file
+  turn  4  context  47,386  memory
+  turn  5  context  48,298  final answer
+session 2 with memory: 3 file reads, 5 turns, peak 48,298
+API usage: 390,833 uncached input, 0 cache-write, 0 cache-read, 5,354 output tokens; $0.84

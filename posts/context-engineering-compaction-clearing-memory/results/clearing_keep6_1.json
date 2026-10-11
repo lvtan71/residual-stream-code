@@ -1,0 +1,49 @@
+{
+ "trajectory": [
+  [
+   1,
+   652
+  ],
+  [
+   2,
+   780
+  ],
+  [
+   3,
+   89529
+  ],
+  [
+   4,
+   90591
+  ]
+ ],
+ "events": [],
+ "reads": [
+  [
+   2,
+   "/research/celegans_review.md"
+  ],
+  [
+   2,
+   "/research/drosophila_review.md"
+  ],
+  [
+   2,
+   "/research/yeast_review.md"
+  ],
+  [
+   2,
+   "/research/killifish_review.md"
+  ],
+  [
+   2,
+   "/research/mouse_review.md"
+  ],
+  [
+   2,
+   "/research/zebrafish_review.md"
+  ]
+ ],
+ "peak": 90591,
+ "summaries": []
+}

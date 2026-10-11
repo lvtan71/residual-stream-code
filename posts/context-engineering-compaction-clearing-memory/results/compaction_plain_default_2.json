@@ -1,0 +1,86 @@
+{
+ "trajectory": [
+  [
+   1,
+   694
+  ],
+  [
+   2,
+   822
+  ],
+  [
+   3,
+   1593
+  ],
+  [
+   4,
+   3127
+  ]
+ ],
+ "events": [
+  {
+   "turn": 3,
+   "kind": "compaction",
+   "before": 89615,
+   "summary_out": 934
+  }
+ ],
+ "reads": [
+  [
+   2,
+   "/research/celegans_review.md"
+  ],
+  [
+   2,
+   "/research/drosophila_review.md"
+  ],
+  [
+   2,
+   "/research/yeast_review.md"
+  ],
+  [
+   2,
+   "/research/killifish_review.md"
+  ],
+  [
+   2,
+   "/research/mouse_review.md"
+  ],
+  [
+   2,
+   "/research/zebrafish_review.md"
+  ]
+ ],
+ "peak": 89615,
+ "summaries": [
+  "## Progress so far\n\nI listed `/research/` (6 files) and read all six review documents. Each file has the same structure: a **Headline** line with the median lifespan, a very long **Discussion** section, and a short **Appendix** line. The Discussion is one boilerplate sentence repeated hundreds of times. It says that environmental variance contributes to dispersion in survival and that standardizing husbandry reduces between-lab heterogeneity. It has no organism-specific content. The appendix lines only give cohort provenance (jar, rack, plate, tank, cage or raceway numbers) and aren't relevant to the comparison.\n\n**Median lifespans (standard lab conditions), from the headlines:**\n- C. elegans: 18 days\n- D. melanogaster: 60 days\n- S. cerevisiae: 25 divisions (replicative lifespan, not calendar time)\n- N. furzeri (killifish): 16 weeks (about 112 days)\n- M. musculus: 30 months\n- D. rerio (zebrafish): 42 months\n\n**Important caveat:** None of the six reviews say anything about experimental throughput, such as generation time, cohort size, cost, or assay scalability. The only data in the files is median lifespan. Any throughput ranking has to come from lifespan as a proxy (shorter lifespan means faster experiments) or from general background knowledge, and I should label it as such.\n\n## Remaining steps\n\n1. Call `record_finding` once per organism, six calls in total, in a single parallel block. Each finding should have the organism, its median lifespan with units, and a note that the review gives no throughput data. Any throughput inference should be flagged as lifespan-based.\n2. Write a short comparative synthesis:\n   - **Ranking by lifespan, shortest to longest:** C. elegans (18 d) < yeast (25 divisions, not directly comparable) < D. melanogaster (60 d) < N. furzeri (16 wk, about 112 d) < M. musculus (30 mo) < D. rerio (42 mo).\n   - **Zebrafish:** the longest-lived model here, so the slowest for lifespan studies, even slower than mouse.\n   - **Killifish:** a vertebrate whose lifespan is much shorter than mouse or zebrafish, so it is the fast vertebrate option.\n   - **Throughput:** the proxy ordering is C. elegans, yeast and Drosophila as high throughput, killifish as intermediate, and mouse and zebrafish as low. The reviews don't state this, so it's an inference.\n   - **Unit mismatch:** yeast is measured in divisions and the others in time, so they can't be compared directly.\n   - **Gaps:** the reviews have no throughput metrics, and their Discussion sections are repetitive filler with no organism-specific content."
+ ],
+ "probe": {
+  "C. elegans": {
+   "headline": true,
+   "obscure": false
+  },
+  "D. melanogaster": {
+   "headline": true,
+   "obscure": false
+  },
+  "S. cerevisiae": {
+   "headline": true,
+   "obscure": false
+  },
+  "N. furzeri": {
+   "headline": true,
+   "obscure": false
+  },
+  "M. musculus": {
+   "headline": true,
+   "obscure": false
+  },
+  "D. rerio": {
+   "headline": true,
+   "obscure": false
+  },
+  "reply": "C. elegans | 18 days | unknown\nD. melanogaster | 60 days | unknown\nS. cerevisiae | 25 divisions (replicative lifespan) | unknown\nN. furzeri | 16 weeks (about 112 days) | unknown\nM. musculus | 30 months | unknown\nD. rerio | 42 months | unknown\n\nThe summary says the appendix lines give cohort provenance as jar, rack, plate, tank, cage or raceway numbers. It doesn't record the actual identifier for any organism, so each one is `unknown`."
+ },
+ "summary_tokens": 930
+}

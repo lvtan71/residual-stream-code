@@ -1,0 +1,10 @@
+[no management]
+  turn  1  context     652  search_files
+  turn  2  context     780  read_file, read_file, read_file, read_file, read_file, read_file
+  turn  3  context  89,529  record_finding, record_finding, record_finding, record_finding, record_finding, record_finding
+  turn  4  context  90,421  final answer
+corpus: 6 documents, 88,317 tokens
+peak context 90,421 tokens after 4 turns and 6 file reads
+  file-read results   88,317   97.7%
+  everything else      2,104    2.3%
+API usage: 181,382 uncached input, 0 cache-write, 0 cache-read, 1,800 output tokens; $0.38

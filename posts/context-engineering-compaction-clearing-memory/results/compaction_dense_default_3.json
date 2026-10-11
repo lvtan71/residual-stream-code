@@ -1,0 +1,86 @@
+{
+ "trajectory": [
+  [
+   1,
+   694
+  ],
+  [
+   2,
+   822
+  ],
+  [
+   3,
+   1963
+  ],
+  [
+   4,
+   3458
+  ]
+ ],
+ "events": [
+  {
+   "turn": 3,
+   "kind": "compaction",
+   "before": 130450,
+   "summary_out": 1304
+  }
+ ],
+ "reads": [
+  [
+   2,
+   "/research/celegans_review.md"
+  ],
+  [
+   2,
+   "/research/drosophila_review.md"
+  ],
+  [
+   2,
+   "/research/yeast_review.md"
+  ],
+  [
+   2,
+   "/research/killifish_review.md"
+  ],
+  [
+   2,
+   "/research/mouse_review.md"
+  ],
+  [
+   2,
+   "/research/zebrafish_review.md"
+  ]
+ ],
+ "peak": 130450,
+ "summaries": [
+  "## Progress summary\n\n**Task**: Compare model organisms in /research/ on lifespan and experimental throughput; read every review doc, record one finding per organism (via `record_finding`), then write a short comparative synthesis.\n\n**Status**: All 6 files have been read (celegans, drosophila, yeast, killifish, mouse, zebrafish). **No findings have been recorded yet** (record_finding not yet called). Next step: call `record_finding` six times (one per organism, can be done in parallel in one block), then write a short synthesis.\n\n**Data extracted from each review** (each file has a bolded \"Headline\" median lifespan under standard lab conditions, then a very long \"Discussion\" of hundreds of near-identical cohort lines \u2014 \"median survival of X was N% of controls (n=\u2026, intervention, lab \u2026)\" across interventions dietary restriction, rapamycin, metformin, heat stress, daf-2 RNAi \u2014 values ranging ~40\u2013160% with no consistent signal, i.e. noisy/uninformative as per-organism evidence; plus an \"Appendix\" of replicate provenance lines like \"cohort R0 sourced from cohort jar #903\", which is just bookkeeping with no lifespan/throughput content):\n\n- **S. cerevisiae (yeast)**: median lifespan **25 divisions** (replicative; not time-based). Housing unit: plate lots.\n- **C. elegans**: median lifespan **18 days**. Housing unit: cohort jars.\n- **D. melanogaster**: median lifespan **60 days**. Housing unit: vial racks.\n- **N. furzeri (killifish)**: median lifespan **16 weeks** (~112 days). Housing: tank blocks.\n- **D. rerio (zebrafish)**: median lifespan **42 months**. Housing: raceways.\n- **M. musculus (mouse)**: median lifespan **30 months**. Housing: cage banks.\n\n**Notes on throughput**: The reviews contain no explicit throughput statements (no explicit numbers on assay cost/time/animals per experiment). Cohort counts per review are large for all six (hundreds of cohorts, n\u224820\u2013400 each, ~40 labs), so cohort size/lab count don't differentiate organisms. Throughput must be inferred from lifespan (shorter = faster survival assays: C. elegans \u2248 18 d and yeast \u2248 25 divisions are fastest; Drosophila \u2248 60 d; killifish \u2248 16 wk is the fastest vertebrate; mouse 30 mo and zebrafish 42 mo slowest) and housing unit (plates/jars/vials = high density; tanks/raceways/cages = lower). The synthesis should explicitly flag that throughput is inferred, not stated in the documents, and that the per-cohort % of control data are heterogeneous/noisy across interventions (e.g. each organism shows both >150% and <45% values for same intervention types), so no intervention-efficacy conclusions should be drawn from them. Note also the ordering caveat: units differ (divisions, days, weeks, months), so convert to approximate calendar time for comparison (yeast replicative lifespan of 25 divisions is typically days-scale but the document gives no calendar time \u2014 don't assert a figure).\n\n**Ranking by lifespan (shortest\u2192longest, calendar-time basis, with yeast caveat)**: C. elegans (18 d) < Drosophila (60 d) < killifish (16 wk) < mouse (30 mo) < zebrafish (42 mo); yeast at 25 divisions not directly comparable.\n\n**Observation worth mentioning in synthesis**: zebrafish (42 mo) has a longer median lifespan than mouse (30 mo) in these docs, making it the slowest model; killifish (16 wk) is ~7\u20138x shorter than zebrafish/mouse, making it the standout vertebrate for throughput."
+ ],
+ "probe": {
+  "C. elegans": {
+   "headline": true,
+   "obscure": false
+  },
+  "D. melanogaster": {
+   "headline": true,
+   "obscure": false
+  },
+  "S. cerevisiae": {
+   "headline": true,
+   "obscure": false
+  },
+  "N. furzeri": {
+   "headline": true,
+   "obscure": false
+  },
+  "M. musculus": {
+   "headline": true,
+   "obscure": false
+  },
+  "D. rerio": {
+   "headline": true,
+   "obscure": false
+  },
+  "reply": "C. elegans | 18 days | cohort jar #903 (the summary quotes this only as an example provenance line, not tied to a specific organism. I am inferring C. elegans because \"cohort jars\" is its housing unit.)\nD. melanogaster | 60 days | unknown (the summary gives only the housing unit, vial racks, with no specific identifier)\nS. cerevisiae | 25 divisions (replicative) | unknown (the summary gives only the housing unit, plate lots, with no specific identifier)\nN. furzeri | 16 weeks (~112 days) | unknown (the summary gives only the housing unit, tank blocks, with no specific identifier)\nM. musculus | 30 months | unknown (the summary gives only the housing unit, cage banks, with no specific identifier)\nD. rerio | 42 months | unknown (the summary gives only the housing unit, raceways, with no specific identifier)"
+ },
+ "summary_tokens": 1300
+}

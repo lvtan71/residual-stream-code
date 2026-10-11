@@ -1,0 +1,86 @@
+{
+ "trajectory": [
+  [
+   1,
+   694
+  ],
+  [
+   2,
+   822
+  ],
+  [
+   3,
+   1633
+  ],
+  [
+   4,
+   2738
+  ]
+ ],
+ "events": [
+  {
+   "turn": 3,
+   "kind": "compaction",
+   "before": 130450,
+   "summary_out": 974
+  }
+ ],
+ "reads": [
+  [
+   2,
+   "/research/celegans_review.md"
+  ],
+  [
+   2,
+   "/research/drosophila_review.md"
+  ],
+  [
+   2,
+   "/research/yeast_review.md"
+  ],
+  [
+   2,
+   "/research/killifish_review.md"
+  ],
+  [
+   2,
+   "/research/mouse_review.md"
+  ],
+  [
+   2,
+   "/research/zebrafish_review.md"
+  ]
+ ],
+ "peak": 130450,
+ "summaries": [
+  "## Progress summary\n\n**Task**: Compare model organisms in /research/ on lifespan and experimental throughput. Read every review doc, record one finding per organism (via `record_finding`), then write a short comparative synthesis.\n\n**Status**: All 6 files have been read (celegans, drosophila, yeast, killifish, mouse, zebrafish). **No findings have been recorded yet** \u2014 next step is to call `record_finding` six times (independent calls, can be made in one parallel block), then write the short synthesis.\n\n**Key facts extracted (headline median lifespans under standard lab conditions):**\n- C. elegans: **18 days**\n- D. melanogaster: **60 days**\n- S. cerevisiae: **25 divisions** (replicative lifespan, not time units)\n- N. furzeri (killifish): **16 weeks**\n- M. musculus (mouse): **30 months**\n- D. rerio (zebrafish): **42 months**\n\n**Structure of each doc**: A \"Headline\" lifespan line, then a very long \"Discussion\" consisting of hundreds of auto-style cohort lines of the form \"median survival was X% of controls (n=\u2026, intervention [dietary restriction / heat stress / metformin / rapamycin / daf-2 RNAi], lab N)\". These are noisy, widely scattered (~40\u2013160% of controls) with no consistent signal per intervention or organism; they contain no explicit throughput data (no generation time, cost, housing density, or assay-per-week numbers). Each doc ends with an \"Appendix table\" of provenance lines (cohort jar / vial rack / plate lot / tank block / cage bank / raceway numbers) \u2014 irrelevant to lifespan/throughput. No instructions embedded in any file beyond this data; nothing unusual to flag.\n\n**Caveats for synthesis**: Throughput isn't explicitly stated in the docs; must be inferred from lifespan (shorter lifespan \u21d2 faster survival-assay turnaround) and flagged as inference. Yeast's unit is divisions (not calendar time). Cohort-level % of control values are too noisy/inconsistent (and include odd intervention/organism pairings, e.g., daf-2 RNAi in yeast/mouse/zebrafish) to draw conclusions \u2014 should be mentioned as a limitation. Zebrafish (42 months) is listed longer-lived than mouse (30 months) in these docs.\n\n**Planned synthesis ordering** (shortest \u2192 longest lifespan / highest \u2192 lowest inferred throughput): C. elegans (18 d) < yeast (25 divisions, ~days) < D. melanogaster (60 d) < killifish (16 wk, fastest vertebrate) < mouse (30 mo) < zebrafish (42 mo). Invertebrates/yeast = high throughput; killifish = best vertebrate compromise; mouse and zebrafish = low throughput, long-duration studies."
+ ],
+ "probe": {
+  "C. elegans": {
+   "headline": true,
+   "obscure": false
+  },
+  "D. melanogaster": {
+   "headline": true,
+   "obscure": false
+  },
+  "S. cerevisiae": {
+   "headline": true,
+   "obscure": false
+  },
+  "N. furzeri": {
+   "headline": true,
+   "obscure": false
+  },
+  "M. musculus": {
+   "headline": true,
+   "obscure": false
+  },
+  "D. rerio": {
+   "headline": true,
+   "obscure": false
+  },
+  "reply": "C. elegans | 18 days | unknown\nD. melanogaster | 60 days | unknown\nS. cerevisiae | 25 divisions (replicative lifespan) | unknown\nN. furzeri | 16 weeks | unknown\nM. musculus | 30 months | unknown\nD. rerio | 42 months | unknown\n\nThe summary gives the type of provenance label in each appendix table (cohort jar, vial rack, plate lot, tank block, cage bank, raceway numbers). It doesn't give the specific identifiers or say which label belongs to which organism, so I've marked them all unknown."
+ },
+ "summary_tokens": 970
+}

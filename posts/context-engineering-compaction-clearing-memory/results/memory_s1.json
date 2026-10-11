@@ -1,0 +1,40 @@
+{
+ "trajectory": [
+  [
+   1,
+   2113
+  ],
+  [
+   2,
+   2191
+  ],
+  [
+   3,
+   46577
+  ],
+  [
+   4,
+   47431
+  ]
+ ],
+ "events": [],
+ "reads": [
+  [
+   2,
+   "/research/celegans_review.md"
+  ],
+  [
+   2,
+   "/research/drosophila_review.md"
+  ],
+  [
+   2,
+   "/research/yeast_review.md"
+  ]
+ ],
+ "peak": 47431,
+ "summaries": [],
+ "memories": {
+  "aging_model_organisms_comparison.md": "# Model organism comparison for aging research (status: all 3 docs read)\n\n## Key facts (from each review's Headline)\n| Organism | Median lifespan (std lab conditions) | Unit | Source file |\n|---|---|---|---|\n| C. elegans | 18 | days | /research/celegans_review.md |\n| D. melanogaster | 60 | days | /research/drosophila_review.md |\n| S. cerevisiae | 25 | divisions (replicative lifespan, NOT time) | /research/yeast_review.md |\n\n## Other details\n- Provenance appendix: C. elegans cohort jar #414; Drosophila vial rack #221; yeast plate lot #877.\n- Each doc's \"Discussion\" is one sentence repeated hundreds of times (filler). Only content: environmental variance contributes to dispersion; husbandry standardization reduces between-lab heterogeneity. No organism-specific mechanisms/pathways in the docs.\n\n## Caveats / notes for follow-up\n- Yeast is in divisions, so it can't be compared directly with days. Convert only if a doc gives the doubling time (none does).\n- Among the day-based organisms, Drosophila (60 d) is about 3.3x C. elegans (18 d). The Drosophila figure looks high against the usual ~40-70 d range, but I only record what the doc says.\n- Docs have no citations/sample sizes. Treat the numbers as the reviews' claims, unverified.\n- Not done: no other files searched (search_files not used). A follow-up could look for additional sources or mechanism info.\n"
+ }
+}

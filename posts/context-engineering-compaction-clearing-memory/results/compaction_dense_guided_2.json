@@ -1,0 +1,86 @@
+{
+ "trajectory": [
+  [
+   1,
+   694
+  ],
+  [
+   2,
+   822
+  ],
+  [
+   3,
+   2511
+  ],
+  [
+   4,
+   3990
+  ]
+ ],
+ "events": [
+  {
+   "turn": 3,
+   "kind": "compaction",
+   "before": 130499,
+   "summary_out": 4096
+  }
+ ],
+ "reads": [
+  [
+   2,
+   "/research/celegans_review.md"
+  ],
+  [
+   2,
+   "/research/drosophila_review.md"
+  ],
+  [
+   2,
+   "/research/yeast_review.md"
+  ],
+  [
+   2,
+   "/research/killifish_review.md"
+  ],
+  [
+   2,
+   "/research/mouse_review.md"
+  ],
+  [
+   2,
+   "/research/zebrafish_review.md"
+  ]
+ ],
+ "peak": 130499,
+ "summaries": [
+  "## Task status\nThe task is to compare the model organisms in /research/ on lifespan and experimental throughput. For each organism I must record one finding with `record_finding`, then write a short comparative synthesis.\n\n**Documents read (all 6, fully):**\n- /research/celegans_review.md\n- /research/drosophila_review.md\n- /research/yeast_review.md\n- /research/killifish_review.md\n- /research/mouse_review.md\n- /research/zebrafish_review.md\n\n**Documents remaining to read:** none.\n\n**Findings recorded so far:** none. I have not yet called `record_finding` for any organism, and the synthesis has not been written.\n\n**Next steps:**\n1. Make 6 `record_finding` calls, one per organism. They are independent, so they can go in a single parallel block.\n2. Write a short comparative synthesis.\n\n## Headline lifespan figures (standard lab conditions, from each review's \"Headline\" section)\n| Organism | Median lifespan |\n|---|---|\n| C. elegans | 18 days |\n| D. melanogaster | 60 days |\n| S. cerevisiae | 25 divisions (replicative, not calendar time) |\n| N. furzeri (killifish) | 16 weeks |\n| M. musculus (mouse) | 30 months |\n| D. rerio (zebrafish) | 42 months |\n\nOrdered shortest to longest in calendar time: C. elegans (18 d) < fly (60 d) < killifish (16 wk, about 112 d) < mouse (30 mo) < zebrafish (42 mo). Yeast is measured in divisions, so it can't be placed on this axis directly.\n\n## Discussion-section data (per-cohort entries)\nI have not reproduced every per-cohort number here.\n- Each review has several hundred entries (I did not count them exactly). All use the same template: \"In cohort X-NN, median survival of <organism> was P% of controls (n=\u2026, <intervention>, lab \u2026)\".\n- Across all six organisms:\n  - Relative median survival ranges from about 40% to 160% of controls.\n  - n ranges from about 20 to 400.\n  - Labs are numbered 1\u201340.\n  - Interventions are dietary restriction, rapamycin, metformin, heat stress and daf-2 RNAi.\n- Cohort IDs repeat within a file with different values. Examples are C. elegans H-59 (137%, n=235, dietary restriction, lab 17, and also 47%, n=103, rapamycin, lab 16) and C. elegans F-91 (156% and 149%).\n- Results look essentially random and wide-ranging, with no obvious intervention-specific pattern. The same interventions are applied to every organism, including daf-2 RNAi in yeast and in flies, which is biologically odd.\n- I have not computed means or medians per organism or per intervention. These entries are noisy and probably not reliable for ranking organisms. If needed, I can re-read a file and aggregate it.\n- None of the reviews gives explicit throughput data such as cohort size per run, cost, or time-to-result. Any throughput comparison has to be inferred from the lifespan scale (shorter lifespan means faster experiments) and from the n values. I should state that limitation in the synthesis.\n\n## Appendix provenance details (replicate cohort \u2192 source identifier)\nEvery appendix has 30 lines (R0\u2013R29), and one index is labelled \"primary\" instead of its R number. The \"primary\" cohort sits where the missing R index would be.\n\n**C. elegans \u2014 Appendix A-7, \"cohort jar #\" (primary = jar #414, in the R18 slot):**\nR0 903, R1 213, R2 750, R3 464, R4 621, R5 945, R6 648, R7 921, R8 176, R9 108, R10 141, R11 722, R12 115, R13 894, R14 241, R15 225, R16 517, R17 494, primary 414, R19 902, R20 592, R21 127, R22 420, R23 747, R24 939, R25 243, R26 187, R27 819, R28 501, R29 759.\n\n**D. melanogaster \u2014 Appendix A-3, \"vial rack #\" (primary = rack #221, in the R29 slot):**\nR0 862, R1 713, R2 505, R3 773, R4 947, R5 533, R6 453, R7 417, R8 916, R9 245, R10 397, R11 610, R12 366, R13 506, R14 826, R15 712, R16 346, R17 914, R18 962, R19 573, R20 927, R21 306, R22 809, R23 287, R24 608, R25 880, R26 566, R27 138, R28 854, primary 221.\n\n**S. cerevisiae \u2014 Appendix A-9, \"plate lot #\" (primary = lot #877, in the R13 slot):**\nR0 126, R1 550, R2 554, R3 977, R4 223, R5 547, R6 786, R7 817, R8 966, R9 756, R10 584, R11 885, R12 184, primary 877, R14 136, R15 576, R16 788, R17 835, R18 547, R19 330, R20 382, R21 230, R22 705, R23 589, R24 557, R25 188, R26 763, R27 989, R28 461, R29 814.\n(Plate lot #547 appears twice, for R5 and R18.)\n\n**N. furzeri \u2014 Appendix A-2, \"tank block #\" (primary = block #305, in the R0 slot):**\nprimary 305, R1 721, R2 401, R3 951, R4 985, R5 902, R6 421, R7 318, R8 213, R9 301, R10"
+ ],
+ "probe": {
+  "C. elegans": {
+   "headline": true,
+   "obscure": true
+  },
+  "D. melanogaster": {
+   "headline": true,
+   "obscure": true
+  },
+  "S. cerevisiae": {
+   "headline": true,
+   "obscure": true
+  },
+  "N. furzeri": {
+   "headline": true,
+   "obscure": true
+  },
+  "M. musculus": {
+   "headline": true,
+   "obscure": false
+  },
+  "D. rerio": {
+   "headline": true,
+   "obscure": false
+  },
+  "reply": "C. elegans | 18 days | cohort jar #414\nD. melanogaster | 60 days | vial rack #221\nS. cerevisiae | 25 divisions (replicative) | plate lot #877\nN. furzeri | 16 weeks | tank block #305\nM. musculus | 30 months | unknown (the summary cuts off before the mouse appendix)\nD. rerio | 42 months | unknown (the summary cuts off before the zebrafish appendix)"
+ },
+ "summary_tokens": 1848
+}

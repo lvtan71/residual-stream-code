@@ -1,0 +1,9 @@
+Llama 2 7B (32 layers, 32 KV heads of 128): 512 KiB per token
+   this post's baseline peak, 90,421 tokens:   44.2 GiB
+   the cookbook's baseline peak, 335,279 tokens:  163.7 GiB
+Llama 2 70B (80 layers, 8 KV heads of 128): 320 KiB per token
+   this post's baseline peak, 90,421 tokens:   27.6 GiB
+   the cookbook's baseline peak, 335,279 tokens:  102.3 GiB
+Qwen2.5-1.5B (28 layers, 2 KV heads of 128): 28 KiB per token
+   this post's baseline peak, 90,421 tokens:    2.4 GiB
+   the cookbook's baseline peak, 335,279 tokens:    9.0 GiB

@@ -1,0 +1,91 @@
+[clearing, keep 2, run 1]
+  turn  1  context     652  search_files
+  turn  2  context     780  read_file, read_file, read_file, read_file, read_file, read_file
+  turn  3  context  30,658  read_file, read_file, read_file, read_file, record_finding, record_finding  clearing
+  turn  4  context  31,542  record_finding, record_finding, read_file, read_file  clearing
+  turn  5  context  32,201  record_finding, record_finding  clearing
+  turn  6  context  32,516  final answer  clearing
+keep 2: finished after 6 turns; peak context 32,516; 12 file reads, 4 documents read more than once
+  turn  3: cleared_tool_uses = 5, cleared_input_tokens = 59,014
+  turn  4: cleared_tool_uses = 9, cleared_input_tokens = 117,990
+  turn  5: cleared_tool_uses = 11, cleared_input_tokens = 147,508
+  turn  6: cleared_tool_uses = 11, cleared_input_tokens = 147,569
+[clearing, keep 2, run 2]
+  turn  1  context     652  search_files
+  turn  2  context     780  read_file, read_file, read_file, read_file, read_file, read_file
+  turn  3  context  30,658  read_file, read_file, read_file, read_file  clearing
+  turn  4  context  31,171  record_finding, record_finding, read_file, read_file, read_file, read_file  clearing
+  turn  5  context  32,100  record_finding, record_finding, read_file, read_file  clearing
+  turn  6  context  32,778  record_finding, record_finding  clearing
+  turn  7  context  33,117  final answer  clearing
+keep 2: finished after 7 turns; peak context 33,117; 16 file reads, 6 documents read more than once
+  turn  3: cleared_tool_uses = 5, cleared_input_tokens = 59,014
+  turn  4: cleared_tool_uses = 9, cleared_input_tokens = 117,931
+  turn  5: cleared_tool_uses = 13, cleared_input_tokens = 176,902
+  turn  6: cleared_tool_uses = 15, cleared_input_tokens = 206,422
+  turn  7: cleared_tool_uses = 15, cleared_input_tokens = 206,478
+[clearing, keep 2, run 3]
+  turn  1  context     652  search_files
+  turn  2  context     780  read_file, read_file, read_file, read_file, read_file, read_file
+  turn  3  context  30,658  read_file, read_file, read_file, read_file  clearing
+  turn  4  context  31,173  record_finding, record_finding, read_file, read_file, read_file, read_file  clearing
+  turn  5  context  31,927  record_finding, record_finding, read_file  clearing
+  turn  6  context  32,466  record_finding, read_file  clearing
+  turn  7  context  32,720  record_finding  clearing
+  turn  8  context  32,851  final answer  clearing
+keep 2: finished after 8 turns; peak context 32,851; 16 file reads, 6 documents read more than once
+  turn  3: cleared_tool_uses = 5, cleared_input_tokens = 59,014
+  turn  4: cleared_tool_uses = 9, cleared_input_tokens = 117,931
+  turn  5: cleared_tool_uses = 13, cleared_input_tokens = 176,884
+  turn  6: cleared_tool_uses = 14, cleared_input_tokens = 191,666
+  turn  7: cleared_tool_uses = 15, cleared_input_tokens = 206,410
+  turn  8: cleared_tool_uses = 15, cleared_input_tokens = 206,436
+[clearing, keep 4, run 1]
+  turn  1  context     652  search_files
+  turn  2  context     780  read_file, read_file, read_file, read_file, read_file, read_file
+  turn  3  context  60,067  read_file, read_file  clearing
+  turn  4  context  60,368  record_finding, record_finding, record_finding, record_finding, read_file, read_file  clearing
+  turn  5  context  61,327  record_finding, record_finding  clearing
+  turn  6  context  61,640  final answer  clearing
+keep 4: finished after 6 turns; peak context 61,640; 10 file reads, 4 documents read more than once
+  turn  3: cleared_tool_uses = 3, cleared_input_tokens = 29,528
+  turn  4: cleared_tool_uses = 5, cleared_input_tokens = 59,002
+  turn  5: cleared_tool_uses = 7, cleared_input_tokens = 88,534
+  turn  6: cleared_tool_uses = 7, cleared_input_tokens = 88,573
+[clearing, keep 4, run 2]
+  turn  1  context     652  search_files
+  turn  2  context     780  read_file, read_file, read_file, read_file, read_file, read_file
+  turn  3  context  60,067  read_file, read_file  clearing
+  turn  4  context  60,367  read_file, read_file  clearing
+  turn  5  context  60,713  read_file, read_file  clearing
+  turn  6  context  60,995  record_finding, record_finding, record_finding, record_finding, read_file, read_file  clearing
+  turn  7  context  61,858  record_finding, record_finding  clearing
+  turn  8  context  62,112  final answer  clearing
+keep 4: finished after 8 turns; peak context 62,112; 14 file reads, 6 documents read more than once
+  turn  3: cleared_tool_uses = 3, cleared_input_tokens = 29,528
+  turn  4: cleared_tool_uses = 5, cleared_input_tokens = 59,002
+  turn  5: cleared_tool_uses = 7, cleared_input_tokens = 88,471
+  turn  6: cleared_tool_uses = 9, cleared_input_tokens = 117,940
+  turn  7: cleared_tool_uses = 11, cleared_input_tokens = 147,488
+  turn  8: cleared_tool_uses = 11, cleared_input_tokens = 147,534
+[clearing, keep 4, run 3]
+  turn  1  context     652  search_files
+  turn  2  context     780  read_file, read_file, read_file, read_file, read_file, read_file
+  turn  3  context  60,067  read_file, read_file  clearing
+  turn  4  context  60,374  read_file, read_file  clearing
+  turn  5  context  60,747  record_finding, record_finding, record_finding, record_finding, read_file, read_file  clearing
+  turn  6  context  61,675  record_finding, record_finding  clearing
+  turn  7  context  61,960  final answer  clearing
+keep 4: finished after 7 turns; peak context 61,960; 12 file reads, 6 documents read more than once
+  turn  3: cleared_tool_uses = 3, cleared_input_tokens = 29,528
+  turn  4: cleared_tool_uses = 5, cleared_input_tokens = 59,002
+  turn  5: cleared_tool_uses = 7, cleared_input_tokens = 88,489
+  turn  6: cleared_tool_uses = 9, cleared_input_tokens = 118,038
+  turn  7: cleared_tool_uses = 9, cleared_input_tokens = 118,082
+[clearing, keep 6, run 1]
+  turn  1  context     652  search_files
+  turn  2  context     780  read_file, read_file, read_file, read_file, read_file, read_file
+  turn  3  context  89,529  record_finding, record_finding, record_finding, record_finding, record_finding, record_finding
+  turn  4  context  90,591  final answer
+keep 6: finished after 4 turns; peak context 90,591; 6 file reads, 0 documents read more than once
+API usage: 1,583,017 uncached input, 0 cache-write, 0 cache-read, 17,094 output tokens; $3.34

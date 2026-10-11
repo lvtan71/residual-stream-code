@@ -1,0 +1,12 @@
+[all three]
+  turn  1  context   2,145  memory
+  turn  2  context   2,223  search_files
+  turn  3  context   2,351  read_file, read_file, read_file, read_file, read_file, read_file
+  turn  4  context  32,229  memory, record_finding, record_finding, read_file  clearing
+  turn  5  context  33,102  memory, record_finding, read_file  clearing
+  turn  6  context  33,553  memory, record_finding, read_file  clearing
+  turn  7  context  33,986  memory, record_finding, read_file  clearing
+  turn  8  context  34,441  record_finding, memory  clearing
+  turn  9  context  34,831  final answer  clearing
+peak context 34,831 after 9 turns and 10 file reads; 6 clearing pass(es), 0 compaction(s)
+API usage: 208,861 uncached input, 0 cache-write, 0 cache-read, 3,146 output tokens; $0.45

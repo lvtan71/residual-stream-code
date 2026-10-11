@@ -1,0 +1,132 @@
+{
+ "trajectory": [
+  [
+   1,
+   652
+  ],
+  [
+   2,
+   780
+  ],
+  [
+   3,
+   30658
+  ],
+  [
+   4,
+   31171
+  ],
+  [
+   5,
+   32100
+  ],
+  [
+   6,
+   32778
+  ],
+  [
+   7,
+   33117
+  ]
+ ],
+ "events": [
+  {
+   "turn": 3,
+   "kind": "clearing",
+   "results": 5,
+   "tokens": 59014
+  },
+  {
+   "turn": 4,
+   "kind": "clearing",
+   "results": 9,
+   "tokens": 117931
+  },
+  {
+   "turn": 5,
+   "kind": "clearing",
+   "results": 13,
+   "tokens": 176902
+  },
+  {
+   "turn": 6,
+   "kind": "clearing",
+   "results": 15,
+   "tokens": 206422
+  },
+  {
+   "turn": 7,
+   "kind": "clearing",
+   "results": 15,
+   "tokens": 206478
+  }
+ ],
+ "reads": [
+  [
+   2,
+   "/research/celegans_review.md"
+  ],
+  [
+   2,
+   "/research/drosophila_review.md"
+  ],
+  [
+   2,
+   "/research/yeast_review.md"
+  ],
+  [
+   2,
+   "/research/killifish_review.md"
+  ],
+  [
+   2,
+   "/research/mouse_review.md"
+  ],
+  [
+   2,
+   "/research/zebrafish_review.md"
+  ],
+  [
+   3,
+   "/research/celegans_review.md"
+  ],
+  [
+   3,
+   "/research/drosophila_review.md"
+  ],
+  [
+   3,
+   "/research/yeast_review.md"
+  ],
+  [
+   3,
+   "/research/killifish_review.md"
+  ],
+  [
+   4,
+   "/research/celegans_review.md"
+  ],
+  [
+   4,
+   "/research/drosophila_review.md"
+  ],
+  [
+   4,
+   "/research/mouse_review.md"
+  ],
+  [
+   4,
+   "/research/zebrafish_review.md"
+  ],
+  [
+   5,
+   "/research/celegans_review.md"
+  ],
+  [
+   5,
+   "/research/drosophila_review.md"
+  ]
+ ],
+ "peak": 33117,
+ "summaries": []
+}
