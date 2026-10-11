@@ -5,7 +5,7 @@ import torch
 # torch.mps.compile_shader). Each replaces several PyTorch operations with
 # one pass over memory:
 #   rmsnorm: y = w * half(x * rsqrt(mean(x^2) + eps)), in float, as Qwen2RMSNorm
-#            computes it in six operations
+#            computes it in eight operations
 #   swiglu:  y = silu(g) * u, where g and u are the two halves of one wider
 #            matmul's output, in place of a silu and a multiply
 # rmsnorm takes one row per threadgroup, of THREADS threads, each reading
