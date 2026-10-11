@@ -1,0 +1,15 @@
+KV cache per token, 16-bit:
+  Llama 2 7B, 32 KV heads                512.0 KiB
+  Llama 2 70B, GQA, 8 KV heads           320.0 KiB
+  Llama 2 70B if it had 64 KV heads     2560.0 KiB
+  Qwen2.5-1.5B, GQA, 2 KV heads           28.0 KiB
+  DeepSeek-V2, MLA, 512 + 64 cached       67.5 KiB
+
+Llama 2 13B on one H100, 1,024-token contexts, bandwidth-bound decode:
+KV heads  batch   weights   cache/seq   memory     latency     throughput
+      40      1    26.0 GB     0.84 GB    26.9 GB     8.0 ms/token       125 tokens/s
+      40     64    26.0 GB     0.84 GB    79.7 GB    23.8 ms/token     2,689 tokens/s
+      40    256    26.0 GB     0.84 GB   240.8 GB    71.9 ms/token     3,562 tokens/s  does not fit in 80 GB
+       8      1    22.7 GB     0.17 GB    22.8 GB     6.8 ms/token       147 tokens/s
+       8     64    22.7 GB     0.17 GB    33.4 GB    10.0 ms/token     6,417 tokens/s
+       8    256    22.7 GB     0.17 GB    65.6 GB    19.6 ms/token    13,068 tokens/s

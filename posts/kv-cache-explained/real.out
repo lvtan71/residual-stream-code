@@ -1,0 +1,16 @@
+1. 32 greedy steps after a 256-token prompt, 32-bit: same next token with and without the cache at 32 of 32 steps; largest logit difference 5.6e-05 (logits span about 37)
+2. cache size     measured      formula 2 x L x KV x d x 2 bytes x n
+     512 tokens      14.0 MiB       14.0 MiB (28 KiB per token)
+   2,048 tokens      56.0 MiB       56.0 MiB (28 KiB per token)
+   8,192 tokens     224.0 MiB      224.0 MiB (28 KiB per token)
+3. one generation step at context n:  with cache   without   ratio
+     256 tokens                   45.9 ms    350.4 ms    7.6x
+     512 tokens                   51.1 ms    630.8 ms   12.3x
+   1,024 tokens                   48.0 ms   1261.7 ms   26.3x
+   2,048 tokens                   47.7 ms   2578.7 ms   54.1x
+   4,096 tokens                   66.0 ms   5802.2 ms   87.9x
+4. batch   one decode step   tokens/s   x batch 1
+       1          46.0 ms         22      1.0x
+       4          63.7 ms         63      2.9x
+      16          91.5 ms        175      8.0x
+      64         164.8 ms        388     17.9x
