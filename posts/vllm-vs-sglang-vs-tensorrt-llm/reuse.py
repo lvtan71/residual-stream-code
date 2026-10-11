@@ -3,13 +3,15 @@ import random
 from huggingface_hub import hf_hub_download
 from transformers import AutoTokenizer
 from radix import RadixCache, BlockCache
+from partial import PartialBlockCache
 
 # The three engines' prefix caches on one workload. SGLang matches any
-# prefix to the token (a radix tree with one token per page); vLLM and
-# TensorRT-LLM match whole blocks, 16 and 32 tokens by default. The caches
-# differ in more than block size (eviction order, TensorRT-LLM's eviction
-# priorities); here only the block size changes, with the eviction of
-# radix.py. The workload is the one from the SGLang post:
+# prefix to the token (a radix tree with one token per page); vLLM matches
+# whole 16-token blocks; TensorRT-LLM matches 32-token blocks and, by
+# default, the matching part of the next one (partial.py). The caches differ
+# in more (TensorRT-LLM evicts only leaf blocks, and by priority); here they
+# share the eviction of radix.py. Then whole blocks alone, at five sizes.
+# The workload is the one from the SGLang post:
 # prefix reuse in real multi-turn chat. ShareGPT conversations with at least
 # three user turns (up to eight), in Qwen2.5's chat format, starting over 40
 # minutes. Each turn
@@ -59,17 +61,26 @@ prompt_tokens = sum(len(p) for _, p, _ in requests)
 print(f"{len(requests)} requests from {used} multi-turn conversations; "
       f"{prompt_tokens:,} prompt tokens, {prompt_tokens / len(requests):.0f} per request")
 
-print("prompt tokens reused, by cache size and match granularity (tokens)")
-SIZES = (1, 16, 32, 64, 128)
+def reuse(cache, usable):
+    matched = 0
+    for _, prompt, reply in requests:
+        matched += min(cache.match(prompt), usable(len(prompt)))
+        cache.insert(prompt + reply)
+    return matched / prompt_tokens
+
+CAPS = (65_536, 262_144, 10**9)
+label = lambda cap: "unlimited" if cap == 10**9 else f"{cap:,}"
+print("prompt tokens reused, each engine's default match")
+print("cache size     SGLang (any prefix)   vLLM (16-token blocks)   TensorRT-LLM (32, partial reuse)")
+for cap in CAPS:
+    sglang = reuse(RadixCache(cap), lambda n: n - 1)
+    vllm = reuse(BlockCache(cap, block=16), lambda n: (n - 1) // 16 * 16)
+    trt = reuse(PartialBlockCache(cap, block=32), lambda n: n - 1)
+    print(f"{label(cap):>10s}     {sglang:13.1%}         {vllm:13.1%}            {trt:13.1%}")
+
+print("whole blocks only, by block size (tokens)")
+SIZES = (16, 32, 64, 128)
 print("cache size     " + "".join(f"{b:>8d}" for b in SIZES))
-for cap in (65_536, 262_144, 10**9):
-    row = []
-    for b in SIZES:
-        cache = RadixCache(cap) if b == 1 else BlockCache(cap, block=b)
-        matched = 0
-        for _, prompt, reply in requests:
-            matched += min(cache.match(prompt), (len(prompt) - 1) // b * b)
-            cache.insert(prompt + reply)
-        row.append(matched / prompt_tokens)
-    label = "unlimited" if cap == 10**9 else f"{cap:,}"
-    print(f"{label:>10s}     " + "".join(f"{h:8.1%}" for h in row))
+for cap in CAPS:
+    row = [reuse(BlockCache(cap, block=b), lambda n: (n - 1) // b * b) for b in SIZES]
+    print(f"{label(cap):>10s}     " + "".join(f"{h:8.1%}" for h in row))
