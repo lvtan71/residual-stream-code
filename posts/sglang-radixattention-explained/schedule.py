@@ -13,35 +13,43 @@ from radix import RadixCache
 #         request against the tree each round;
 #   lpm, as SGLang ships it: the same, but in arrival order while more than
 #         128 requests wait, since matching a long queue costs time.
-# Hit rate = cached prompt tokens / prompt tokens. The wait of a request is
-# the round it is served in.
-rng = random.Random(0)
-blog = tok(open("blog_train.txt").read()).input_ids
-P, Q, A, GROUPS, PER, BATCH = 2048, 128, 256, 64, 16, 32
-requests = []
-for g in range(GROUPS):
-    passage = blog[g * P:(g + 1) * P]
-    for k in range(PER):
-        s = rng.randrange(GROUPS * P, len(blog) - Q)
-        answer = [rng.randrange(151_000) for _ in range(A)]          # stands in for the generated tokens
-        requests.append((passage + blog[s:s + Q], answer))
-rng.shuffle(requests)
-
-for policy in ("fcfs", "lpm", "lpm, as shipped"):
-    cache, waiting, matched, rounds = RadixCache(16_384), list(range(len(requests))), 0, {}
-    r = 0
+# Each round's batch is matched against the tree before it runs, and cached
+# after. The cache is the room left beside the running requests. Hit rate =
+# cached prompt tokens / prompt tokens. A request's wait is measured as the
+# prompt tokens the server has computed by the time it is served.
+def run(policy, seed, batch=32):
+    rng = random.Random(seed)
+    requests = []
+    for g in range(GROUPS):
+        passage = blog[g * P:(g + 1) * P]
+        for k in range(PER):
+            s = rng.randrange(GROUPS * P, len(blog) - Q)
+            answer = [rng.randrange(151_000) for _ in range(A)]      # stands in for the generated tokens
+            requests.append((passage + blog[s:s + Q], answer))
+    rng.shuffle(requests)
+    cache, waiting, matched, computed, wait = RadixCache(16_384), list(range(len(requests))), 0, 0, {}
     while waiting:
         if policy == "lpm" or (policy == "lpm, as shipped" and len(waiting) <= 128):
             match = {i: cache.match(requests[i][0]) for i in waiting}
             waiting.sort(key=lambda i: -match[i])                   # stable: ties stay in arrival order
-        batch, waiting = waiting[:BATCH], waiting[BATCH:]
-        for i in batch:
+        run_now, waiting = waiting[:batch], waiting[batch:]
+        hits = {i: min(cache.match(requests[i][0]), len(requests[i][0]) - 1) for i in run_now}   # match the batch,
+        for i in run_now:                                                                         # then run it
             prompt, answer = requests[i]
-            matched += min(cache.match(prompt), len(prompt) - 1)
-            cache.insert(prompt + answer)
-            rounds[i] = r + 1                                       # rounds counted from 1
-        r += 1
+            matched += hits[i]
+            computed += len(prompt) - hits[i]
+            wait[i] = computed                  # prompt tokens computed by the time it is served
+        for i in run_now:
+            cache.insert(requests[i][0] + requests[i][1])
     total = sum(len(p) for p, _ in requests)
-    first_rounds = [rounds[i] for i in range(BATCH * 4)]                # the first 128 to arrive
-    print(f"{policy}: hit rate {matched / total:5.1%}, prompt tokens computed {total - matched:,} of {total:,}; "
-          f"the first 128 arrivals all served by round {max(first_rounds)} of {r}")
+    early = sorted(wait[i] for i in range(128))                         # the first 128 to arrive
+    return matched / total, early[len(early) // 2], early[-1]
+
+blog = tok(open("blog_train.txt").read()).input_ids
+P, Q, A, GROUPS, PER = 2048, 128, 256, 64, 16
+print("                   prompt tokens reused       first 128 arrivals served after this much prefill work")
+print("policy             seed 0  seed 1  seed 2     median (seed 0)     slowest (seed 0)")
+for policy in ("fcfs", "lpm", "lpm, as shipped"):
+    rows = [run(policy, seed) for seed in (0, 1, 2)]
+    print(f"{policy:17s}  " + "  ".join(f"{r[0]:6.1%}" for r in rows) +
+          f"     {rows[0][1]:9,d} tokens    {rows[0][2]:9,d} tokens")

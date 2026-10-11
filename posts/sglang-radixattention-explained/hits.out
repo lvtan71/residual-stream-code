@@ -1,7 +1,7 @@
 2161 requests from 429 multi-turn conversations; 1,583,998 prompt tokens, 733 per request
 cache size (tokens)    radix tree, any prefix    16-token blocks
-            16,384           21.0%                   20.3%
-            65,536           50.9%                   51.9%
-           262,144           65.0%                   64.0%
-         1,048,576           65.2%                   64.1%
-         unlimited           65.2%                   64.1%
+            16,384           30.3%                   30.0%
+            65,536           80.5%                   79.4%
+           262,144           92.0%                   90.9%
+         1,048,576           92.0%                   90.9%
+         unlimited           92.0%                   90.9%

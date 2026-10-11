@@ -1,2 +1,2 @@
-time to first token, 2,176-token prompt: 2102 ms computed whole, 153 ms with the 2,048-token prefix cached (13.8x faster)
-largest difference in the first token's logits: 0.000; same first token: True
+time to first token, 2,176-token prompt: 2101.5 ms computed whole, 152.6 ms with the 2,048-token prefix cached (13.8x faster)
+largest difference in the first token's logits: 0.0e+00; same first token: True

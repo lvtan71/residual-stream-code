@@ -11,7 +11,9 @@ import pickle
 # evicted, so a shared ancestor stays as long as anything below it is used.
 # BlockCache is vLLM's: 16-token blocks named by a hash of the block's
 # tokens and its parent's hash; only full blocks are cached, and a lookup
-# stops at the first block it hasn't seen.
+# stops at the first block it hasn't seen. Among blocks last used at the same
+# time, the one deepest in its chain goes first, as vLLM frees a request's
+# blocks in reverse order.
 
 class Node:
     def __init__(self, parent=None, key=()):
@@ -83,16 +85,16 @@ class BlockCache:
     def match(self, tokens):
         self.clock += 1
         n = 0
-        for h in self._hashes(tokens):
+        for depth, h in enumerate(self._hashes(tokens)):
             if h not in self.blocks:
                 break
-            self.blocks[h] = self.clock
+            self.blocks[h] = (self.clock, -depth)
             n += 1
         return n * self.block
 
     def insert(self, tokens):
         self.clock += 1
-        for h in self._hashes(tokens):
-            self.blocks[h] = self.clock
+        for depth, h in enumerate(self._hashes(tokens)):
+            self.blocks[h] = (self.clock, -depth)          # (last use, deeper blocks first on ties)
         while len(self.blocks) > self.capacity:
             del self.blocks[min(self.blocks, key=self.blocks.get)]

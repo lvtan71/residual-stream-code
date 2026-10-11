@@ -1,3 +1,5 @@
-fcfs: hit rate  9.1%, prompt tokens computed 2,025,419 of 2,228,224; the first 128 arrivals all served by round 4 of 32
-lpm: hit rate 79.6%, prompt tokens computed 454,609 of 2,228,224; the first 128 arrivals all served by round 24 of 32
-lpm, as shipped: hit rate 12.4%, prompt tokens computed 1,951,691 of 2,228,224; the first 128 arrivals all served by round 4 of 32
+                   prompt tokens reused       first 128 arrivals served after this much prefill work
+policy             seed 0  seed 1  seed 2     median (seed 0)     slowest (seed 0)
+fcfs                 7.9%    8.9%    8.6%       137,343 tokens      262,140 tokens
+lpm                 69.9%   57.8%   64.4%       216,775 tokens      507,556 tokens
+lpm, as shipped     10.3%   11.7%   11.3%       137,343 tokens      262,140 tokens

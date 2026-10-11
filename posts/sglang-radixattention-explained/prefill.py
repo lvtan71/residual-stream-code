@@ -33,7 +33,7 @@ first_token(); first_token(prefix)                                    # warm up
 full = sorted(first_token()[0] for _ in range(7))[3]
 cached = sorted(first_token(prefix)[0] for _ in range(7))[3]
 diff = (first_token()[1] - first_token(prefix)[1]).abs().max().item()
-print(f"time to first token, 2,176-token prompt: {full * 1e3:.0f} ms computed whole, "
-      f"{cached * 1e3:.0f} ms with the 2,048-token prefix cached ({full / cached:.1f}x faster)")
-print(f"largest difference in the first token's logits: {diff:.3f}; same first token: "
+print(f"time to first token, 2,176-token prompt: {full * 1e3:.1f} ms computed whole, "
+      f"{cached * 1e3:.1f} ms with the 2,048-token prefix cached ({full / cached:.1f}x faster)")
+print(f"largest difference in the first token's logits: {diff:.1e}; same first token: "
       f"{bool(first_token()[1].argmax() == first_token(prefix)[1].argmax())}")

@@ -4,14 +4,19 @@ from huggingface_hub import hf_hub_download
 from lm import tok
 from radix import RadixCache, BlockCache
 
-# Prefix reuse in real multi-turn chat. 400 ShareGPT conversations with at
-# least three user turns (up to eight), in Qwen2.5's chat format. Each turn
+# Prefix reuse in real multi-turn chat. ShareGPT conversations with at least
+# three user turns (up to eight), in Qwen2.5's chat format, starting over 40
+# minutes. Each turn
 # is a request whose prompt is the whole conversation so far; its answer is
 # the reply the conversation actually got. Conversations start at random
 # (one every 6 seconds on average) and a user replies 60 seconds after an
 # answer on average, so turns of different conversations interleave. Each
 # request is matched against the cache, then its prompt and answer are
-# cached, as both engines do. Hit rate = cached prompt tokens / prompt tokens.
+# cached, as both engines do (requests are replayed one at a time, so an
+# answer is cached before the next request arrives, and the cached answer is
+# the reply ShareGPT recorded). Neither engine reuses a prompt's last token,
+# since its logits are needed; vLLM also reuses whole blocks only. Hit rate =
+# cached prompt tokens / prompt tokens.
 SHAREGPT = hf_hub_download("anon8231489123/ShareGPT_Vicuna_unfiltered", "ShareGPT_V3_unfiltered_cleaned_split.json",
                            repo_type="dataset", revision="192ab2185289094fc556ec8ce5ce1e8e587154ca")
 rng = random.Random(0)
@@ -34,11 +39,11 @@ for c in convs:
     t, history = t0, list(SYSTEM)
     for question, answer in turns[:8]:
         history += msg("user", question)
-        prompt, reply = history + ASSISTANT, msg("assistant", answer)
+        prompt, reply = history + ASSISTANT, tok(f"{answer}<|im_end|>\n").input_ids
         if len(prompt) + len(reply) > 16_384:
             break
         requests.append((t, prompt, reply))
-        history += reply
+        history += ASSISTANT + reply
         t += rng.expovariate(1 / 60)
     if t0 > 400 * 6:
         break
@@ -50,10 +55,10 @@ print(f"{len(requests)} requests from {used} multi-turn conversations; "
 print("cache size (tokens)    radix tree, any prefix    16-token blocks")
 for cap in (16_384, 65_536, 262_144, 1_048_576, 10**9):
     hits = []
-    for cache in (RadixCache(cap), BlockCache(cap)):
+    for cache, usable in ((RadixCache(cap), lambda n: n - 1), (BlockCache(cap), lambda n: (n - 1) // 16 * 16)):
         matched = 0
         for _, prompt, reply in requests:
-            matched += min(cache.match(prompt), len(prompt) - 1)    # the last prompt token is always recomputed
+            matched += min(cache.match(prompt), usable(len(prompt)))
             cache.insert(prompt + reply)
         hits.append(matched / prompt_tokens)
     label = "unlimited" if cap == 10**9 else f"{cap:,}"
