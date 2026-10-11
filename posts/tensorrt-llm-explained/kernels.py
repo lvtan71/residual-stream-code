@@ -1,4 +1,5 @@
 import torch
+assert torch.backends.mps.is_available(), "these Metal kernels need an Apple-silicon GPU"
 
 # Two fused kernels for Qwen2.5-1.5B's layers, written in Metal, the Apple
 # GPU's shading language (they run only on Apple silicon, through

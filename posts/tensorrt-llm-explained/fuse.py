@@ -9,9 +9,9 @@ from lm import model, tok, DEVICE
 # Kernel fusion, the first thing an engine build did, applied by hand to
 # Qwen2.5-1.5B: every RMSNorm becomes one kernel instead of eight operations,
 # and each MLP's gate and up projections become one matmul followed by one
-# fused SiLU-and-multiply. The RMSNorm kernel's version is the one tune.py
-# found fastest for the row count. Measured before and after: operations per
-# decoded token (PyTorch's, allocations included, plus our kernels), time per
+# fused SiLU-and-multiply. The RMSNorm kernel's version comes from tune.py:
+# 512x4 (near the fastest at 1 and 16 rows), else 128x4. Measured: operations per
+# token (PyTorch's, allocations included, views not, plus our kernels), time per
 # decoded token, time to prefill 2,048 tokens, and how the outputs change.
 blog = tok(open("blog_train.txt").read()).input_ids
 prompt = torch.tensor([blog[:2048]], device=DEVICE)
