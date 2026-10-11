@@ -1,0 +1,63 @@
+512 tokens; final next-token loss 2.175 nats; stream width 1536
+                                    the next block adds,
+                                    relative to the stream:
+point in the stream     size (RMS)   attention        MLP        logit-lens loss   top token = final
+embedding                  0.03          11.87x        10.93x          107.32                2%
+after block 1              0.43           0.46x         0.47x           14.87                1%
+after block 2              0.55           0.32x         0.58x           13.47                1%
+after block 3              0.70           0.30x         0.51x           13.69                0%
+after block 4              0.82           0.25x         0.52x           13.66                1%
+after block 5              0.92           0.27x         0.43x           14.07                0%
+after block 6              0.96           0.25x         0.47x           12.83                1%
+after block 7              1.04           0.26x         0.43x           13.08                1%
+after block 8              1.08           0.24x         0.41x           12.91                1%
+after block 9              1.09           0.24x         0.39x           13.49                1%
+after block 10             1.11           0.28x         0.38x           13.02                1%
+after block 11             1.13           0.32x         0.36x           12.91                1%
+after block 12             1.21           0.24x         0.33x           12.28                1%
+after block 13             1.27           0.30x         0.29x           12.27                1%
+after block 14             1.38           0.18x         0.29x           11.93                2%
+after block 15             1.36           0.23x         0.29x           12.14                1%
+after block 16             1.38           0.23x         0.30x           12.10                2%
+after block 17             1.44           0.23x         0.32x           11.65                2%
+after block 18             1.55           0.25x         0.32x           11.26                4%
+after block 19             1.67           0.22x         0.42x           10.42                6%
+after block 20             1.79           0.32x         0.38x            9.45               14%
+after block 21             2.01           0.31x         0.40x            8.76               19%
+after block 22             2.44           0.23x         0.40x            7.46               23%
+after block 23             3.00           0.21x         0.38x            7.03               27%
+after block 24             3.72           0.19x         0.37x            5.87               38%
+after block 25             4.67           0.18x         0.31x            4.63               48%
+after block 26             5.51           0.21x         0.31x            4.11               59%
+after block 27             6.73           0.29x         0.85x            2.94               74%
+after block 28             8.02                                          2.17              100%
+first position's stream size: 0.02 at the embedding, up to 300 (after block 12); others' at most 8
+block removed:  loss  (increase)
+  block  1       11.476  (+9.301)
+  block  2       4.589  (+2.414)
+  block  3       2.462  (+0.288)
+  block  4       2.310  (+0.135)
+  block  5       2.347  (+0.173)
+  block  6       2.387  (+0.212)
+  block  7       2.379  (+0.205)
+  block  8       2.337  (+0.163)
+  block  9       2.296  (+0.121)
+  block 10       2.289  (+0.114)
+  block 11       2.273  (+0.098)
+  block 12       2.253  (+0.078)
+  block 13       2.266  (+0.091)
+  block 14       2.296  (+0.121)
+  block 15       2.260  (+0.085)
+  block 16       2.206  (+0.031)
+  block 17       2.234  (+0.059)
+  block 18       2.282  (+0.108)
+  block 19       2.288  (+0.114)
+  block 20       2.296  (+0.121)
+  block 21       2.283  (+0.108)
+  block 22       2.405  (+0.230)
+  block 23       2.378  (+0.203)
+  block 24       2.374  (+0.200)
+  block 25       2.405  (+0.230)
+  block 26       2.475  (+0.301)
+  block 27       2.399  (+0.224)
+  block 28       2.943  (+0.768)

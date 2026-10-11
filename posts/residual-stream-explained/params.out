@@ -1,0 +1,11 @@
+D = 4096: GELU MLP 134.2M weights (8 D^2 = 134.2M), SwiGLU 135.3M, attention 67.1M (4 D^2)
+context   2,048: MLP 64% of the block's FLOPs, attention's projections 32%, scores and weighted sums 4%
+context   8,192: MLP 57% of the block's FLOPs, attention's projections 28%, scores and weighted sums 14%
+context  32,768: MLP 40% of the block's FLOPs, attention's projections 20%, scores and weighted sums 40%
+context 131,072: MLP 18% of the block's FLOPs, attention's projections 9%, scores and weighted sums 73%
+Llama 3 8B block: MLP 176.2M, attention 41.9M, MLP share 81%
+Qwen2.5-1.5B-Instruct: 1.54B weights, D = 1536, MLP width 8960, 28 blocks
+  embedding (tied)    233.4M   15%
+  attention           154.2M   10%
+  MLP                1156.1M   75%
+  norms                 0.1M    0%

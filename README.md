@@ -25,6 +25,7 @@ printed for the post (`.out`), and a README with the order to run them in.
 - [TensorRT-LLM: Compiling Inference Engines Ahead of Time](posts/tensorrt-llm-explained/)
 - [vLLM vs. SGLang vs. TensorRT-LLM: Comparing LLM Serving Architectures](posts/vllm-vs-sglang-vs-tensorrt-llm/)
 - [The Transformer's Three Attention Patterns: Self, Masked, and Cross](posts/transformer-attention-patterns/)
+- [The Residual Stream: How a Transformer Turns Tokens Into Predictions](posts/residual-stream-explained/)
 
 ## Running locally
 
