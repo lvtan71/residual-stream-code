@@ -24,6 +24,7 @@ printed for the post (`.out`), and a README with the order to run them in.
 - [SGLang and RadixAttention: Sharing the KV Cache Across Requests](posts/sglang-radixattention-explained/)
 - [TensorRT-LLM: Compiling Inference Engines Ahead of Time](posts/tensorrt-llm-explained/)
 - [vLLM vs. SGLang vs. TensorRT-LLM: Comparing LLM Serving Architectures](posts/vllm-vs-sglang-vs-tensorrt-llm/)
+- [The Transformer's Three Attention Patterns: Self, Masked, and Cross](posts/transformer-attention-patterns/)
 
 ## Running locally
 

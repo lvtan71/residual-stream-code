@@ -1,0 +1,7 @@
+   d   std of q.k   std of q.k/sqrt(d)   softmax over 16 keys:  largest weight   gradient norm
+                                                               raw    scaled     raw     scaled
+   4         2.00                 1.00                   0.42     0.23    0.325    0.298
+  16         4.02                 1.00                   0.68     0.24    0.279    0.303
+  64         7.96                 0.99                   0.84     0.25    0.179    0.304
+ 256        15.98                 1.00                   0.93     0.25    0.096    0.305
+1024        32.51                 1.02                   0.96     0.24    0.048    0.305

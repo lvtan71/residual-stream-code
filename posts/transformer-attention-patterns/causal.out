@@ -1,0 +1,5 @@
+17 tokens; changing the last one moves earlier positions' hidden states by at most 0.0e+00 (in every layer), and the last position's by 60.9
+largest attention weight above the diagonal, any layer or head: 0.0e+00
+average over all heads: weight on the previous token 0.13, on the first token 0.54
+strongest previous token head: layer 1, head 4, average weight 0.78
+strongest first token head: layer 14, head 5, average weight 1.00

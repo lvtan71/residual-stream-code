@@ -1,0 +1,10 @@
+English: The black cat sleeps on the warm mat in the kitchen.
+German:  Die schwarze Katze schläft auf der warmen Matte in der Küche.
+14 German tokens attend over 14 English tokens (including </s>)
+layer 0: each German token's most-weighted English token: ▁Die-></s> ▁schwarze->▁The ▁Katze-></s> ▁schläft-></s> ▁auf-></s> ▁der->▁on ▁warmen-></s> ▁Matt-></s> e-></s> ▁in-></s> ▁der->▁in ▁Küche-></s> .-></s> </s>->.
+layer 1: each German token's most-weighted English token: ▁Die-></s> ▁schwarze->▁The ▁Katze->▁black ▁schläft->▁cat ▁auf->▁sleep ▁der->▁on ▁warmen->▁the ▁Matt-></s> e-></s> ▁in-></s> ▁der->▁in ▁Küche->▁the .-></s> </s>->.
+layer 2: each German token's most-weighted English token: ▁Die-></s> ▁schwarze->▁The ▁Katze->▁black ▁schläft->▁cat ▁auf-></s> ▁der->▁on ▁warmen->▁the ▁Matt-></s> e-></s> ▁in->▁mat ▁der->▁in ▁Küche->▁kitchen .-></s> </s>->.
+layer 3: each German token's most-weighted English token: ▁Die->. ▁schwarze->▁The ▁Katze->▁black ▁schläft->▁cat ▁auf->▁sleep ▁der->▁on ▁warmen->▁the ▁Matt->▁warm e->▁mat ▁in->▁mat ▁der->▁in ▁Küche-></s> .-></s> </s>-></s>
+layer 4: each German token's most-weighted English token: ▁Die->▁The ▁schwarze->▁black ▁Katze->▁cat ▁schläft->▁sleep ▁auf->▁on ▁der->▁the ▁warmen->▁warm ▁Matt->▁mat e-></s> ▁in->▁in ▁der-></s> ▁Küche->▁kitchen .-></s> </s>-></s>
+layer 5: each German token's most-weighted English token: ▁Die-></s> ▁schwarze->▁black ▁Katze->▁cat ▁schläft->▁sleep ▁auf-></s> ▁der->▁warm ▁warmen->▁warm ▁Matt->▁mat e-></s> ▁in-></s> ▁der-></s> ▁Küche->▁kitchen .-></s> </s>-></s>
+layer 4 is closest to a word-for-word diagonal
