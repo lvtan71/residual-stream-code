@@ -13,6 +13,15 @@ in reading order and shows, after every cell, the output the post printed.
 
 More posts are being added.
 
+## Full scripts
+
+Posts written since October 2026 show the important part of their code and
+link to the full scripts here, under `posts/<post>/`: every script, what it
+printed for the post (`.out`), and a README with the order to run them in.
+
+- [Paged Attention: Managing the KV Cache Like Virtual Memory](posts/paged-attention-explained/)
+- [vLLM Architecture: Continuous Batching and Serving at Scale](posts/vllm-architecture-explained/)
+
 ## Running locally
 
 ```bash

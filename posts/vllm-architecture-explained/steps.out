@@ -1,0 +1,17 @@
+decode, ms per step (tokens/s)
+   B                C = 128             C = 512            C = 2048
+   1         46.0 (   22/s)      42.2 (   24/s)      55.5 (   18/s)
+   4         49.9 (   80/s)      49.5 (   81/s)      66.1 (   61/s)
+  16         74.0 (  216/s)      84.3 (  190/s)     131.5 (  122/s)
+  64        127.7 (  501/s)     161.5 (  396/s)                    
+ 128        196.2 (  652/s)     280.3 (  457/s)                    
+prefill, one sequence
+  T =   16:    53.8 ms (  297 tokens/s)
+  T =   64:    80.1 ms (  799 tokens/s)
+  T =  128:   136.3 ms (  939 tokens/s)
+  T =  256:   245.5 ms ( 1043 tokens/s)
+  T =  512:   480.7 ms ( 1065 tokens/s)
+  T = 1024:   990.9 ms ( 1033 tokens/s)
+  T = 2048:  2082.3 ms (  984 tokens/s)
+  T = 4096:  4303.0 ms (  952 tokens/s)
+fit: 44.2 ms + 778 us per new token + 2334 ns per cached token read + 76514.7 ps x T^2; error over 21 steps: mean 6.7%, max 17.7%

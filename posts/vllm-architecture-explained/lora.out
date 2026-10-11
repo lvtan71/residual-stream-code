@@ -1,0 +1,5 @@
+one rank-16 adapter on all 7 projections of 28 layers: 35 MiB, against 2.88 GiB for the base model; 1.4% more multiply-adds
+decode step, 512 cached tokens per sequence, ms (extra over the base model)
+     base    one adapter, shared   gathered, one adapter   gathered, a different adapter each
+ 16   87.0      90.1 ( +4%)         149.5 (+72%)            150.1 (+72%)
+ 64  157.0     163.9 ( +4%)         421.4 (+168%)            422.1 (+169%)

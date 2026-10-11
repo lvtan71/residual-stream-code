@@ -1,0 +1,10 @@
+ShareGPT: 5000 requests, prompt 220 tokens on average, answer 204
+  max    real tokens  17.6% of reserved slots;   2048 slots per running request,    7 running at once
+  pow2   real tokens  47.7% of reserved slots;    757 slots per running request,   20 running at once
+  oracle real tokens  63.0% of reserved slots;    573 slots per running request,   27 running at once
+  paged  real tokens  98.0% of reserved slots;    369 slots per running request,   42 running at once
+Alpaca: 5000 requests, prompt 18 tokens on average, answer 58
+  max    real tokens   3.4% of reserved slots;   2048 slots per running request,    7 running at once
+  pow2   real tokens  41.9% of reserved slots;    168 slots per running request,   93 running at once
+  oracle real tokens  57.0% of reserved slots;    124 slots per running request,  127 running at once
+  paged  real tokens  90.4% of reserved slots;     78 slots per running request,  201 running at once

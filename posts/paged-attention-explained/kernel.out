@@ -1,0 +1,13 @@
+16 sequences x 4096 cached tokens, 64 MiB of keys and values per step
+contiguous, no table: attention 1.16 ms (58 GB/s read), max error vs PyTorch 5.2e-08; copying alone 1.60 ms (84 GB/s read and written)
+        attention, time vs contiguous     copying alone                max error
+block   in order   scattered               in order   scattered        vs PyTorch
+    1      1.00x      1.02x                  1.00x      1.01x           5.2e-08
+    2      0.99x      1.00x                  1.00x      1.02x           5.2e-08
+    4      1.00x      1.00x                  1.00x      1.01x           5.2e-08
+    8      1.01x      1.01x                  1.00x      1.00x           5.2e-08
+   16      1.00x      0.99x                  0.99x      1.00x           5.2e-08
+   32      1.00x      1.00x                  0.99x      1.00x           5.2e-08
+   64      1.00x      0.99x                  0.99x      1.00x           5.2e-08
+  128      1.00x      0.98x                  1.00x      0.99x           5.2e-08
+  256      1.01x      0.99x                  1.00x      1.00x           5.2e-08

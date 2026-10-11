@@ -1,0 +1,12 @@
+prompt: 44 tokens in 3 blocks, the last one 12 of 16 full
+4 samples of 64 tokens: 22 blocks in use, against 28 without sharing (21% fewer); 3 copy-on-write copies
+tables:
+  [0, 1, 3, 6, 10, 14, 18]
+  [0, 1, 4, 7, 11, 15, 19]
+  [0, 1, 5, 8, 12, 16, 20]
+  [0, 1, 2, 9, 13, 17, 21]
+each sample the same as without sharing: [True, True, True, True]
+  'A KV (Key-Value) cache needs its own memory manager because KV caches are typically small '
+  "A KV (key-value) cache needs its own memory manager because the cache's memory usage and m"
+  "A KV (Key-Value) cache needs its own memory manager to efficiently manage the cache's memo"
+  'A Key-Value (KV) cache typically needs its own memory manager because it often operates at'

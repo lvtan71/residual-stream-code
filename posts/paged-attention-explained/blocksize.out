@@ -1,0 +1,10 @@
+block   real tokens / reserved     blocks per request     B's 85 shared tokens
+size    ShareGPT     Alpaca        ShareGPT   Alpaca      reused from the cache
+   1     100.0%     100.0%         424.0     75.5       85
+   4      99.6%      97.9%         106.4     19.2       84
+   8      99.0%      95.3%          53.4      9.9       80
+  16      98.0%      90.4%          27.0      5.2       80
+  32      95.9%      82.4%          13.7      2.8       64
+  64      92.0%      68.7%           7.1      1.7       64
+ 128      84.9%      48.8%           3.8      1.1        0
+ 256      73.0%      27.2%           2.2      1.0        0

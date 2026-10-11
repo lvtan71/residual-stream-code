@@ -1,0 +1,3 @@
+A: 96 tokens, 6 full blocks; tokens shared with A from the start:  96; blocks found in the cache: 0, prompt tokens not recomputed: 0
+B: 96 tokens, 6 full blocks; tokens shared with A from the start:  85; blocks found in the cache: 5, prompt tokens not recomputed: 80
+C: 110 tokens, 6 full blocks; tokens shared with A from the start:   3; blocks found in the cache: 0, prompt tokens not recomputed: 0

@@ -1,0 +1,5 @@
+one block: 16 tokens x 28 layers x K and V x 2 heads x 128 dimensions x 2 bytes = 458,752 bytes
+prompt 0: 103 tokens in blocks [0, 3, 5, 7, 9, 11, 13]; same 100 tokens as the contiguous cache: True
+prompt 1: 110 tokens in blocks [1, 2, 4, 6, 8, 10, 12]; same 100 tokens as the contiguous cache: True
+block size 16; 50 of 64 blocks free
+' the ability to request a certain amount of data from a database, and then receive it in a batch. This is a way to improve the performance of a database system. In the context of a database'
