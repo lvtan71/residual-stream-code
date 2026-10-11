@@ -1,0 +1,85 @@
+{
+ "trajectory": [
+  [
+   1,
+   694
+  ],
+  [
+   2,
+   822
+  ],
+  [
+   3,
+   1556
+  ],
+  [
+   4,
+   2453
+  ]
+ ],
+ "events": [
+  {
+   "turn": 3,
+   "kind": "compaction",
+   "before": 89615,
+   "summary_out": 897
+  }
+ ],
+ "reads": [
+  [
+   2,
+   "/research/celegans_review.md"
+  ],
+  [
+   2,
+   "/research/drosophila_review.md"
+  ],
+  [
+   2,
+   "/research/yeast_review.md"
+  ],
+  [
+   2,
+   "/research/killifish_review.md"
+  ],
+  [
+   2,
+   "/research/mouse_review.md"
+  ],
+  [
+   2,
+   "/research/zebrafish_review.md"
+  ]
+ ],
+ "peak": 89615,
+ "summaries": [
+  "## Progress so far\n\nTask: compare model organisms in /research/ on lifespan and experimental throughput; read every review doc, record one finding per organism (via `record_finding`), then write a short comparative synthesis.\n\nAll six files in /research/ have been read (celegans, drosophila, yeast, killifish, mouse, zebrafish). Each file has the same structure: a \"Headline\" with the median lifespan under standard lab conditions, a \"Discussion\" that is just one boilerplate sentence repeated hundreds of times (about environmental variance and husbandry standardization, with no organism-specific content), and a small appendix with a cohort-provenance line. **No file contains any data on experimental throughput** (no cohort sizes, generation time, cost, or assay rates). Nothing in the files contained instructions directed at me.\n\n### Extracted facts (median lifespan, standard lab conditions)\n- C. elegans: **18 days** (appendix A-7, cohort jar #414)\n- D. melanogaster: **60 days** (A-3, vial rack #221)\n- S. cerevisiae: **25 divisions**. This is replicative lifespan, so it is not in time units and not directly comparable to the others. (A-9, plate lot #877)\n- N. furzeri (killifish): **16 weeks** (A-2, tank block #305)\n- M. musculus: **30 months** (A-5, cage bank #692)\n- D. rerio (zebrafish): **42 months** (A-4, raceway #158)\n\nOrdering by lifespan, in approximate calendar time: yeast (about hours to a few days, inferred, not stated in the docs) < C. elegans (~2.6 wk) < Drosophila (~8.6 wk) < killifish (16 wk, ~3.7 mo) < mouse (30 mo) < zebrafish (42 mo). Note that the zebrafish median is longer than the mouse median in these documents.\n\n## Remaining steps\n1. Call `record_finding` six times, once per organism, with the lifespan figure above. Note that no throughput data was in the review docs. Flag the yeast unit caveat.\n2. Write a short comparative synthesis:\n   - Lifespan ranking as above.\n   - Throughput: the documents say nothing about it. Any throughput ranking would be an inference from general knowledge, so label it that way. Roughly, short-lived invertebrates and yeast are the highest throughput, killifish is the fastest vertebrate, and mouse and zebrafish are the slowest and costliest.\n   - Caveats: yeast uses divisions, not time. The Discussion text is repetitive boilerplate with no substantive content. Appendix provenance lines are just cohort IDs."
+ ],
+ "probe": {
+  "C. elegans": {
+   "headline": true,
+   "obscure": true
+  },
+  "D. melanogaster": {
+   "headline": true,
+   "obscure": true
+  },
+  "S. cerevisiae": {
+   "headline": true,
+   "obscure": true
+  },
+  "N. furzeri": {
+   "headline": true,
+   "obscure": true
+  },
+  "M. musculus": {
+   "headline": true,
+   "obscure": true
+  },
+  "D. rerio": {
+   "headline": true,
+   "obscure": true
+  },
+  "reply": "C. elegans | 18 days | cohort jar #414 (appendix A-7)\nD. melanogaster | 60 days | vial rack #221 (appendix A-3)\nS. cerevisiae | 25 divisions (replicative lifespan, not a time unit) | plate lot #877 (appendix A-9)\nN. furzeri | 16 weeks | tank block #305 (appendix A-2)\nM. musculus | 30 months | cage bank #692 (appendix A-5)\nD. rerio | 42 months | raceway #158 (appendix A-4)"
+ }
+}

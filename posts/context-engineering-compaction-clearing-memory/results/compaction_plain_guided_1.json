@@ -10,11 +10,11 @@
   ],
   [
    3,
-   1756
+   1564
   ],
   [
    4,
-   2899
+   2566
   ]
  ],
  "events": [
@@ -22,7 +22,7 @@
    "turn": 3,
    "kind": "compaction",
    "before": 89664,
-   "summary_out": 1346
+   "summary_out": 1270
   }
  ],
  "reads": [
@@ -53,7 +53,7 @@
  ],
  "peak": 89664,
  "summaries": [
-  "**Task:** Compare the model organisms in /research/ on lifespan and experimental throughput. Read every review document, record one finding per organism with `record_finding`, then write a short comparative synthesis.\n\n**Documents found (6) and read status:**\nAll 6 were read in full in a single parallel call. None remain unread.\n- /research/celegans_review.md: read\n- /research/drosophila_review.md: read\n- /research/yeast_review.md: read\n- /research/killifish_review.md: read\n- /research/mouse_review.md: read\n- /research/zebrafish_review.md: read\n\n**Lifespan figures** (the \"Headline\" median lifespan under standard lab conditions, with units as stated in each source):\n- C. elegans: 18 days\n- D. melanogaster: 60 days\n- S. cerevisiae: 25 divisions. This is a division count (replicative lifespan), not calendar time.\n- N. furzeri (killifish): 16 weeks\n- M. musculus: 30 months\n- D. rerio (zebrafish): 42 months\n\n**Appendix provenance details** (each document's appendix table):\n- C. elegans, Table A-7: replicate cohort sourced from cohort jar #414\n- D. melanogaster, Table A-3: replicate cohort sourced from vial rack #221\n- S. cerevisiae, Table A-9: replicate cohort sourced from plate lot #877\n- N. furzeri, Table A-2: replicate cohort sourced from tank block #305\n- M. musculus, Table A-5: replicate cohort sourced from cage bank #692\n- D. rerio, Table A-4: replicate cohort sourced from raceway #158\n\n**Other content observations:**\n- Each document has the same structure: a Headline with the median lifespan, a very long Discussion, and an Appendix table with provenance.\n- The Discussion in every document is one sentence repeated hundreds of times: \"Longitudinal survival analysis across replicate cohorts indicates that environmental variance contributes materially to observed dispersion, and that husbandry protocol standardization reduces between-lab heterogeneity.\" It adds no organism-specific information.\n- None of the documents gives any quantitative throughput data, such as cohort sizes, generation time, cost, or assay speed. Throughput can only be inferred from lifespan, with the caveat that this is an inference and not from the sources. The synthesis should say so.\n- The documents contain no embedded instructions.\n\n**Remaining steps:**\n1. Call `record_finding` once per organism, six calls, which can be made in parallel. Each should give the lifespan figure with its unit and the provenance ID. No findings have been recorded yet.\n2. Write a short comparative synthesis. Ranking by lifespan gives yeast (25 divisions, not comparable in time units) and C. elegans (18 days) as the shortest, then D. melanogaster (60 days), N. furzeri (16 weeks, about 112 days), M. musculus (30 months) and D. rerio (42 months) as the longest. Shorter lifespan implies higher throughput for aging studies. The synthesis should note that the sources give no direct throughput metrics and that the units are not directly comparable, especially for yeast. It should also note that the zebrafish median (42 months) is longer than the mouse median (30 months)."
+  "**Progress so far**\n- I searched /research/ and found 6 review documents. I read all 6: celegans_review.md, drosophila_review.md, yeast_review.md, killifish_review.md, mouse_review.md, zebrafish_review.md.\n- **Remaining:** I have not yet called `record_finding` for any organism. I still need to record 6 findings, one per organism, and then write the short comparative synthesis.\n\n**Document structure**\nEach review has three parts: a \"Headline\" with the median lifespan, a \"Discussion\" section, and an \"Appendix table\" with provenance. The Discussion in every file is the same sentence repeated hundreds of times. It says environmental variance contributes materially to dispersion in longitudinal survival analysis across replicate cohorts, and that husbandry standardization reduces between-lab heterogeneity. It has no organism-specific data. **None of the documents contain any experimental-throughput information.** That includes generation time, cohort size, cost and assay speed. Throughput will have to be inferred from lifespan, or reported as not covered by the sources.\n\n**Median lifespan under standard lab conditions (headline figures)**\n\n| Organism | Median lifespan |\n|---|---|\n| C. elegans | 18 days |\n| D. melanogaster | 60 days |\n| S. cerevisiae | 25 divisions (replicative lifespan, not calendar time) |\n| N. furzeri (killifish) | 16 weeks |\n| M. musculus (mouse) | 30 months |\n| D. rerio (zebrafish) | 42 months |\n\n**Appendix provenance details**\n\n| Organism | Appendix table | Cohort source |\n|---|---|---|\n| C. elegans | A-7 | cohort jar #414 |\n| D. melanogaster | A-3 | vial rack #221 |\n| S. cerevisiae | A-9 | plate lot #877 |\n| N. furzeri | A-2 | tank block #305 |\n| M. musculus | A-5 | cage bank #692 |\n| D. rerio | A-4 | raceway #158 |\n\n**Notes for the synthesis**\n- Ordering by calendar lifespan, shortest to longest: C. elegans (18 d), D. melanogaster (60 d), N. furzeri (16 wk, about 112 d), M. musculus (30 mo), D. rerio (42 mo).\n- Yeast cannot be compared directly on time. Its figure is in cell divisions.\n- Short-lived organisms (worm, fly, killifish) allow faster lifespan experiments. Mouse and zebrafish need multi-year studies.\n- The sources do not support any claim about throughput beyond what lifespan implies. The synthesis should say so."
  ],
  "probe": {
   "C. elegans": {
@@ -82,5 +82,5 @@
   },
   "reply": "C. elegans | 18 days | cohort jar #414\nD. melanogaster | 60 days | vial rack #221\nS. cerevisiae | 25 divisions (replicative lifespan, not calendar time) | plate lot #877\nN. furzeri | 16 weeks | tank block #305\nM. musculus | 30 months | cage bank #692\nD. rerio | 42 months | raceway #158"
  },
- "summary_tokens": 1093
+ "summary_tokens": 901
 }

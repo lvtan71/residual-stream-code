@@ -124,15 +124,16 @@ def context_size(u):
     # input_tokens is only the uncached remainder; the context is all three
     return u.input_tokens + (u.cache_read_input_tokens or 0) + (u.cache_creation_input_tokens or 0)
 
-def run_session(prompt, *, edits=None, memory=None, label="session"):
+def run_session(prompt, *, edits=None, memory=None, label="session", max_tokens=4096):
     """The agent loop. `edits` is the context_management edits list; `memory`
-    a MemoryBackend to expose the memory tool with."""
+    a MemoryBackend to expose the memory tool with. A compaction's summary is
+    written within the request's max_tokens."""
     tools = TOOLS + ([MEMORY_TOOL] if memory else [])
     messages, s = [{"role": "user", "content": prompt}], Session()
     betas = sorted({BETA_CLEAR if e["type"].startswith("clear") else BETA_COMPACT for e in edits or []})
     print(f"[{label}]")
     for turn in range(1, MAX_TURNS + 1):
-        kw = dict(model=MODEL, max_tokens=4096, system=SYSTEM, tools=tools, messages=messages)
+        kw = dict(model=MODEL, max_tokens=max_tokens, system=SYSTEM, tools=tools, messages=messages)
         if edits:
             kw.update(betas=betas, context_management={"edits": edits})
         resp = client.beta.messages.create(**kw)

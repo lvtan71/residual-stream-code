@@ -1,0 +1,85 @@
+{
+ "trajectory": [
+  [
+   1,
+   694
+  ],
+  [
+   2,
+   822
+  ],
+  [
+   3,
+   1700
+  ],
+  [
+   4,
+   3029
+  ]
+ ],
+ "events": [
+  {
+   "turn": 3,
+   "kind": "compaction",
+   "before": 89615,
+   "summary_out": 1041
+  }
+ ],
+ "reads": [
+  [
+   2,
+   "/research/celegans_review.md"
+  ],
+  [
+   2,
+   "/research/drosophila_review.md"
+  ],
+  [
+   2,
+   "/research/yeast_review.md"
+  ],
+  [
+   2,
+   "/research/killifish_review.md"
+  ],
+  [
+   2,
+   "/research/mouse_review.md"
+  ],
+  [
+   2,
+   "/research/zebrafish_review.md"
+  ]
+ ],
+ "peak": 89615,
+ "summaries": [
+  "## Progress so far\n\nI listed /research/ (6 files) and read all six review documents. Each file has the same structure: a headline median lifespan, a very long \"Discussion\" section that repeats one boilerplate sentence hundreds of times, and an appendix line with a cohort provenance ID. The boilerplate says environmental variance contributes to dispersion and that husbandry standardization reduces between-lab heterogeneity. It has no organism-specific content. **None of the reviews contain any information on experimental throughput** (no generation time, cohort size, cost, or assay speed). Throughput can only be inferred from lifespan, and the synthesis must say so. No instructions were embedded in the tool results. The content was only repetitive filler.\n\n## Facts extracted (median lifespan under standard lab conditions, as stated in each headline)\n- C. elegans (celegans_review.md): **18 days**; appendix A-7, cohort jar #414\n- D. melanogaster (drosophila_review.md): **60 days**; appendix A-3, vial rack #221\n- S. cerevisiae (yeast_review.md): **25 divisions** (replicative lifespan, not calendar time, so not directly comparable in units); appendix A-9, plate lot #877\n- N. furzeri, killifish (killifish_review.md): **16 weeks** (~112 days); appendix A-2, tank block #305\n- M. musculus (mouse_review.md): **30 months**; appendix A-5, cage bank #692\n- D. rerio, zebrafish (zebrafish_review.md): **42 months**; appendix A-4, raceway #158\n\n## Remaining steps\n1. Call record_finding once per organism (6 calls, which can be made in parallel). Each should state the organism, its median lifespan, and a short note that the review gives no throughput data, so throughput is inferred from lifespan.\n2. Write a short comparative synthesis:\n   - Ordering by lifespan, shortest to longest: C. elegans (18 d) < D. melanogaster (60 d) < N. furzeri (16 wk, ~112 d) < M. musculus (30 mo) < D. rerio (42 mo). Yeast is in divisions (25), so it can't be placed on the calendar scale. Yeast divisions take roughly 1.5\u20132 h each, so its lifespan is on the order of days. That is general knowledge, not from the reviews, and should be flagged as such.\n   - Inferred throughput: C. elegans and Drosophila are the fastest-turnaround invertebrates. Killifish is the fastest vertebrate, about 5\u20136 times shorter-lived than the mouse and about 160 times shorter-lived than... (check: 16 wk vs 30 mo \u2248 7.5\u00d7; vs zebrafish 42 mo \u2248 10.5\u00d7). Mouse and zebrafish are slow, low-throughput models.\n   - Caveats: the zebrafish figure of 42 months is longer than the mouse figure of 30 months, and the reviews give no throughput metrics. The throughput ranking is inference only, and the reviews' discussion sections add no organism-specific information."
+ ],
+ "probe": {
+  "C. elegans": {
+   "headline": true,
+   "obscure": true
+  },
+  "D. melanogaster": {
+   "headline": true,
+   "obscure": true
+  },
+  "S. cerevisiae": {
+   "headline": true,
+   "obscure": true
+  },
+  "N. furzeri": {
+   "headline": true,
+   "obscure": true
+  },
+  "M. musculus": {
+   "headline": true,
+   "obscure": true
+  },
+  "D. rerio": {
+   "headline": true,
+   "obscure": true
+  },
+  "reply": "C. elegans | 18 days | cohort jar #414 (appendix A-7)\nD. melanogaster | 60 days | vial rack #221 (appendix A-3)\nS. cerevisiae | 25 divisions (replicative lifespan) | plate lot #877 (appendix A-9)\nN. furzeri | 16 weeks (~112 days) | tank block #305 (appendix A-2)\nM. musculus | 30 months | cage bank #692 (appendix A-5)\nD. rerio | 42 months | raceway #158 (appendix A-4)"
+ }
+}

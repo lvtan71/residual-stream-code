@@ -10,11 +10,11 @@
   ],
   [
    3,
-   1633
+   1840
   ],
   [
    4,
-   2738
+   3239
   ]
  ],
  "events": [
@@ -22,7 +22,7 @@
    "turn": 3,
    "kind": "compaction",
    "before": 130450,
-   "summary_out": 974
+   "summary_out": 1181
   }
  ],
  "reads": [
@@ -53,7 +53,7 @@
  ],
  "peak": 130450,
  "summaries": [
-  "## Progress summary\n\n**Task**: Compare model organisms in /research/ on lifespan and experimental throughput. Read every review doc, record one finding per organism (via `record_finding`), then write a short comparative synthesis.\n\n**Status**: All 6 files have been read (celegans, drosophila, yeast, killifish, mouse, zebrafish). **No findings have been recorded yet** \u2014 next step is to call `record_finding` six times (independent calls, can be made in one parallel block), then write the short synthesis.\n\n**Key facts extracted (headline median lifespans under standard lab conditions):**\n- C. elegans: **18 days**\n- D. melanogaster: **60 days**\n- S. cerevisiae: **25 divisions** (replicative lifespan, not time units)\n- N. furzeri (killifish): **16 weeks**\n- M. musculus (mouse): **30 months**\n- D. rerio (zebrafish): **42 months**\n\n**Structure of each doc**: A \"Headline\" lifespan line, then a very long \"Discussion\" consisting of hundreds of auto-style cohort lines of the form \"median survival was X% of controls (n=\u2026, intervention [dietary restriction / heat stress / metformin / rapamycin / daf-2 RNAi], lab N)\". These are noisy, widely scattered (~40\u2013160% of controls) with no consistent signal per intervention or organism; they contain no explicit throughput data (no generation time, cost, housing density, or assay-per-week numbers). Each doc ends with an \"Appendix table\" of provenance lines (cohort jar / vial rack / plate lot / tank block / cage bank / raceway numbers) \u2014 irrelevant to lifespan/throughput. No instructions embedded in any file beyond this data; nothing unusual to flag.\n\n**Caveats for synthesis**: Throughput isn't explicitly stated in the docs; must be inferred from lifespan (shorter lifespan \u21d2 faster survival-assay turnaround) and flagged as inference. Yeast's unit is divisions (not calendar time). Cohort-level % of control values are too noisy/inconsistent (and include odd intervention/organism pairings, e.g., daf-2 RNAi in yeast/mouse/zebrafish) to draw conclusions \u2014 should be mentioned as a limitation. Zebrafish (42 months) is listed longer-lived than mouse (30 months) in these docs.\n\n**Planned synthesis ordering** (shortest \u2192 longest lifespan / highest \u2192 lowest inferred throughput): C. elegans (18 d) < yeast (25 divisions, ~days) < D. melanogaster (60 d) < killifish (16 wk, fastest vertebrate) < mouse (30 mo) < zebrafish (42 mo). Invertebrates/yeast = high throughput; killifish = best vertebrate compromise; mouse and zebrafish = low throughput, long-duration studies."
+  "## Progress summary\n\n**Task**: Compare model organisms in /research/ on lifespan and experimental throughput. Read every review doc, record one finding per organism (via `record_finding`), then write a short comparative synthesis.\n\n**Status**: All 6 files have been read (celegans_review.md, drosophila_review.md, yeast_review.md, killifish_review.md, mouse_review.md, zebrafish_review.md). **No findings have been recorded yet** (record_finding not yet called). Next step: call `record_finding` six times (one per organism, can be done in a single parallel block), then write the short synthesis.\n\n**Document structure (all 6 identical in format)**: A \"Headline\" line giving median lifespan under standard lab conditions; a very long \"Discussion\" section consisting of hundreds of repetitive, randomly varying cohort lines (\"median survival was X% of controls (n=\u2026, intervention, lab #)\") with interventions drawn from dietary restriction, rapamycin, metformin, heat stress, daf-2 RNAi \u2014 values range ~40\u2013160% of controls with no consistent organism-specific pattern (looks like noise; the same interventions and lab IDs 1\u201340 appear in every document, even oddly daf-2 RNAi in yeast/mouse/etc.); and an \"Appendix\" of provenance lines (replicate cohort R0..R29 sourced from housing units: jars, vial racks, plate lots, tank blocks, cage banks, raceways). The documents contain **no explicit throughput data** (no cost, generation time, sample-size-per-experiment statements, or husbandry throughput) \u2014 throughput must be inferred from lifespan/housing format, and this caveat should be stated. Cohort-level percent-of-control data are heterogeneous noise and not reliably interpretable; no instructions embedded in the documents were found (the files contain only data).\n\n**Headline lifespans per organism**:\n- C. elegans: median lifespan **18 days** (jar-based cohorts, ~30 replicate cohorts listed; cohort n typically ~20\u2013400)\n- D. melanogaster: **60 days** (vial racks)\n- S. cerevisiae: **25 divisions** (replicative lifespan, in divisions not time; plate lots)\n- N. furzeri (killifish): **16 weeks** (tank blocks)\n- M. musculus (mouse): **30 months** (cage banks)\n- D. rerio (zebrafish): **42 months** (raceways)\n\n**Planned synthesis points**: Ranking by lifespan (shortest\u2192longest in calendar time: yeast [~25 divisions, hours-days scale, unit differs] < C. elegans 18 d < D. melanogaster 60 d < killifish 16 wk (~4 mo) < mouse 30 mo < zebrafish 42 mo). Inferred throughput: yeast, C. elegans, Drosophila highest (short lifespans, small/cheap housing like plates/jars/vials, cohort n up to ~400); killifish a good vertebrate compromise (months-long lifespan vs. 2.5\u20133.5 yr for mouse/zebrafish); mouse and zebrafish lowest throughput (multi-year lifespans, cages/raceways). Caveats: headline numbers are the only hard facts; units differ for yeast (divisions); intervention cohort data (% of controls, n 20\u2013400, 40 labs) are highly variable/noisy within every organism, showing large inter-lab variability, and don't support organism-level conclusions; throughput not directly reported in sources."
  ],
  "probe": {
   "C. elegans": {
@@ -80,7 +80,7 @@
    "headline": true,
    "obscure": false
   },
-  "reply": "C. elegans | 18 days | unknown\nD. melanogaster | 60 days | unknown\nS. cerevisiae | 25 divisions (replicative lifespan) | unknown\nN. furzeri | 16 weeks | unknown\nM. musculus | 30 months | unknown\nD. rerio | 42 months | unknown\n\nThe summary gives the type of provenance label in each appendix table (cohort jar, vial rack, plate lot, tank block, cage bank, raceway numbers). It doesn't give the specific identifiers or say which label belongs to which organism, so I've marked them all unknown."
+  "reply": "C. elegans | 18 days | jars (specific jar ID unknown)\nD. melanogaster | 60 days | vial racks (specific rack ID unknown)\nS. cerevisiae | 25 divisions (replicative) | plate lots (specific lot ID unknown)\nN. furzeri | 16 weeks | tank blocks (specific block ID unknown)\nM. musculus | 30 months | cage banks (specific bank ID unknown)\nD. rerio | 42 months | raceways (specific raceway ID unknown)\n\nThe summary names only the housing-unit type for each organism's replicate cohorts (R0..R29), not a specific identifier, so the identifier is given as the type with the specific ID marked unknown."
  },
- "summary_tokens": 970
+ "summary_tokens": 1177
 }

@@ -1,0 +1,85 @@
+{
+ "trajectory": [
+  [
+   1,
+   694
+  ],
+  [
+   2,
+   822
+  ],
+  [
+   3,
+   1727
+  ],
+  [
+   4,
+   2618
+  ]
+ ],
+ "events": [
+  {
+   "turn": 3,
+   "kind": "compaction",
+   "before": 89615,
+   "summary_out": 1068
+  }
+ ],
+ "reads": [
+  [
+   2,
+   "/research/celegans_review.md"
+  ],
+  [
+   2,
+   "/research/drosophila_review.md"
+  ],
+  [
+   2,
+   "/research/yeast_review.md"
+  ],
+  [
+   2,
+   "/research/killifish_review.md"
+  ],
+  [
+   2,
+   "/research/mouse_review.md"
+  ],
+  [
+   2,
+   "/research/zebrafish_review.md"
+  ]
+ ],
+ "peak": 89615,
+ "summaries": [
+  "## Progress so far\n\nI listed `/research/` (6 files) and read all six review documents. Each file has the same structure: a one-line **Headline** with the median lifespan, a very long repetitive \"Discussion\" section, and a short appendix line on cohort provenance. The Discussion is one sentence repeated hundreds of times. It says environmental variance contributes to dispersion and husbandry standardization reduces between-lab heterogeneity. It has no organism-specific content. None of the documents gave any information on **experimental throughput**: no generation time, cost, husbandry, or assay-scale data. The task asks for a throughput comparison, so I should say this is missing instead of inventing numbers.\n\n### Facts extracted (headline median lifespans under standard lab conditions)\n- **C. elegans** (celegans_review.md): 18 days. Appendix A-7: cohort from jar #414.\n- **D. melanogaster** (drosophila_review.md): 60 days. Appendix A-3: cohort from vial rack #221.\n- **S. cerevisiae** (yeast_review.md): 25 divisions (replicative lifespan, so not directly comparable in time units). Appendix A-9: cohort from plate lot #877.\n- **N. furzeri** (killifish_review.md): 16 weeks (about 112 days). Appendix A-2: cohort from tank block #305.\n- **M. musculus** (mouse_review.md): 30 months. Appendix A-5: cohort from cage bank #692.\n- **D. rerio** (zebrafish_review.md): 42 months. Appendix A-4: cohort from raceway #158.\n\nOrdering by lifespan, shortest to longest: C. elegans (~18 d) < D. melanogaster (~60 d) < N. furzeri (~16 wk) < M. musculus (30 mo) < D. rerio (42 mo). Yeast is measured in divisions and sits outside this time scale.\n\n## Remaining steps\n1. Call `record_finding` once per organism (6 calls, which are independent and can go in one block). Each should give the organism, its median lifespan, the unit and caveat (yeast is replicative divisions), and a note that the review gave no throughput data.\n2. Write a short comparative synthesis:\n   - Lifespan spans about 3 orders of magnitude.\n   - Killifish is the shortest-lived vertebrate here, at about 16 weeks, versus 30 months for mouse and 42 months for zebrafish.\n   - Zebrafish has the longest median lifespan in these documents. This is a bit counterintuitive, since zebrafish are often treated as a mid-lifespan model, so it is worth stating as \"per the reviews.\"\n   - Throughput is not reported in any review, so the throughput comparison is qualitative and rests on the lifespan ordering. Short lifespan generally means faster survival assays, but the documents do not support specific throughput claims. Any statement beyond that would be background knowledge and should be labeled that way.\n   - The Discussion text is boilerplate, identical across files, and adds no evidence.\n   - The appendix provenance lines (jar/rack/lot/tank/cage/raceway numbers) are irrelevant to the comparison."
+ ],
+ "probe": {
+  "C. elegans": {
+   "headline": true,
+   "obscure": true
+  },
+  "D. melanogaster": {
+   "headline": true,
+   "obscure": true
+  },
+  "S. cerevisiae": {
+   "headline": true,
+   "obscure": true
+  },
+  "N. furzeri": {
+   "headline": true,
+   "obscure": true
+  },
+  "M. musculus": {
+   "headline": true,
+   "obscure": true
+  },
+  "D. rerio": {
+   "headline": true,
+   "obscure": true
+  },
+  "reply": "C. elegans | 18 days | jar #414\nD. melanogaster | 60 days | vial rack #221\nS. cerevisiae | 25 divisions (replicative lifespan) | plate lot #877\nN. furzeri | 16 weeks (about 112 days) | tank block #305\nM. musculus | 30 months | cage bank #692\nD. rerio | 42 months | raceway #158"
+ }
+}

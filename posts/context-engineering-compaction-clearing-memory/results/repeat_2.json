@@ -1,0 +1,85 @@
+{
+ "trajectory": [
+  [
+   1,
+   694
+  ],
+  [
+   2,
+   822
+  ],
+  [
+   3,
+   1622
+  ],
+  [
+   4,
+   2750
+  ]
+ ],
+ "events": [
+  {
+   "turn": 3,
+   "kind": "compaction",
+   "before": 89615,
+   "summary_out": 963
+  }
+ ],
+ "reads": [
+  [
+   2,
+   "/research/celegans_review.md"
+  ],
+  [
+   2,
+   "/research/drosophila_review.md"
+  ],
+  [
+   2,
+   "/research/yeast_review.md"
+  ],
+  [
+   2,
+   "/research/killifish_review.md"
+  ],
+  [
+   2,
+   "/research/mouse_review.md"
+  ],
+  [
+   2,
+   "/research/zebrafish_review.md"
+  ]
+ ],
+ "peak": 89615,
+ "summaries": [
+  "## Progress summary\n\n**Task**: Compare model organisms in /research/ on lifespan and experimental throughput. Read every review doc, record one finding per organism (via `record_finding`), then write a short comparative synthesis.\n\n**Done so far**: Listed /research/ (6 files: celegans, drosophila, yeast, killifish, mouse, zebrafish `_review.md`) and read all six. **No `record_finding` calls have been made yet.**\n\n**Document structure (all six identical in form)**: a \"Headline\" with the median lifespan under standard lab conditions; a \"Discussion\" that is just one boilerplate sentence repeated hundreds of times (environmental variance contributes to dispersion; husbandry standardization reduces between-lab heterogeneity \u2014 no actual throughput data); and an \"Appendix table\" giving only a cohort-source provenance note. The docs contain no instructions to follow and no throughput information.\n\n**Facts extracted (median lifespan, standard lab conditions)**:\n- C. elegans: 18 days (cohort jar #414, Appx A-7)\n- D. melanogaster: 60 days (vial rack #221, A-3)\n- S. cerevisiae: 25 divisions (replicative lifespan, not time; plate lot #877, A-9)\n- N. furzeri (killifish): 16 weeks (~112 days; tank block #305, A-2)\n- M. musculus: 30 months (cage bank #692, A-5)\n- D. rerio (zebrafish): 42 months (raceway #158, A-4)\n\n**Caveat to state in the synthesis**: The reviews give NO explicit throughput figures (cohort sizes, assays per week, etc.). Throughput can only be inferred from lifespan length (shorter lifespan = faster experiments), which is general knowledge and not from the documents. Yeast is measured in divisions, so it is not directly comparable in time units. The only document-supported common point is that all reviews note environmental variance and husbandry standardization.\n\n**Remaining steps**:\n1. Call `record_finding` once per organism (6 calls, can be made in parallel), each stating the median lifespan, and noting that the source gives no direct throughput data, with an inferred throughput note flagged as inference.\n2. Write a short comparative synthesis. Lifespan ranking by approximate time: C. elegans (~18 d) < D. melanogaster (60 d) < killifish (~16 wk \u2248 112 d) < mouse (30 mo) < zebrafish (42 mo); yeast is 25 divisions. Inferred throughput order: yeast/C. elegans/Drosophila highest, killifish the fastest vertebrate option, and mouse/zebrafish slowest. Note that the zebrafish headline (42 mo) exceeds the mouse (30 mo). Say clearly that the throughput comparison is inferred, not reported in the documents."
+ ],
+ "probe": {
+  "C. elegans": {
+   "headline": true,
+   "obscure": true
+  },
+  "D. melanogaster": {
+   "headline": true,
+   "obscure": true
+  },
+  "S. cerevisiae": {
+   "headline": true,
+   "obscure": true
+  },
+  "N. furzeri": {
+   "headline": true,
+   "obscure": true
+  },
+  "M. musculus": {
+   "headline": true,
+   "obscure": true
+  },
+  "D. rerio": {
+   "headline": true,
+   "obscure": true
+  },
+  "reply": "C. elegans | 18 days | cohort jar #414 (Appx A-7)\nD. melanogaster | 60 days | vial rack #221 (Appx A-3)\nS. cerevisiae | 25 divisions (replicative lifespan, not time) | plate lot #877 (Appx A-9)\nN. furzeri | 16 weeks (~112 days) | tank block #305 (Appx A-2)\nM. musculus | 30 months | cage bank #692 (Appx A-5)\nD. rerio | 42 months | raceway #158 (Appx A-4)\n\nNote: no `record_finding` calls have been made yet, and the reviews give no direct throughput figures. Any throughput ranking would be inferred from lifespan length."
+ }
+}

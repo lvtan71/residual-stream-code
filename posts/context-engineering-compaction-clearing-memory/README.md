@@ -9,11 +9,12 @@ The scripts behind [Context Engineering: Compaction, Tool Clearing, and Memory](
 | `kvcost.py` | What the measured context sizes would hold in a KV cache for three open models. | Python, instant, no key |
 | `baseline.py` | The agent with no context management, and what fills its window. | API key, about $0.40 |
 | `clearing.py` | Tool-result clearing with keep = 2, 4 and 6, three runs of each setting that clears. | API key, about $3.50 |
-| `compaction.py` | Compaction with the default prompt and with instructions, on the plain and the dense corpus, three runs each, each summary probed. | API key, about $3.50 |
+| `compaction.py` | Compaction with the default prompt and with instructions, on the plain and the dense corpus, three runs each, each summary probed. Requests allow 16,000 output tokens, since the summary is written within them. | API key, about $3.50 |
+| `repeat.py` | Ten more runs of compaction on the plain corpus with the default prompt. | API key, about $2.25 |
 | `memory.py` | Two sessions with the memory tool; the second run with and without the first one's notes. | API key, about $0.85 |
 | `combined.py` | All three together. | API key, about $0.45 |
 
-The runs used `claude-sonnet-5-5` with `anthropic` 1.13.0, on 2026-10-12. Each API script prints its token usage and cost at Sonnet 5.5's list prices. The model is not deterministic, so a rerun gives different turns, reads and summaries; the post reports three runs where one would mislead.
+The runs used `claude-sonnet-5-5` with `anthropic` 1.13.0, on 2026-10-11 (UTC). Each API script prints its token usage and cost at Sonnet 5.5's list prices. The model is not deterministic, so a rerun gives different turns, reads and summaries; the post reports three runs where one would mislead.
 
 ```bash
 pip install "anthropic==1.13.*"
@@ -23,6 +24,7 @@ python kvcost.py
 python baseline.py
 python clearing.py
 python compaction.py
+python repeat.py
 python memory.py
 python combined.py
 ```

@@ -10,11 +10,11 @@
   ],
   [
    3,
-   1561
+   1548
   ],
   [
    4,
-   2723
+   2726
   ]
  ],
  "events": [
@@ -22,7 +22,7 @@
    "turn": 3,
    "kind": "compaction",
    "before": 89615,
-   "summary_out": 902
+   "summary_out": 889
   }
  ],
  "reads": [
@@ -53,34 +53,34 @@
  ],
  "peak": 89615,
  "summaries": [
-  "## Progress so far\n\nI listed `/research/` (6 files) and read all six review documents in full. Each file has the same structure: a one-line **Headline** with median lifespan, a very long repetitive \"Discussion\" section, and a short appendix with cohort provenance. The Discussion is the same boilerplate sentence repeated hundreds of times. It says environmental variance contributes to dispersion and that husbandry standardization reduces between-lab heterogeneity. It has no organism-specific content, and **none of the files say anything about experimental throughput**. The appendix cohort IDs are provenance details and not relevant to the comparison.\n\n### Headline median lifespans (standard lab conditions), as stated in the documents\n- C. elegans: **18 days** (celegans_review.md)\n- D. melanogaster: **60 days** (drosophila_review.md)\n- S. cerevisiae: **25 divisions** (replicative lifespan, not a time unit) (yeast_review.md)\n- N. furzeri (killifish): **16 weeks** (killifish_review.md)\n- M. musculus: **30 months** (mouse_review.md)\n- D. rerio (zebrafish): **42 months** (zebrafish_review.md)\n\n### Still to do\n1. Call `record_finding` once per organism, six calls in the same function-calls block since they're independent. Each should state the lifespan and note that the review gives no throughput data. Where useful, add clearly labeled general background knowledge on throughput (see below).\n2. Write a short comparative synthesis.\n\n### Points for the synthesis\n- Lifespans in the reviews rank (converting to time): C. elegans 18 d < D. melanogaster 60 d < N. furzeri ~16 wk (~112 d) < M. musculus 30 mo < D. rerio 42 mo. Yeast is reported in divisions, so it can't be ranked directly against the others without a conversion that the review doesn't give.\n- Caveat: the zebrafish figure (42 months) is longer than the mouse figure (30 months). This is consistent with the documents, but note it as stated in the sources.\n- Throughput: the documents contain no data on it. Any throughput ranking must be flagged as my own background knowledge, not from the reviews. Roughly, that ranking is yeast, C. elegans and Drosophila as highest, then killifish as an intermediate vertebrate with a short lifespan, then zebrafish and mouse as lowest because of their long lifespans and husbandry costs. The inference that shorter lifespan means higher throughput is reasonable but is not stated in the sources.\n- Mention that the Discussion sections were uninformative boilerplate, and that the only usable content was the headline lifespan figures."
+  "## Progress so far\n\nI listed `/research/` (6 files) and read all six review documents. Each file has the same layout: a \"Headline\" with the median lifespan, a very long \"Discussion\" that repeats one boilerplate sentence hundreds of times, and an \"Appendix\" line with cohort provenance. The boilerplate says environmental variance contributes to dispersion and that husbandry standardization reduces between-lab heterogeneity. It has no organism-specific content. I saw no embedded instructions in any file.\n\n**Key facts extracted (median lifespan under standard lab conditions):**\n- C. elegans: **18 days** (cohort jar #414)\n- D. melanogaster: **60 days** (vial rack #221)\n- S. cerevisiae: **25 divisions** (replicative lifespan, not calendar time; plate lot #877)\n- N. furzeri (killifish): **16 weeks** (tank block #305)\n- M. musculus: **30 months** (cage bank #692)\n- D. rerio (zebrafish): **42 months** (raceway #158)\n\n**Important caveat:** The reviews contain **no throughput data** (no cohort sizes, cost, screening rates, or time-to-result). Throughput has to be inferred from lifespan and general biology, and it should be labeled as inference, not as something the documents state. Yeast is measured in divisions, so it can't be compared directly with the calendar-time figures.\n\n## Remaining steps\n1. Call `record_finding` once per organism (6 calls, which can run in parallel). Each should give the median lifespan, the source file, and a note on inferred throughput. The inferred ranking is:\n   - Yeast and C. elegans: highest throughput.\n   - Drosophila: high.\n   - Killifish: medium. Its 16 weeks is a short lifespan for a vertebrate.\n   - Mouse and zebrafish: lowest throughput. Years-long lifespans make these the slowest and costliest.\n2. Write a short comparative synthesis:\n   - Lifespan ranking, shortest to longest in calendar time: C. elegans (~18 d) < Drosophila (~60 d) < killifish (~16 wk, about 112 d) < mouse (~30 mo) < zebrafish (~42 mo). Yeast (25 divisions) is on a different scale.\n   - Zebrafish has the longest median lifespan listed, longer than mouse. Mouse is the closest mammalian model, and the killifish is the fastest vertebrate option.\n   - The documents give no throughput numbers, and the boilerplate discussion adds nothing organism-specific. The throughput ranking is therefore inferred from lifespan."
  ],
  "probe": {
   "C. elegans": {
    "headline": true,
-   "obscure": false
+   "obscure": true
   },
   "D. melanogaster": {
    "headline": true,
-   "obscure": false
+   "obscure": true
   },
   "S. cerevisiae": {
    "headline": true,
-   "obscure": false
+   "obscure": true
   },
   "N. furzeri": {
    "headline": true,
-   "obscure": false
+   "obscure": true
   },
   "M. musculus": {
    "headline": true,
-   "obscure": false
+   "obscure": true
   },
   "D. rerio": {
    "headline": true,
-   "obscure": false
+   "obscure": true
   },
-  "reply": "C. elegans | 18 days | unknown\nD. melanogaster | 60 days | unknown\nS. cerevisiae | 25 divisions (replicative lifespan) | unknown\nN. furzeri | 16 weeks | unknown\nM. musculus | 30 months | unknown\nD. rerio | 42 months | unknown\n\nThe summary says each appendix lists cohort provenance IDs but does not record any of them, so the identifier is `unknown` for every organism."
+  "reply": "C. elegans | 18 days | cohort jar #414\nD. melanogaster | 60 days | vial rack #221\nS. cerevisiae | 25 divisions (replicative lifespan, not calendar time) | plate lot #877\nN. furzeri | 16 weeks | tank block #305\nM. musculus | 30 months | cage bank #692\nD. rerio | 42 months | raceway #158"
  },
- "summary_tokens": 898
+ "summary_tokens": 885
 }

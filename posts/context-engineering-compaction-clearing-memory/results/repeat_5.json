@@ -1,0 +1,85 @@
+{
+ "trajectory": [
+  [
+   1,
+   694
+  ],
+  [
+   2,
+   822
+  ],
+  [
+   3,
+   1471
+  ],
+  [
+   4,
+   2367
+  ]
+ ],
+ "events": [
+  {
+   "turn": 3,
+   "kind": "compaction",
+   "before": 89615,
+   "summary_out": 812
+  }
+ ],
+ "reads": [
+  [
+   2,
+   "/research/celegans_review.md"
+  ],
+  [
+   2,
+   "/research/drosophila_review.md"
+  ],
+  [
+   2,
+   "/research/yeast_review.md"
+  ],
+  [
+   2,
+   "/research/killifish_review.md"
+  ],
+  [
+   2,
+   "/research/mouse_review.md"
+  ],
+  [
+   2,
+   "/research/zebrafish_review.md"
+  ]
+ ],
+ "peak": 89615,
+ "summaries": [
+  "## Progress so far\nListed /research/ (6 files) and read all six review docs. Each doc has the same structure: a \"Headline\" giving median lifespan under standard lab conditions, a very long \"Discussion\" that is just one boilerplate sentence repeated hundreds of times (about environmental variance and husbandry standardization, with no organism-specific info), and an \"Appendix table\" with a cohort provenance line. **No throughput data (e.g., generation time, cohort size, cost, assay speed) appears in any of the documents.** The only quantitative content is the headline lifespan. There were no instructions embedded in the tool results, and nothing unusual beyond the repetition.\n\n## Extracted facts (median lifespan, standard lab conditions)\n- C. elegans: 18 days (appendix A-7, cohort jar #414)\n- D. melanogaster: 60 days (A-3, vial rack #221)\n- S. cerevisiae: 25 divisions (replicative lifespan, not calendar time; A-9, plate lot #877)\n- N. furzeri (killifish): 16 weeks (A-2, tank block #305)\n- M. musculus: 30 months (A-5, cage bank #692)\n- D. rerio (zebrafish): 42 months (A-4, raceway #158)\n\n## Remaining steps\n1. Call record_finding once per organism (6 calls, can be made in parallel). Each should state the lifespan and note that the review gives no throughput data. For yeast, note that the unit is divisions.\n2. Write a short comparative synthesis:\n   - Lifespan ranking, shortest to longest in calendar time: C. elegans (~18 d) < Drosophila (~60 d) < killifish (~16 wk, ~112 d) < mouse (30 mo) < zebrafish (42 mo). Yeast is measured in divisions (25), so it isn't directly comparable.\n   - Inference, flagged as not from the documents: shorter lifespan generally means higher experimental throughput. This implies worm, fly and yeast are the fastest, killifish is the fastest vertebrate, and mouse and zebrafish are the slowest.\n   - Caveats: the reviews contain no throughput metrics. The Discussion sections are repetitive filler with no organism-specific content. The zebrafish median (42 mo) being longer than the mouse's (30 mo) is notable and worth checking against other sources. Yeast units differ from the rest."
+ ],
+ "probe": {
+  "C. elegans": {
+   "headline": true,
+   "obscure": true
+  },
+  "D. melanogaster": {
+   "headline": true,
+   "obscure": true
+  },
+  "S. cerevisiae": {
+   "headline": true,
+   "obscure": true
+  },
+  "N. furzeri": {
+   "headline": true,
+   "obscure": true
+  },
+  "M. musculus": {
+   "headline": true,
+   "obscure": true
+  },
+  "D. rerio": {
+   "headline": true,
+   "obscure": true
+  },
+  "reply": "C. elegans | 18 days | cohort jar #414\nD. melanogaster | 60 days | vial rack #221\nS. cerevisiae | 25 divisions (replicative lifespan) | plate lot #877\nN. furzeri | 16 weeks | tank block #305\nM. musculus | 30 months | cage bank #692\nD. rerio | 42 months | raceway #158"
+ }
+}

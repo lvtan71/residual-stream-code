@@ -1,0 +1,62 @@
+[plain corpus, default prompt, run 1]
+  turn  1  context     694  search_files
+  turn  2  context     822  read_file, read_file, read_file, read_file, read_file, read_file
+  turn  3  context   1,556  record_finding, record_finding, record_finding, record_finding, record_finding, record_finding  compaction
+  turn  4  context   2,453  final answer
+  lifespans 6/6, source identifiers 6/6
+[plain corpus, default prompt, run 2]
+  turn  1  context     694  search_files
+  turn  2  context     822  read_file, read_file, read_file, read_file, read_file, read_file
+  turn  3  context   1,622  record_finding, record_finding, record_finding, record_finding, record_finding, record_finding  compaction
+  turn  4  context   2,750  final answer
+  lifespans 6/6, source identifiers 6/6
+[plain corpus, default prompt, run 3]
+  turn  1  context     694  search_files
+  turn  2  context     822  read_file, read_file, read_file, read_file, read_file, read_file
+  turn  3  context   1,532  record_finding, record_finding, record_finding, record_finding, record_finding, record_finding  compaction
+  turn  4  context   2,518  final answer
+  lifespans 6/6, source identifiers 6/6
+[plain corpus, default prompt, run 4]
+  turn  1  context     694  search_files
+  turn  2  context     822  read_file, read_file, read_file, read_file, read_file, read_file
+  turn  3  context   1,727  record_finding, record_finding, record_finding, record_finding, record_finding, record_finding  compaction
+  turn  4  context   2,618  final answer
+  lifespans 6/6, source identifiers 6/6
+[plain corpus, default prompt, run 5]
+  turn  1  context     694  search_files
+  turn  2  context     822  read_file, read_file, read_file, read_file, read_file, read_file
+  turn  3  context   1,471  record_finding, record_finding, record_finding, record_finding, record_finding, record_finding  compaction
+  turn  4  context   2,367  final answer
+  lifespans 6/6, source identifiers 6/6
+[plain corpus, default prompt, run 6]
+  turn  1  context     694  search_files
+  turn  2  context     822  read_file, read_file, read_file, read_file, read_file, read_file
+  turn  3  context   1,541  record_finding, record_finding, record_finding, record_finding, record_finding, record_finding  compaction
+  turn  4  context   2,612  final answer
+  lifespans 6/6, source identifiers 0/6
+[plain corpus, default prompt, run 7]
+  turn  1  context     694  search_files
+  turn  2  context     822  read_file, read_file, read_file, read_file, read_file, read_file
+  turn  3  context   1,700  record_finding, record_finding, record_finding, record_finding, record_finding, record_finding  compaction
+  turn  4  context   3,029  final answer
+  lifespans 6/6, source identifiers 6/6
+[plain corpus, default prompt, run 8]
+  turn  1  context     694  search_files
+  turn  2  context     822  read_file, read_file, read_file, read_file, read_file, read_file
+  turn  3  context   1,544  record_finding, record_finding, record_finding, record_finding, record_finding, record_finding  compaction
+  turn  4  context   2,641  final answer
+  lifespans 6/6, source identifiers 6/6
+[plain corpus, default prompt, run 9]
+  turn  1  context     694  search_files
+  turn  2  context     822  read_file, read_file, read_file, read_file, read_file, read_file
+  turn  3  context   1,586  record_finding, record_finding, record_finding, record_finding, record_finding, record_finding  compaction
+  turn  4  context   2,802  final answer
+  lifespans 6/6, source identifiers 6/6
+[plain corpus, default prompt, run 10]
+  turn  1  context     694  search_files
+  turn  2  context     822  read_file, read_file, read_file, read_file, read_file, read_file
+  turn  3  context   1,451  record_finding, record_finding, record_finding, record_finding, record_finding, record_finding  compaction
+  turn  4  context   2,692  final answer
+  lifespans 6/6, source identifiers 6/6
+summaries that kept every identifier: 9 of 10
+API usage: 965,942 uncached input, 0 cache-write, 0 cache-read, 30,661 output tokens; $2.24

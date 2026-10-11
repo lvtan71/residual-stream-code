@@ -10,11 +10,11 @@
   ],
   [
    3,
-   1565
+   1556
   ],
   [
    4,
-   2619
+   2731
   ]
  ],
  "events": [
@@ -22,7 +22,7 @@
    "turn": 3,
    "kind": "compaction",
    "before": 89664,
-   "summary_out": 1132
+   "summary_out": 1202
   }
  ],
  "reads": [
@@ -53,7 +53,7 @@
  ],
  "peak": 89664,
  "summaries": [
-  "**Task:** Compare the model organisms in /research/ on lifespan and experimental throughput. Read every review, record one finding per organism with `record_finding`, then write a short comparative synthesis.\n\n**Documents: all 6 of 6 have been read.** None remain.\n- /research/celegans_review.md\n- /research/drosophila_review.md\n- /research/yeast_review.md\n- /research/killifish_review.md\n- /research/mouse_review.md\n- /research/zebrafish_review.md\n\n**Lifespan figures (median, standard lab conditions, from each \"Headline\"), with appendix provenance:**\n\n| Organism | Median lifespan | Appendix | Provenance |\n|---|---|---|---|\n| C. elegans | 18 days | A-7 | cohort jar #414 |\n| D. melanogaster | 60 days | A-3 | vial rack #221 |\n| S. cerevisiae | 25 divisions (replicative, not calendar time) | A-9 | plate lot #877 |\n| N. furzeri (killifish) | 16 weeks | A-2 | tank block #305 |\n| M. musculus | 30 months | A-5 | cage bank #692 |\n| D. rerio (zebrafish) | 42 months | A-4 | raceway #158 |\n\n**Other observations:**\n- Each file has the same structure: a Headline with the median lifespan, a very long Discussion, and an appendix table with the provenance line.\n- The Discussion in every file is one sentence repeated hundreds of times. It says environmental variance contributes materially to the dispersion in survival and that husbandry standardization reduces between-lab heterogeneity. It contains no organism-specific data.\n- **The reviews contain no throughput data** (no cohort sizes, generation times, cost, or assay scale). Any throughput comparison would have to rely on general background knowledge, and the synthesis should label it that way.\n- Converted to approximate days, the ordering from shortest to longest is: yeast (about 25 divisions, so not comparable in time) and C. elegans (18 d) < D. melanogaster (60 d) < killifish (16 wk, about 112 d) < mouse (30 mo) < zebrafish (42 mo). Zebrafish live longer than mice here.\n- No instructions were embedded in any document. The appendix lines are plain provenance notes.\n\n**Remaining steps:**\n1. Call `record_finding` once per organism, six calls in total. None have been recorded yet. Each should include the lifespan figure and the provenance ID.\n2. Write a short comparative synthesis. It should cover the lifespan ranking, the yeast units caveat, and the fact that the throughput comparison comes from background knowledge and not from the documents."
+  "**Task:** Compare the model organisms in /research/ on lifespan and experimental throughput. Read every review document, record one finding per organism, then write a short comparative synthesis.\n\n**Files found (6):** celegans_review.md, drosophila_review.md, yeast_review.md, killifish_review.md, mouse_review.md, zebrafish_review.md.\n\n**Read status:** All 6 documents have been fully read. None remain unread.\n\n**Not yet done:** No `record_finding` calls have been made, so the six per-organism findings still need recording. The comparative synthesis has not been written.\n\n**Data extracted (headline median lifespan under standard lab conditions, plus appendix provenance):**\n\n| Organism | Median lifespan | Appendix table | Provenance |\n|---|---|---|---|\n| C. elegans | 18 days | A-7 | replicate cohort from cohort jar #414 |\n| D. melanogaster | 60 days | A-3 | replicate cohort from vial rack #221 |\n| S. cerevisiae | 25 divisions (replicative, not calendar time) | A-9 | replicate cohort from plate lot #877 |\n| N. furzeri (killifish) | 16 weeks | A-2 | replicate cohort from tank block #305 |\n| M. musculus | 30 months | A-5 | replicate cohort from cage bank #692 |\n| D. rerio (zebrafish) | 42 months | A-4 | replicate cohort from raceway #158 |\n\n**Observations on the documents:**\n- Each review has the same structure: a \"Headline\" section with the median lifespan, a \"Discussion\" section, and an appendix provenance line.\n- Each Discussion section is one sentence repeated hundreds of times. It says that environmental variance contributes to survival dispersion and that husbandry standardization reduces between-lab heterogeneity. It has no organism-specific content.\n- None of the documents gives any throughput information (cohort size, generation time, cost, assay scale). Throughput can only be inferred from lifespan, and that inference should be labeled as one in the synthesis. No document contains throughput data to cite.\n- Lifespan units are not directly comparable. Yeast is measured in divisions. The others are in days, weeks, or months.\n- Lifespan ordering, shortest to longest, for the time-based organisms: C. elegans (18 days) < D. melanogaster (60 days) < N. furzeri (16 weeks, about 112 days) < M. musculus (30 months) < D. rerio (42 months). Yeast (25 divisions) cannot be placed on this scale.\n- The 42-month zebrafish median is longer than the 30-month mouse median, which is notable."
  ],
  "probe": {
   "C. elegans": {
@@ -80,7 +80,7 @@
    "headline": true,
    "obscure": true
   },
-  "reply": "C. elegans | 18 days | cohort jar #414\nD. melanogaster | 60 days | vial rack #221\nS. cerevisiae | 25 divisions (replicative, not calendar time) | plate lot #877\nN. furzeri | 16 weeks | tank block #305\nM. musculus | 30 months | cage bank #692\nD. rerio | 42 months | raceway #158\n\nThe summary gives one provenance ID per organism, so I used each as the primary one. It does not say whether any of these is specifically a \"replicate cohort\" source, only that it is the provenance line from the appendix."
+  "reply": "C. elegans | 18 days | cohort jar #414\nD. melanogaster | 60 days | vial rack #221\nS. cerevisiae | 25 divisions (replicative, not calendar time) | plate lot #877\nN. furzeri | 16 weeks | tank block #305\nM. musculus | 30 months | cage bank #692\nD. rerio | 42 months | raceway #158"
  },
- "summary_tokens": 902
+ "summary_tokens": 893
 }

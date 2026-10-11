@@ -2,76 +2,75 @@ plain corpus: 88,317 tokens
 [compaction, plain corpus, default prompt, run 1]
   turn  1  context     694  search_files
   turn  2  context     822  read_file, read_file, read_file, read_file, read_file, read_file
-  turn  3  context   1,561  record_finding, record_finding, record_finding, record_finding, record_finding, record_finding  compaction
-  turn  4  context   2,723  final answer
-  89,615 tokens -> 898-token summary (100x) at turn 3, final context 2,723; from the summary alone: lifespans 6/6, source identifiers 0/6
+  turn  3  context   1,548  record_finding, record_finding, record_finding, record_finding, record_finding, record_finding  compaction
+  turn  4  context   2,726  final answer
+  89,615 tokens -> 885-token summary (101x, 889 output tokens billed) at turn 3, final context 2,726; from the summary alone: lifespans 6/6, source identifiers 6/6
 [compaction, plain corpus, default prompt, run 2]
   turn  1  context     694  search_files
   turn  2  context     822  read_file, read_file, read_file, read_file, read_file, read_file
-  turn  3  context   1,593  record_finding, record_finding, record_finding, record_finding, record_finding, record_finding, record_finding  compaction
-  turn  4  context   3,127  final answer
-  89,615 tokens -> 930-token summary (96x) at turn 3, final context 3,127; from the summary alone: lifespans 6/6, source identifiers 0/6
+  turn  3  context   1,671  record_finding, record_finding, record_finding, record_finding, record_finding, record_finding  compaction
+  turn  4  context   2,968  final answer
+  89,615 tokens -> 1,008-token summary (89x, 1,012 output tokens billed) at turn 3, final context 2,968; from the summary alone: lifespans 6/6, source identifiers 6/6
 [compaction, plain corpus, default prompt, run 3]
   turn  1  context     694  search_files
   turn  2  context     822  read_file, read_file, read_file, read_file, read_file, read_file
-  turn  3  context   1,504  record_finding, record_finding, record_finding, record_finding, record_finding, record_finding  compaction
-  turn  4  context   2,734  final answer
-  89,615 tokens -> 841-token summary (107x) at turn 3, final context 2,734; from the summary alone: lifespans 6/6, source identifiers 6/6
+  turn  3  context   1,484  record_finding, record_finding, record_finding, record_finding, record_finding, record_finding  compaction
+  turn  4  context   2,696  final answer
+  89,615 tokens -> 821-token summary (109x, 825 output tokens billed) at turn 3, final context 2,696; from the summary alone: lifespans 6/6, source identifiers 6/6
 [compaction, plain corpus, guided prompt, run 1]
   turn  1  context     694  search_files
   turn  2  context     822  read_file, read_file, read_file, read_file, read_file, read_file
-  turn  3  context   1,756  record_finding, record_finding, record_finding, record_finding, record_finding, record_finding  compaction
-  turn  4  context   2,899  final answer
-  89,664 tokens -> 1,093-token summary (82x) at turn 3, final context 2,899; from the summary alone: lifespans 6/6, source identifiers 6/6
+  turn  3  context   1,564  record_finding, record_finding, record_finding, record_finding, record_finding, record_finding  compaction
+  turn  4  context   2,566  final answer
+  89,664 tokens -> 901-token summary (100x, 1,270 output tokens billed) at turn 3, final context 2,566; from the summary alone: lifespans 6/6, source identifiers 6/6
 [compaction, plain corpus, guided prompt, run 2]
   turn  1  context     694  search_files
   turn  2  context     822  read_file, read_file, read_file, read_file, read_file, read_file
-  turn  3  context   1,565  record_finding, record_finding, record_finding, record_finding, record_finding, record_finding  compaction
-  turn  4  context   2,619  final answer
-  89,664 tokens -> 902-token summary (99x) at turn 3, final context 2,619; from the summary alone: lifespans 6/6, source identifiers 6/6
+  turn  3  context   1,556  record_finding, record_finding, record_finding, record_finding, record_finding, record_finding  compaction
+  turn  4  context   2,731  final answer
+  89,664 tokens -> 893-token summary (100x, 1,202 output tokens billed) at turn 3, final context 2,731; from the summary alone: lifespans 6/6, source identifiers 6/6
 [compaction, plain corpus, guided prompt, run 3]
   turn  1  context     694  search_files
   turn  2  context     822  read_file, read_file, read_file, read_file, read_file, read_file
-  turn  3  context   1,719  record_finding, record_finding, record_finding, record_finding, record_finding, record_finding  compaction
-  turn  4  context   2,824  final answer
-  89,664 tokens -> 1,056-token summary (85x) at turn 3, final context 2,824; from the summary alone: lifespans 6/6, source identifiers 6/6
+  turn  3  context   1,779  record_finding, record_finding, record_finding, record_finding, record_finding, record_finding  compaction
+  turn  4  context   2,977  final answer
+  89,664 tokens -> 1,116-token summary (80x, 1,458 output tokens billed) at turn 3, final context 2,977; from the summary alone: lifespans 6/6, source identifiers 6/6
 dense corpus: 129,152 tokens
 [compaction, dense corpus, default prompt, run 1]
   turn  1  context     694  search_files
   turn  2  context     822  read_file, read_file, read_file, read_file, read_file, read_file
-  turn  3  context   1,633  record_finding, record_finding, record_finding, record_finding, record_finding, record_finding  compaction
-  turn  4  context   2,738  final answer
-  130,450 tokens -> 970-token summary (134x) at turn 3, final context 2,738; from the summary alone: lifespans 6/6, source identifiers 0/6
+  turn  3  context   1,840  record_finding, record_finding, record_finding, record_finding, record_finding, record_finding, record_finding  compaction
+  turn  4  context   3,239  final answer
+  130,450 tokens -> 1,177-token summary (111x, 1,181 output tokens billed) at turn 3, final context 3,239; from the summary alone: lifespans 6/6, source identifiers 0/6
 [compaction, dense corpus, default prompt, run 2]
   turn  1  context     694  search_files
   turn  2  context     822  read_file, read_file, read_file, read_file, read_file, read_file
-  turn  3  context   1,788  record_finding, record_finding, record_finding, record_finding, record_finding, record_finding  compaction
-  turn  4  context   3,044  final answer
-  130,450 tokens -> 1,125-token summary (116x) at turn 3, final context 3,044; from the summary alone: lifespans 6/6, source identifiers 0/6
+  turn  3  context   1,879  record_finding, record_finding, record_finding, record_finding, record_finding, record_finding, record_finding  compaction
+  turn  4  context   3,450  final answer
+  130,450 tokens -> 1,216-token summary (107x, 1,220 output tokens billed) at turn 3, final context 3,450; from the summary alone: lifespans 6/6, source identifiers 0/6
 [compaction, dense corpus, default prompt, run 3]
   turn  1  context     694  search_files
   turn  2  context     822  read_file, read_file, read_file, read_file, read_file, read_file
-  turn  3  context   1,963  record_finding, record_finding, record_finding, record_finding, record_finding, record_finding, record_finding, record_finding  compaction
-  turn  4  context   3,458  final answer
-  130,450 tokens -> 1,300-token summary (100x) at turn 3, final context 3,458; from the summary alone: lifespans 6/6, source identifiers 0/6
+  turn  3  context   1,922  record_finding, record_finding, record_finding, record_finding, record_finding, record_finding  compaction
+  turn  4  context   3,539  final answer
+  130,450 tokens -> 1,259-token summary (104x, 1,263 output tokens billed) at turn 3, final context 3,539; from the summary alone: lifespans 6/6, source identifiers 0/6
 [compaction, dense corpus, guided prompt, run 1]
   turn  1  context     694  search_files
   turn  2  context     822  read_file, read_file, read_file, read_file, read_file, read_file
-  turn  3  context   2,701  record_finding, record_finding, record_finding, record_finding, record_finding, record_finding  compaction
-  turn  4  context   4,227  final answer
-  130,499 tokens -> 2,038-token summary (64x) at turn 3, final context 4,227; from the summary alone: lifespans 6/6, source identifiers 5/6
+  turn  3  context   3,348  record_finding, record_finding, record_finding, record_finding, record_finding, record_finding  compaction
+  turn  4  context   4,894  final answer
+  130,499 tokens -> 2,685-token summary (49x, 4,693 output tokens billed) at turn 3, final context 4,894; from the summary alone: lifespans 6/6, source identifiers 6/6
 [compaction, dense corpus, guided prompt, run 2]
   turn  1  context     694  search_files
   turn  2  context     822  read_file, read_file, read_file, read_file, read_file, read_file
-  turn  3  context   2,511  record_finding, record_finding, record_finding, record_finding, record_finding, record_finding  compaction
-  turn  4  context   3,990  final answer
-  130,499 tokens -> 1,848-token summary (71x) at turn 3, final context 3,990; from the summary alone: lifespans 6/6, source identifiers 4/6
+  turn  3  context   3,516  record_finding, record_finding, record_finding, record_finding, record_finding, record_finding  compaction
+  turn  4  context   5,094  final answer
+  130,499 tokens -> 2,853-token summary (46x, 4,943 output tokens billed) at turn 3, final context 5,094; from the summary alone: lifespans 6/6, source identifiers 6/6
 [compaction, dense corpus, guided prompt, run 3]
   turn  1  context     694  search_files
   turn  2  context     822  read_file, read_file, read_file, read_file, read_file, read_file
-  turn  3  context   2,800  record_finding, record_finding  compaction
-  turn  4  context   3,272  record_finding, record_finding, record_finding, record_finding, record_finding
-  turn  5  context   4,552  record_finding
-  turn  6  context   4,823  final answer
-  130,499 tokens -> 2,137-token summary (61x) at turn 3, final context 4,823; from the summary alone: lifespans 6/6, source identifiers 5/6
-API usage: 1,428,122 uncached input, 0 cache-write, 0 cache-read, 52,649 output tokens; $3.38
+  turn  3  context   3,191  search_files, search_files  compaction
+  turn  4  context   3,738  record_finding, record_finding, record_finding, record_finding, record_finding, record_finding
+  turn  5  context   5,253  final answer
+  130,499 tokens -> 2,528-token summary (52x, 4,167 output tokens billed) at turn 3, final context 5,253; from the summary alone: lifespans 6/6, source identifiers 6/6
+API usage: 1,431,371 uncached input, 0 cache-write, 0 cache-read, 54,174 output tokens; $3.40
