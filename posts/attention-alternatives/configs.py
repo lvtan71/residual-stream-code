@@ -104,8 +104,7 @@ c = config("deepseek-ai/DeepSeek-V3.2-Exp")
 print(f"DeepSeek-V3.2-Exp      indexer picks top {c['index_topk']:,} earlier tokens per query, "
       f"in all {c['num_hidden_layers']} layers")
 c = config("deepseek-ai/DeepSeek-V4-Pro")
-r = c["compress_ratios"]
-counts = {k: r.count(k) for k in sorted(set(r))}
-print(f"DeepSeek-V4-Pro        compress_ratios over {len(r)} layers: "
-      + ", ".join(f"{v} layers at {k}" for k, v in counts.items())
-      + f"; top {c['index_topk']:,} compressed entries, window {c['sliding_window']}")
+L, r = c["num_hidden_layers"], c["compress_ratios"]
+main = r[:L]                                      # the last entry is the multi-token-prediction layer
+print(f"DeepSeek-V4-Pro        {L} layers: {main.count(4)} merge 4 tokens per entry (CSA), "
+      f"{main.count(128)} merge 128 (HCA); top {c['index_topk']:,} entries, window {c['sliding_window']}")

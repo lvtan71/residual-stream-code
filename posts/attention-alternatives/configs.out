@@ -19,4 +19,4 @@ MiniMax-M3             57 of 60 layers sparse: top 16 blocks of 128 tokens per q
 
 learned sparse attention
 DeepSeek-V3.2-Exp      indexer picks top 2,048 earlier tokens per query, in all 61 layers
-DeepSeek-V4-Pro        compress_ratios over 62 layers: 1 layers at 0, 30 layers at 4, 31 layers at 128; top 1,024 compressed entries, window 128
+DeepSeek-V4-Pro        61 layers: 30 merge 4 tokens per entry (CSA), 31 merge 128 (HCA); top 1,024 entries, window 128
