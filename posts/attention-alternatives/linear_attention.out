@@ -1,0 +1,5 @@
+n = 512, d = 64
+non-causal, quadratic vs linear:   max difference 2.8e-16
+causal, quadratic vs recurrent:    max difference 8.9e-16
+rank of exp(QK^T / sqrt d): 512 of 512
+rank of phi(Q) phi(K)^T:    64 of 512

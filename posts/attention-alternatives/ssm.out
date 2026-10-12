@@ -1,0 +1,10 @@
+delta is a gate: Abar = exp(delta A) for this model's slowest and fastest state
+  delta = 0.001   keeps 1.000 and 0.996 of the old state
+  delta = 0.1     keeps 0.990 and 0.692 of the old state
+  delta = 10.0    keeps 0.376 and 0.000 of the old state
+
+fixed parameters, recurrence vs convolution: max difference 2.9e-15
+input-dependent, recurrence vs first token's kernel: max difference 4.9e+00
+parallel scan in 8 steps vs 256 sequential steps: max difference 3.6e-15
+scalar decay, linear recurrence vs quadratic masked form: max difference 1.4e-13
+with every a_t = 1, L is the causal mask and (L * (C B^T)) x is causal linear attention, Q = C, K = B, V = x

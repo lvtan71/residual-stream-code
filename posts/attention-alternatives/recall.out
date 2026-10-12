@@ -1,0 +1,34 @@
+key and value width d = 64; the state is d x d = 4,096 numbers
+ pairs  cache size        cache       linear        delta
+         (numbers)  correct cos  correct cos  correct cos
+    16       2,048   100%  1.00   100%  0.91   100%  0.95
+    32       4,096   100%  1.00   100%  0.81   100%  0.84
+    64       8,192   100%  1.00   100%  0.71    88%  0.67
+   128      16,384   100%  1.00    96%  0.59    59%  0.46
+   256      32,768   100%  1.00    70%  0.44    27%  0.25
+   512      65,536   100%  1.00    35%  0.33    12%  0.13
+ 1,024     131,072   100%  1.00     9%  0.24     7%  0.07
+ 4,096     524,288   100%  1.00     0%  0.12     2%  0.02
+
+state size dial: 256 pairs, linear and delta memories of width d
+    d    state       linear        delta
+   32    1,024    16%  0.34    11%  0.13
+   64    4,096    73%  0.45    25%  0.25
+  128   16,384   100%  0.57    62%  0.43
+  256   65,536   100%  0.71   100%  0.68
+  512  262,144   100%  0.82   100%  0.84
+
+256 pairs, d = 64: share read back correctly, by when the pair was written
+       written  linear   delta
+          1-32     84%      0%
+         33-64     75%      0%
+         65-96     81%      0%
+        97-128     75%      0%
+       129-160     66%      3%
+       161-192     84%     22%
+       193-224     84%     81%
+       225-256     84%    100%
+
+key 0 written with value a, 31 other pairs, then key 0 again with value b
+  linear reads key 0: cos to a  0.73, cos to b  0.71
+  delta  reads key 0: cos to a  0.21, cos to b  1.00

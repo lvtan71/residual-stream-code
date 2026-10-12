@@ -1,0 +1,24 @@
+prefill FLOPs per head, d = 128
+  n =     4,096         8.6 GFLOPs
+  n =    32,768       549.8 GFLOPs
+  n =   131,072     8,796.1 GFLOPs
+  32x the tokens costs 1,024x the work
+
+KV cache per token: 128 KiB
+    context   KV cache  linear-attention state
+      4,096    0.54 GB                  8.4 MB
+     32,768    4.29 GB                  8.4 MB
+    131,072   17.18 GB                  8.4 MB
+  1,048,576  137.44 GB                  8.4 MB
+20 sequences of 131,072 tokens: 344 GB = 4.3 H100s of 80 GB
+
+score matrix at n = 32,768: 2.1 GB per head in BF16
+
+linear attention: (QK^T)V costs 4n^2d, Q(K^T V) costs 4nd^2, ratio n/d
+  n =      64       0.5x
+  n =     128       1.0x
+  n =   4,096      32.0x
+  n = 131,072   1,024.0x
+
+sliding window W = 4,096: cache capped at W tokens
+  at n = 32,768: cache 8x smaller, 23% of the causal pairs computed; 32 layers reach 131,072 tokens

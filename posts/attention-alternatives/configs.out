@@ -1,0 +1,22 @@
+full attention, for comparison
+Llama-2-7b-hf           32 of  32 layers attention (100%), KV cache at 256K  128.0 GiB (all-attention  128.0 GiB)
+Mixtral-8x7B-v0.1       32 of  32 layers attention (100%), KV cache at 256K   32.0 GiB (all-attention   32.0 GiB)
+
+sliding windows
+Mistral-7B-v0.1        sliding_window 4096 in all 32 layers
+gpt-oss-20b            12 sliding (128 tokens) and 12 full layers, alternating: ['sliding_attention', 'full_attention', 'sliding_attention', 'full_attention']
+
+hybrids: attention beside linear-attention or state-space layers
+Jamba-v0.1               4 of  32 layers attention ( 12%), KV cache at 256K    4.0 GiB (all-attention   32.0 GiB); Mamba state size 16
+Nemotron-H-8B            4 of  28 mixers attention ( 14%), KV cache at 256K    4.0 GiB (all-attention   28.0 GiB); plus 24 MLP layers
+Qwen3-Next-80B-A3B      12 of  48 layers attention ( 25%), KV cache at 256K    6.0 GiB (all-attention   24.0 GiB); one attention layer every 4, the rest Gated DeltaNet
+Kimi-Linear-48B-A3B      7 of  27 layers attention ( 26%); attention (MLA) at layers [4, 8, 12, 16, 20, 24, 27], Kimi Delta Attention elsewhere
+MiniMax-Text-01         10 of  80 layers attention ( 12%), KV cache at 256K   10.0 GiB (all-attention   80.0 GiB); the rest lightning (linear) attention
+
+back to full attention, then sparse
+MiniMax-M2              62 of  62 layers attention (100%), KV cache at 256K   62.0 GiB (all-attention   62.0 GiB)
+MiniMax-M3             57 of 60 layers sparse: top 16 blocks of 128 tokens per query, 2,048 keys; the first 3 layers full
+
+learned sparse attention
+DeepSeek-V3.2-Exp      indexer picks top 2,048 earlier tokens per query, in all 61 layers
+DeepSeek-V4-Pro        compress_ratios over 62 layers: 1 layers at 0, 30 layers at 4, 31 layers at 128; top 1,024 compressed entries, window 128
