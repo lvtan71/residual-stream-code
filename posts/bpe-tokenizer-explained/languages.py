@@ -1,7 +1,7 @@
 """The same sentences in English and Vietnamese: how many tokens does each cost?
 
-2,000 sentence pairs from the OPUS-100 en-vi test split (mostly film
-subtitles), counted with OpenAI's tokenizers and with this post's
+2,000 sentence pairs from the OPUS-100 en-vi test split, counted with
+OpenAI's tokenizers and with this post's
 TinyStories tokenizer (ts_train_*, written by tinystories.py).
 """
 

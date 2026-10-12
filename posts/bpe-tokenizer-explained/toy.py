@@ -1,4 +1,4 @@
-"""Train, encode and decode on the 19-word corpus, printing every step."""
+"""Train, encode and decode on the 16-word corpus, printing every step."""
 
 import regex as re
 
