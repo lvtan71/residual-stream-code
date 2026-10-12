@@ -1,0 +1,10 @@
+2,000 sentence pairs
+            characters  UTF-8 bytes    words
+English         80,240       80,282   15,183
+Vietnamese      77,721      100,460   17,437
+
+tokenizer     English bytes/tok  Vietnamese bytes/tok  Vietnamese / English
+gpt2           22,689      3.54      66,891      1.50                 2.95x
+cl100k_base    20,756      3.87      39,686      2.53                 1.91x
+o200k_base     19,947      4.02      25,470      3.94                 1.28x
+TinyStories    25,938      3.10      76,892      1.31                 2.96x

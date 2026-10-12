@@ -1,0 +1,10 @@
+s  U+0073  1 byte: 73           = [115]
+é  U+00E9  2 bytes: C3 A9        = [195, 169]
+à  U+00E0  2 bytes: C3 A0        = [195, 160]
+牛  U+725B  3 bytes: E7 89 9B     = [231, 137, 155]
+🙃  U+1F643  4 bytes: F0 9F 99 83  = [240, 159, 153, 131]
+'héllo': 5 characters, 6 bytes [104, 195, 169, 108, 108, 111]
+'Xin chào': 8 characters, 9 bytes [88, 105, 110, 32, 99, 104, 195, 160, 111]
+
+code points by UTF-8 length: 1 byte: 128, 2 bytes: 1,920, 3 bytes: 61,440, 4 bytes: 1,048,576
+total 1,112,064; bytes below 0x80 inside a multi-byte character: 0

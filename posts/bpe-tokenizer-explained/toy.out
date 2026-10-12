@@ -1,0 +1,72 @@
+pre-tokens, in order: low ␣low ␣low ␣low ␣low ⏎ lower ␣lower ␣widest ␣widest ␣widest ⏎ newest ␣newest ␣newest ␣newest ␣newest ␣newest ⏎
+
+8 distinct pre-tokens, 19 occurrences
+  (␣, n, e, w, e, s, t)    5
+  (␣, l, o, w)             4
+  (⏎)                      3
+  (␣, w, i, d, e, s, t)    3
+  (␣, l, o, w, e, r)       1
+  (l, o, w)                1
+  (l, o, w, e, r)          1
+  (n, e, w, e, s, t)       1
+
+14 distinct adjacent pairs
+  (e, s)       9
+  (s, t)       9
+  (w, e)       8
+  (l, o)       7
+  (o, w)       7
+  (e, w)       6
+  (n, e)       6
+  (␣, l)       5
+  (␣, n)       5
+  (␣, w)       3
+  (d, e)       3
+  (i, d)       3
+  (w, i)       3
+  (e, r)       2
+
+ #   id  pairs at the top count         merge         new token  count
+ 1  256  (e, s) (s, t)                 s + t         st         9
+ 2  257  (e, st)                       e + st        est        9
+ 3  258  (l, o) (o, w)                 o + w         ow         7
+ 4  259  (l, ow)                       l + ow        low        7
+ 5  260  (e, w) (n, e) (w, est)        w + est       west       6
+ 6  261  (e, west) (n, e)              n + e         ne         6
+ 7  262  (ne, west)                    ne + west      newest     6
+ 8  263  (␣, low) (␣, newest)          ␣ + newest    ␣newest    5
+
+vocab beyond the bytes: {256: b'st', 257: b'est', 258: b'ow', 259: b'low', 260: b'west', 261: b'ne', 262: b'newest', 263: b' newest', 264: b'<|endoftext|>'}
+merges: [(b's', b't'), (b'e', b'st'), (b'o', b'w'), (b'l', b'ow'), (b'w', b'est'), (b'n', b'e'), (b'ne', b'west'), (b' ', b'newest')]
+
+encode '␣newest'
+  start:  (␣, n, e, w, e, s, t)
+  iter 1: (n, e)#5 (s, t)#0                  -> apply rank 0 (s, t)
+  iter 2: (n, e)#5 (e, st)#1                 -> apply rank 1 (e, st)
+  iter 3: (n, e)#5 (w, est)#4                -> apply rank 4 (w, est)
+  iter 4: (n, e)#5                           -> apply rank 5 (n, e)
+  iter 5: (ne, west)#6                       -> apply rank 6 (ne, west)
+  iter 6: (␣, newest)#7                      -> apply rank 7 (␣, newest)
+  result: (␣newest)  ids [263]
+
+encode 'lowest'
+  start:  (l, o, w, e, s, t)
+  iter 1: (o, w)#2 (s, t)#0                  -> apply rank 0 (s, t)
+  iter 2: (o, w)#2 (e, st)#1                 -> apply rank 1 (e, st)
+  iter 3: (o, w)#2 (w, est)#4                -> apply rank 2 (o, w)
+  iter 4: (l, ow)#3                          -> apply rank 3 (l, ow)
+  result: (low, est)  ids [259, 257]
+
+newer: (ne, w, e, r)  ids [261, 119, 101, 114]
+
+zzqq: (z, z, q, q)  ids [122, 122, 113, 113]
+
+text:  'the lowest widest fox<|endoftext|>newest lower'
+split: ['the lowest widest fox', '<|endoftext|>', 'newest lower']
+ids:   [116, 104, 101, 32, 259, 257, 32, 119, 105, 100, 257, 32, 102, 111, 120, 264, 262, 32, 259, 101, 114]
+tokens: t | h | e | ␣ | low | est | ␣ | w | i | d | est | ␣ | f | o | x | <|endoftext|> | newest | ␣ | low | e | r
+46 bytes -> 21 tokens = 2.19 bytes per token
+round trip: True
+
+'🙃' -> ids [240, 159, 153, 131] -> '🙃'
+first two bytes only [240, 159] -> '�'

@@ -1,0 +1,15 @@
+bytes kept as themselves: 188, moved: 68
+space -> Ġ  newline -> Ċ  byte 0 -> Ā
+
+toy_vocab.json, beyond the bytes: {'st': 256, 'est': 257, 'ow': 258, 'low': 259, 'west': 260, 'ne': 261, 'newest': 262, 'Ġnewest': 263, '<|endoftext|>': 264}
+toy_merges.txt:
+s t
+e st
+o w
+l ow
+w est
+n e
+ne west
+Ġ newest
+
+load(save(...)) gives back the same tokenizer: True

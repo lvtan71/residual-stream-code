@@ -1,0 +1,19 @@
+gpt2         vocabulary 50,257
+cl100k_base  vocabulary 100,277
+o200k_base   vocabulary 200,019
+
+gpt2 'accomplishment': 3 tokens  ac | compl | ishment
+
+gpt2 ' accomplishment': 1 token  ␣accomplishment
+
+gpt2 'the lowest widest fox newest lower': 6 tokens  the | ␣lowest | ␣widest | ␣fox | ␣newest | ␣lower
+
+'12345678': 8 characters, 8 bytes
+  gpt2          3 tokens  123 | 45 | 678
+  cl100k_base   3 tokens  123 | 456 | 78
+  o200k_base    3 tokens  123 | 456 | 78
+
+'Xin chào thế giới': 17 characters, 22 bytes
+  gpt2         15 tokens  X | in | ␣ch | à | o | ␣th | <E1> | <BA> | <BF> | ␣g | i | <E1> | <BB> | <9B> | i
+  cl100k_base   9 tokens  X | in | ␣ch | à | o | ␣th | ế | ␣gi | ới
+  o200k_base    5 tokens  Xin | ␣ch | ào | ␣thế | ␣giới

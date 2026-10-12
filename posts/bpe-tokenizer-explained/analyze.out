@@ -1,0 +1,16 @@
+200 held-out stories, 156,695 bytes
+  this tokenizer (10,000):  38,337 tokens, 4.09 bytes per token
+  GPT-2's (50,257):         38,775 tokens, 4.04 bytes per token
+  round trip exact: 200 of 200
+
+first 12 merges: ␣t  he  ␣a  ␣s  ␣w  nd  ␣the  ed  ␣b  ␣to  ␣and  ␣h
+ten longest tokens: ␣accomplishment, ␣disappointment, ␣responsibility, ␣Unfortunately, ␣compassionate, ␣congratulated, ␣determination, ␣encouragement, ␣extraordinary, ␣granddaughter
+7,277 of 9,743 learned tokens start with a space (75%)
+learned tokens by length in bytes: 2: 360, 3: 912, 4: 1450, 5: 1835, 6: 1666, 7: 1264, 8: 1030, 9: 602, 10: 328, 11: 178, 12: 78, 13: 26, 14: 11, 15: 3
+
+'Once upon a time, there was a little boat.'
+  this tokenizer: Once | ␣upon | ␣a | ␣time | , | ␣there | ␣was | ␣a | ␣little | ␣boat | .
+  GPT-2:          Once | ␣upon | ␣a | ␣time | , | ␣there | ␣was | ␣a | ␣little | ␣boat | .
+
+trained on 1% of the data (the 22 MB validation file): 8,825 of 10,000 vocabulary entries shared
+merge lists first differ at merge 6: n + d (full data) vs ␣t + he (1%)
