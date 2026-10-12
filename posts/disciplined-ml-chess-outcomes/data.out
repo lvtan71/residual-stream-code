@@ -4,11 +4,12 @@ results: White wins 50.0%, draws 3.8%, Black wins 46.2%; White's mean score 0.51
 ratings missing: 0
 
 how games ended, and how many moves they lasted
-     termination   games  median moves  under 3 moves
-       Abandoned   1,891             0         100.0%
-          Normal  70,079            31           2.1%
-Rules infraction       6             5           0.0%
-    Time forfeit  28,024            39           2.0%
+     termination   games  median moves  no moves  under 3 moves
+       Abandoned   1,891             0       990         100.0%
+          Normal  70,079            31       740           2.1%
+Rules infraction       6             5         0           0.0%
+    Time forfeit  28,024            39        25           2.0%
 abandoned games: White's mean score 0.476, decisive 100.0%, moves played 901
+9,626 players; the 1,000 most active play in 76% of games
 games reaching move 3: 96.1%
 games reaching move 10: 93.7%

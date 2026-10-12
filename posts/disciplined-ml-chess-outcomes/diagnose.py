@@ -37,10 +37,13 @@ print(even.groupby(["m10_castled_w", "m10_castled_b"]).score.agg(["mean", "size"
 # 3. Learning curve: validation Brier as the training set grows.
 print(f"\nlearning curve, {m}: validation Brier (Elo refit on the full training set: {brier(refit, y):.4f})")
 cols = FEATURES[m]
+print(f"  {'games':>6s}  mean of 3 subsamples (lowest, highest)")
 for n in (2_500, 5_000, 10_000, 20_000, 40_000, len(tr)):
-    sub = tr.sample(n, random_state=0) if n < len(tr) else tr
-    p = np.clip(booster().fit(sub[cols], sub.score).predict(va[cols]), 0, 1)
-    print(f"  {n:>6,} games  {brier(p, y):.4f}")
+    scores = []
+    for s in range(3):
+        sub = tr.sample(n, random_state=s) if n < len(tr) else tr
+        scores.append(brier(np.clip(booster(s).fit(sub[cols], sub.score).predict(va[cols]), 0, 1), y))
+    print(f"  {n:>6,}  {np.mean(scores):.4f} ({min(scores):.4f}, {max(scores):.4f})")
 
 # 4. Permutation importance: how much Brier worsens when one column is shuffled.
 _, p = fit_predict(m, train, valid)          # the same predictions train.py scores

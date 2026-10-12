@@ -1,9 +1,12 @@
-train 80,079 games, validation 19,921; abandoned games excluded from both
+split: 80,079 training and 19,921 validation games; each model then keeps the played games that reach its horizon
 
 model         games Brier: mean     Elo Elo refit   model  gain over Elo refit (95% CI)    ECE
-win_pregame  19,543      0.2392  0.2074    0.2061  0.2065      -0.0004 (-0.0007, -0.0001)  0.007
+win_pregame  19,304      0.2391  0.2053    0.2043  0.2048      -0.0005 (-0.0008, -0.0003)  0.007
 win_move3    19,107      0.2390  0.2051    0.2041  0.2045      -0.0005 (-0.0008, -0.0001)  0.010
 win_move10   18,585      0.2388  0.2054    0.2044  0.2025      +0.0018 (+0.0011, +0.0026)  0.007
 
-elo_move10: 18,585 games; MAE predicting the training mean 187.1, model 162.1 rating points
-correlation of predicted and true mean rating: 0.53
+ratings from play: mean absolute error in rating points, both players
+  training mean             187.1   (18,585 games)
+  elo_move10                162.1   correlation of the pair's mean rating 0.53
+  elo_time_only             173.9   correlation of the pair's mean rating 0.39
+  elo_moves_only            174.5   correlation of the pair's mean rating 0.38

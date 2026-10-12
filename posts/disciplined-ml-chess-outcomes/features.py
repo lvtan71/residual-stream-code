@@ -47,7 +47,8 @@ def replay(movetext):
             if not re.match(r"^(\d+\.+|1-0|0-1|1/2-1/2|\*|\$\d+)$", t)]   # drop numbers, results, NAGs
     board = chess.Board()
     counts = {k: {chess.WHITE: 0, chess.BLACK: 0} for k in ("cap", "chk", "castle", "queen")}
-    out = {"first_move": sans[0] if sans else None, "m3": None, "m10": None, "fen10": None}
+    out = {"first_move": sans[0] if sans else None, "plies": len(sans), "m3": None, "m10": None,
+           "fen10": None}
     for ply, san in enumerate(sans[:20], start=1):
         move = board.parse_san(san)
         side = board.turn
@@ -72,6 +73,7 @@ def row(args):
             base[f"{k}_{name}"] = v
     base["first_move"] = r["first_move"] if r["first_move"] in FIRST_MOVES else "other"
     base["fen10"] = r["fen10"]
+    base["plies"] = r["plies"]
     return base
 
 
@@ -79,7 +81,8 @@ if __name__ == "__main__":
     g = pd.read_parquet("games.parquet")
     base, inc = zip(*(tc.split("+") for tc in g.TimeControl))
     meta = pd.DataFrame({
-        "game": g.Site.str.rsplit("/", n=1).str[-1],
+        "game": g.Site.str.rsplit("/", n=1).str[-1], "white": g.White, "black": g.Black,
+        "time": pd.to_datetime(g.UTCDate.astype(str) + " " + g.UTCTime.astype(str)),
         "score": g.score, "termination": g.Termination,
         "elo_w": g.WhiteElo.astype(int), "elo_b": g.BlackElo.astype(int),
         "tc_base": np.array(base, dtype=int), "tc_inc": np.array(inc, dtype=int),
@@ -91,6 +94,8 @@ if __name__ == "__main__":
     f["elo_mean"] = (f.elo_w + f.elo_b) / 2
     f.to_parquet("features.parquet")
     print(f"{len(f):,} games, {f.shape[1]} columns")
+    print(f"games with a move by each side (2+ plies): {(f.plies >= 2).mean():.1%}; "
+          f"abandoned among those: {((f.plies >= 2) & (f.termination == 'Abandoned')).sum()}")
     print(f"move-3 features present: {f.m3_material_diff.notna().mean():.1%}; "
           f"move-10: {f.m10_material_diff.notna().mean():.1%}")
     print(f"first moves: " + ", ".join(f"{k} {v:.1%}" for k, v in

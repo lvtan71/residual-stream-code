@@ -1,22 +1,20 @@
 """A/B on the same split: the move-10 model with and without Stockfish's evaluation.
 
 Reads features.parquet and engine.parquet (from engine.py). The evaluation
-is a move-10 feature, so the contract allows it for the move-10 win model.
+is a move-10 feature; the contract gives it its own model, win_move10_engine,
+whose columns are the move-10 model's plus this one.
 """
 
 import numpy as np
-import pandas as pd
 
-from contract import FEATURES
 from models import bootstrap_gain, brier, ece, elo_refit, fit_predict, load, split
 
-f = load().merge(pd.read_parquet("engine.parquet"), on="game", how="left")
+f = load(engine=True)
 gains = []
 for seed in (42, 1, 2, 3, 4):
     train, valid = split(f, seed=seed)
     va, base = fit_predict("win_move10", train, valid, seed=seed)
-    _, eng = fit_predict("win_move10", train, valid, seed=seed,
-                         cols=FEATURES["win_move10"] + ["m10_engine"])
+    _, eng = fit_predict("win_move10_engine", train, valid, seed=seed)
     y = va.score.to_numpy()
     refit = elo_refit(train, valid, "win_move10")
     gains.append((brier(refit, y) - brier(base, y), brier(refit, y) - brier(eng, y)))

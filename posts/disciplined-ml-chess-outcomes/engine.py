@@ -3,7 +3,7 @@
 Reads features.parquet (fen10), writes engine.parquet: the evaluation in
 centipawns from White's side. Needs a Stockfish binary on PATH (the outputs
 used Stockfish 18). A fixed node budget and one thread per process make each
-evaluation deterministic for a given binary; about ten minutes on 4 cores.
+evaluation deterministic for a given binary.
 """
 
 import shutil

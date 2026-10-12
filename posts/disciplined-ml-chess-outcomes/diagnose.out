@@ -24,12 +24,13 @@ m10_castled_w m10_castled_b
               1.0            0.524  6454
 
 learning curve, win_move10: validation Brier (Elo refit on the full training set: 0.2044)
-   2,500 games  0.2121
-   5,000 games  0.2067
-  10,000 games  0.2051
-  20,000 games  0.2036
-  40,000 games  0.2033
-  74,825 games  0.2025
+   games  mean of 3 subsamples (lowest, highest)
+   2,500  0.2105 (0.2095, 0.2121)
+   5,000  0.2070 (0.2067, 0.2075)
+  10,000  0.2051 (0.2045, 0.2057)
+  20,000  0.2038 (0.2036, 0.2041)
+  40,000  0.2031 (0.2030, 0.2033)
+  74,825  0.2026 (0.2025, 0.2027)
 
 permutation importance (Brier increase when shuffled; share of the total)
   elo_diff               0.05950  90.0%

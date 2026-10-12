@@ -9,11 +9,11 @@ The scripts behind [Predicting Chess Outcomes: A Disciplined ML Walkthrough](htt
 | `contract.py` | The leakage contract: which columns each model may see, and which games each is scored on. Imported by the rest. | |
 | `test_contract.py` | The contract's rules as tests. | runs with `python` or `pytest` |
 | `models.py` | The split, the gradient-boosted model, the Elo baselines and the metrics. Imported by the rest. | `scikit-learn` |
-| `train.py` | Trains the four models on one 80/20 split and scores them against baselines, with a bootstrap interval. | about 20 s |
-| `seeds.py` | The same on five random splits. | about a minute |
+| `train.py` | Trains the models on one 80/20 split and scores them against baselines, with a bootstrap interval. | about 20 s |
+| `seeds.py` | The same on five random splits, a split by time, and a split that keeps each player on one side. | a few minutes |
 | `leak.py` | Adds one leaked column to the Elo model, shows the score it would report, and the test that catches it. | |
 | `diagnose.py` | A win-rate table by rating gap and material, a castling check, a learning curve, permutation importance and error by segment. | about 15 s |
-| `engine.py` | Stockfish's evaluation of every move-10 position. Writes `engine.parquet`. | a `stockfish` binary on PATH (the outputs used Stockfish 18); about 12 minutes on 4 cores |
+| `engine.py` | Stockfish's evaluation of every move-10 position. Writes `engine.parquet`. | a `stockfish` binary on PATH (the outputs used Stockfish 18); minutes on 4 cores |
 | `engine_ab.py` | The move-10 model with and without the engine's evaluation, on the same five splits. | reads `engine.parquet` |
 
 `engine.parquet` is committed, so `engine_ab.py` runs without Stockfish. The outputs came from an Apple M4 laptop (10 cores) with Python 3.12, pandas, scikit-learn 1.9.1 and python-chess 1.11.2.

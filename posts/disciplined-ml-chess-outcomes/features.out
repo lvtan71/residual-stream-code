@@ -1,3 +1,4 @@
-100,000 games, 33 columns
+100,000 games, 37 columns
+games with a move by each side (2+ plies): 96.9%; abandoned among those: 0
 move-3 features present: 96.0%; move-10: 93.4%
 first moves: e4 59.2%, d4 25.0%, other 3.3%, c4 3.2%, Nf3 2.7%

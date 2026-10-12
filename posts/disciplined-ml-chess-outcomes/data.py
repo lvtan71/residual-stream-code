@@ -10,7 +10,7 @@ from huggingface_hub import hf_hub_download
 
 REPO, REV = "Lichess/standard-chess-games", "de4e636eddf568a9394cc01fb0b9e1da04a6babf"
 FILES = [f"data/year=2015/month=01/train-0000{i}-of-00003.parquet" for i in range(3)]
-COLUMNS = ["Event", "Site", "Result", "WhiteElo", "BlackElo", "UTCDate", "UTCTime",
+COLUMNS = ["Event", "Site", "White", "Black", "Result", "WhiteElo", "BlackElo", "UTCDate", "UTCTime",
            "Termination", "TimeControl", "movetext"]
 N = 100_000
 
@@ -31,11 +31,15 @@ print(f"results: White wins {(games.score == 1).mean():.1%}, draws {(games.score
 print(f"ratings missing: {games.WhiteElo.isna().sum() + games.BlackElo.isna().sum()}")
 
 print("\nhow games ended, and how many moves they lasted")
-print(f"{'termination':>16s} {'games':>7s} {'median moves':>13s} {'under 3 moves':>14s}")
+print(f"{'termination':>16s} {'games':>7s} {'median moves':>13s} {'no moves':>9s} {'under 3 moves':>14s}")
 for term, g in games.groupby("Termination"):
-    print(f"{term:>16s} {len(g):>7,} {g.moves.median():>13.0f} {(g.moves < 3).mean():>14.1%}")
+    print(f"{term:>16s} {len(g):>7,} {g.moves.median():>13.0f} {(g.moves == 0).sum():>9,} "
+          f"{(g.moves < 3).mean():>14.1%}")
 ab = games[games.Termination == "Abandoned"]
 print(f"abandoned games: White's mean score {ab.score.mean():.3f}, decisive {(ab.score != 0.5).mean():.1%}, "
       f"moves played {ab.moves.sum()}")
+players = pd.concat([games.White, games.Black])
+print(f"{players.nunique():,} players; the 1,000 most active play in "
+      f"{(games.White.isin(players.value_counts().index[:1000]) | games.Black.isin(players.value_counts().index[:1000])).mean():.0%} of games")
 for k in (3, 10):
     print(f"games reaching move {k}: {(games.moves >= k).mean():.1%}")

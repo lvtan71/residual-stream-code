@@ -1,8 +1,9 @@
 ok  test_elo_model_sees_no_rating
+ok  test_engine_sees_only_the_move10_board
 ok  test_horizons_only_add_information
 ok  test_move3_sees_nothing_after_move3
 ok  test_move_groups_are_disjoint_from_ratings
 ok  test_no_model_sees_its_target
-ok  test_no_post_game_columns
+ok  test_no_outcome_or_identity_columns
 ok  test_pregame_sees_no_moves
-7 rules hold
+8 rules hold

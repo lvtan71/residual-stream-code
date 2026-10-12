@@ -8,17 +8,34 @@ from sklearn.linear_model import LogisticRegression
 from contract import CATEGORICAL, FEATURES, TARGET, eligible
 
 
-def load():
+def load(engine=False):
     f = pd.read_parquet("features.parquet")
+    if engine:                                     # Stockfish evaluations from engine.py
+        f = f.merge(pd.read_parquet("engine.parquet"), on="game", how="left")
     for c in CATEGORICAL:
         f[c] = f[c].astype("category")
     return f
 
 
-def split(f, seed=42, valid=0.2):
-    """A random 80/20 split of games, made once, before eligibility is applied."""
-    is_valid = np.random.default_rng(seed).random(len(f)) < valid
-    return f[~is_valid], f[is_valid]
+def split(f, seed=42, valid=0.2, kind="random"):
+    """Train and validation games, chosen before eligibility is applied.
+
+    random:  each game goes to validation with probability 0.2
+    time:    the last 20% of games by start time are validation
+    players: each player is put on one side at random; a game counts only if
+             both its players are on the same side, so no player appears in both
+    """
+    rng = np.random.default_rng(seed)
+    if kind == "random":
+        is_valid = rng.random(len(f)) < valid
+        return f[~is_valid], f[is_valid]
+    if kind == "time":
+        cut = f.time.quantile(1 - valid)
+        return f[f.time < cut], f[f.time >= cut]
+    names = pd.unique(pd.concat([f.white, f.black]))
+    side = pd.Series(rng.random(len(names)) < 0.35, index=names)   # True: validation player
+    w, b = side[f.white].to_numpy(), side[f.black].to_numpy()
+    return f[~w & ~b], f[w & b]
 
 
 def booster(seed=0):
@@ -27,10 +44,11 @@ def booster(seed=0):
                                          categorical_features="from_dtype", random_state=seed)
 
 
-def fit_predict(model, train, valid, seed=0, cols=None):
-    """Fit one booster per target column on eligible training games; predict eligible validation games."""
+def fit_predict(model, train, valid, seed=0):
+    """Fit one booster per target column on eligible training games; predict eligible validation games.
+    The columns come from the contract and nowhere else."""
     tr, va = eligible(train, model), eligible(valid, model)
-    cols = cols or FEATURES[model]
+    cols = FEATURES[model]
     targets = TARGET[model] if isinstance(TARGET[model], list) else [TARGET[model]]
     preds = np.column_stack([booster(seed).fit(tr[cols], tr[t]).predict(va[cols]) for t in targets])
     return va, preds if len(targets) > 1 else np.clip(preds[:, 0], 0, 1)

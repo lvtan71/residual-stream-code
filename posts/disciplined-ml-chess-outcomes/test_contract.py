@@ -18,8 +18,14 @@ def test_horizons_only_add_information():
     assert set(FEATURES["win_pregame"]) < set(FEATURES["win_move3"]) < set(FEATURES["win_move10"])
 
 
+def test_engine_sees_only_the_move10_board():
+    assert set(FEATURES["win_move10_engine"]) - set(FEATURES["win_move10"]) == {"m10_engine"}
+
+
 def test_elo_model_sees_no_rating():
-    assert not set(FEATURES["elo_move10"]) & set(RATINGS)
+    for model, cols in FEATURES.items():
+        if TARGET[model] == ["elo_w", "elo_b"]:
+            assert not set(cols) & set(RATINGS), model
 
 
 def test_no_model_sees_its_target():
@@ -28,9 +34,9 @@ def test_no_model_sees_its_target():
         assert not set(cols) & set([target] if isinstance(target, str) else target), model
 
 
-def test_no_post_game_columns():
-    for cols in FEATURES.values():
-        assert not {"score", "termination", "game", "fen10"} & set(cols)
+def test_no_outcome_or_identity_columns():
+    for cols in FEATURES.values():                 # results, how the game ended, ids, names
+        assert not {"score", "termination", "plies", "game", "white", "black"} & set(cols)
 
 
 def test_move_groups_are_disjoint_from_ratings():
