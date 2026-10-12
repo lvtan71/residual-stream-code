@@ -1,0 +1,3 @@
+Elo model as contracted  MAE  162.1 rating points
+Elo model plus elo_diff  MAE  143.1 rating points
+test_elo_model_sees_no_rating: FAILED, the leak is caught before any score is trusted

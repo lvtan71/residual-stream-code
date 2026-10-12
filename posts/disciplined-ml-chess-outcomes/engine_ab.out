@@ -1,0 +1,12 @@
+split 42, 18,585 validation games: Brier Elo refit 0.2044, move-10 model 0.2025, with engine 0.1965 (ECE 0.007)
+engine column's gain over the same model without it: +0.0060 (95% CI +0.0049, +0.0072)
+  material even   12,463 games: Brier 0.2063 -> 0.2027
+  material uneven  6,122 games: Brier 0.1948 -> 0.1838
+
+split seed  gain over Elo refit: without  with engine  ratio
+        42                       +0.0019      +0.0079   4.2x
+         1                       +0.0027      +0.0089   3.3x
+         2                       +0.0022      +0.0082   3.7x
+         3                       +0.0025      +0.0083   3.3x
+         4                       +0.0022      +0.0086   3.9x
+      mean                       +0.0023      +0.0084   3.6x

@@ -1,0 +1,2 @@
+Stockfish 18, 20,000 nodes per position, 93,410 positions
+evaluation after move 10, White's view: median +45 cp, |eval| > 200 cp in 22.2%
