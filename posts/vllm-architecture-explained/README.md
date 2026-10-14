@@ -15,5 +15,8 @@ Run them from this folder:
 
 ```bash
 pip install torch transformers huggingface_hub numpy
-python engine.py
+python engine.py       # reads the post's cost.npy
+python lora.py         # GPU
+python tp.py
+python steps.py        # GPU; rewrites cost.npy for this machine (then rerun engine.py)
 ```

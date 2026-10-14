@@ -17,4 +17,7 @@ Run them from this folder:
 ```bash
 pip install torch transformers huggingface_hub
 python hits.py
+python schedule.py
+python prefill.py      # GPU; time it with nothing else running
+python jump.py         # GPU
 ```

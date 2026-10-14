@@ -19,4 +19,9 @@ Run them from this folder, in this order:
 ```bash
 pip install torch transformers huggingface_hub pandas pyarrow
 python waste.py
+python same.py
+python share.py
+python prefix.py
+python blocksize.py
+python kernel.py       # Apple-silicon Mac only (Metal)
 ```

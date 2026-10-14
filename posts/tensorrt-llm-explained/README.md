@@ -16,6 +16,6 @@ Run them from this folder:
 
 ```bash
 pip install torch transformers huggingface_hub
-python tune.py
-python fuse.py
+python tune.py         # Apple-silicon Mac only (Metal)
+python fuse.py         # Apple-silicon Mac only (Metal)
 ```
