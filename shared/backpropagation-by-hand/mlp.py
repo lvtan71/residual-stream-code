@@ -21,7 +21,7 @@ def backward(P, X, y, lam=0.0):
     n = len(y)
     z1, a1, z2 = forward(P, X)
     p = sigmoid(z2)
-    dz2 = (p - y) / n                     # the p - y of post 1, per example
+    dz2 = (p - y) / n                     # the p - y of "Learning Is Optimization", per example
     grads = {"w2": a1.T @ dz2 + lam * P["w2"],
              "b2": dz2.sum()}
     da1 = np.outer(dz2, P["w2"])          # back through the output weights

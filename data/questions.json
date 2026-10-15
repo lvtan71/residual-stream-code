@@ -1,0 +1,152 @@
+[
+ {
+  "question": "Which of the three attention projections is never reused for later tokens, and why?",
+  "post": "kv-cache-explained",
+  "heading": "Why keys and values, but not queries?"
+ },
+ {
+  "question": "How many bytes does the stored state take per token for a given model shape?",
+  "post": "kv-cache-explained",
+  "heading": "What it costs: the memory formula"
+ },
+ {
+  "question": "Why is producing the first output token different from producing the rest?",
+  "post": "kv-cache-explained",
+  "heading": "Two phases: prefill and decode"
+ },
+ {
+  "question": "How can a maximum and a running sum be updated incrementally as new scores arrive?",
+  "post": "flashattention-explained",
+  "heading": "The online softmax"
+ },
+ {
+  "question": "Why does the gradient computation redo forward work instead of saving the score matrix?",
+  "post": "flashattention-explained",
+  "heading": "The backward pass: recompute instead of store"
+ },
+ {
+  "question": "What limits the speed of the plain attention implementation on a GPU?",
+  "post": "flashattention-explained",
+  "heading": "Where standard attention's time goes"
+ },
+ {
+  "question": "How does a linear penalty on token distance replace position embeddings?",
+  "post": "rope-and-positional-encoding",
+  "heading": "Penalizing distance: ALiBi"
+ },
+ {
+  "question": "Why can't a model without order information tell 'dog bites man' from 'man bites dog'?",
+  "post": "rope-and-positional-encoding",
+  "heading": "Attention can't see order"
+ },
+ {
+  "question": "How are the rotation speeds stretched to handle sequences longer than in training?",
+  "post": "rope-and-positional-encoding",
+  "heading": "The frequencies, and longer contexts"
+ },
+ {
+  "question": "Why does the tokenizer work on 256 base symbols rather than Unicode characters?",
+  "post": "bpe-tokenizer-explained",
+  "heading": "Start from bytes, not characters"
+ },
+ {
+  "question": "Why does the saved vocabulary show a strange G with a dot where spaces should be?",
+  "post": "bpe-tokenizer-explained",
+  "heading": "Writing it to disk: why the vocab file is full of \u0120"
+ },
+ {
+  "question": "When turning new text into ids, in what order are the learned pair joins applied?",
+  "post": "bpe-tokenizer-explained",
+  "heading": "Encoding: replay the merges by rank, not by count"
+ },
+ {
+  "question": "How should markers like end-of-text be handled so they never join with neighbors?",
+  "post": "bpe-tokenizer-explained",
+  "heading": "Special tokens are boundaries, not text"
+ },
+ {
+  "question": "How is it prevented that a few experts receive almost all the tokens?",
+  "post": "mixture-of-experts",
+  "heading": "Keeping the load even"
+ },
+ {
+  "question": "Why does serving a sparse expert model still need memory for every parameter?",
+  "post": "mixture-of-experts",
+  "heading": "What experts cost at serving time"
+ },
+ {
+  "question": "What decides which experts process a given token?",
+  "post": "mixture-of-experts",
+  "heading": "The router"
+ },
+ {
+  "question": "How does the strength of the penalty for drifting from the reference model change training?",
+  "post": "dpo-direct-preference-optimization",
+  "heading": "What \u03b2 does"
+ },
+ {
+  "question": "How does the preference loss follow from maximizing reward under a KL penalty?",
+  "post": "dpo-direct-preference-optimization",
+  "heading": "The derivation"
+ },
+ {
+  "question": "How do compute and memory compare with the reinforcement learning pipeline it replaces?",
+  "post": "dpo-direct-preference-optimization",
+  "heading": "What it costs, against PPO"
+ },
+ {
+  "question": "How does a method adjust the remaining columns to absorb each column's rounding error?",
+  "post": "quantization-from-scratch",
+  "heading": "GPTQ: rounding with error compensation"
+ },
+ {
+  "question": "Should one quantization grid be shared by a whole tensor, each row, or small groups?",
+  "post": "quantization-from-scratch",
+  "heading": "Where to put the scales"
+ },
+ {
+  "question": "Why does storing weights in 4 bits make token generation faster?",
+  "post": "quantization-from-scratch",
+  "heading": "What it buys at decode"
+ },
+ {
+  "question": "Why does checking several proposed tokens cost about the same as generating one?",
+  "post": "speculative-decoding",
+  "heading": "Why verification is nearly free"
+ },
+ {
+  "question": "How is the output kept exactly distributed as the large model's despite a cheap guesser?",
+  "post": "speculative-decoding",
+  "heading": "The acceptance rule, and why it is exact"
+ },
+ {
+  "question": "In which serving conditions does guessing ahead stop paying off?",
+  "post": "speculative-decoding",
+  "heading": "When it doesn't help"
+ },
+ {
+  "question": "How do two sequences share the same prompt memory until one of them writes to it?",
+  "post": "paged-attention-explained",
+  "heading": "Memory sharing: copy-on-write"
+ },
+ {
+  "question": "How much memory do contiguous reservations waste on unused slots?",
+  "post": "paged-attention-explained",
+  "heading": "The problem: reserved but empty"
+ },
+ {
+  "question": "What maps a sequence's logical positions to physical memory chunks?",
+  "post": "paged-attention-explained",
+  "heading": "The block table"
+ },
+ {
+  "question": "How are two ranked lists combined into one without calibrating their scores?",
+  "post": "semantic-and-hybrid-search",
+  "heading": "Fusing rankings"
+ },
+ {
+  "question": "How is term frequency saturated and document length normalized in keyword scoring?",
+  "post": "semantic-and-hybrid-search",
+  "heading": "BM25: keyword search, derived"
+ }
+]

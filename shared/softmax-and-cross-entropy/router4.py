@@ -3,7 +3,7 @@ from router_data import featurize, ROUTES
 from softmax_basics import softmax
 
 def four_way(train, *others):
-    """Post 2.1's bag of words, with the route index (0-3) as the label."""
+    """Bag of words from "Features and Overfitting", with the route index (0-3) as the label."""
     sets, vocab = featurize(train, *others)
     return [(X, np.array([ROUTES.index(r["route"]) for r in rs]))
             for (X, _), rs in zip(sets, (train, *others))], vocab

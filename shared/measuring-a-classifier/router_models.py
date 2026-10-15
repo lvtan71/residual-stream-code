@@ -11,7 +11,7 @@ def keyword_count(rs):
                      for r in rs], dtype=float)
 
 def fit_all(seed):
-    """Train the three routers of post 2.1 on one split; return logits."""
+    """Train the three routers of "Features and Overfitting" on one split; return logits."""
     tr, va, te = split(seed)
     ((Xtr, ytr), (Xva, yva), (Xte, yte), (Xvi, yvi)), vocab = featurize(
         tr, va, te, vietnamese)

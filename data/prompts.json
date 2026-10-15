@@ -1,0 +1,102 @@
+[
+ {
+  "post": "attention-alternatives",
+  "prompt": "Native Sparse Attention (DeepSeek, 2025) runs three branches per query and blends them with learned gates: compression, which aggregates blocks of tokens into coarse summaries through a small",
+  "human": " network; selection, which ranks blocks by importance and reads the top ones at full fidelity; and a sliding window of 512 tokens for local context. The word doing the work in the name is native — the sparsity is present during pretraining, so the model learns around its own access pattern rather than having a mask imposed on it after the fact. Reported speedups at 64K context: up to 9.0× forward, 6.0× backward, 11.6× decoding."
+ },
+ {
+  "post": "attention-alternatives",
+  "prompt": "The most systematic study, The Sparse Frontier (Nawrot et al., 2025), cuts both ways and is worth reading in full. In favour: \"larger sparse models outperform smaller dense ones at equivalent cost,",
+  "human": " improving the Pareto frontier\" — at a fixed compute budget and long enough sequences, sparsify-and-scale genuinely wins. Against uniform application: \"sparsity tolerance varies dramatically across tasks,\" with some degrading at even modest sparsity, and no method wins everywhere — \"fine-grained token selection excels at retrieval, chunk-based methods suit reasoning and aggregation.\" One asymmetry is directly actionable for anyone serving models: prefill and decode have different tolerances, and decoding takes substantially more compression than prefill before quality moves."
+ },
+ {
+  "post": "backpropagation-by-hand",
+  "prompt": "Add width and the problem gets easier: 52 of 100 with three units, 73 with four, 96 with eight, and all 100 with sixteen. More units means more random starting directions, so a dead unit costs less",
+  "human": " and some units are likely to start well placed. In small networks like this one, extra width makes the loss much easier to descend, a real and studied effect. It isn't why language models are large, though. Their size is set by how the loss improves with parameters and data, the scaling laws of post 18."
+ },
+ {
+  "post": "embeddings-and-contrastive-learning",
+  "prompt": "An embedding fixes that by giving each thing a short dense vector, arranged so that similar things are close together. Every later part of the series depends on it: a language model's first layer is",
+  "human": " an embedding table, retrieval (Part IX) searches by embedding distance, and multimodal models (Part XV) put images and text in one shared space. The question this post answers is where the arrangement comes from. The answer is always the same: from a loss that rewards putting some things close and others far apart. An embedding is only as meaningful as that loss, and as the data it saw."
+ },
+ {
+  "post": "embeddings-and-contrastive-learning",
+  "prompt": "Two pretrained encoders, on the same held-out task and on a second one: match each section of the posts that have a Vietnamese translation to its translation, among all the translated sections. One,",
+  "human": " all-MiniLM-L6-v2, was trained contrastively on about a billion English sentence pairs. The other got its languages by distillation (Reimers and Gurevych, 2020): an English teacher model, itself trained contrastively, and a multilingual student trained with a squared-error loss so that a sentence and its translation both land where the teacher puts the English sentence:"
+ },
+ {
+  "post": "features-overfitting-regularization",
+  "prompt": "Half of these are what a person would pick: batching, prefix, decode, vllm, throughput toward serving, and agent, layer away. The other half are words like to, my, one, what and how, which carry no",
+  "human": " meaning about the topic. Some reflect mild phrasing habits: to appears in 7 of the 50 serving questions and in only 3–4 of each other route's 50, from questions like \"How do I stream tokens to the browser?\". Others are pure accident. my appears in 3 serving questions and 5 others across the whole dataset, but split 0's training sample happened to put it mostly with serving, so this split learned my as serving evidence. With 120 training questions, the model can't tell a real correlation from a lucky draw, and some of these would reverse on a different sample."
+ },
+ {
+  "post": "how-a-gpu-runs-deep-learning",
+  "prompt": "What is, is the inner loop. In the tiled kernel every multiply-add needs two loads from threadgroup memory, whatever the tile size, which is why the 32 × 32 tile changes little. The register version",
+  "human": " breaks that: 8 loads feed 16 multiply-adds, and it runs 2.5 times faster. That's the general pattern. Each level of tiling raises the intensity against the level above it: shared-memory tiles against main memory, register tiles against shared memory, and on NVIDIA GPUs the tensor cores' own matrix fragments against registers. Fast libraries also overlap loading with computing: while the cores work on one slice, the next is already being copied in (asynchronously on Hopper, with its tensor memory accelerator), so the cores never wait at a barrier. FlashAttention (Part V) uses exactly these tricks."
+ },
+ {
+  "post": "learning-is-optimization",
+  "prompt": "All three need about the same number of updates to get close, around 50. But an update on one question costs a 24th of a full-batch update. So SGD gets there after seeing the data about twice, where",
+  "human": " full-batch descent needs 52 passes. The price is noise, and it shows in the last two columns. With a constant learning rate, SGD never settles. After 5,000 updates its median loss is 0.4949 against the optimum's 0.4837, and its worst run is at 0.7688, knocked far from the minimum by a few unlucky steps in a row. Mini-batches of 4 average away most of that noise."
+ },
+ {
+  "post": "paged-attention-explained",
+  "prompt": "Reuse is still exact-match, block-aligned reuse. The content-hash sharing mentioned above only fires when two sequences' tokens agree and land on the same block boundaries — a shared system prompt",
+  "human": " that's one token longer in one request than another shifts every subsequent block's contents, and with it every hash, breaking the match entirely from that point on. Paging solves fragmentation; it doesn't give the engine any notion of how much two unaligned sequences overlap, which is exactly the gap the next post's radix tree is built to close."
+ },
+ {
+  "post": "rnns-and-why-transformers-won",
+  "prompt": "Counting two characters back gives 3.58 bits per character. Counting further makes it worse, because of how the counts are smoothed: most 4-character contexts in the validation posts never appeared",
+  "human": " in training, and add-one smoothing spreads their probability evenly over 148 characters. A better smoother backs off to a shorter context instead. Kneser–Ney smoothing (Kneser and Ney, 1995) does that, and also estimates the shortest context by how many different contexts a character follows, not how often it occurs:"
+ },
+ {
+  "post": "rope-and-positional-encoding",
+  "prompt": "With the original base of 10,000, the fastest pair turns every 6 positions and the slowest every 54,000 or so. A pair whose wavelength is longer than the training context never completes a turn",
+  "human": " during training, so the model only ever sees part of its circle. Test on a longer context and those slow pairs reach angles training never produced, and the attention scores built from them go out of distribution. That's RoPE's part of the failure the \"seen\" task shows, the part rescaling didn't fix, and the reason RoPE models can't just be run at longer contexts than they were trained on."
+ },
+ {
+  "post": "sglang-radixattention-explained",
+  "prompt": "A radix tree is a space-efficient generalization of a trie: an edge can be labeled with a whole sequence of tokens instead of just one. SGLang uses one radix tree, shared across the whole engine, to",
+  "human": " map token sequences to their cached KV tensors — stored in the same kind of paged, non-contiguous layout vLLM uses, just organized as one tree instead of N independent per-sequence tables. The path from the tree's root to any node spells out a token sequence; if two requests share a prefix, their paths share the same nodes, and the KV cache for that shared span exists exactly once."
+ },
+ {
+  "post": "sglang-radixattention-explained",
+  "prompt": "and instead of admitting waiting requests in plain arrival order, it sorts the queue to run the request that currently shares the longest matched prefix first. Processing requests in arrival order",
+  "human": " can thrash the tree — the working set the GPU is actively touching keeps changing, so branches get evicted right before they would have been reused. The RadixAttention paper proves (Theorem 3.1) that longest-prefix-first scheduling is equivalent to a depth-first traversal of the radix tree, and that this greedy rule is provably cache-hit-rate-optimal in the offline case, where the cache is large enough to hold the workload's whole working set. The authors are upfront that this doesn't fully hold online: greedily favoring long-prefix matches can starve requests whose prompts don't overlap with anything already cached, and the paper leaves a fully fairness-aware version of the policy as future work."
+ },
+ {
+  "post": "sglang-radixattention-explained",
+  "prompt": "By the time of that same v0.4 release, SGLang had moved well past a research prototype: the project's own account describes production use serving trillions of tokens a day, with xAI using it to",
+  "human": " serve Grok 3 and Microsoft Azure using it to serve DeepSeek R1 on AMD MI300X GPUs. SGLang joined the PyTorch ecosystem in March 2025 — an ecosystem listing, not a change of governance or foundation ownership — backed by contributors from AMD, NVIDIA, LinkedIn, Meituan, Stanford, UC Berkeley, UCLA, and xAI, among others."
+ },
+ {
+  "post": "softmax-and-cross-entropy",
+  "prompt": "The top half is the comparison. - No penalty against L2: the metrics disagree. L2's validation cross-entropy is better by 0.085 ± 0.054, and its calibration error by 0.059 ± 0.033, both suggestive",
+  "human": " rather than decisive. On accuracy the unpenalized model is 0.011 ahead, well inside its error. The two metrics measure different things. Accuracy only checks the top route. Cross-entropy also charges for how confident each prediction was, and without a penalty the probabilities run hotter, including on the questions it gets wrong. - Smoothing and L2 tie. Smoothing's validation cross-entropy is lower by 0.017 ± 0.022 and its accuracy is higher by 0.034 ± 0.029. Both are within about one standard error, so neither is a real difference at this data size. - Both together are too much. Combined, they're 0.033 ± 0.018 worse than smoothing alone and tie L2."
+ },
+ {
+  "post": "tensorrt-llm-explained",
+  "prompt": "This is where TensorRT-LLM is the deepest of the three engines in this series: it supports draft-model speculative decoding, Medusa, EAGLE (EAGLE-1, EAGLE-2, and EAGLE-3, the last with disaggregated",
+  "human": " serving support in the PyTorch backend), and lookahead decoding (a Jacobi-style method that needs no extra draft model or training at all). The shared idea behind all of them: a cheap step proposes several candidate tokens at once, and one expensive forward pass through the full target model verifies all of them together, accepting whichever prefix of the proposal the target model agrees with and discarding the rest:"
+ },
+ {
+  "post": "tiny-gpt-from-scratch",
+  "prompt": "Parts I to III built a Transformer one piece at a time: the embedding table (post 8), cross-entropy on the next token (posts 3.2 and 9), AdamW and warmup (post 4.1), normalization (post 4.2),",
+  "human": " attention (post 11), position (post 12), and the residual stream holding it together (post 13). This post puts them together into one model, a small GPT, trains it on this blog, and answers two questions with measurements: - Does it beat what came before? Post 9 fixed the target in advance. On the same two held-out posts, the character LSTM scored 2.66 bits per byte, a Kneser–Ney counting model 2.57, and bz2, a file compressor given the training posts, 2.34. Lower is better. - What is each piece worth? Take one out, retrain, and measure."
+ },
+ {
+  "post": "tiny-gpt-from-scratch",
+  "prompt": "At the fixed point chosen in advance, 4,000 steps, the three seeds score 2.50, 2.63 and 2.54 bits per byte, a mean of 2.55. Against post 9's ladder: - The LSTM, 2.66: beaten on all three seeds, by",
+  "human": " 0.03 to 0.16. Its 3,000 steps of 64 windows of 128 characters trained on 25 million characters, close to this run's 33 million, but with 380,000 parameters to this model's 1.8 million, and without the dropout, weight decay and schedule tuned on a dev slice that this model got. So \"the Transformer is better\" here means \"this Transformer, at this size, with this recipe\", not a matched comparison of architectures. - Kneser–Ney, 2.57: beaten on two seeds of three, and level on average. - bz2 given the training posts, 2.34: not beaten."
+ },
+ {
+  "post": "tiny-gpt-from-scratch",
+  "prompt": "The training-text column is the rest of the story: at 4,000 steps the model scores 1.33 bits per byte on text it has seen, against 1.74 and 2.84 on text it hasn't, and the gap widens all the way. The",
+  "human": " model keeps fitting its training text more closely; that helps on a post like the training posts and hurts on one unlike them. The dev slice was like them, and more so than it looked: the 90% cut falls mid-sentence in one of the serving posts, so the dev slice begins by continuing a post the model trained on. A better dev split holds out whole posts, and different kinds of post. The lesson generalizes: a dev set predicts the test set only as well as it resembles it."
+ },
+ {
+  "post": "transformer-attention-patterns",
+  "prompt": "This exact problem already had a partial fix by the time Transformers came along. Bahdanau, Cho, and Bengio introduced attention in 2014 as a patch on top of an RNN encoder-decoder for machine",
+  "human": " translation — instead of compressing the whole source sentence into one fixed-size hidden state, let the decoder look back and weight every encoder position directly. It helped, but the RNN was still doing the token-by-token folding underneath, so the sequential bottleneck never went away. Vaswani et al.'s 2017 insight was more radical: what if the RNN wasn't needed at all, and attention could stand on its own?"
+ }
+]
