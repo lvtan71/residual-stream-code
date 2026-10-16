@@ -7,6 +7,8 @@ import torch
 from transformers import AutoModelForCausalLM, AutoTokenizer
 from huggingface_hub import snapshot_download
 GPU = "cuda" if torch.cuda.is_available() else "mps" if torch.backends.mps.is_available() else "cpu"  # notebook: the post ran on "mps"
+gpu_sync = {"cuda": torch.cuda.synchronize, "mps": torch.mps.synchronize}.get(GPU, lambda: None)
+gpu_empty_cache = {"cuda": torch.cuda.empty_cache, "mps": torch.mps.empty_cache}.get(GPU, lambda: None)
 
 # Routing between a small and a large model. Small: Qwen2.5-1.5B-Instruct;
 # large: Qwen2.5-3B-Instruct (stand-ins for an on-device model and a bigger
@@ -49,16 +51,16 @@ def answer_all(path):
     for q, truth, kind in items:
         ids = tok.apply_chat_template([{"role": "user", "content": q}], add_generation_prompt=True,
                                       return_tensors="pt", return_dict=True)["input_ids"].to(GPU)
-        torch.mps.synchronize(); t0 = time.perf_counter()
+        gpu_sync(); t0 = time.perf_counter()
         g = model.generate(ids, max_new_tokens=12, do_sample=False, temperature=None, top_p=None, top_k=None,
                            output_scores=True, return_dict_in_generate=True)
-        torch.mps.synchronize(); dt = time.perf_counter() - t0
+        gpu_sync(); dt = time.perf_counter() - t0
         new = g.sequences[0, ids.shape[1]:]
         logp = [torch.log_softmax(s[0].float(), -1)[t].item() for s, t in zip(g.scores, new)]
         text = tok.decode(new, skip_special_tokens=True).strip()
         right = re.sub(r"[^a-z0-9]", "", truth.lower()) in re.sub(r"[^a-z0-9]", "", text.lower())
         out.append({"right": right, "conf": float(np.exp(np.mean(logp[:max(1, len(logp) - 1)]))), "time": dt, "text": text})
-    del model; torch.mps.empty_cache()
+    del model; gpu_empty_cache()
     return out
 
 res = {name: answer_all(p) for name, p in PATHS.items()}
