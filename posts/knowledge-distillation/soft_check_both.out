@@ -1,0 +1,24 @@
+lr 1e-05: held-out KL to teacher 0.367
+  steps   1- 10: training KL 0.323, -log mass on top 64 0.150
+  steps  11- 20: training KL 0.337, -log mass on top 64 0.091
+  steps  21- 30: training KL 0.344, -log mass on top 64 0.091
+  steps  31- 40: training KL 0.358, -log mass on top 64 0.105
+  steps  41- 50: training KL 0.323, -log mass on top 64 0.084
+  steps  51- 60: training KL 0.323, -log mass on top 64 0.087
+  steps  61- 70: training KL 0.317, -log mass on top 64 0.090
+  steps  71- 80: training KL 0.327, -log mass on top 64 0.095
+  steps  81- 90: training KL 0.337, -log mass on top 64 0.090
+  steps  91-100: training KL 0.296, -log mass on top 64 0.080
+  after 100 steps: held-out KL to teacher 0.390
+lr 0.0001: held-out KL to teacher 0.367
+  steps   1- 10: training KL 0.367, -log mass on top 64 0.111
+  steps  11- 20: training KL 0.439, -log mass on top 64 0.100
+  steps  21- 30: training KL 0.579, -log mass on top 64 0.134
+  steps  31- 40: training KL 0.600, -log mass on top 64 0.153
+  steps  41- 50: training KL 0.563, -log mass on top 64 0.133
+  steps  51- 60: training KL 0.616, -log mass on top 64 0.141
+  steps  61- 70: training KL 0.587, -log mass on top 64 0.149
+  steps  71- 80: training KL 0.606, -log mass on top 64 0.158
+  steps  81- 90: training KL 0.608, -log mass on top 64 0.157
+  steps  91-100: training KL 0.566, -log mass on top 64 0.135
+  after 100 steps: held-out KL to teacher 0.678

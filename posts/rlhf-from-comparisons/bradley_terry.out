@@ -1,0 +1,4 @@
+rewards: r_A = +1.67, r_B = +0.84, r_C = +0.00
+P(A beats B) = sigmoid(1.67 - 0.84) = 0.70   observed 3/4 = 0.75
+P(B beats C) = sigmoid(0.84 - 0.00) = 0.70   observed 3/4 = 0.75
+P(A beats C) = sigmoid(1.67 - 0.00) = 0.84   observed 4/5 = 0.80

@@ -1,0 +1,13 @@
+p=0.94 caught  seen=['kv', 'cache', 'a', '70b']  KV cache của mô hình 70B lớn cỡ nào?
+p=0.98 caught  seen=['i', 'decode', 'prefill', 'i', 'token']  Tại sao decode chậm hơn prefill trên mỗi token?
+p=0.07 MISSED  seen=['i', 'd']  Làm sao phục vụ một mô hình cho nhiều người dùng cùng lúc?
+p=0.17 MISSED  seen=['token']  Vì sao token đầu tiên ra chậm như vậy?
+p=0.08 MISSED  seen=['a']  Lượng tử hóa ảnh hưởng thế nào đến độ trễ?
+p=0.39 MISSED  seen=['gpu', 'i']  Một GPU H100 chạy được bao nhiêu yêu cầu đồng thời?
+p=0.59 caught  seen=['continuous', 'batching']  Continuous batching tăng thông lượng ra sao?
+p=0.89 caught  seen=['vllm', 'd', 'paged', 'attention']  vLLM có dùng paged attention không?
+p=0.07 MISSED  seen=['i', 'i', 'i', 'd']  Tại sao máy chủ chậm lại khi có thêm người dùng?
+p=0.31 MISSED  seen=['speculative', 'decoding', 'i']  Speculative decoding tiết kiệm được bao nhiêu thời gian?
+no penalty     recall 0.735  false-alarm rate 0.065  per-question catch rate: 0.85 1.00 0.50 1.00 0.00 0.95 0.75 0.80 0.50 1.00
+L2             recall 0.505  false-alarm rate 0.000  per-question catch rate: 0.65 1.00 0.05 0.65 0.00 0.80 0.55 0.55 0.05 0.75
+L2 + keywords  recall 0.540  false-alarm rate 0.000  per-question catch rate: 1.00 1.00 0.00 0.00 0.00 0.95 1.00 1.00 0.00 0.45

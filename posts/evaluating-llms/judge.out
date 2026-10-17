@@ -1,0 +1,14 @@
+120 questions with a known answer: 100 two-digit multiplications, 20 capitals
+
+                                          multiplication  capitals
+right answer first: judge right                      99%       85%
+right answer second: judge right                     12%      100%
+  same, first answer labeled B                        0%       55%
+right in both orders                                 12%       85%
+chose the same slot both times                       87%       15%
+
+share of judgments picking the right answer, both orders averaged:
+bare right vs bare wrong                             56%       92%
+bare right vs wrong + claims of checking              6%       42%
+bare right vs wrong + neutral padding                48%       82%
+right + neutral padding vs bare wrong                62%       95%

@@ -1,0 +1,6 @@
+BF16 weights          2 bytes/param     16 GB
+BF16 gradients        2 bytes/param     16 GB
+FP32 master weights   4 bytes/param     32 GB
+Adam m (FP32)         4 bytes/param     32 GB
+Adam v (FP32)         4 bytes/param     32 GB
+total                16 bytes/param    128 GB, 1.6 H100s of memory before a single activation

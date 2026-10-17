@@ -1,0 +1,18 @@
+delta = 2: 2000 steps, green rate by the step's entropy (nats)
+  entropy 0.0 to 0.1:   482 steps ( 24%), green 28%
+  entropy 0.1 to 0.5:   368 steps ( 18%), green 27%
+  entropy 0.5 to 1.0:   462 steps ( 23%), green 37%
+  entropy 1.0 to 2.0:   539 steps ( 27%), green 50%
+  entropy 2.0 to max:   149 steps (  7%), green 55%
+
+paraphrases: share of their token pairs that also occur in the original
+  text 0: 78% shared, z  1.5, starts 'Parks have been a cornerstone of'
+  text 1: 96% shared, z  2.4, starts 'A morning at a fishing village is'
+  text 2: 76% shared, z  2.4, starts 'A bicycle remains upright based on the'
+  text 3: 100% shared, z  2.0, starts 'The sun was shining brightly, casting'
+  text 4: 62% shared, z  1.8, starts 'There are various qualities that make a'
+  text 5: 74% shared, z  3.1, starts 'The history of bread is a captivating'
+  text 6: 44% shared, z  2.1, starts "Dear [Friend's Name],\n\nI"
+  text 7: 30% shared, z  0.7, starts 'the sky appears blue during the day'
+  text 8: 78% shared, z  4.2, starts 'Introducing our new wooden desk lamp'
+  text 9: 59% shared, z  4.6, starts 'From a high vantage point,'

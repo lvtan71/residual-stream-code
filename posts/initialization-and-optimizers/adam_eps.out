@@ -1,0 +1,2 @@
+Adam eps 1e-08: train loss after 1,000 steps, 5 seeds: 1.386 1.386 1.386 1.386 1.386
+Adam eps 1e-30: train loss after 1,000 steps, 5 seeds: 0.169 1.386 1.386 0.067 1.386

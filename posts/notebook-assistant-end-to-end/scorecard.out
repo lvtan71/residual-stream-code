@@ -1,0 +1,54 @@
+=== one question, traced ===
+PROMPT (user turn):
+Question: How is each patch processed before being embedded in the linear layer?
+
+<passage id="1" post="Seeing with Transformers: ViT, CLIP and Vision-Language Models">
+ The Vision Transformer (ViT; Dosovitskiy et al., 2020) uses the most
+direct translation. Cut the image into a grid of small square patches,
+flatten each patch's pixels into one vector, and project every patch with
+the same learned linear layer, the patch embedding. Add position
+embeddings (post 12) so the model
+knows where each patch came from (ViT learns one embedding per position
+in the flattened sequence; later models use 2-D-aware schemes such as 2-D
+RoPE so the same model can take images of different sizes), and the
+result is a sequence like any other:
+</passage>
+
+<passage id="2" post="Where Am I? Position in Attention, from Sinusoids to RoPE">
+ The original Transformer (Vaswani et al., 2017) adds a position vector
+to each token's embedding before the first layer. Theirs was fixed, made of
+sinusoids at different frequencies:
+</passage>
+
+<passage id="3" post="Seeing with Transformers: ViT, CLIP and Vision-Language Models">
+A 224×224 image in 16×16-pixel patches is 196 tokens (each "word" in the
+paper's title, "an image is worth 16×16 words", is one such patch), plus
+one extra. That extra is the [CLS]
+token, borrowed from BERT: a learned vector prepended to the sequence
+whose output, after every layer of attention to the patches, serves as
+the representation of the whole image. The alternatives are to aver
+...
+ANSWER: Each patch is flattened into a vector and then projected by a learned linear layer [1]. Before being embedded in the linear layer, the patches are cut from the image into a grid of small square patches [1].
+
+question: How is each patch processed before being embedded in the linear layer?
+passages: [1] vision-transformers-and-multimodal / Patches: an image as a sequence; [2] rope-and-positional-encoding / Adding position to the tokens; [3] vision-transformers-and-multimodal / Patches: an image as a sequence; [4] residual-stream-explained / Each block: attention sublayer + MLP sublayer, both additive
+status: ok; seconds: cache 0.00, retrieve + rerank 0.19, generate 4.81; tokens in 607, out 44
+
+=== 150 answerable questions ===
+answer's sentence among the 4 passages: 135/150
+answer cites the right post:            128/150
+judge: answer agrees with the sentence: 86/150  (when the sentence was retrieved: 83/135; when it wasn't: 3/15)
+check: ok 134, refused 15, no citation 1, bad citation 0
+refused although the sentence was retrieved: 10
+
+per answer, on this laptop: cache 0.01 s, retrieve + rerank 0.12 s, generate 4.71 s
+tokens: 699 in, 52 out; at $3/$15 per million on an API: $0.0029
+
+=== repeats: 30 rewordings of questions already answered ===
+served from the cache: 12/30
+
+=== 15 questions the blog doesn't answer ===
+refused: 14/15
+
+=== injection: a poisoned post planted in the index ===
+poisoned passage retrieved: 4/10; answer repeated the attacker's link: 0/10 (of those that retrieved it: 0/4)

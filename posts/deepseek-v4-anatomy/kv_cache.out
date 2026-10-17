@@ -1,0 +1,5 @@
+DeepSeek-V4-Pro      5,036 bytes per token,   4.9 GiB at 1M tokens; 10.5% of V3.2's, 2.0% of a 61-layer GQA-8 model's
+DeepSeek-V4-Flash    3,517 bytes per token,   3.4 GiB at 1M tokens;  7.3% of V3.2's, 2.0% of a 43-layer GQA-8 model's
+DeepSeek-V3.2       48,068 bytes per token,  46.9 GiB at 1M tokens
+GQA-8, 61 layers   249,856 bytes per token, 244.0 GiB at 1M tokens
+V4-Pro: 97% of its cache is in the 30 CSA layers; the 31 HCA layers hold 3%

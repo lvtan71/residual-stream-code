@@ -1,0 +1,2 @@
+log-loss      after 500 steps: w =  1.746, b = -1.460, accuracy = 0.792
+squared error after 500 steps: w = -4.869, b = -1.480, accuracy = 0.500

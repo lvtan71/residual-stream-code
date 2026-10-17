@@ -1,0 +1,4 @@
+the 21 matrix multiplies alone, forward and backward: 45 ms, 1960 GFLOP/s
+attention's fused call, 4 layers, dropout 0.0: 40 ms
+attention's fused call, 4 layers, dropout 0.2: 53 ms
+AdamW's update of all parameters: 1.5 ms

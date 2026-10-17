@@ -1,0 +1,28 @@
+3,000 steps of Adam. Differences are paired, against no dropout at the same decay.
+dropout 0.0  decay 0.0  val CE 1.115                  val acc 0.667                  mean top p 0.857  top-2 logit gap  3.85  top p when wrong 0.752
+dropout 0.1  decay 0.0  val CE 1.228  +0.113 ± 0.052  val acc 0.680  +0.013 ± 0.023  mean top p 0.874  top-2 logit gap  4.43  top p when wrong 0.786
+dropout 0.3  decay 0.0  val CE 1.462  +0.347 ± 0.080  val acc 0.686  +0.019 ± 0.032  mean top p 0.910  top-2 logit gap  5.80  top p when wrong 0.840
+dropout 0.5  decay 0.0  val CE 1.661  +0.546 ± 0.132  val acc 0.679  +0.011 ± 0.027  mean top p 0.926  top-2 logit gap  6.93  top p when wrong 0.860
+dropout 0.7  decay 0.0  val CE 1.513  +0.397 ± 0.116  val acc 0.684  +0.016 ± 0.029  mean top p 0.913  top-2 logit gap  6.54  top p when wrong 0.843
+dropout 0.0  decay 0.3  val CE 0.953                  val acc 0.683                  mean top p 0.807  top-2 logit gap  2.95  top p when wrong 0.711
+dropout 0.1  decay 0.3  val CE 0.950  -0.003 ± 0.034  val acc 0.693  +0.010 ± 0.027  mean top p 0.822  top-2 logit gap  3.18  top p when wrong 0.719
+dropout 0.3  decay 0.3  val CE 0.974  +0.021 ± 0.044  val acc 0.704  +0.021 ± 0.038  mean top p 0.845  top-2 logit gap  3.58  top p when wrong 0.751
+dropout 0.5  decay 0.3  val CE 1.018  +0.065 ± 0.058  val acc 0.704  +0.021 ± 0.040  mean top p 0.864  top-2 logit gap  3.99  top p when wrong 0.772
+dropout 0.7  decay 0.3  val CE 1.016  +0.062 ± 0.060  val acc 0.701  +0.019 ± 0.034  mean top p 0.864  top-2 logit gap  4.12  top p when wrong 0.767
+dropout 0.0  decay 1.0  val CE 0.879                  val acc 0.680                  mean top p 0.762  top-2 logit gap  2.41  top p when wrong 0.658
+dropout 0.1  decay 1.0  val CE 0.869  -0.011 ± 0.046  val acc 0.689  +0.009 ± 0.024  mean top p 0.787  top-2 logit gap  2.67  top p when wrong 0.675
+dropout 0.3  decay 1.0  val CE 0.865  -0.014 ± 0.054  val acc 0.698  +0.017 ± 0.041  mean top p 0.792  top-2 logit gap  2.76  top p when wrong 0.683
+dropout 0.5  decay 1.0  val CE 0.846  -0.033 ± 0.057  val acc 0.715  +0.035 ± 0.034  mean top p 0.793  top-2 logit gap  2.76  top p when wrong 0.692
+dropout 0.7  decay 1.0  val CE 0.809  -0.070 ± 0.056  val acc 0.714  +0.034 ± 0.032  mean top p 0.775  top-2 logit gap  2.55  top p when wrong 0.662
+dropout 0.0  decay 3.0  val CE 0.809                  val acc 0.694                  mean top p 0.719  top-2 logit gap  1.94  top p when wrong 0.605
+dropout 0.1  decay 3.0  val CE 0.806  -0.003 ± 0.017  val acc 0.690  -0.004 ± 0.020  mean top p 0.715  top-2 logit gap  1.93  top p when wrong 0.596
+dropout 0.3  decay 3.0  val CE 0.799  -0.010 ± 0.022  val acc 0.689  -0.005 ± 0.024  mean top p 0.705  top-2 logit gap  1.86  top p when wrong 0.582
+dropout 0.5  decay 3.0  val CE 0.781  -0.028 ± 0.025  val acc 0.707  +0.014 ± 0.025  mean top p 0.678  top-2 logit gap  1.68  top p when wrong 0.561
+dropout 0.7  decay 3.0  val CE 0.806  -0.004 ± 0.035  val acc 0.698  +0.004 ± 0.025  mean top p 0.606  top-2 logit gap  1.25  top p when wrong 0.492
+dropout 0.0  decay 10.0 val CE 0.940                  val acc 0.670                  mean top p 0.482  top-2 logit gap  0.67  top p when wrong 0.411
+dropout 0.1  decay 10.0 val CE 0.962  +0.022 ± 0.018  val acc 0.647  -0.022 ± 0.028  mean top p 0.469  top-2 logit gap  0.62  top p when wrong 0.403
+dropout 0.3  decay 10.0 val CE 1.021  +0.081 ± 0.027  val acc 0.629  -0.041 ± 0.043  mean top p 0.430  top-2 logit gap  0.46  top p when wrong 0.376
+dropout 0.5  decay 10.0 val CE 1.104  +0.164 ± 0.031  val acc 0.620  -0.050 ± 0.042  mean top p 0.380  top-2 logit gap  0.33  top p when wrong 0.342
+dropout 0.7  decay 10.0 val CE 1.246  +0.306 ± 0.036  val acc 0.443  -0.227 ± 0.042  mean top p 0.312  top-2 logit gap  0.07  top p when wrong 0.304
+chosen on validation: dropout 0.5, decay 3.0; without dropout: decay 3.0
+test CE: 0.776 chosen, 0.798 decay only, 1.083 neither. Dropout's own share: -0.022 ± 0.024; decay's: -0.285 ± 0.097

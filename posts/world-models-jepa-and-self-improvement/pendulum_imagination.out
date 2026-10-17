@@ -1,0 +1,6 @@
+error of imagined angles against the real ones (radians; a random guess would be
+off by about 1.8 root-mean-square), 1,000 start states, 3 seeds
+        steps imagined        1        5       15       50      100
+  RMS error, seed mean   0.0029   0.0148   0.0493   0.1205   0.2679
+median error, seed mean   0.0023   0.0114   0.0387   0.0710   0.1448
+   RMS, per seed at 15   0.0247   0.0645   0.0586

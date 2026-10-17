@@ -1,0 +1,6 @@
+GPT-3 175B (MHA)               KV cache    4608 KiB per token; attention weights per layer  604.0M (with full MHA:  604.0M)
+Llama 2 70B (GQA, 8 groups)    KV cache     320 KiB per token; attention weights per layer  151.0M (with full MHA:  268.4M)
+Llama 3 8B (GQA, 8 groups)     KV cache     128 KiB per token; attention weights per layer   41.9M (with full MHA:   67.1M)
+DeepSeek-V2 (MLA)              KV cache      68 KiB per token; the same heads with MHA: 3,840 KiB, 57 times as much
+Mixtral 8x7B                    47.0B parameters, 13.0B used per token (28%): per-token FLOPs of a 13B model, memory of a 47B one
+DeepSeek-V2                    236.0B parameters, 21.0B used per token (9%): per-token FLOPs of a 21B model, memory of a 236B one

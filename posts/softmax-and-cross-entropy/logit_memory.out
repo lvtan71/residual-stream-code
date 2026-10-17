@@ -1,0 +1,4 @@
+B=1, T=8192: 8,192 positions x 128,256 = 1.05 B logits; FP32 3.9 GiB, and the same again for their gradient
+B=8, T=8192: 65,536 positions x 128,256 = 8.41 B logits; FP32 31.3 GiB, and the same again for their gradient
+the hidden states that produce them, BF16: 0.50 GiB
+with activation checkpointing, the saved input of each of 32 layers: 16 GiB

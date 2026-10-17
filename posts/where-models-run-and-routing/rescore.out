@@ -1,0 +1,12 @@
+                  small  large
+capital             96%    94%   small's confidence when wrong: median 0.78
+multiplication      54%    84%   small's confidence when wrong: median 0.86
+weekday             18%    26%   small's confidence when wrong: median 0.67
+all                 56%    68%
+
+cascade, escalate below 0.7                61%  gain over small   +5% [+1%, +9%]  escalated: capital 1, multiplication 1, weekday 26
+cascade, escalate below 0.9                65%  gain over small   +9% [+3%, +15%]  escalated: capital 6, multiplication 17, weekday 41
+route by type: only capitals to small      69%  gain over small  +13% [+6%, +19%]  escalated: capital 0, multiplication 50, weekday 50
+route by type: only multiplication to large   66%  gain over small  +10% [+5%, +16%]  escalated: capital 0, multiplication 50, weekday 0
+always large                               68%  gain over small  +12% [+5%, +20%]  escalated: capital 50, multiplication 50, weekday 50
+oracle (escalate exactly when small is wrong)   73%  gain over small  +17% [+11%, +23%]  escalated: capital 2, multiplication 23, weekday 41

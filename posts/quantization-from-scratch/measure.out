@@ -1,0 +1,27 @@
+worked, 8 weights to 4 bits: scale 0.0520, zero-point 6
+  integers [0, 4, 6, 7, 8, 9, 10, 15]
+  back     [-0.312, -0.104, 0.0, 0.052, 0.104, 0.156, 0.208, 0.468]
+
+=== layer 12: input channels' mean |x|: median 0.067, largest 0.52 (8x); top 1% of channels carry 3% of the total
+round-to-nearest, output error (held-out tokens):
+                   8 bits       4 bits       3 bits
+per tensor          4.95%       72.79%       94.82%
+per channel         1.08%       18.17%       38.32%
+group 128           0.64%       10.98%       23.31%
+4 bits, blocks of 64: asymmetric 9.66%, symmetric 11.74%, NF4 9.34%
+group 128, output error (held-out tokens):
+  4 bits: round-to-nearest 10.98%; GPTQ 8.99%; AWQ scaling only 10.90% (alpha 0.2), with clipping 10.37%
+  3 bits: round-to-nearest 23.31%; GPTQ 19.44%; AWQ scaling only 23.25% (alpha 0.2), with clipping 20.52%
+  GPTQ at 4 bits with 2,048 calibration tokens, by damping (fraction of H's mean diagonal): 0.01: 12.78%, 0.1: 10.48%, 1: 9.46%; on its own calibration tokens (0.01): 3.76%
+
+=== layer 22: input channels' mean |x|: median 0.146, largest 8.53 (58x); top 1% of channels carry 12% of the total
+round-to-nearest, output error (held-out tokens):
+                   8 bits       4 bits       3 bits
+per tensor          3.69%       57.74%       85.07%
+per channel         1.03%       17.38%       36.14%
+group 128           0.63%       10.64%       22.62%
+4 bits, blocks of 64: asymmetric 9.40%, symmetric 11.53%, NF4 8.51%
+group 128, output error (held-out tokens):
+  4 bits: round-to-nearest 10.64%; GPTQ 6.87%; AWQ scaling only 8.15% (alpha 0.4), with clipping 7.70%
+  3 bits: round-to-nearest 22.62%; GPTQ 15.06%; AWQ scaling only 17.13% (alpha 0.4), with clipping 15.47%
+  GPTQ at 4 bits with 2,048 calibration tokens, by damping (fraction of H's mean diagonal): 0.01: 8.23%, 0.1: 7.03%, 1: 6.95%; on its own calibration tokens (0.01): 2.64%

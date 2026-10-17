@@ -1,0 +1,7 @@
+one question, two batches: its BatchNorm outputs differ by 0.37 on average (their typical size is 0.91)
+batch of   2: batch mean is off by 0.55 standard deviations on average
+batch of   8: batch mean is off by 0.28 standard deviations on average
+batch of  32: batch mean is off by 0.13 standard deviations on average
+batch of 128: batch mean is off by 0.04 standard deviations on average
+batch of 1: BatchNorm output 0.0 everywhere; LayerNorm output still varies, size 0.77
+change the last token only: first token's output moves by 1.294 with BatchNorm, 0.000 with LayerNorm

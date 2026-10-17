@@ -1,0 +1,3 @@
+lr 1e-03, dropout 0.0: train loss 4.966 bits after 1,000 steps; two contexts' predictions differ by 0.000
+lr 3e-04, dropout 0.2: train loss 4.967 bits after 1,000 steps; two contexts' predictions differ by 0.000
+lr 1e-04, dropout 0.2: train loss 4.726 bits after 1,000 steps; two contexts' predictions differ by 0.294

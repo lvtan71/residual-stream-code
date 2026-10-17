@@ -1,0 +1,7 @@
+379 words, 120 training questions
+step   100: train loss 0.2138  val loss 0.3951  |w|  4.02
+step   400: train loss 0.0701  val loss 0.3196  |w|  8.32
+step  1600: train loss 0.0175  val loss 0.2880  |w| 13.43
+step  3200: train loss 0.0086  val loss 0.2870  |w| 16.01
+step  6400: train loss 0.0043  val loss 0.2918  |w| 18.56
+step 25600: train loss 0.0011  val loss 0.3117  |w| 23.64

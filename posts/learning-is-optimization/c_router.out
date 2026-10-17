@@ -1,0 +1,5 @@
+w = 1.746, b = -1.460, log-loss = 0.4837
+P(serving | 0 keyword hits) = 0.188
+P(serving | 1 keyword hits) = 0.571
+P(serving | 2 keyword hits) = 0.884
+accuracy = 0.792

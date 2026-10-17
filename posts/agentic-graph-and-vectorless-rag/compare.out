@@ -1,0 +1,30 @@
+446 sections in 66 posts; 30 questions; counts are out of 30
+
+method                                     right post  right section  section in top 5
+keyword (BM25)                                     17             12                20
+dense (MiniLM)                                     14             10                20
+hybrid (fused)                                     20             12                24
+vectorless, titles, number only                     2              1                 -
+   59 calls, 1,374 prompt tokens per question, 1 invalid replies; picks by fifth of the list 2/0/7/2/18
+vectorless, +descriptions, number only              0              0                 -
+   60 calls, 8,084 prompt tokens per question, 3 invalid replies
+vectorless, 3 levels, number only                   3              3                 -
+   88 calls, 2,467 prompt tokens per question, 1 invalid replies; right topic 12 (of 13 topics), then right post 3 of those
+   titles reversed: right post 0; picks by fifth of the reversed list 5/0/20/0/5
+   section only, right post given: 18 (chance 4.1); 0 invalid replies
+vectorless, titles, reasoning                       0              0                 -
+   60 calls, 1,406 prompt tokens per question, 7 invalid replies; picks by fifth of the list 5/4/11/0/10
+vectorless, +descriptions, reasoning                0              0                 -
+   60 calls, 8,091 prompt tokens per question, 5 invalid replies
+vectorless, 3 levels, reasoning                     3              2                 -
+   79 calls, 2,146 prompt tokens per question, 15 invalid replies; right topic 6 (of 13 topics), then right post 3 of those
+   titles reversed: right post 1; picks by fifth of the reversed list 14/3/10/0/3
+   section only, right post given: 20 (chance 4.1); 1 invalid replies
+
+questions where BM25 found the right post and dense search didn't:
+   'What limits the speed of the plain attention implementation on': rarest shared words ['implementation', 'speed', 'gpu']
+   'How does the preference loss follow from maximizing reward und': rarest shared words ['preference', 'kl', 'reward']
+   "How is the output kept exactly distributed as the large model'": rarest shared words ['guesser', 'distributed', 'exactly']
+   'How do two sequences share the same prompt memory until one of': rarest shared words ['share', 'sequences', 'prompt']
+   "What maps a sequence's logical positions to physical memory ch": rarest shared words ['maps', 'logical', 'physical']
+   'How is term frequency saturated and document length normalized': rarest shared words ['saturated', 'keyword', 'document']

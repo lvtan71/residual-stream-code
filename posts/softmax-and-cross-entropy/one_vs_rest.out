@@ -1,0 +1,3 @@
+val accuracy: softmax 0.621, one-vs-rest 0.624 (difference +0.003 ± 0.016)
+one-vs-rest scores: sum is off from 1 by 0.19 on average; no route above 0.5 on 53% of questions (softmax: 33%)
+val CE: softmax 0.891, one-vs-rest rescaled to sum to 1 0.885 (difference -0.006 ± 0.011)

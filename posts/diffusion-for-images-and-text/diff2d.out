@@ -1,0 +1,25 @@
+linear schedule, beta from 1e-4 to 0.02 over T = 1000 steps
+    t    abar_t  signal sqrt(abar)  noise sqrt(1-abar)       SNR
+    1   0.99990             0.9999              0.0100      9999
+   10   0.99811             0.9991              0.0435     526.8
+  100   0.89702             0.9471              0.3209      8.71
+  250   0.52409             0.7239              0.6899     1.101
+  500   0.07859             0.2803              0.9599   0.08529
+  750   0.00335             0.0579              0.9983  0.003362
+ 1000   0.00004             0.0064              1.0000 4.036e-05
+
+unconditional samples (2,000 per run); modes covered, then share near a mode, per seed
+DDPM, 1000 steps     8  8  8     84%   85%   85%
+DDIM, 100 steps      8  8  8     83%   82%   81%
+DDIM, 50 steps       8  8  8     81%   80%   80%
+DDIM, 20 steps       8  8  8     76%   73%   73%
+DDIM, 10 steps       8  8  8     58%   55%   51%
+DDIM, 5 steps        0  0  1      3%    3%    3%
+DDIM, 2 steps        0  1  0      2%    2%    2%
+
+classifier-free guidance, DDIM 50 steps, 250 samples asked for each mode (2,000 per run)
+   w   landed on the mode asked for   share near any mode
+   0                10%   10%   11%       83%   81%   81%
+   1               100%  100%  100%      100%  100%  100%
+   3                89%   93%   89%       89%   93%   89%
+   7                 4%    0%   12%        4%    0%   12%

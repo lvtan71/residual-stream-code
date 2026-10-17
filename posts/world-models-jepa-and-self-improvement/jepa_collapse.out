@@ -1,0 +1,7 @@
+variant                      final loss  embedding std  probe R^2   (mean of 3 seeds, 10,000 steps)
+untrained encoder                0.3205       0.055590       0.33
+shared encoder, no tricks        0.0000       0.000174       0.07
+stop-gradient                    1.3830       0.253997       0.61
+EMA target + predictor           1.9868       0.306188       0.61
+EMA, no predictor                0.0000       0.000054      -0.00
+VICReg regularizers             15.7369       0.927692       0.61

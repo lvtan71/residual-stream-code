@@ -1,0 +1,30 @@
+outcome scored as asked ('Answer: <number>'), 20 tasks x 5 runs:
+  pass@1 0.15   pass^1 0.15
+  pass@3 0.39   pass^3 0.00
+  pass@5 0.55   pass^5 0.00
+  tasks solved in all 5 runs: 0 of 20
+outcome scored by the last number in the reply, 20 tasks x 5 runs:
+  pass@1 0.93   pass^1 0.93
+  pass@3 1.00   pass^3 0.81
+  pass@5 1.00   pass^5 0.70
+  tasks solved in all 5 runs: 14 of 20
+
+trajectories (100 runs):
+   81  right, the calculator produced the answer
+   11  right, the calculator didn't produce it
+    4  wrong: no calculator
+    3  wrong: asked the calculator the wrong question
+    1  cut off by the token budget (still right)
+  calculator calls per run: none 14, one 84, two or more 2 (the instructions asked for one per arithmetic step: two)
+  runs with no 'Answer:' line: 83; of those, replies saying 'the answer is': 19
+
+dashboard: 100 runs, 186 model calls, 88 tool calls
+  per run: 1.9 model calls, 454 tokens in, 81 out; per successful run: 575 tokens
+  run latency p50 2.5 s, p95 10.9 s; model call p50 1.55 s; tool call p50 33 us
+
+one trace (task 9, right answer 12975):
+  invoke_agent warehouse-helper                0 ms  +  2468 ms  
+      chat qwen2.5-1.5b-instruct                   1 ms  +  1594 ms  in 213 out 33 tokens, finish stop
+      execute_tool calculator                   1595 ms  +     0 ms  {'expression': '8113-(423+7*755)'} -> 2405
+      chat qwen2.5-1.5b-instruct                1596 ms  +   872 ms  in 268 out 12 tokens, finish stop
+  final reply: 'The warehouse holds 2405 boxes now.'

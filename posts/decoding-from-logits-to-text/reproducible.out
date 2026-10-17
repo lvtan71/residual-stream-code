@@ -1,0 +1,2 @@
+top-p 0.9, the same seed twice: identical text for 5 of 5 prompts
+greedy, alone vs in a padded batch of 4: largest first-step logit difference 0.039 (median 0.027); the 64-token outputs differ for 3 of 20 prompts, first at token [22, 37, 52]

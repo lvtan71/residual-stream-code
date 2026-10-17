@@ -11,7 +11,7 @@ Run them from this folder:
 | `lora.py` | The cost of serving many LoRA adapters from one model: shared, gathered, and mixed. | GPU |
 | `tp.py` | Tensor parallelism's all-reduce traffic for Llama-3-70B on eight H100s. | Nothing; arithmetic only |
 
-`lm.py` loads the model and tokenizer; the other scripts import it. A different GPU will give different times, so `engine.py` run with your own `cost.npy` will give different numbers; the comparison between schedulers is the point.
+`lm.py` loads the model and tokenizer; the other scripts import it. A different GPU will give different times, so `engine.py` run with your own `cost.npy` will give different numbers; the comparison between schedulers is the point. The outputs here came from an Apple M4 laptop with torch 2.14.1 and transformers 5.19.0 (`tp.py`, plain Python, with the system Python 3.9.6).
 
 ```bash
 pip install torch transformers huggingface_hub numpy

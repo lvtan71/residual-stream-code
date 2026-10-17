@@ -1,0 +1,8 @@
+Mixtral 8x7B: one expert 176M weights; all experts, all layers 45.1B; used per token 11.3B
+DeepSeek-V3: one routed expert 44M weights; routed experts, all layers 654B of the reported 671B; MLP weights used per token 24.2B of the reported 37B active
+all-to-all per token: 168 KiB per MoE layer, 9.5 MiB across the 58 MoE layers (at most; tokens whose experts share a GPU send less)
+batch     1: about   8.0 of 256 experts touched per layer,    1.0 tokens per touched expert
+batch     8: about  57.4 of 256 experts touched per layer,    1.1 tokens per touched expert
+batch    64: about 222.4 of 256 experts touched per layer,    2.3 tokens per touched expert
+batch   512: about 256.0 of 256 experts touched per layer,   16.0 tokens per touched expert
+batch 4,096: about 256.0 of 256 experts touched per layer,  128.0 tokens per touched expert

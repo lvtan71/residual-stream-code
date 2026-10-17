@@ -1,0 +1,12 @@
+group size 4: accuracy / mean length of right answers / of wrong answers, 5 seeds, at update
+                                           1                    50                   100                   400
+GRPO                      0.22   5.02   4.03    0.78   4.27   4.53    0.96   3.59   4.43    0.99   2.83   5.46
+GRPO, summed              0.22   5.02   4.03    0.84   5.03   4.07    0.97   5.03   3.89    1.00   4.98   5.00
+Dr. GRPO, per answer      0.22   5.02   4.03    0.78   4.28   4.50    0.96   3.58   4.44    0.99   2.83   5.15
+Dr. GRPO                  0.22   5.02   4.03    0.84   5.02   4.03    0.97   5.04   3.83    1.00   5.00   5.46
+group size 16: accuracy / mean length of right answers / of wrong answers, 5 seeds, at update
+                                           1                    50                   100                   400
+GRPO                      0.20   4.95   3.97    0.91   3.28   4.50    0.99   2.55   4.38    1.00   2.30   5.08
+GRPO, summed              0.20   4.95   3.97    0.93   4.92   4.01    0.99   4.86   4.05    1.00   4.84   3.95
+Dr. GRPO, per answer      0.20   4.95   3.97    0.91   3.26   4.51    0.98   2.62   4.57    1.00   2.35   4.58
+Dr. GRPO                  0.20   4.95   3.97    0.92   4.93   3.97    0.98   4.88   3.99    1.00   4.85   3.40

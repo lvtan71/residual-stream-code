@@ -1,0 +1,10 @@
+corpus: 557,546 tokens -> 1,115 chunks of 600 tokens
+vector index: 1,115 chunks embedded once, 0 LLM calls
+
+GraphRAG at 1.42 summaries per chunk: 3,345 extraction calls + 1,583 summaries = 4,928 LLM calls
+  14.5M tokens in, 2.2M out (26x the corpus as input); $2.34 at $0.10/$0.40 per M, $76.78 at $3/$15 per M
+GraphRAG at 1.61 summaries per chunk: 3,345 extraction calls + 1,795 summaries = 5,140 LLM calls
+  15.3M tokens in, 2.4M out (27x the corpus as input); $2.48 at $0.10/$0.40 per M, $81.55 at $3/$15 per M
+
+per global-search query: 16,725 tokens of summaries at C0, 468,300 at C3 (map calls of up to 8,000 tokens each, before prompts: 3 and 59)
+per vector-search query: one embedding, then the top 5 chunks, about 3,000 tokens

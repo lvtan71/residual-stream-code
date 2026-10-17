@@ -1,0 +1,3 @@
+norm=None: largest relative error 3.8e-08
+norm=layer: largest relative error 6.7e-08
+norm=rms: largest relative error 4.9e-07

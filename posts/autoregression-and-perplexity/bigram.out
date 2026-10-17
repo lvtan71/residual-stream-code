@@ -1,0 +1,11 @@
+p('t') = 0.0635
+p('h' | 't') = 0.2066
+p('e' | 'h') = 0.4248
+p(' ' | 'e') = 0.2166
+p('c' | ' ') = 0.0259
+p('a' | 'c') = 0.1363
+p('c' | 'a') = 0.0674
+p('h' | 'c') = 0.1844
+p('e' | 'h') = 0.4248
+p('the cache') = product = 2.250e-08;  -log2 p = 25.4 bits for 9 characters
+bigram model on held-out posts: 2.849 nats per character, perplexity 17.3, 4.110 bits per character

@@ -1,0 +1,8 @@
+this blog's 2 tools: 295 tokens of definitions, 148 per tool
+  of which output schemas: 101 tokens
+5 servers x 15 tools at that size: 11,062 tokens in every request's prompt
+
+one skill's metadata (name and description): 41 tokens
+  10 skills: metadata always loaded     410 tokens; every body loaded up front at ~4,000 tokens each    40,000 tokens
+  50 skills: metadata always loaded   2,050 tokens; every body loaded up front at ~4,000 tokens each   200,000 tokens
+ 200 skills: metadata always loaded   8,200 tokens; every body loaded up front at ~4,000 tokens each   800,000 tokens

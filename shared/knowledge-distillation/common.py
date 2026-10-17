@@ -6,7 +6,7 @@ from transformers import AutoTokenizer
 from huggingface_hub import snapshot_download
 GPU = "cuda" if torch.cuda.is_available() else "mps" if torch.backends.mps.is_available() else "cpu"  # notebook: the post ran on "mps"
 
-# Shared by the teacher and student scripts: "Fine-Tuning, and What It Destroys" data, batches and
+# Shared by the teacher and student scripts: post 25's data, batches and
 # bits-per-byte measurement.
 STUDENT = snapshot_download("Qwen/Qwen2.5-0.5B",
                             revision="060db6499f32faf8b98477b0a26969ef7d8b9987")

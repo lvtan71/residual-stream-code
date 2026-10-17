@@ -1,0 +1,2 @@
+rewrite a paragraph  (666 tokens): draft model, greedy 79%, sampled 75%; prompt lookup 42%
+open question        (720 tokens): draft model, greedy 72%, sampled 70%; prompt lookup 6%

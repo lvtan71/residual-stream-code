@@ -1,0 +1,4 @@
+length 40, no attention, seed 0, 3,000 steps: digits right 0.490, whole sequences right 0.000
+length 40, no attention, seed 1, 3,000 steps: digits right 0.513, whole sequences right 0.000
+length 40, attention   , seed 0, 3,000 steps: digits right 0.195, whole sequences right 0.000
+length 40, attention   , seed 1, 3,000 steps: digits right 0.177, whole sequences right 0.000

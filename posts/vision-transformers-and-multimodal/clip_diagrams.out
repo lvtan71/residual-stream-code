@@ -1,0 +1,9 @@
+19 diagrams; chance of the right match at random: 1 in 19 (5%)
+
+diagrams             caption                   caption -> diagram  diagram -> caption  (right one first)
+as drawn             the post's alt text                 5 of 19            4 of 19
+as drawn             the file name as words              4 of 19            3 of 19
+with labels hidden   the post's alt text                 1 of 19            2 of 19
+with labels hidden   the file name as words              1 of 19            2 of 19
+
+alt texts: median 40 tokens, 3 of 19 cut at 77

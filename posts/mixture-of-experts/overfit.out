@@ -1,0 +1,2 @@
+dense                              s0: 1000: 2.145 / 1000 on training text: 1.807 / 2000: 2.047 / 2000 on training text: 1.576 / 3000: 2.051 / 3000 on training text: 1.455 / 4000: 2.029 / 4000 on training text: 1.365  (61 passes)
+8 experts, top-1, balancing loss   s0: 1000: 2.095 / 1000 on training text: 1.658 / 2000: 2.104 / 2000 on training text: 1.228 / 3000: 2.292 / 3000 on training text: 0.915 / 4000: 2.553 / 4000 on training text: 0.642 / busiest expert: 17% 15% 14% 15%  (61 passes)

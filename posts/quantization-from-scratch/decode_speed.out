@@ -1,0 +1,8 @@
+ batch  BF16 step  INT4 step  speedup   bound by
+     1     4.78 ms     1.27 ms     3.8x   BF16 memory, INT4 memory
+     8     4.78 ms     1.27 ms     3.8x   BF16 memory, INT4 memory
+    64     4.78 ms     1.27 ms     3.8x   BF16 memory, INT4 memory
+   128     4.78 ms     2.07 ms     2.3x   BF16 memory, INT4 compute
+   256     4.78 ms     4.14 ms     1.2x   BF16 memory, INT4 compute
+  1024    16.57 ms    16.57 ms     1.0x   BF16 compute, INT4 compute
+compute-bound from a batch of 78 (INT4) and 295 (BF16)

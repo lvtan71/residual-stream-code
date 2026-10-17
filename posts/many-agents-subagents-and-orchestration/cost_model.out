@@ -1,0 +1,11 @@
+posts to read: 5,972, 8,695, 5,638, 5,703, 8,117, 8,626 (total 42,751 tokens)
+
+assumptions                                        tokens read  cached cost  largest context  sequential calls
+each post in 4 reads, no extra search  single          651,186      124,862           51,951                25
+                                       lead + 6        199,678      102,711           12,095                 7
+each post in 1 read                    single          164,128       69,946           46,551                 7
+                                       lead + 6         79,751       84,509           11,195                 4
+workers search twice as much           single          651,186      124,862           51,951                25
+                                       lead + 6        306,555      162,563           20,790                 7
+
+what reaches the lead: 3,600 tokens of summaries for 42,751 tokens of posts (8.4%)

@@ -1,0 +1,8 @@
+MmBackward0
+  ReluBackward0
+    MmBackward0
+      AccumulateGrad
+  AccumulateGrad
+layer applied 1x: 3 nodes in the graph
+layer applied 3x: 7 nodes in the graph
+under no_grad: grad_fn = None

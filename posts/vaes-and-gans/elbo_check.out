@@ -1,0 +1,10 @@
+log p(x), exact: -2.3429
+true posterior: mean (0.365, 0.618), std (0.442, 0.479), correlation -0.210
+
+q(z|x)                               recon (sampled, exact) KL to prior     ELBO     gap KL to post
+best diagonal Gaussian                  -1.3081    -1.3066       1.0590  -2.3655  0.0226     0.0226
+posterior's mean and marginal stds      -1.3417    -1.3435       1.0231  -2.3666  0.0237     0.0237
+right mean, stds 3x too wide            -8.0050    -8.0153       0.5245  -8.5398  6.1969     6.1969
+the prior, N(0, I)                      -6.1847    -6.1916       0.0000  -6.1916  3.8487     3.8487
+
+KL(N(mu, sigma^2) || N(0, I)) for mu = (1, -0.5), sigma = (0.5, 2): 1.7500 nats

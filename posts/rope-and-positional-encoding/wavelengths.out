@@ -1,0 +1,9 @@
+ pair        base 10,000      base 500,000
+    0                6.3               6.3
+    8               19.9              32.4
+   16               62.8             167.1
+   32              628.3           4,442.9
+   48            6,283.2         118,142.8
+   63           54,410.1       2,559,195.5
+base 10,000: 14 of 64 pairs never finish one turn within 8,192 positions,  0 within 131,072
+base 500,000: 29 of 64 pairs never finish one turn within 8,192 positions, 15 within 131,072

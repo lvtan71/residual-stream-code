@@ -1,0 +1,6 @@
+raw UTF-8 bytes:                         8.00 bits per byte
+uniform guess over 148 characters:        7.13
+unigram character counts:                4.95
+zlib -9  on the held-out posts alone 3.15; given the training posts 3.03
+bz2 -9   on the held-out posts alone 2.87; given the training posts 2.34
+xz -9e   on the held-out posts alone 2.95; given the training posts 2.44

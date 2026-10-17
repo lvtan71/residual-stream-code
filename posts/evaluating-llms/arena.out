@@ -1,0 +1,15 @@
+500 votes:
+  model A: true     0, estimated     0, 95% interval     0 to     0
+  model B: true    17, estimated    44, 95% interval    -9 to    93
+  model C: true    35, estimated    51, 95% interval    -2 to   104
+  model D: true   104, estimated   133, 95% interval    73 to   184
+5,000 votes:
+  model A: true     0, estimated     0, 95% interval     0 to     0
+  model B: true    17, estimated    19, 95% interval     5 to    38
+  model C: true    35, estimated    33, 95% interval    16 to    53
+  model D: true   104, estimated   102, 95% interval    87 to   120
+50,000 votes:
+  model A: true     0, estimated     0, 95% interval     0 to     0
+  model B: true    17, estimated    17, 95% interval    11 to    22
+  model C: true    35, estimated    30, 95% interval    25 to    36
+  model D: true   104, estimated   100, 95% interval    95 to   105

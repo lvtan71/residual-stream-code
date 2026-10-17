@@ -1,0 +1,3 @@
+16 KB of threadgroup memory: ok
+32 KB of threadgroup memory: ok
+64 KB of threadgroup memory: refused (Threadgroup memory size (65536) exceeds the maximum threadgr)

@@ -1,0 +1,19 @@
+PROMPT: All three need about the same number of updates to get close, around 50. But an update on one question costs a 24th of a full-batch update. So SGD gets there after seeing the data about twice, where
+
+[greedy]" as the other two need to see the data about 10 times. \n\nSo, the question is, why does SGD need to see the data about 10 times, while the other two need to see the data about 50 times? \n\nI understand that SGD is a stochastic algorithm, but I don't understand w"
+
+[beam search, 4 beams]' mini-batch gets there after seeing the data about 1.5 times. This is because mini-batch has to see the data 1.5 times to get the same number of updates as SGD, and SGD has to see the data 2 times to get the same number of updates as mini-batch. So mini-batch '
+
+[greedy + repetition 1.2]" as the other two need to see it 3 times. I'm not sure if this is a good thing or bad, but my intuition says that SGD should be faster than both of them.\n\nI've been trying to understand why and how these things work in practice (and what they mean), so any hel"
+
+[pure sampling, T=1]' agrad and rose have each seen almost the entire batch of updates. Worst case, I suppose. So far, by updating the golden set, I have trouble seeing a good upper bound on the number of updates it takes. Can anyone help with referencing the complexities to get t'
+
+[top-p 0.9]' as Batch would take 15 minutes for a full-batch. \\n\\nA Batch update with a full-batch would result in a new estimate for the error after every update. If, instead, the batch update with a partial batch is used, then the error can only be updated after every $'
+
+[min-p 0.1]' as Adam and RMSProp each take about the same amount of updates. \\n\\n'
+
+[T=1.5 alone]' agodly rose closes in without using the heavy Smith Archive warmup quadrant.\\nTS_USD_OPEN安い decimal by:", finelist الأمم synchronization method with trouble�iers SMART công&PubOrganwoo-oriented cetверParser).\\-output[i referencing執INCLUDINGCKكف纂-language sub_'
+
+[T=1.5 + min-p 0.1]' SGA would have seen it almost four times over.\\nI can tell you the size of my learning batches and the total number of updates needed, so you could simulate your own. Would the algorithm speed up more quickly than it would if the batch size and total updates '
+
+[what the post says]" full-batch descent needs 52 passes. The price is noise, and it shows in the last two columns. With a constant learning rate, SGD never settles. After 5,000 updates its median loss is 0.4949 against the optimum's 0.4837, and its worst run is at 0.7688, knocked"

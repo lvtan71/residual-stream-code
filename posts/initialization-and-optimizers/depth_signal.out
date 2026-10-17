@@ -1,0 +1,7 @@
+                          activation size after layer         gradient reaching 
+                            1         5        10        20   layer 20   layer 1
+N(0, 0.01^2), ReLU   1.13e-01  1.98e-05  3.68e-10  1.37e-19   1.14e-01  1.21e-19
+N(0, 1), ReLU        1.13e+01  1.98e+05  3.68e+10  1.37e+21   1.14e+01  1.21e+21
+Xavier 1/n, ReLU     7.07e-01  1.89e-01  3.35e-02  1.14e-03   7.15e-01  1.00e-03
+He 2/n, ReLU         1.00e+00  1.07e+00  1.07e+00  1.16e+00   1.01e+00  1.03e+00
+Xavier 1/n, tanh     6.28e-01  3.21e-01  2.27e-01  1.58e-01   9.73e-01  1.88e-01

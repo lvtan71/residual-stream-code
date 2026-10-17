@@ -1,0 +1,9 @@
+RNN  seed 0, 3,000 steps: 129,940 parameters, 58 s; train 1.941, validation 2.839 bits/char
+RNN  seed 1, 3,000 steps: 129,940 parameters, 52 s; train 1.946, validation 2.829 bits/char
+RNN  seed 2, 3,000 steps: 129,940 parameters, 52 s; train 1.947, validation 2.832 bits/char
+GRU  seed 0, 3,000 steps: 294,804 parameters, 141 s; train 1.547, validation 2.827 bits/char
+GRU  seed 1, 3,000 steps: 294,804 parameters, 173 s; train 1.575, validation 2.842 bits/char
+GRU  seed 2, 3,000 steps: 294,804 parameters, 168 s; train 1.615, validation 2.812 bits/char
+LSTM seed 0, 3,000 steps: 377,236 parameters, 263 s; train 1.714, validation 2.694 bits/char
+LSTM seed 1, 3,000 steps: 377,236 parameters, 268 s; train 1.729, validation 2.696 bits/char
+LSTM seed 2, 3,000 steps: 377,236 parameters, 257 s; train 1.781, validation 2.690 bits/char

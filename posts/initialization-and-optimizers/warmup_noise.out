@@ -1,0 +1,8 @@
+step     1: typical update 1.000 x eta;  parameters with a rate over 3x its true value: 25.97%
+step     2: typical update 0.708 x eta;  parameters with a rate over 3x its true value: 10.42%
+step     5: typical update 0.452 x eta;  parameters with a rate over 3x its true value:  0.97%
+step    10: typical update 0.329 x eta;  parameters with a rate over 3x its true value:  0.02%
+step   100: typical update 0.231 x eta;  parameters with a rate over 3x its true value:  0.00%
+step  1000: typical update 0.229 x eta;  parameters with a rate over 3x its true value:  0.00%
+step  5000: typical update 0.229 x eta;  parameters with a rate over 3x its true value:  0.00%
+long-run update size, sqrt((1 - b1) / (1 + b1)) = 0.229

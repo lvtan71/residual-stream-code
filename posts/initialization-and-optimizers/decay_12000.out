@@ -1,0 +1,17 @@
+12,000 steps, mini-batches of 16
+no decay  λ 0      val CE 1.128   weight size: common words 1.342, rare words 1.511, ratio 0.89
+SGD + L2  λ 0.0003 val CE 0.912   weight size: common words 0.768, rare words 0.423, ratio 1.82
+SGD + L2  λ 0.001  val CE 0.887   weight size: common words 0.624, rare words 0.329, ratio 1.90
+SGD + L2  λ 0.003  val CE 0.892   weight size: common words 0.496, rare words 0.246, ratio 2.02
+Adam + L2 λ 0.0001 val CE 0.958   weight size: common words 0.904, rare words 0.516, ratio 1.76
+Adam + L2 λ 0.0003 val CE 0.916   weight size: common words 0.771, rare words 0.428, ratio 1.81
+Adam + L2 λ 0.001  val CE 0.890   weight size: common words 0.628, rare words 0.333, ratio 1.89
+Adam + L2 λ 0.003  val CE 0.894   weight size: common words 0.498, rare words 0.249, ratio 2.01
+AdamW     λ 0.1    val CE 0.966   weight size: common words 1.025, rare words 1.093, ratio 0.94
+AdamW     λ 0.3    val CE 0.855   weight size: common words 0.764, rare words 0.818, ratio 0.93
+AdamW     λ 1      val CE 0.867   weight size: common words 0.340, rare words 0.361, ratio 0.94
+chosen on validation: SGD + L2 λ 0.001, Adam + L2 λ 0.001, AdamW λ 0.3
+on test, at the chosen λ:  no decay CE 1.098 acc 0.699, SGD + L2 CE 0.894 acc 0.634, Adam + L2 CE 0.892 acc 0.630, AdamW CE 0.856 acc 0.676
+test, AdamW minus SGD + L2: CE -0.037 ± 0.060, accuracy +0.042 ± 0.040
+test, AdamW minus no decay: CE -0.242 ± 0.098, accuracy -0.022 ± 0.029
+test, SGD + L2 minus no decay: CE -0.205 ± 0.095, accuracy -0.065 ± 0.035

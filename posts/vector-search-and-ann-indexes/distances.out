@@ -1,0 +1,5 @@
+random points,   2 dimensions: nearest / farthest distance = 0.00
+random points,  10 dimensions: nearest / farthest distance = 0.19
+random points, 100 dimensions: nearest / farthest distance = 0.61
+random points, 384 dimensions: nearest / farthest distance = 0.78
+real embeddings,   384 dimensions: nearest / farthest distance = 0.63 (median of 200 queries)

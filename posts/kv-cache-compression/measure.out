@@ -1,0 +1,22 @@
+full cache: 3.063 bits per token, 8 windows
+eviction: keep
+  the last 512 tokens                          4.957  (+1.894 ± 0.031)
+  4 sink tokens + the last 508                 3.235  (+0.172 ± 0.011)
+  the last 256 tokens                          5.254  (+2.191 ± 0.034)
+  4 sink tokens + the last 252                 3.437  (+0.374 ± 0.016)
+  the last 128 tokens                          5.735  (+2.672 ± 0.039)
+  4 sink tokens + the last 124                 3.689  (+0.626 ± 0.021)
+quantization of the cache (keys after RoPE):
+  8-bit, per token                             3.112  (+0.049 ± 0.006)
+  4-bit, per token                             5.912  (+2.849 ± 0.036)
+  4-bit, only values, per token                3.074  (+0.011 ± 0.002)
+  4-bit, only keys, per token                  5.937  (+2.874 ± 0.036)
+  4-bit, keys per channel                      3.087  (+0.024 ± 0.003)
+  2-bit, per token                             11.506  (+8.443 ± 0.059)
+  2-bit, keys per channel                      4.592  (+1.529 ± 0.024)
+  2-bit, keys per channel, last 128 exact (KIVI) 3.388  (+0.325 ± 0.013)
+control: keys per token with the key bias taken out first (before RoPE)
+  4-bit keys, per token, bias removed          3.136  (+0.073 ± 0.006)
+  2-bit keys, per token, bias removed          8.048  (+4.985 ± 0.047)
+layer  0 keys: largest bias 130.0; a token's 64 channels span 243.7 on average,  4.4 without the bias; a channel varies from token to token by 0.40
+layer 12 keys: largest bias   4.4; a token's 64 channels span  11.8 on average,  7.4 without the bias; a channel varies from token to token by 0.75

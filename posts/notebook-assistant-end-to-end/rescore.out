@@ -1,0 +1,4 @@
+answer sentence findable in some chunk: 147/150; among the 4 passages: 135/150
+refused (answer begins with the refusal): 14; of them, with the sentence retrieved: 9; refusals that still cite a passage: 11
+answers: 136; citing the right post among them: 117; citing more than one passage: 25
+cache: 12 of 30 rewordings hit at 0.90; matched their own original: 12; cached answers that were refusals: 1

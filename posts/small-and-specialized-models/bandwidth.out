@@ -1,0 +1,8 @@
+           BF16     INT4   tokens/s at most, batch 1:  laptop BF16 / INT4    H100 BF16 / INT4
+0.5B      1.0GB   0.25GB                                  93 /   372     3350 / 13400
+1.5B      3.0GB   0.75GB                                  31 /   124     1117 /  4467
+3B        6.0GB   1.50GB                                  16 /    62      558 /  2233
+8B       16.0GB   4.00GB                                   - /    23      209 /   838
+70B     140.0GB  35.00GB                                   - /     -        - /    96
+
+Qwen2.5-1.5B in 16 bits: 3.08 GB per token read; at the measured 41 ms per token that's 75 GB/s, 81% of the measured bandwidth

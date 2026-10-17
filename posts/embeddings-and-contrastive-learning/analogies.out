@@ -1,0 +1,6 @@
+encoder : decoder :: input : ?   top answer 'trigger', the expected 'output' is ranked 121 of 1,682
+keys : values :: key : ?   top answer 'self', the expected 'value' is ranked 36 of 1,682
+prefill : decode :: prompt : ?   top answer 'character', the expected 'generation' is ranked 168 of 1,682
+layer : layers :: token : ?   top answer 'speculative', the expected 'tokens' is ranked 91 of 1,682
+head : heads :: weight : ?   top answer 'neurips', the expected 'weights' is ranked 15 of 1,682
+key : keys :: value : ?   top answer 're-read', the expected 'values' is ranked 9 of 1,682

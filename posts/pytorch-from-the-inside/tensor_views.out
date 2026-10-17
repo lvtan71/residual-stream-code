@@ -1,0 +1,7 @@
+x: shape (3, 4), strides (4, 1), contiguous True
+x.T: shape (4, 3), strides (1, 4), contiguous False, same memory True
+x[1]: offset 4, strides (1,);  x[:, 1]: offset 1, strides (4,)
+after t[0, 1] = 100: x[1, 0] = 100.0
+t.contiguous(): strides (3, 1), same memory False
+t.view(12) fails: view size is not compatible with input tensor's size and stride (at least one dimension spans across two contiguous subspaces)
+t.reshape(12) works (it copies when it must): [0.0, 100.0, 8.0, 1.0]

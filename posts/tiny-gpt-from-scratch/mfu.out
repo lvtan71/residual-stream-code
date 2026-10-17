@@ -1,0 +1,2 @@
+char: 1,799,616 parameters, 149 ms per step of 8,192 tokens, 54,915 tokens/s, 723 GFLOP/s, MFU 25.1%
+bpe : 2,164,416 parameters, 161 ms per step of 8,192 tokens, 50,726 tokens/s, 778 GFLOP/s, MFU 27.0%

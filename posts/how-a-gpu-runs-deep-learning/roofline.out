@@ -1,0 +1,11 @@
+vector add             intensity     0.08 FLOP/byte       6.1 GFLOP/s     73.2 GB/s
+matrix-vector, n=4096  intensity     0.50 FLOP/byte      39.6 GFLOP/s     79.2 GB/s
+matrix-vector, n=8192  intensity     0.50 FLOP/byte      39.7 GFLOP/s     79.5 GB/s
+matmul, n=64           intensity    10.67 FLOP/byte      25.3 GFLOP/s      2.4 GB/s
+matmul, n=128          intensity    21.33 FLOP/byte     273.8 GFLOP/s     12.8 GB/s
+matmul, n=256          intensity    42.67 FLOP/byte    1325.1 GFLOP/s     31.1 GB/s
+matmul, n=512          intensity    85.33 FLOP/byte    2778.1 GFLOP/s     32.6 GB/s
+matmul, n=1024         intensity   170.67 FLOP/byte    2749.2 GFLOP/s     16.1 GB/s
+matmul, n=2048         intensity   341.33 FLOP/byte    2877.5 GFLOP/s      8.4 GB/s
+matmul, n=4096         intensity   682.67 FLOP/byte    2662.8 GFLOP/s      3.9 GB/s
+1,024 matmuls n=64, bmm intensity    10.67 FLOP/byte     728.5 GFLOP/s     68.3 GB/s

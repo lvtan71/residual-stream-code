@@ -1,0 +1,18 @@
+                       right [95% CI]  sign flipped  total missing one  no answer  other
+ReAct                  35% [24%, 48%]            17                  9          1     12
+reflection             37% [26%, 49%]            19                  4          8      7
+plan-and-execute       48% [36%, 61%]            22                  2          0      7
+
+right, by question type:
+  ReAct              years older 1/21, more employees 16/21, total of three 4/18
+  reflection         years older 2/21, more employees 13/21, total of three 7/18
+  plan-and-execute   years older 0/21, more employees 18/21, total of three 11/18
+
+paired (same question and run): only the first right / only the second right
+  ReAct vs reflection: 5 / 6
+  ReAct vs plan-and-execute: 4 / 12
+  reflection vs plan-and-execute: 5 / 12
+
+reflection: the critic flagged 44 of 60 first attempts (16 of the 21 right ones, 28 of the 39 wrong ones)
+  after the retry: wrong->right 6, right->wrong 5, wrong->wrong 22, right->right 11
+  first attempts with the sign flipped: 17; flagged 11; right after the retry 1

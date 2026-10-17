@@ -1,0 +1,6 @@
+raw words, eta=0.01 : w=    1.654  b=   0.2806  MSE=0.08979
+raw words, eta=0.05 : w=    1.672  b=   0.2073  MSE=0.08908
+raw words, eta=0.07 : w=-3.273e+24  b=-8.102e+23  MSE=1.746e+50
+standardized, eta=0.5 : w=    2.273  b=    6.148  MSE=0.08908
+standardized, eta=1.0 : w=-6.963e-13  b=-3.979e-13  MSE=43.05
+standardized, eta=1.05: w=-8.198e+16  b=-2.217e+17  MSE=5.588e+34

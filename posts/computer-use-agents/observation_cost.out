@@ -1,0 +1,15 @@
+screenshot tokens (check against the documentation's table: 1920x1080 -> 1456x819, 1560 / 2691)
+  1024x768   standard: 1,036 tokens   high-resolution: 1,036 tokens
+  1280x800   standard: 1,334 tokens   high-resolution: 1,334 tokens
+  1920x1080   standard: 1,560 tokens (shrunk to 1456x819)   high-resolution: 2,691 tokens
+  2560x1440   standard: 1,560 tokens (shrunk to 1456x819)   high-resolution: 4,784 tokens
+
+accessibility trees, whole page (raw devtools snapshot / interactive elements only, no URLs):
+  blog_home      109 nodes     3,748 tokens   pruned:    31 elements      557 tokens
+  hackernews     756 nodes    15,685 tokens   pruned:   231 elements    3,090 tokens
+  wikipedia    6,813 nodes   167,990 tokens   pruned: 1,150 elements   20,363 tokens
+
+one task's input tokens, screenshots at 1280x800 (1,334 tokens each), $5 per million input tokens:
+   10 steps: keep every screenshot   101,620 tokens ($ 0.51, cached $ 0.15); keep the last 3   64,268 ($ 0.32); last request 16,840 tokens
+   30 steps: keep every screenshot   750,060 tokens ($ 3.75, cached $ 0.64); keep the last 3  245,808 ($ 1.23); last request 46,520 tokens
+   50 steps: keep every screenshot 1,992,100 tokens ($ 9.96, cached $ 1.43); keep the last 3  487,348 ($ 2.44); last request 76,200 tokens

@@ -1,0 +1,11 @@
+cosine similarities (rows: a, columns: b):
+   +0.949  +0.196  -0.995
+   +0.316  +0.981  -0.100
+   -0.868  +0.000  +0.956
+temperature 1.0 : loss 0.5106
+temperature 0.5 : loss 0.2332
+temperature 0.1 : loss 0.0006
+temperature 0.05: loss 0.0000
+batch     4: random embeddings give loss 1.43 at temperature 1, 2.11 at 0.1; log B = 1.39
+batch    64: random embeddings give loss 4.17 at temperature 1, 4.93 at 0.1; log B = 4.16
+batch  1024: random embeddings give loss 6.94 at temperature 1, 7.68 at 0.1; log B = 6.93

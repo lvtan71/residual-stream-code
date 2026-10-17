@@ -1,0 +1,9 @@
+same final answer: True -> The warehouse holds 12975 boxes.
+lines of code around the model and tool: by hand 10, graph by hand 15, graph with prebuilt tool node 10
+time per run with an instant model: by hand 76 us, graph 469 us, graph with a checkpointer 924 us
+
+paused for approval: {'tool': 'calculator', 'args': {'expression': '8113-423+7*755'}}
+resumed with an edited expression: The warehouse holds 13075 boxes.
+checkpoints saved: [(3, ()), (2, ('model',)), (1, ('tools',)), (0, ('model',)), (-1, ('__start__',))]
+replaying from step 1 -> paused again: True
+approved as is this time: The warehouse holds 12975 boxes.

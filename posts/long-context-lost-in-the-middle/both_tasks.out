@@ -1,0 +1,8 @@
+kv     ~  763 prompt tokens: right at depth 0 / 25 / 50 / 75 / 100%: 12/12 12/12 12/12 11/12 12/12   (128 s so far)
+kv     ~ 2106 prompt tokens: right at depth 0 / 25 / 50 / 75 / 100%: 12/12 11/12 12/12 12/12 12/12   (340 s so far)
+kv     ~ 4106 prompt tokens: right at depth 0 / 25 / 50 / 75 / 100%: 12/12 11/12 10/12  8/12 12/12   (705 s so far)
+kv     ~ 8151 prompt tokens: right at depth 0 / 25 / 50 / 75 / 100%: 12/12 10/12  6/12 11/12 12/12   (1411 s so far)
+needle ~  822 prompt tokens: right at depth 0 / 25 / 50 / 75 / 100%:  6/6  6/6  6/6  6/6  6/6   (40 s so far)
+needle ~ 2072 prompt tokens: right at depth 0 / 25 / 50 / 75 / 100%:  6/6  6/6  6/6  6/6  6/6   (122 s so far)
+needle ~ 4072 prompt tokens: right at depth 0 / 25 / 50 / 75 / 100%:  6/6  6/6  6/6  6/6  6/6   (269 s so far)
+needle ~ 8072 prompt tokens: right at depth 0 / 25 / 50 / 75 / 100%:  6/6  5/6  6/6  6/6  6/6   (581 s so far)

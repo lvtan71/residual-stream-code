@@ -1,0 +1,20 @@
+1000 calls, a request every 20 s per call; 2,000 + 150 prompt tokens, 60 out
+history kept in GPUs  TTFT p50  TTFT p99  ITL p50  ITL p99
+            HBM    1   1000 calls' caches don't fit in 80 GB
+            HBM    2   500 calls' caches don't fit in 80 GB
+            HBM    4   250 calls' caches don't fit in 80 GB
+            HBM    6      9 ms     16 ms   5.0 ms   6.2 ms
+            HBM    8      8 ms     16 ms   4.9 ms   6.2 ms
+            HBM   12      8 ms     14 ms   4.9 ms   6.1 ms
+     re-prefill    1   overloaded: requests queue without bound
+     re-prefill    2   overloaded: requests queue without bound
+     re-prefill    4   8715 ms  22437 ms  20.4 ms 2440.8 ms
+     re-prefill    6    194 ms   1321 ms   5.3 ms 261.2 ms
+     re-prefill    8    106 ms    554 ms   5.0 ms  87.9 ms
+     re-prefill   12     90 ms    349 ms   4.9 ms  87.1 ms
+            CPU    1     22 ms     41 ms   6.5 ms  13.3 ms
+            CPU    2     20 ms     31 ms   5.5 ms   6.8 ms
+            CPU    4     19 ms     27 ms   5.1 ms   6.3 ms
+            CPU    6     19 ms     27 ms   5.0 ms   6.2 ms
+            CPU    8     19 ms     26 ms   4.9 ms   6.2 ms
+            CPU   12     18 ms     24 ms   4.9 ms   6.1 ms

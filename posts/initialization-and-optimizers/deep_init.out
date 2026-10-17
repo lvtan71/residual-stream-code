@@ -1,0 +1,7 @@
+               optimizer    largest first-layer gradient   train loss at 0 / 100 / 1,000 steps
+N(0, 0.01^2)   SGD 0.1                           7.3e-15          1.386   1.387   1.387
+N(0, 0.01^2)   Adam 0.001                        7.3e-15          1.386   1.386   1.386
+Xavier 1/n     SGD 0.1                           6.9e-04          1.386   1.376   0.001
+Xavier 1/n     Adam 0.001                        6.9e-04          1.386   0.091   0.000
+He 2/n         SGD 0.1                           2.5e-02          1.399   0.700   0.000
+He 2/n         Adam 0.001                        2.5e-02          1.399   0.011   0.000

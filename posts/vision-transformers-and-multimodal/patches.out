@@ -1,0 +1,11 @@
+224x224 image, 16x16 patches: 14 x 14 = 196 patches, each 768 numbers
+patch embedding: a 768 x 768 matrix + bias = 590,592 parameters
+sequence for the Transformer: 196 patch tokens + 1 [CLS] = 197 positions, attention over 38,809 pairs
+  224x224 with 14x14 patches: 256 tokens
+  336x336 with 14x14 patches: 576 tokens
+  448x448 with 14x14 patches: 1,024 tokens
+  1024x1024 with 16x16 patches: 4,096 tokens
+
+LLaVA-1.5 (7B language model): 512 KiB of KV cache per token
+  one image, 576 tokens: 288 MiB; a 20-image conversation: 5.6 GiB
+  as text, 576 tokens is about 432 English words

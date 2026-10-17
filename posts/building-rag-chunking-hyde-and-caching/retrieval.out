@@ -1,0 +1,49 @@
+67 posts, 150 questions; MiniLM, dense retrieval
+
+chunking                              chunks  words each  findable  hit@1  hit@5  words returned (top 5)  top 5 against recursive 200
+fixed, 200 words                         870         192       133   52/150  83/150                     976  
+fixed, 200 words, 50 overlap           1,124         195       149   51/150  93/150                     986  
+recursive, up to 200 words             1,062         157       149   52/150  94/150                     785  
+recursive, up to 100 words             2,065          81       149   67/150 103/150                     417  20 vs 11, p = 0.15
+one chunk per section                    746         222       149   53/150  85/150                   1,137  16 vs 25, p = 0.21
+semantic, up to 200 words              1,577         106       149   67/150 100/150                     607  21 vs 15, p = 0.41
+recursive within each section          1,310         124       149   61/150 100/150                     658  15 vs 9, p = 0.31
+contextual: title + heading added      1,310         124       149   59/150  98/150                     605  14 vs 10, p = 0.54
+small-to-big: 60 words -> section      3,149         304       149   81/150 113/150                   1,267  27 vs 8, p = 0.00
+fixed windows, overlap against none: 20 vs 10, p = 0.10; recursive 200 against fixed: 23 vs 12, p = 0.09
+recursive 100 at top 10 (a word budget near small-to-big's): hit 114/150, 830 words returned
+(MiniLM reads at most 256 word pieces, about 170 words of this blog; the rest of a longer chunk is not embedded)
+
+HyDE, on recursive chunks: what is embedded as the query
+  the question                     hit@1  52  hit@5  94  (vs the question at top 5: 0 gained, 0 lost)
+  a hypothetical answer (HyDE)     hit@1  31  hit@5  73  (vs the question at top 5: 5 gained, 26 lost)
+  question + answer, texts joined  hit@1  40  hit@5  82  (vs the question at top 5: 4 gained, 16 lost)
+  question and answer embeddings averaged hit@1  43  hit@5  89  (vs the question at top 5: 3 gained, 8 lost)
+
+embedding cache: 1,062 chunks embedded in 7.8 s cold, 0.001 s from the cache
+
+semantic cache: 75 questions cached; 300 queries, 150 of them rewordings of a cached question
+ threshold  repeats served  wrong answers served  of which to new queries
+      0.70         137/150                 0/300                    0/150
+      0.75         129/150                 0/300                    0/150
+      0.80         115/150                 0/300                    0/150
+      0.85          95/150                 0/300                    0/150
+      0.90          72/150                 0/300                    0/150
+      0.95          35/150                 0/300                    0/150
+
+harder test: 114 pairs of different questions about the same post, against each question's own rewording
+ threshold  same-post pairs above it (would be confused)   rewordings above it (hits)
+      0.70                                     0/114                      125/150
+      0.75                                     0/114                      115/150
+      0.80                                     0/114                       97/150
+      0.85                                     0/114                       79/150
+      0.90                                     0/114                       59/150
+      0.95                                     0/114                       32/150
+  highest similarity between two different same-post questions: 0.66
+
+hardest test: 12 hand-written pairs that differ by a word or two and need different answers
+  similarities: 0.99, 0.98, 0.88, 0.86, 0.79, 0.59, 0.50, 0.48, 0.45, 0.43, 0.42, 0.41
+  at threshold 0.80: 4 of 12 pairs would share one cached answer
+  at threshold 0.85: 4 of 12 pairs would share one cached answer
+  at threshold 0.90: 2 of 12 pairs would share one cached answer
+  at threshold 0.95: 2 of 12 pairs would share one cached answer

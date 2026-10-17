@@ -1,0 +1,7 @@
+unigram entropy of the training text: 5.015 bits per character
+residual=True  step   1: train loss 7.214 bits; gradient norm at the attention weights of layers 1-4: 2.0e+00 1.7e+00 1.2e+00 9.3e-01
+residual=True  step 400: train loss 2.621 bits; gradient norm at the attention weights of layers 1-4: 5.6e-01 1.5e-01 1.5e-01 1.7e-01
+   output distributions for two different contexts differ by 0.861 (total variation)
+residual=False step   1: train loss 7.246 bits; gradient norm at the attention weights of layers 1-4: 2.0e+00 1.4e+00 1.0e+00 7.5e-01
+residual=False step 400: train loss 5.086 bits; gradient norm at the attention weights of layers 1-4: 1.6e-06 1.0e-06 3.3e-06 1.1e-04
+   output distributions for two different contexts differ by 0.000 (total variation)

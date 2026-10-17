@@ -1,0 +1,8 @@
+radius 0.9, linear: gradient size after 1 steps 9.0e-01, 10 steps 3.5e-01, 25 steps 7.2e-02, 50 steps 5.2e-03
+radius 0.9, tanh  : gradient size after 1 steps 6.6e-01, 10 steps 1.6e-02, 25 steps 1.2e-04, 50 steps 1.6e-08
+radius 1.0, linear: gradient size after 1 steps 1.0e+00, 10 steps 1.0e+00, 25 steps 1.0e+00, 50 steps 1.0e+00
+radius 1.0, tanh  : gradient size after 1 steps 7.4e-01, 10 steps 6.1e-02, 25 steps 1.1e-03, 50 steps 1.8e-06
+radius 1.1, linear: gradient size after 1 steps 1.1e+00, 10 steps 2.6e+00, 25 steps 1.1e+01, 50 steps 1.2e+02
+radius 1.1, tanh  : gradient size after 1 steps 8.4e-01, 10 steps 1.8e-01, 25 steps 5.3e-03, 50 steps 2.8e-05
+radius 2.0, tanh  : gradient size after 1 steps 1.1e+00, 10 steps 2.9e+00, 25 steps 1.3e+01, 50 steps 1.1e+02
+radius 1.1, tanh, no inputs: gradient size after 1 steps 1.0e+00, 10 steps 9.8e-01, 25 steps 1.0e+00, 50 steps 8.7e-01

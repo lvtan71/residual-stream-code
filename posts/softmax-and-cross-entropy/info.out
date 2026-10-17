@@ -1,0 +1,9 @@
+matches the truth  CE 0.940 = H 0.940 + KL 0.000   perplexity 2.56
+uniform guess      CE 1.386 = H 0.940 + KL 0.446   perplexity 4.00
+overconfident      CE 1.403 = H 0.940 + KL 0.462   perplexity 4.07
+confidently wrong  CE 4.148 = H 0.940 + KL 3.207   perplexity 63.29
+
+uniform over 4 routes: ln 4 = 1.386 nats; over a 128,256-token vocabulary: 11.76 nats
+val CE 0.874 -> perplexity 2.40
+smoothing 0.1: target (0.9250, 0.0250 x3), logit gap ln(0.9250/0.0250) = 3.61, loss floor 0.349
+smoothing 0.01: target (0.9925, 0.0025 x3), logit gap ln(0.9925/0.0025) = 5.98, loss floor 0.052

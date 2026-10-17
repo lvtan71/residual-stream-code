@@ -1,0 +1,11 @@
+z1 [ 0.5 -0.3]  a1 [0.5 0. ]  z2 0.4500  p 0.6106  loss 0.4932
+dL/dw2 = [-0.1947, 0.0]
+dL/db2 = -0.3894
+dL/dW1 = [[-0.2726, 0.0], [0.0, 0.0]]
+dL/db1 = [-0.2726, 0.0]
+after one step: p 0.7131  loss 0.3381
+ 2 hidden units: XOR solved from 18/100 random starts
+ 3 hidden units: XOR solved from 52/100 random starts
+ 4 hidden units: XOR solved from 73/100 random starts
+ 8 hidden units: XOR solved from 96/100 random starts
+16 hidden units: XOR solved from 100/100 random starts

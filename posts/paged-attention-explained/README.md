@@ -14,7 +14,7 @@ Run them from this folder, in this order:
 | `blocksize.py` | Waste and table length against block size. Reads the two length files. | CPU |
 | `kernel.py` | Decode attention through a block table, as a Metal kernel, timed against a contiguous cache. | Apple-silicon Mac only (Metal, through `torch.mps.compile_shader`); time it with nothing else using the GPU |
 
-`lm.py` loads the model and tokenizer; the other scripts import it.
+`lm.py` loads the model and tokenizer; the other scripts import it. The outputs here came from an Apple M4 laptop with torch 2.14.1 and transformers 5.19.0 (`blocksize.py`, plain Python, with the system Python 3.9.6).
 
 ```bash
 pip install torch transformers huggingface_hub pandas pyarrow

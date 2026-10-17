@@ -1,0 +1,19 @@
+150 questions; seconds per question: small 0.22, large 0.40
+
+             small   large   (accuracy by kind)
+capital          92%     88%
+multiplication   54%     84%
+weekday          18%     26%
+all              55%     66%
+
+policy                              accuracy  sent to large  seconds/question
+always small                             55%             0%              0.22
+always large                             66%           100%              0.40
+cascade, escalate below 0.50             57%             7%              0.25
+cascade, escalate below 0.70             60%            19%              0.29
+cascade, escalate below 0.80             59%            30%              0.34
+cascade, escalate below 0.90             63%            43%              0.39
+cascade, escalate below 0.95             65%            55%              0.44
+oracle cascade (escalate if wrong)       73%            45%              0.40
+
+small model: confidence of right answers median 0.99, of wrong answers 0.78

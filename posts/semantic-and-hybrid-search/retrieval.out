@@ -1,0 +1,55 @@
+English text, MiniLM (English): 72% of sections and 0% of passages cut off
+English text, MiniLM (multilingual): 94% of sections and 48% of passages cut off
+Vietnamese text, MiniLM (English): 89% of sections and 0% of passages cut off
+Vietnamese text, MiniLM (multilingual): 96% of sections and 14% of passages cut off
+
+English headings -> English sections: 297 queries, 309 sections
+  BM25                                   recall@1   35%  recall@10   73%  MRR 0.480  nDCG@10 0.535
+  dense, English, whole section          recall@1   31%  recall@10   72%  MRR 0.440  nDCG@10 0.499
+  dense, English, best passage           recall@1   32%  recall@10   71%  MRR 0.458  nDCG@10 0.511
+  dense, multilingual, whole section     recall@1   27%  recall@10   60%  MRR 0.374  nDCG@10 0.419
+  dense, multilingual, best passage      recall@1   26%  recall@10   64%  MRR 0.380  nDCG@10 0.432
+  hybrid: BM25 + English passages        recall@1   40%  recall@10   77%  MRR 0.530  nDCG@10 0.582
+  hybrid: BM25 + multilingual passages   recall@1   35%  recall@10   75%  MRR 0.494  nDCG@10 0.550
+  hybrid (English) minus BM25: MRR difference +0.051 [+0.016, +0.086]
+  hybrid (multilingual) minus BM25: MRR difference +0.015 [-0.024, +0.052]
+  hybrid, multilingual weighted 0.25     recall@1   38%  recall@10   74%  MRR 0.516  nDCG@10 0.566
+
+Vietnamese headings -> Vietnamese sections: 257 queries, 270 sections
+  BM25                                   recall@1   42%  recall@10   78%  MRR 0.539  nDCG@10 0.591
+  dense, English, whole section          recall@1   17%  recall@10   44%  MRR 0.262  nDCG@10 0.294
+  dense, English, best passage           recall@1   16%  recall@10   48%  MRR 0.256  nDCG@10 0.297
+  dense, multilingual, whole section     recall@1   25%  recall@10   54%  MRR 0.352  nDCG@10 0.386
+  dense, multilingual, best passage      recall@1   18%  recall@10   56%  MRR 0.308  nDCG@10 0.358
+  hybrid: BM25 + English passages        recall@1   28%  recall@10   67%  MRR 0.414  nDCG@10 0.465
+  hybrid: BM25 + multilingual passages   recall@1   35%  recall@10   75%  MRR 0.481  nDCG@10 0.540
+  hybrid (English) minus BM25: MRR difference -0.125 [-0.168, -0.085]
+  hybrid (multilingual) minus BM25: MRR difference -0.058 [-0.102, -0.015]
+  hybrid, multilingual weighted 0.25     recall@1   40%  recall@10   77%  MRR 0.537  nDCG@10 0.588
+
+Vietnamese headings typed without diacritics -> Vietnamese sections: 257 queries, 270 sections
+  BM25                                   recall@1   26%  recall@10   58%  MRR 0.366  nDCG@10 0.411
+  dense, English, whole section          recall@1   18%  recall@10   44%  MRR 0.260  nDCG@10 0.290
+  dense, English, best passage           recall@1   16%  recall@10   49%  MRR 0.255  nDCG@10 0.299
+  dense, multilingual, whole section     recall@1   14%  recall@10   34%  MRR 0.209  nDCG@10 0.230
+  dense, multilingual, best passage      recall@1    9%  recall@10   30%  MRR 0.165  nDCG@10 0.184
+  hybrid: BM25 + English passages        recall@1   20%  recall@10   59%  MRR 0.336  nDCG@10 0.388
+  hybrid: BM25 + multilingual passages   recall@1   20%  recall@10   54%  MRR 0.314  nDCG@10 0.357
+  hybrid (English) minus BM25: MRR difference -0.030 [-0.066, +0.007]
+  hybrid (multilingual) minus BM25: MRR difference -0.053 [-0.089, -0.016]
+  hybrid, multilingual weighted 0.25     recall@1   26%  recall@10   59%  MRR 0.368  nDCG@10 0.414
+
+Vietnamese headings -> English sections (cross-lingual, headings matched): 245 queries, 309 sections
+  BM25                                   recall@1   27%  recall@10   60%  MRR 0.376  nDCG@10 0.426
+  dense, English, whole section          recall@1   13%  recall@10   40%  MRR 0.205  nDCG@10 0.238
+  dense, English, best passage           recall@1   13%  recall@10   38%  MRR 0.217  nDCG@10 0.243
+  dense, multilingual, whole section     recall@1   27%  recall@10   55%  MRR 0.363  nDCG@10 0.396
+  dense, multilingual, best passage      recall@1   21%  recall@10   58%  MRR 0.331  nDCG@10 0.382
+  hybrid: BM25 + English passages        recall@1   22%  recall@10   58%  MRR 0.339  nDCG@10 0.389
+  hybrid: BM25 + multilingual passages   recall@1   26%  recall@10   62%  MRR 0.385  nDCG@10 0.434
+  hybrid (English) minus BM25: MRR difference -0.037 [-0.077, +0.002]
+  hybrid (multilingual) minus BM25: MRR difference +0.009 [-0.031, +0.049]
+  hybrid, multilingual weighted 0.25     recall@1   31%  recall@10   62%  MRR 0.423  nDCG@10 0.465
+
+Vietnamese headings typed without diacritics, against a diacritic-stripped index:
+  BM25, stripped index                   recall@1   40%  recall@10   76%  MRR 0.524  nDCG@10 0.576

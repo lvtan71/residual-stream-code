@@ -1,0 +1,7 @@
+test questions with top probability < 0.4: 16%, right 40% of the time (the rest: 71%)
+where they go:   serving 18%, architecture 23%, agents 22%, foundations 37%
+all predictions: serving 21%, architecture 21%, agents 26%, foundations 32%
+share of words never seen in training: unsure 33%, the rest 26%
+of the 47 unsure questions sent to foundations, 24 go elsewhere with an even bias
+questions containing 'what': serving 11, architecture 19, agents 16, foundations 28
+questions containing 'is': serving 13, architecture 17, agents 14, foundations 28

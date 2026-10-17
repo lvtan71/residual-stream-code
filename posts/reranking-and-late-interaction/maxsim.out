@@ -1,0 +1,12 @@
+document: "vllm stores the kv cache in fixed-size pages, like virtual memory"
+  page    best match 'pages'      0.75   (mean over the document 0.29)
+  ##d     best match 'like'       0.46   (mean over the document 0.30)
+  kv      best match 'kv'         0.92   (mean over the document 0.30)
+  cache   best match 'cache'      0.92   (mean over the document 0.35)
+  MaxSim score 3.06; mean-of-similarities score 1.24
+document: "the cache line of a cpu holds sixty-four bytes"
+  page    best match 'cache'      0.35   (mean over the document 0.22)
+  ##d     best match 'cache'      0.36   (mean over the document 0.24)
+  kv      best match 'cpu'        0.24   (mean over the document 0.14)
+  cache   best match 'cache'      0.87   (mean over the document 0.35)
+  MaxSim score 1.81; mean-of-similarities score 0.95

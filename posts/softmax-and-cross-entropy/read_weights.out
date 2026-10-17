@@ -1,0 +1,19 @@
+serving       vllm +1.11, batching +1.11, token +0.98, paged +0.96, to +0.95, quantization +0.92
+architecture  attention +1.92, unembedding +1.61, residual +1.59, stream +1.29, transformers +1.21, layer +1.17
+agents        agent +1.83, prompt +1.63, context +1.47, calling +1.38, rot +1.33, retrieval +1.22
+foundations   backpropagation +1.74, confusion +1.29, learning +1.23, gradients +1.23, sigmoid +1.12, optimizer +1.09
+
+bias b = [ 0.13 -0.17 -0.17  0.21], softmax(b) = [0.28 0.21 0.21 0.3 ]
+
+architecture -> foundations: How does rotary position embedding encode distance?
+  never seen in training: rotary, position, embedding, encode, distance
+  how   weights [-0.7   0.19  0.27  0.24]
+  does  weights [ 0.43 -0.2  -0.01 -0.23]
+  words alone: p = [0.19 0.24 0.32 0.25]   with the bias: p = [0.22 0.21 0.27 0.31]
+
+architecture -> foundations: How is the embedding table trained?
+  never seen in training: embedding, table, trained
+  how   weights [-0.7   0.19  0.27  0.24]
+  is    weights [ 0.04 -0.24 -0.15  0.34]
+  the   weights [ 0.02  0.57 -0.43 -0.16]
+  words alone: p = [0.12 0.38 0.16 0.34]   with the bias: p = [0.13 0.31 0.14 0.41]

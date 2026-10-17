@@ -1,0 +1,8 @@
+char seed 0: 148 units, 377,236 parameters, 1.01 bytes per unit, 0.2% of held-out units unseen in training; at 3,000 steps (41 passes) perplexity 6.4 per unit
+      validation bits per byte at 250 / 500 / 1,000 / 2,000 / 3,000 steps: 3.311 / 2.973 / 2.737 / 2.621 / 2.657
+char seed 1: 148 units, 377,236 parameters, 1.01 bytes per unit, 0.2% of held-out units unseen in training; at 3,000 steps (41 passes) perplexity 6.4 per unit
+      validation bits per byte at 250 / 500 / 1,000 / 2,000 / 3,000 steps: 3.297 / 2.967 / 2.741 / 2.647 / 2.659
+bpe  seed 0: 2,048 units, 987,136 parameters, 2.56 bytes per unit, 0.6% of held-out units unseen in training; at 3,000 steps (113 passes) perplexity 261.5 per unit
+      validation bits per byte at 250 / 500 / 1,000 / 2,000 / 3,000 steps: 2.912 / 2.730 / 2.692 / 2.853 / 3.133
+bpe  seed 1: 2,048 units, 987,136 parameters, 2.56 bytes per unit, 0.6% of held-out units unseen in training; at 3,000 steps (113 passes) perplexity 268.9 per unit
+      validation bits per byte at 250 / 500 / 1,000 / 2,000 / 3,000 steps: 2.903 / 2.728 / 2.690 / 2.865 / 3.148

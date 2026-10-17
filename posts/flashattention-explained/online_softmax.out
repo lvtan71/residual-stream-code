@@ -1,0 +1,6 @@
+scores [2. 1. 4. 0.] -> softmax [0.1125 0.0414 0.831  0.0152]
+after block 1: max 2, sum 1.3679, output so far 1.7358 -> 1.2689
+after block 2: max 4, sum 1.2034, output so far 3.3082 -> 2.7489
+standard attention gives 2.7489
+n = 1024, d = 64, blocks of 128: largest difference from standard attention 7.8e-16
+n = 4096, d = 128, blocks of 256: largest difference from standard attention 6.8e-16

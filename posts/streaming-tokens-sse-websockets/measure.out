@@ -1,0 +1,4 @@
+/complete  first text after  4.68 s, all of it after  4.68 s;    596 bytes on the wire per answer, for  488 bytes of text (1.2x)
+/stream    first text after  0.13 s, all of it after  4.75 s;   2626 bytes on the wire per answer, for  488 bytes of text (5.4x)
+/ws        first text after  0.13 s, all of it after  5.12 s;   2038 bytes on the wire per answer, for  488 bytes of text (4.2x)
+the same text all three ways: True

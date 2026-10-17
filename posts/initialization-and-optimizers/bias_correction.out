@@ -1,0 +1,9 @@
+t=1: m 1.00e-04  v 1.00e-09   step without correction 0.03162   with correction 0.01000
+t=2: m 1.90e-04  v 2.00e-09   step without correction 0.04250   with correction 0.01000
+t=3: m 2.71e-04  v 3.00e-09   step without correction 0.04950   with correction 0.01000
+t=4: m 3.44e-04  v 3.99e-09   step without correction 0.05442   with correction 0.01000
+t=5: m 4.10e-04  v 4.99e-09   step without correction 0.05797   with correction 0.01000
+gradient   1e-06: first Adam step 0.0100   first gradient-descent step 1.0e-08
+gradient    0.01: first Adam step 0.0100   first gradient-descent step 1.0e-04
+gradient      10: first Adam step 0.0100   first gradient-descent step 1.0e-01
+uncorrected / corrected: peak 6.57 at t=12, 3.24 at t=100, 1.26 at t=1000

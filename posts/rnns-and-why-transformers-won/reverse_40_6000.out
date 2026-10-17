@@ -1,0 +1,2 @@
+length 40, no attention, seed 0, 6,000 steps: digits right 0.701, whole sequences right 0.006
+length 40, no attention, seed 1, 6,000 steps: digits right 0.745, whole sequences right 0.015

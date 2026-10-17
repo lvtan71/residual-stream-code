@@ -1,0 +1,5 @@
+weights        4.0 bytes/param  (float32)
+gradients      4.0 bytes/param  (float32)
+Adam m and v   8.0 bytes/param  (float32)
+total         16.0 bytes/param for 8,393,728 parameters
+during the step: 1 BF16 weight copies saved for backward, 1.0 more bytes/param

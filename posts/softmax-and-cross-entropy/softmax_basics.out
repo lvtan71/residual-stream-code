@@ -1,0 +1,4 @@
+p - y:  [ 0.226   0.1746 -0.6219  0.2213]
+largest gap to finite differences: 8.5e-11
+naive softmax: [nan nan  0.  0.]   shifted: [0.7311 0.2689 0.     0.    ]
+log(softmax(z)): [-0.31 -1.31 -inf -inf]   log-sum-exp: [-0.31 -1.31 -1000.31 -1005.31]

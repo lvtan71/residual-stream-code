@@ -1,0 +1,10 @@
+l2 λ=0.0   : train acc 1.000  val loss 0.480 ± 0.034  val acc 0.818  nonzero weights 383
+l2 λ=0.001 : train acc 1.000  val loss 0.421 ± 0.021  val acc 0.804  nonzero weights 383
+l2 λ=0.003 : train acc 1.000  val loss 0.416 ± 0.015  val acc 0.794  nonzero weights 383
+l2 λ=0.01  : train acc 0.987  val loss 0.435 ± 0.010  val acc 0.784  nonzero weights 383
+l2 λ=0.03  : train acc 0.887  val loss 0.473 ± 0.006  val acc 0.753  nonzero weights 383
+l2 λ=0.1   : train acc 0.751  val loss 0.516 ± 0.002  val acc 0.750  nonzero weights 383
+l1 λ=0.001 : train acc 1.000  val loss 0.530 ± 0.029  val acc 0.790  nonzero weights 112
+l1 λ=0.004 : train acc 1.000  val loss 0.514 ± 0.022  val acc 0.767  nonzero weights 51
+l1 λ=0.008 : train acc 0.893  val loss 0.502 ± 0.012  val acc 0.768  nonzero weights 27
+l1 λ=0.016 : train acc 0.772  val loss 0.532 ± 0.005  val acc 0.742  nonzero weights 10

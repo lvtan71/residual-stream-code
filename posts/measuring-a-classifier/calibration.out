@@ -1,0 +1,16 @@
+no penalty: ECE 0.109, Brier 0.134
+   p in [0.0, 0.2): 632 predictions, mean p 0.03, actually serving 0.12
+   p in [0.2, 0.4):  40 predictions, mean p 0.28, actually serving 0.62
+   p in [0.4, 0.6):  34 predictions, mean p 0.50, actually serving 0.79
+   p in [0.6, 0.8):  33 predictions, mean p 0.72, actually serving 0.64
+   p in [0.8, 1.0):  61 predictions, mean p 0.92, actually serving 0.84
+L2 + keywords: ECE 0.037, Brier 0.094
+   p in [0.0, 0.2): 600 predictions, mean p 0.06, actually serving 0.08
+   p in [0.2, 0.4):  41 predictions, mean p 0.31, actually serving 0.44
+   p in [0.4, 0.6):  37 predictions, mean p 0.49, actually serving 0.54
+   p in [0.6, 0.8):  35 predictions, mean p 0.71, actually serving 0.89
+   p in [0.8, 1.0):  87 predictions, mean p 0.94, actually serving 0.93
+ECE of perfectly calibrated labels: mean 0.016, 95th percentile 0.027
+no penalty     tau median 1.99 (range 1.03-3.08):  ECE 0.109 -> 0.031
+L2             tau median 1.14 (range 0.73-1.67):  ECE 0.061 -> 0.043
+L2 + keywords  tau median 1.24 (range 0.28-2.03):  ECE 0.037 -> 0.027

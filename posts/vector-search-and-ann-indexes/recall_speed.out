@@ -1,0 +1,26 @@
+L2 vs dot product, 100 queries: same top-10 sets: True; order differs at 4 positions, all between exactly tied scores (duplicate sentences): True
+
+71,865 vectors, 384 dimensions:
+flat (exact)                     recall@10  1.000    4.071 ms/query    1536 bytes/vector
+  (IVF, 256 lists: built in 0.5 s)
+IVF 256 lists, probe, 1          recall@10  0.496    0.026 ms/query    1544 bytes/vector
+IVF 256 lists, probe, 4          recall@10  0.812    0.076 ms/query    1544 bytes/vector
+IVF 256 lists, probe, 16         recall@10  0.955    0.279 ms/query    1544 bytes/vector
+IVF 256 lists, probe, 64         recall@10  0.994    1.098 ms/query    1544 bytes/vector
+IVF 1024 lists, probe, 8         recall@10  0.799    0.062 ms/query    1544 bytes/vector
+IVF 1024 lists, probe, 16        recall@10  0.886    0.098 ms/query    1544 bytes/vector
+IVF 1024 lists, probe, 32        recall@10  0.941    0.174 ms/query    1544 bytes/vector
+IVF 1024 lists, probe, 64        recall@10  0.974    0.293 ms/query    1544 bytes/vector
+  (PQ, 48 sub-vectors x 8 bits: built in 13.6 s)
+PQ, 48-byte codes                recall@10  0.626    0.835 ms/query      48 bytes/vector
+IVF-PQ, probe, 4                 recall@10  0.568    0.067 ms/query      56 bytes/vector
+IVF-PQ, probe, 16                recall@10  0.604    0.118 ms/query      56 bytes/vector
+IVF-PQ, probe, 64                recall@10  0.608    0.291 ms/query      56 bytes/vector
+IVF-PQ + re-rank 100, probe, 16  recall@10  0.942    0.162 ms/query    1592 bytes/vector
+IVF-PQ + re-rank 100, probe, 64  recall@10  0.969    0.328 ms/query    1592 bytes/vector
+  (HNSW, M = 32: built in 47.4 s)
+HNSW M=32, efSearch, 16          recall@10  0.876    0.089 ms/query    1792 bytes/vector
+HNSW M=32, efSearch, 32          recall@10  0.950    0.153 ms/query    1792 bytes/vector
+HNSW M=32, efSearch, 64          recall@10  0.983    0.279 ms/query    1792 bytes/vector
+HNSW M=32, efSearch, 128         recall@10  0.994    0.551 ms/query    1792 bytes/vector
+LSH, 1024-bit codes, scanned     recall@10  0.631    0.364 ms/query     128 bytes/vector

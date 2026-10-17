@@ -1,0 +1,6 @@
+20 questions x 3 runs; Qwen2.5-3B-Instruct
+
+architecture        right  tokens processed/question  seconds/question
+ReAct                 35%                      1,176              12.1
+plan-and-execute      48%                      6,058              51.7
+reflection            37%                      2,420              29.6

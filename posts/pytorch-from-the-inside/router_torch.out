@@ -1,0 +1,4 @@
+step    1: loss 1.3863, largest gap between PyTorch and optim.py weights 1.7e-18
+step   10: loss 1.1757, largest gap between PyTorch and optim.py weights 2.8e-17
+step 3000: loss 0.0428, largest gap between PyTorch and optim.py weights 1.1e-15
+validation accuracy 0.750

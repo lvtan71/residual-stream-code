@@ -1,0 +1,23 @@
+layer  0: first token  0.0%, last 4 tokens 60.4%, the other ~1,000 39.6%
+layer  3: first token 35.1%, last 4 tokens 21.5%, the other ~1,000 43.4%
+layer  6: first token 49.5%, last 4 tokens 17.3%, the other ~1,000 33.3%
+layer  9: first token 31.7%, last 4 tokens 20.2%, the other ~1,000 48.1%
+layer 12: first token 34.9%, last 4 tokens 14.3%, the other ~1,000 50.8%
+layer 15: first token 16.8%, last 4 tokens 28.7%, the other ~1,000 54.4%
+layer 18: first token 20.2%, last 4 tokens 33.0%, the other ~1,000 46.9%
+layer 21: first token 30.6%, last 4 tokens 12.1%, the other ~1,000 57.3%
+layer 24: first token 46.8%, last 4 tokens 17.3%, the other ~1,000 36.0%
+layer 27: first token  0.1%, last 4 tokens 13.0%, the other ~1,000 86.9%
+averaged over all 28 layers: first token 30.5%, last 4 tokens 21.1%; a uniform split would give the first token 0.29%
+heads in layers 1-26 putting over half their attention on the first token: 48 of 312; under 5%: 19
+passage at character 100,000                 starts with 'rive'      : most attention on position 0 ('rive'), 29.0%
+passage at character 200,000                 starts with ' then'     : most attention on position 0 (' then'), 30.5%
+passage at character 300,000                 starts with 'Parameter' : most attention on position 0 ('Parameter'), 32.3%
+passage at character 400,000                 starts with '7'         : most attention on position 1 ('"'), 30.9%
+first passage, first token moved to the end  starts with ' climbs'   : most attention on position 0 (' climbs'), 30.4%
+first passage with '7'    in front: most attention on position 1 (' then'), 30.4%
+first passage with '3'    in front: most attention on position 1 (' then'), 30.4%
+first passage with 'A'    in front: most attention on position 0 ('A'), 30.3%
+first passage with '.'    in front: most attention on position 0 ('.'), 30.4%
+first passage with '\n'   in front: most attention on position 0 ('\n'), 30.4%
+first passage with 'the'  in front: most attention on position 0 ('the'), 30.4%

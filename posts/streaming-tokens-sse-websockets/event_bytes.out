@@ -1,0 +1,4 @@
+this post's SSE event             23 bytes for 3 bytes of text
+Anthropic content_block_delta    118 bytes for 3 bytes of text
+OpenAI chat.completion.chunk     257 bytes for 3 bytes of text
+this post's WebSocket frame       17 bytes for 3 bytes of text

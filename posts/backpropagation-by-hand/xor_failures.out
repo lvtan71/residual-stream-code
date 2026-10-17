@@ -1,0 +1,8 @@
+starts with a unit dead from step 0: 42/100, of which solved: 0
+ 27 failures: 3/4 right, loss 0.477, dead unit at start, gradient < 1e-3
+ 22 failures: 3/4 right, loss 0.347, both units alive, gradient < 1e-3
+ 15 failures: 2/4 right, loss 0.693, dead unit at start, gradient < 1e-3
+ 14 failures: 3/4 right, loss 0.477, both units alive, gradient < 1e-3
+  2 failures: 2/4 right, loss 0.693, both units alive, gradient < 1e-3
+  1 failures: 3/4 right, loss 0.347, both units alive, gradient >= 1e-3
+  1 failures: 3/4 right, loss 0.693, both units alive, gradient < 1e-3

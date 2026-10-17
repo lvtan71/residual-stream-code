@@ -1,0 +1,10 @@
+                      train  val loss  vs linear 0.003  val acc
+linear, L2 0.003      0.065     0.347                     0.866
+linear, L2 0.01       0.141     0.346   -0.001 ± 0.021    0.861
+16 hidden, L2 0.0     0.000     0.689   +0.343 ± 0.143    0.872
+16 hidden, L2 0.003   0.010     0.416   +0.069 ± 0.040    0.868
+16 hidden, L2 0.01    0.032     0.365   +0.018 ± 0.015    0.869
+16 hidden, L2 0.03    0.098     0.342   -0.005 ± 0.011    0.866
+16 hidden, L2 0.1     0.314     0.399   +0.053 ± 0.047    0.834
+
+chosen on validation: 16 hidden, L2 0.03. test loss 0.332 vs linear 0.333, difference -0.002 ± 0.008

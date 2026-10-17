@@ -1,0 +1,5 @@
+20 tokens; decoded one by one:
+  Con |  v | ẹ | t |  � | � | � |  nói | : |  mô |  hình |  sinh |  văn |  bản |  từng |  token |  một |  � | � | �
+incremental:
+  Con |  v | ẹ | t |  |  |  🦜 |  nói | : |  mô |  hình |  sinh |  văn |  bản |  từng |  token |  một |  |  |  🫠
+broken pieces one by one: 6, incremental: 0; joined text equal to the original: True

@@ -1,0 +1,20 @@
+English (297 queries), cross-encoder ms-marco-MiniLM-L6-v2:
+  stage 1 alone:    recall@1  40%  MRR 0.530  (right section in its top 50: 90%)
+  + re-rank top 50: recall@1  45%  MRR 0.575  difference +0.045 [+0.012, +0.079]
+  re-ranking time: 1468 ms per query on the CPU (50 pairs)
+English (297 queries), cross-encoder ms-marco-MiniLM-L6-v2, best 80-word passage:
+  stage 1 alone:    recall@1  40%  MRR 0.530  (right section in its top 50: 90%)
+  + re-rank top 50: recall@1  40%  MRR 0.535  difference +0.004 [-0.032, +0.040]
+  re-ranking time: 1737 ms per query on the CPU (50 pairs)
+English (297 queries), cross-encoder mmarco-mMiniLMv2-L12-H384-v1:
+  stage 1 alone:    recall@1  40%  MRR 0.530  (right section in its top 50: 90%)
+  + re-rank top 50: recall@1  39%  MRR 0.516  difference -0.014 [-0.054, +0.025]
+  re-ranking time: 2377 ms per query on the CPU (50 pairs)
+Vietnamese (257 queries), cross-encoder mmarco-mMiniLMv2-L12-H384-v1:
+  stage 1 alone:    recall@1  42%  MRR 0.539  (right section in its top 50: 91%)
+  + re-rank top 50: recall@1  41%  MRR 0.529  difference -0.010 [-0.055, +0.037]
+  re-ranking time: 2317 ms per query on the CPU (50 pairs)
+Vietnamese (257 queries), cross-encoder ms-marco-MiniLM-L6-v2:
+  stage 1 alone:    recall@1  42%  MRR 0.539  (right section in its top 50: 91%)
+  + re-rank top 50: recall@1  35%  MRR 0.487  difference -0.053 [-0.098, -0.007]
+  re-ranking time: 976 ms per query on the CPU (50 pairs)

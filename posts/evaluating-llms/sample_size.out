@@ -1,0 +1,12 @@
+unpaired (different questions): 8,077 questions per model
+paired, models disagree on 30% of questions: 5,887 questions
+paired, models disagree on 15% of questions: 2,944 questions
+paired, models disagree on 8% of questions: 1,570 questions
+
+70 right of 100: accuracy 70%, 95% interval 60.4% to 78.1% (about ±8.8 points)
+700 right of 1,000: accuracy 70%, 95% interval 67.1% to 72.8% (about ±2.8 points)
+7,000 right of 10,000: accuracy 70%, 95% interval 69.1% to 70.9% (about ±0.9 points)
+
+500 questions, 95% interval on the difference in accuracy: unpaired ±5.6 points, paired (disagreeing on 15%) ±3.4 points
+
+Cohen's kappa: observed agreement 0.85, chance agreement 0.55 x 0.50 + 0.45 x 0.50 = 0.500, kappa = (0.85 - 0.500) / (1 - 0.500) = 0.70

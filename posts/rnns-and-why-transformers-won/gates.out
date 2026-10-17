@@ -1,0 +1,6 @@
+RNN                 : gradient reaching the input 1 / 10 / 25 / 50 steps back: 3.5e+00 / 2.4e-03 / 1.4e-08 / 3.5e-17
+GRU, default        : gradient reaching the input 1 / 10 / 25 / 50 steps back: 2.2e+00 / 1.6e-02 / 1.3e-05 / 6.2e-11
+GRU, update bias +1 : gradient reaching the input 1 / 10 / 25 / 50 steps back: 1.3e+00 / 9.9e-02 / 1.7e-03 / 3.5e-06
+LSTM, forget bias 0 : gradient reaching the input 1 / 10 / 25 / 50 steps back: 1.0e+00 / 6.7e-03 / 2.1e-06 / 8.1e-12
+LSTM, forget bias 1 : gradient reaching the input 1 / 10 / 25 / 50 steps back: 1.0e+00 / 8.6e-02 / 3.1e-03 / 1.8e-05
+LSTM, forget bias 3 : gradient reaching the input 1 / 10 / 25 / 50 steps back: 8.9e-01 / 4.1e-01 / 4.3e-01 / 4.6e-01

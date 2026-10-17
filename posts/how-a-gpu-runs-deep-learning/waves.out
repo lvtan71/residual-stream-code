@@ -1,0 +1,6 @@
+n = 1024:   64 tiles ->  1 waves; SMs busy  48%, useful work in the tiles 100%, overall  48%
+n = 1408:  121 tiles ->  1 waves; SMs busy  92%, useful work in the tiles 100%, overall  92%
+n = 1536:  144 tiles ->  2 waves; SMs busy  55%, useful work in the tiles 100%, overall  55%
+n = 4096: 1024 tiles ->  8 waves; SMs busy  97%, useful work in the tiles 100%, overall  97%
+n = 4097: 1089 tiles ->  9 waves; SMs busy  92%, useful work in the tiles  94%, overall  86%
+n = 4224: 1089 tiles ->  9 waves; SMs busy  92%, useful work in the tiles 100%, overall  92%

@@ -1,0 +1,4 @@
+n =  2,048: standard     3.9 ms, peak    228 MiB;  fused     1.1 ms, peak    197 MiB;  the n x n score matrix is    16 MiB
+n =  8,192: standard    44.4 ms, peak    716 MiB;  fused    14.7 ms, peak    206 MiB;  the n x n score matrix is   256 MiB
+n = 16,384: standard   175.6 ms, peak  2,263 MiB;  fused    57.7 ms, peak    215 MiB;  the n x n score matrix is 1,024 MiB
+largest difference between the two at n = 4,096: 6.6e-07

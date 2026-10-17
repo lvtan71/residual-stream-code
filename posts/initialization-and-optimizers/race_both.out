@@ -1,0 +1,8 @@
+bag of words:
+gradient descent  after   30 steps 0.3052 (eta 10)   after  300 steps 0.3011 (eta 10)   after 3000 steps 0.3011 (eta 3.2)
+momentum 0.9      after   30 steps 0.3105 (eta 3.2)   after  300 steps 0.3011 (eta 10)   after 3000 steps 0.3011 (eta 0.32)
+Adam              after   30 steps 0.3158 (eta 0.1)   after  300 steps 0.3011 (eta 0.1)   after 3000 steps 0.3011 (eta 0.01)
+plus raw question length:
+gradient descent  after   30 steps 1.3734 (eta 0.0032)   after  300 steps 1.3021 (eta 0.0032)   after 3000 steps 0.8829 (eta 0.0032)
+momentum 0.9      after   30 steps 1.3237 (eta 0.0032)   after  300 steps 0.8877 (eta 0.0032)   after 3000 steps 0.2948 (eta 0.01)
+Adam              after   30 steps 0.3495 (eta 0.1)   after  300 steps 0.2917 (eta 0.32)   after 3000 steps 0.2914 (eta 0.01)

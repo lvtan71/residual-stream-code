@@ -1,0 +1,19 @@
+                           val CE           vs L2  val acc           vs L2    ECE           vs L2
+L2 0.003                    0.891                    0.621                  0.096                
+no penalty                  0.976  +0.085 ± 0.054    0.633  +0.011 ± 0.021  0.154  +0.059 ± 0.033
+smoothing 0.1               0.874  -0.017 ± 0.022    0.655  +0.034 ± 0.029  0.106  +0.010 ± 0.033
+smoothing 0.1 + L2 0.003    0.907  +0.016 ± 0.014    0.628  +0.006 ± 0.013  0.125  +0.029 ± 0.031
+smoothing + L2 vs smoothing alone: val CE +0.033 ± 0.018
+
+chosen on validation CE: smoothing 0.1. test CE 0.848 (perplexity 2.34)
+test confusion, pooled over the 20 splits (rows = true route):
+                    serving architecture       agents  foundations
+serving                 120           29           22           29
+architecture             19          113           12           56
+agents                   10           10          153           27
+foundations              17           19           20          144
+serving        precision 0.723  recall 0.600  F1 0.656
+architecture   precision 0.661  recall 0.565  F1 0.609
+agents         precision 0.739  recall 0.765  F1 0.752
+foundations    precision 0.562  recall 0.720  F1 0.632
+test accuracy 0.6625; mean recall 0.6625; macro-F1 0.6621

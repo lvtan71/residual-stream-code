@@ -1,0 +1,7 @@
+attention(permuted input) == permuted attention(input): True
+the same, with a causal mask: False
+query at   3, key at   5 (distance  2): score -6.3341
+query at  10, key at  12 (distance  2): score -6.3341
+query at 100, key at 102 (distance  2): score -6.3341
+query at   3, key at  10 (distance  7): score -5.9618
+rotation keeps length: |q| = 4.4482, |rope(q, 57)| = 4.4482

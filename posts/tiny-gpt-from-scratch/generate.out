@@ -1,0 +1,40 @@
+--- after 250 steps (temperature 0.8)
+The KV cache an the rownumes the Cone
+the this
+***Kuad models is small in the is the methat comput, a abl.
+- **The wult it's approduction the rough with recodes log-own is so
+  matches the model's every over *attention the loss
+blocks is every the the revery in that training, un every eform in model are math mo
+[longest stretch copied from the training posts: 14 characters: "es the model's"]
+
+--- after 1,000 steps (temperature 0.8)
+The KV cache context of units to Context at it
+sequence one scheduler be has is all attention 0.1. The blog loss context
+process the one He in the whole recosystem to computed to the $W_V$, the
+with the other attention catch from the three with the one number of $\matrix 1$.
+
+The gradient. The model can move mo
+[longest stretch copied from the training posts: 17 characters: ' from the three w']
+
+--- after 4,000 steps (temperature 0.8)
+The KV cache post
+1's own exactly it can always a KV cache per layer, because it can be what
+predicts above a fixed-size process that keeps the fixed prompt per log-odds
+per-token context sequences and doesn't change, and dividing this post's
+change in the next term training, use the serving posts are predictin
+[longest stretch copied from the training posts: 19 characters: ' the serving posts ']
+
+held-out text from character 10,000: longest stretch also in the training posts 27 characters: 's |\n| --- | --- | --- |\n| `'
+held-out text from character 25,000: longest stretch also in the training posts 17 characters: '.\n\n### Where the '
+held-out text from character 40,000: longest stretch also in the training posts 70 characters: ' = \\operatorname{softmax}\\!\\left(\\frac{QK^\\top}{\\sqrt{d_k}} + M\\right)'
+
+ten more samples at 4,000 steps: longest copied stretch 15 to 38 characters
+greedy, from a code prompt:
+```python
+import torch
+from router_data import split, featurize
+from overfit import sigmoid, log_loss, train
+
+# AdamW that starts the same per-step, the same per-sequence sequence length
+# structured and context problem tha
+[longest stretch copied: 89 characters: 'from router_data import split, featurize\nfrom overfit import sigmoid, log_loss, train\n\n# ']

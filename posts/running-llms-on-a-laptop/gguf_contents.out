@@ -1,0 +1,18 @@
+qwen2.5-1.5b-instruct-q4_k_m.gguf: 26 metadata keys, 339 tensors
+  general.architecture             qwen2
+  qwen2.block_count                28
+  qwen2.context_length             32768
+  qwen2.embedding_length           1536
+  qwen2.attention.head_count       12
+  qwen2.attention.head_count_kv    2
+  general.file_type                15
+  tokenizer.ggml.tokens            151,936 entries (the vocabulary, in the file)
+tensors by type:
+  Q4_K    169 tensors   1345.4M weights    721.7 MiB   4.50 bits per weight
+  Q6_K     29 tensors    431.6M weights    337.6 MiB   6.56 bits per weight
+  F32     141 tensors      0.1M weights      0.6 MiB  32.00 bits per weight
+examples: output.weight Q6_K, token_embd.weight Q4_K, blk.0.attn_norm.weight F32, blk.0.ffn_down.weight Q6_K, blk.0.ffn_gate.weight Q4_K, blk.0.ffn_up.weight Q4_K
+the 29 Q6_K tensors: output.weight, 14 attn_v and 14 ffn_down (layers [0, 1, 5, 6, 7, 8, 9, 10, 13, 16, 19, 21, 24, 27])
+qwen2.5-1.5b-instruct-q3_k_m.gguf     0.92 GB,  4.13 bits per weight on average
+qwen2.5-1.5b-instruct-q4_k_m.gguf     1.12 GB,  5.00 bits per weight on average
+qwen2.5-1.5b-instruct-q8_0.gguf       1.89 GB,  8.50 bits per weight on average

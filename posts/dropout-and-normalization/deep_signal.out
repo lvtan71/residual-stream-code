@@ -1,0 +1,4 @@
+weight std   activation size, layer 20   gradient reaching layer 1   gradient on W, layer 1
+     0.010                        0.71                    7.84e-01                 1.11e+02
+     0.088                        0.71                    7.85e-01                 1.25e+01
+     1.000                        0.71                    7.85e-01                 1.11e+00

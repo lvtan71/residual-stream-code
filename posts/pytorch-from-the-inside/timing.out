@@ -1,0 +1,5 @@
+n =  256:  cpu float32   1.36  mps float32   0.12  mps float16   0.14  mps bfloat16  0.13  TFLOP/s
+n = 1024:  cpu float32   1.88  mps float32   1.52  mps float16   2.38  mps bfloat16  2.46  TFLOP/s
+n = 4096:  cpu float32   1.45  mps float32   2.99  mps float16   3.43  mps bfloat16  3.42  TFLOP/s
+4096 matmul on mps, no synchronize: 0.05 ms 'measured', 47.58 ms real
+256 matmul on mps: 230 us per call waiting each time, 30 us per call when 200 are queued (1.12 TFLOP/s)

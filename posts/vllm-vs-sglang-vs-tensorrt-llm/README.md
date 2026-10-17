@@ -1,6 +1,6 @@
 # vLLM vs. SGLang vs. TensorRT-LLM: the full code
 
-The script behind [vLLM vs. SGLang vs. TensorRT-LLM: Comparing LLM Serving Architectures](https://residual-stream.lvtan71.workers.dev/posts/vllm-vs-sglang-vs-tensorrt-llm/). `reuse.out` is what `reuse.py` printed for the post.
+The script behind [vLLM vs. SGLang vs. TensorRT-LLM: Comparing LLM Serving Architectures](https://residual-stream.lvtan71.workers.dev/posts/vllm-vs-sglang-vs-tensorrt-llm/). `reuse.out` is what `reuse.py` printed for the post. The output here came from an Apple M4 laptop with transformers 5.19.0.
 
 | Script | What it does | Needs |
 | --- | --- | --- |

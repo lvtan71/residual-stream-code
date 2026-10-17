@@ -1,0 +1,13 @@
+70B model, 16-bit weights: 140 GB
+  chip               chips to hold it  tokens/s bound  on 8 chips
+  GroqChip (SRAM)                 609             571           -
+  H100 SXM (HBM)                    2              48         191
+  TPU v6e (HBM)                     5              58          94
+  TPU7x (HBM)                       1              53         422
+
+70B model, 8-bit weights: 70 GB
+  chip               chips to hold it  tokens/s bound  on 8 chips
+  GroqChip (SRAM)                 305            1143           -
+  H100 SXM (HBM)                    1              48         383
+  TPU v6e (HBM)                     3              70         187
+  TPU7x (HBM)                       1             105         843

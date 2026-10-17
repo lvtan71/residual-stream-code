@@ -1,0 +1,7 @@
+one block of Q, K and V at 128 x 128 in 16 bits: 96 KB of the 228 KB
+n =   4,096: standard       132 MiB, flash      66 MiB ( 2.0x less); the score matrix alone        32 MiB per head
+n =  32,768: standard     8,224 MiB, flash   4,112 MiB ( 2.0x less); the score matrix alone     2,048 MiB per head
+n = 131,072: standard   131,200 MiB, flash  65,600 MiB ( 2.0x less); the score matrix alone    32,768 MiB per head
+n = 32,768: flash traffic with row blocks of 64: 8,208 MiB, 128: 4,112 MiB, 256: 2,064 MiB
+n =  4,096: saved for backward per head: standard      32 MiB, flash   1.0 MiB
+n = 32,768: saved for backward per head: standard   2,048 MiB, flash   8.1 MiB

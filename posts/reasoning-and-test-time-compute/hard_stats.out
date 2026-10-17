@@ -1,0 +1,6 @@
+40 problems; one sample right on average: 86.6%
+  pass@1  (some of  1 samples right): 86.6%
+  pass@2  (some of  2 samples right): 93.1%
+  pass@4  (some of  4 samples right): 94.9%
+  pass@8  (some of  8 samples right): 96.2%
+  pass@16 (some of 16 samples right): 97.5%

@@ -1,0 +1,30 @@
+# Dropout and Normalization: the full code
+
+The scripts behind [Dropout and Normalization: Two Layers Every Diagram Has](https://residual-stream.lvtan71.workers.dev/posts/dropout-and-normalization/). Each `.out` file is what its script printed for the post.
+
+| Script | What it does | Needs |
+| --- | --- | --- |
+| `grad_check.py` | The whole network's backward pass, with no norm, LayerNorm and RMSNorm, against finite differences. | CPU, instant |
+| `dropout_grid.py` | A two-hidden-layer router trained with Adam for 3,000 steps (or the step count given as its argument) at 5 dropout rates × 5 AdamW weight decays on 20 splits: validation loss, accuracy and confidence, the setting chosen on validation, and its test loss. | CPU, about 5 minutes |
+| `dropout_grid_long.py` | Runs `dropout_grid.py 12000`: the same grid, four times as long. | CPU, about 20 minutes |
+| `batchnorm_flaws.py` | BatchNorm's four problems on one layer's pre-activations: dependence on the batch, noisy small-batch statistics, a batch of one, and leaking across a sequence. | CPU, instant |
+| `norms.py` | LayerNorm, RMSNorm and BatchNorm with their backward passes (helper); run, it prints the worked vectors and checks both backward passes against finite differences. | CPU, instant |
+| `norm_cost.py` | The time for one LayerNorm or RMSNorm on an H100, math against memory, next to one matmul. | Python, instant |
+| `deep_signal.py` | The 20-layer test of "Initialization and Optimizers" with a LayerNorm before every ReLU, at three starting scales. | CPU, a few seconds |
+| `norm_lr_grid.py` | The ten-layer router from std 0.01 and from He, with no norm, LayerNorm and RMSNorm, swept over learning rates for SGD and Adam. | CPU, about 1 minute |
+
+`net.py` is the network (init, forward with optional norm and dropout, backward, mini-batch `fit`). The other helpers are copies from earlier posts: `optim.py` (SGD, momentum, Adam/AdamW) from [Initialization and Optimizers](https://residual-stream.lvtan71.workers.dev/posts/initialization-and-optimizers/), `router_data.py` from [Features and Overfitting](https://residual-stream.lvtan71.workers.dev/posts/features-overfitting-regularization/), and `softmax_basics.py` and `router4.py` from [Cross-Entropy and the Softmax Gradient](https://residual-stream.lvtan71.workers.dev/posts/softmax-and-cross-entropy/). `router-questions.csv` links to `../../data/router-questions.csv`, the blog's 200 hand-labeled reader questions.
+
+Run times are estimates: the folder at the default 3,000 steps took about 7 minutes in all, and `dropout_grid.py`'s time grows in proportion to its step count. The outputs here came from an Apple M4 laptop; the scripts need only numpy.
+
+```bash
+pip install "numpy==2.*"
+python grad_check.py
+python dropout_grid.py
+python dropout_grid_long.py
+python batchnorm_flaws.py
+python norms.py
+python norm_cost.py
+python deep_signal.py
+python norm_lr_grid.py
+```

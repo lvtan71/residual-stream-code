@@ -1,0 +1,8 @@
+autoregressive: 512 steps,    8.2 TFLOP, at least  2.45 s
+ diffusion steps S  tokens per step    TFLOP  x AR FLOPs  time at least
+               512                1     4194         512         4.24 s
+               256                2     2097         256         2.12 s
+               128                4     1049         128         1.06 s
+                64                8      524          64         0.53 s
+                32               16      262          32         0.27 s
+                16               32      131          16         0.13 s

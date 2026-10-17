@@ -1,0 +1,14 @@
+stage                             ms  cumulative
+audio frame + jitter buffer       40          40
+network, user -> server           30          70
+end-of-turn detection            400         470
+speech-to-text, final            100         570
+LLM time to first token          250         820
+LLM, first clause                150         970
+text-to-speech, first audio      120        1090
+network, server -> user           30        1120
+playback buffer                   40        1160
+
+total 1160 ms; end-of-turn detection alone is 34% of it
+  with semantic turn detection (400 -> 150 ms of silence): 910 ms
+  with speech-to-speech model (STT + LLM + TTS -> 350 ms): 890 ms

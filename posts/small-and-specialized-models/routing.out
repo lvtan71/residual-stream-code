@@ -1,0 +1,17 @@
+Qwen2.5-1.5B zero-shot: prompts of 118 tokens on average; the route spellings carry 99% of the first-word probability (median); free answers unparseable: 0 of 200
+Qwen2.5-1.5B, 20 examples: prompts of 439 tokens on average; the route spellings carry 98% of the first-word probability (median); free answers unparseable: 0 of 200
+
+                                                 accuracy    ECE  batch-1 time
+bag-of-words router                      0.655 [0.59, 0.71]  0.050        6.0 us
+MiniLM + softmax head                    0.710 [0.65, 0.77]  0.035        2.6 ms
+MiniLM, nearest centroid                 0.780 [0.72, 0.83]  0.158        2.6 ms
+Qwen2.5-1.5B zero-shot, typed            0.540 [0.47, 0.61]  0.291      155.9 ms
+Qwen2.5-1.5B zero-shot, free             0.525 [0.46, 0.59]    n/a      215.8 ms
+Qwen2.5-1.5B, 20 examples, typed         0.565 [0.50, 0.64]  0.274      465.6 ms
+Qwen2.5-1.5B, 20 examples, free          0.555 [0.49, 0.62]    n/a      521.4 ms
+
+MiniLM head minus Qwen with examples (typed): +0.145 [+0.06, +0.23]
+MiniLM head, answering only at confidence >= 0.6: 70% of questions answered, 82.7% of those right
+MiniLM head, answering only at confidence >= 0.7: 57% of questions answered, 88.6% of those right
+MiniLM head, answering only at confidence >= 0.8: 41% of questions answered, 92.7% of those right
+Qwen with examples, typed, right by true route: serving 0.92, architecture 0.96, agents 0.12, foundations 0.26

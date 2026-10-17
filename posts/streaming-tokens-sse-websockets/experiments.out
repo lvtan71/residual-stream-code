@@ -1,0 +1,5 @@
+SSE client left after 10 pieces: the server generated 10 tokens in all
+SSE client left after 10 pieces: the server generated 100 tokens in all
+WebSocket client said stop after 10 pieces: the server generated 10 tokens in all
+through the proxy: first text after 4.91 s, the end after 4.91 s, 100 pieces, 2,583 bytes
+through the proxy: first text after 0.20 s, the end after 5.03 s, 100 pieces, 2,583 bytes

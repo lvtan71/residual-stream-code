@@ -1,0 +1,13 @@
+309 sections, 426 tokens each on average (361 read at most 512); queries average 9.0 tokens
+bi-encoder: encode the query, then 309 dot products                198.3 MFLOPs per query
+cross-encoder, top 50: 50 passes over query + section          407149.5 MFLOPs per query
+late interaction (ColBERT, 128-d): every query x section token      501.3 MFLOPs per query
+  roughly K (q + L) / q = 2,056: the cross-encoder's multiple of one query encoding
+  at 10,000 documents: bi-encoder   0.21 GFLOPs, MaxSim over every document     10.0 GFLOPs
+  at 1,000,000 documents: bi-encoder   0.97 GFLOPs, MaxSim over every document    981.6 GFLOPs
+
+index size, every token indexed, 16-bit numbers:
+  bi-encoder, one 384-d vector per section:                 0.23 MiB
+  ColBERT, one 128-d vector per token:                     32.12 MiB
+  ColBERTv2, 4-byte centroid id + 2-bit residuals:          4.52 MiB
+  ColBERTv2, 4-byte centroid id + 1-bit residuals:          2.51 MiB

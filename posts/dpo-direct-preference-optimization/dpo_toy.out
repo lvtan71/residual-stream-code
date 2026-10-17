@@ -1,0 +1,14 @@
+feature family, beta = 0.5: RLHF policy vs DPO policy, largest difference in any response's probability: 1e-08; KL from ref 2.04, gold gain 2.72
+
+one free logit per response; the 300 comparisons mention 296 of 512 responses, 103 of which only ever won
+loss             beta opt   steps     KL   gold  unseen  only won  top 2 chosen log ratio
+DPO               0.5 Adam   1000   5.29   1.22    0.00      0.99   0.86     -10.3
+DPO               0.5 Adam  30000   5.83   0.35    0.00      1.00   1.00    -138.4
+DPO               0.5 SGD    1000   0.62   0.89    0.15      0.54   0.16       0.3
+DPO               0.5 SGD   30000   3.54   1.51    0.00      0.95   0.51      -3.9
+DPO, soft labels  0.5 Adam   1000   3.48   4.51    0.00      0.79   0.50      -3.3
+DPO, soft labels  0.5 Adam  30000   3.76   4.75    0.00      0.91   0.50      -4.1
+IPO               0.5 Adam   1000   0.41   0.42    0.18      0.43   0.08       0.1
+IPO               0.5 Adam  30000   0.41   0.42    0.18      0.43   0.08       0.1
+IPO               0.1 Adam   1000   4.77   0.65    0.00      0.98   0.88      -6.3
+IPO               0.1 Adam  30000   4.69   0.66    0.00      0.98   0.91      -6.9

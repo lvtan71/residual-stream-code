@@ -1,0 +1,11 @@
+teacher: blog 1.038, wiki 0.873 bits per byte; its top 64 tokens hold 92.5% of its probability on average
+student before training: blog 1.163, wiki 0.981 bits per byte
+
+student, bits per byte after each step, seed 0 then seed 1
+labels          step 50       step 100      step 200      step 400
+hard      blog  1.086 1.092   1.072 1.072   1.069 1.065   1.068 1.084
+hard      wiki  1.002 1.004   1.012 1.011   1.031 1.026   1.047 1.050
+soft      blog  1.166 1.165   1.164 1.163   1.161 1.163   1.156 1.161
+soft      wiki  0.991 0.991   0.995 0.993   0.998 0.999   1.003 1.005
+half each blog  1.096 1.098   1.081 1.083   1.070 1.070   1.055 1.059
+half each wiki  0.992 0.991   0.995 0.993   1.002 1.000   1.008 1.007

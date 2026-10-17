@@ -1,0 +1,6 @@
+dense (WikiText-2)                 s0: 1000: 2.202 / 2000: 2.063 / 3000: 2.006 / 4000: 1.974  (3 passes)
+8 experts, top-1, balancing loss   s0: 1000: 2.146 / 2000: 1.990 / 3000: 1.922 / 4000: 1.885 / busiest expert: 20% 18% 16% 14%  (3 passes)
+8 experts, top-2, balancing loss   s0: 1000: 2.083 / 2000: 1.943 / 3000: 1.905 / 4000: 1.860 / busiest expert: 15% 14% 13% 15%  (3 passes)
+dense (WikiText-2)                 s1: 1000: 2.217 / 2000: 2.088 / 3000: 2.009 / 4000: 1.979  (3 passes)
+8 experts, top-1, balancing loss   s1: 1000: 2.154 / 2000: 2.015 / 3000: 1.937 / 4000: 1.898 / busiest expert: 19% 15% 15% 14%  (3 passes)
+8 experts, top-2, balancing loss   s1: 1000: 2.095 / 2000: 1.966 / 3000: 1.900 / 4000: 1.862 / busiest expert: 14% 13% 13% 14%  (3 passes)

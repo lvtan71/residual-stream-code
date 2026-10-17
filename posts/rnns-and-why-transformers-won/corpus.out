@@ -1,0 +1,2 @@
+train 593,616 characters, validation 56,786; 147 distinct characters
+validation characters never seen in training: 123 of 56,786

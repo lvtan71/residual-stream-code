@@ -1,0 +1,8 @@
+h_1 = [ 0.537  -0.2913]
+h_2 = [ 0.5691 -0.0673]
+h_3 = [0.082 0.357]
+prediction y = h_3 . w_out = -0.2750
+gradient reaching h_2: [ 0.6201 -0.9208]
+gradient reaching h_1: [ 0.1521 -0.7177]
+gradient reaching h_0: [-0.0448 -0.4374]
+dy/dW_h = [[0.7904, -0.9888], [-0.189, 0.3257]]; largest gap to finite differences 4.6e-11

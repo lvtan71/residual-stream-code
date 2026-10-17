@@ -1,0 +1,48 @@
+problem 1: 15/16 samples right
+problem 2: 14/16 samples right
+problem 3: 14/16 samples right
+problem 4: 15/16 samples right
+problem 5: 13/16 samples right
+problem 6: 15/16 samples right
+problem 7: 16/16 samples right
+problem 8: 0/16 samples right
+problem 9: 15/16 samples right
+problem 10: 15/16 samples right
+problem 11: 14/16 samples right
+problem 12: 15/16 samples right
+problem 13: 15/16 samples right
+problem 14: 16/16 samples right
+problem 15: 16/16 samples right
+problem 16: 15/16 samples right
+problem 17: 15/16 samples right
+problem 18: 12/16 samples right
+problem 19: 15/16 samples right
+problem 20: 15/16 samples right
+problem 21: 1/16 samples right
+problem 22: 16/16 samples right
+problem 23: 16/16 samples right
+problem 24: 14/16 samples right
+problem 25: 4/16 samples right
+problem 26: 15/16 samples right
+problem 27: 15/16 samples right
+problem 28: 9/16 samples right
+problem 29: 13/16 samples right
+problem 30: 16/16 samples right
+problem 31: 15/16 samples right
+problem 32: 16/16 samples right
+problem 33: 16/16 samples right
+problem 34: 15/16 samples right
+problem 35: 14/16 samples right
+problem 36: 15/16 samples right
+problem 37: 16/16 samples right
+problem 38: 16/16 samples right
+problem 39: 16/16 samples right
+problem 40: 16/16 samples right
+
+40 problems, eight operations each; 202 tokens per sample
+  majority of  1:  82% right (   202 tokens per question); some sample right:  82%
+  majority of  2:  88% right (   403 tokens per question); some sample right:  90%
+  majority of  4:  92% right (   807 tokens per question); some sample right:  95%
+  majority of  8:  92% right (  1614 tokens per question); some sample right:  95%
+  majority of 16:  92% right (  3227 tokens per question); some sample right:  98%
+problems by share of samples right: none 1, under half 2, half or more 25, all 12

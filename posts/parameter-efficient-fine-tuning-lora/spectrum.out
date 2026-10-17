@@ -1,0 +1,11 @@
+update from post 25's full fine-tune (lr 1e-5, no replay, 400 steps, seed 0), averaged over the 24 blocks;
+share of the update's squared size captured by the best rank-k matrix, and the rank needed for 90%
+
+matrix          shape   rank 1     rank 8     rank 64    rank for 90%   random matrix, rank 8 / 64
+q_proj      896x896         6.6%      25.6%      63.6%      228 of 896     3.4% / 23.6%
+k_proj      128x896        13.6%      45.9%      91.2%       60 of 128    11.0% / 65.9%
+v_proj      128x896         6.9%      26.3%      80.3%       86 of 128    10.9% / 65.7%
+o_proj      896x896         5.5%      20.0%      60.2%      240 of 896     3.4% / 23.6%
+gate_proj  4864x896         5.4%      12.8%      35.9%      530 of 896     1.8% / 13.2%
+up_proj    4864x896         4.8%      12.7%      38.0%      496 of 896     1.8% / 13.2%
+down_proj   896x4864        2.4%       9.2%      33.2%      540 of 896     1.8% / 13.2%

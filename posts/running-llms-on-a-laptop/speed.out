@@ -1,0 +1,4 @@
+file                                 GB read/token     bound  GPU (Metal)  of bound  CPU, 8 threads
+qwen2.5-1.5b-instruct-q8_0.gguf             1.64       57/s        57/s     101%           62/s
+qwen2.5-1.5b-instruct-q4_k_m.gguf           0.98       95/s        86/s      90%           90/s
+qwen2.5-1.5b-instruct-q3_k_m.gguf           0.82      114/s        73/s      64%           85/s

@@ -1,0 +1,3 @@
+score margin 4:     100 keys  35.5%,   1,000 keys   5.2%,  10,000 keys   0.5%, 100,000 keys   0.1%
+score margin 8:     100 keys  96.8%,   1,000 keys  74.9%,  10,000 keys  23.0%, 100,000 keys   2.9%
+margin needed for half the attention among 100,000 keys: ln(99,999) = 11.5

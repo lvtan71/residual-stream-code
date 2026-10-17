@@ -1,0 +1,4 @@
+keyword count                   val loss 0.381  val acc 0.878
+keyword count, seen words only  val loss 0.436  val acc 0.851
+bag of words                    val loss 0.416  val acc 0.794
+both                            val loss 0.347  val acc 0.866

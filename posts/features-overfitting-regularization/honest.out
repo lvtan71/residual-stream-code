@@ -1,0 +1,4 @@
+L2 0.003 - no penalty (4,000 steps)   -0.064   naive SE 0.020   corrected SE 0.055
+L2 0.003 - no penalty (16,000 steps)  -0.131   naive SE 0.030   corrected SE 0.082
+L2 0.003 - L2 0.001                   -0.005   naive SE 0.006   corrected SE 0.017
+L2 0.003 - L2 0.01                    -0.019   naive SE 0.006   corrected SE 0.016

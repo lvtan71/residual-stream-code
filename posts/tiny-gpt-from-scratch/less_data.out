@@ -1,0 +1,4 @@
+25% of the training text (148,404 characters), seed 0: held-out bits per byte at 250: 3.144 / 500: 2.979 / 750: 3.142 / 1,000: 3.308 / 2,000: 4.228 / 3,000: 4.878 / 4,000: 5.227 steps (221 passes)
+25% of the training text (148,404 characters), seed 1: held-out bits per byte at 250: 3.142 / 500: 3.010 / 750: 3.212 / 1,000: 3.373 / 2,000: 4.178 / 3,000: 4.842 / 4,000: 5.216 steps (221 passes)
+50% of the training text (296,808 characters), seed 0: held-out bits per byte at 250: 3.132 / 500: 2.869 / 750: 2.968 / 1,000: 2.916 / 2,000: 3.312 / 3,000: 3.535 / 4,000: 3.726 steps (110 passes)
+50% of the training text (296,808 characters), seed 1: held-out bits per byte at 250: 3.168 / 500: 2.826 / 750: 2.915 / 1,000: 2.983 / 2,000: 3.080 / 3,000: 3.444 / 4,000: 3.608 steps (110 passes)

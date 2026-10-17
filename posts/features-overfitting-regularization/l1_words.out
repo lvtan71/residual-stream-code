@@ -1,0 +1,3 @@
+30 of 379 weights are nonzero; those of size >= 0.01:
+toward serving: batching +1.70, to +1.60, token +1.34, prefix +1.26, model +1.16, memory +1.14, decode +0.91, my +0.81, tokens +0.80, draft +0.74, one +0.68, vllm +0.63, request +0.61, for +0.50, does +0.33, on +0.28, throughput +0.22, cache +0.22, time +0.12
+away:           agent -1.80, need -0.87, what -0.74, attention -0.39, how -0.37, should -0.12, layer -0.02

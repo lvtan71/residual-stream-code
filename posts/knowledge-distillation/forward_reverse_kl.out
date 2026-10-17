@@ -1,0 +1,2 @@
+forward KL(p || q): best q has mean +0.00, width 2.10; mass in the gap |x| < 0.5: 19% (teacher: 1%)
+reverse KL(q || p): best q has mean -2.00, width 0.60; mass in the gap |x| < 0.5: 1% (teacher: 1%)

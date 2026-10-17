@@ -1,0 +1,4 @@
+length 40, no attention, seed 0, 3,000 steps, learning rate 0.001: digits right 0.224, whole sequences right 0.000
+length 40, no attention, seed 1, 3,000 steps, learning rate 0.001: digits right 0.238, whole sequences right 0.000
+length 40, attention   , seed 0, 3,000 steps, learning rate 0.001: digits right 0.971, whole sequences right 0.927
+length 40, attention   , seed 1, 3,000 steps, learning rate 0.001: digits right 0.975, whole sequences right 0.940

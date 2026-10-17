@@ -1,0 +1,6 @@
+KV cache per token: 28 KiB (2 x 28 layers x 2 KV heads x 128 x 2 bytes)
+ prefix      cold    cached  saved  prefix KV held
+   1024     918 ms      52 ms    94%          28 MiB
+   2048    1843 ms      60 ms    97%          56 MiB
+   4096    3854 ms      77 ms    98%         112 MiB
+   8192    8819 ms     112 ms    99%         224 MiB

@@ -1,0 +1,9 @@
+plain    right 93%
+checked  right 97%
+
+harness    budget 2   budget 3   budget 4   budget 6   budget 8   (share right)
+plain           93%        93%        93%        93%        93%
+checked         93%        92%        92%        95%        97%
+plain: model calls per run, mean 1.9, max 2; used all 8 calls 0 of 60
+checked: model calls per run, mean 2.5, max 8; used all 8 calls 3 of 60
+paired: the check fixed 2 plain failures and broke 0 plain successes

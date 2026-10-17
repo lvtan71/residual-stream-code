@@ -1,0 +1,22 @@
+KV cache per token 128 KiB; a 2,000-token prompt's cache is 250 MiB, 5.2 ms over a 50 GB/s link; its prefill alone takes 65 ms; a step stays weight-bound up to 148 tokens
+
+2 GPUs; share of requests whose first token comes within 2 s and every later token within 50 ms (loose) or 20 ms (tight)
+req/s design                     TTFT p50    p99  TPOT p99 worst gap p99  loose  tight
+    4 colocated, whole prefill     0.07s   0.47s    10.8ms    517.8ms    16%     5%
+    4 colocated, chunks of 512     0.07s   0.48s     8.7ms     16.9ms   100%   100%
+    4 colocated, chunks of 128     0.09s   0.59s     5.8ms      6.1ms   100%   100%
+    4 disaggregated 1 + 1          0.09s   0.61s     6.6ms     44.8ms   100%    83%
+    8 colocated, whole prefill     0.08s   0.52s    21.3ms    517.9ms     2%     0%
+    8 colocated, chunks of 512     0.09s   0.54s    12.4ms     17.4ms   100%   100%
+    8 colocated, chunks of 128     0.13s   1.04s     6.2ms      6.6ms   100%   100%
+    8 disaggregated 1 + 1          0.22s   2.11s     7.2ms     43.8ms    99%    77%
+   12 colocated, whole prefill     0.10s   0.60s    27.2ms    518.8ms     0%     0%
+   12 colocated, chunks of 512     0.10s   0.65s    14.5ms     17.5ms   100%   100%
+   12 colocated, chunks of 128     0.21s   1.45s     6.2ms      6.7ms   100%   100%
+   12 disaggregated 1 + 1          6.25s  10.05s     7.3ms     43.3ms     6%     4%
+
+4 GPUs
+req/s design                     TTFT p50    p99  TPOT p99 worst gap p99  loose  tight
+   24 colocated, chunks of 128     0.20s   1.31s     6.2ms      6.7ms   100%   100%
+   24 disaggregated 2 + 2          5.85s  12.80s     7.9ms     45.7ms    12%     9%
+   24 disaggregated 3 + 1          0.10s   0.51s    18.9ms     57.7ms    98%     7%

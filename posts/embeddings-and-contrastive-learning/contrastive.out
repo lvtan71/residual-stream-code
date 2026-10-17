@@ -1,0 +1,7 @@
+156 training sections, 66 held-out sections
+before training, the encoder is exactly the word2vec average: recall@1 0.152
+random word vectors, averaged:   recall@1 0.061
+word2vec vectors, averaged:      recall@1 0.152, 0.136, 0.136 (3 word2vec seeds)
+contrastive, batch   4 ( 3 negatives): recall@1 0.197, 0.152, 0.212 (3 seeds); on training sections 0.121, 0.121, 0.121
+contrastive, batch  16 (15 negatives): recall@1 0.167, 0.182, 0.212 (3 seeds); on training sections 0.136, 0.152, 0.136
+contrastive, batch  64 (63 negatives): recall@1 0.212, 0.227, 0.212 (3 seeds); on training sections 0.182, 0.182, 0.167

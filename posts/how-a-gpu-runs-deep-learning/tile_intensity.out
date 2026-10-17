@@ -1,0 +1,8 @@
+ridge points: this GPU 31 FLOP/byte, H100 295 FLOP/byte
+
+   C tile  reads per output     intensity   threads, one output each
+    naive        2.000 x n     0.25 FLOP/B                  1
+  16 x 16        0.125 x n     4.00 FLOP/B                256
+  32 x 32        0.062 x n     8.00 FLOP/B              1,024
+  64 x 64        0.031 x n    16.00 FLOP/B              4,096
+128 x 128        0.016 x n    32.00 FLOP/B             16,384

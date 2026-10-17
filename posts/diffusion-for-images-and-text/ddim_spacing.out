@@ -1,0 +1,10 @@
+unconditional, 2,000 samples per seed: share near a mode (modes covered)
+  5 steps, even, ending at t = 0 (diff2d.py)    3% (0)    3% (0)    3% (1)   t = [999, 749, 500, 250, 0]
+  5 steps, even, ending at t = 999/k           17% (8)   13% (7)   12% (8)   t = [999, 799, 599, 399, 199]
+  5 steps, quadratic (DDIM paper)              50% (8)   42% (8)   39% (8)   t = [999, 639, 360, 160, 40]
+ 10 steps, even, ending at t = 0 (diff2d.py)   58% (8)   55% (8)   51% (8)
+ 10 steps, even, ending at t = 999/k           61% (8)   58% (8)   55% (8)
+ 10 steps, quadratic (DDIM paper)              67% (8)   65% (8)   63% (8)
+ 20 steps, even, ending at t = 0 (diff2d.py)   76% (8)   73% (8)   73% (8)
+ 20 steps, even, ending at t = 999/k           76% (8)   74% (8)   75% (8)
+ 20 steps, quadratic (DDIM paper)              77% (8)   74% (8)   74% (8)

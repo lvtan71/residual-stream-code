@@ -1,0 +1,5 @@
+query "paged KV cache"; best section: "Borrowing an idea from operating systems" (paged-attention-explained), 231 words, average 280
+  paged  in  16 of 309 sections: idf 2.93; appears  2 times here; saturated tf 1.51; contributes 4.44
+  kv     in  46 of 309 sections: idf 1.90; appears  4 times here; saturated tf 1.89; contributes 3.58
+  cache  in  73 of 309 sections: idf 1.44; appears  2 times here; saturated tf 1.51; contributes 2.18
+  score 10.20

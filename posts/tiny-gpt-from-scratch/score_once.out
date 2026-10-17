@@ -1,0 +1,3 @@
+seed 0, cosine schedule, held-out bits per byte at 250: 3.036 / 1,000: 2.511 / 2,000: 2.453 / 3,000: 2.475 / 4,000: 2.496 steps (55 passes)
+seed 1, cosine schedule, held-out bits per byte at 250: 3.005 / 1,000: 2.607 / 2,000: 2.491 / 3,000: 2.562 / 4,000: 2.633 steps (55 passes)
+seed 2, cosine schedule, held-out bits per byte at 250: 3.019 / 1,000: 2.492 / 2,000: 2.436 / 3,000: 2.570 / 4,000: 2.535 steps (55 passes)

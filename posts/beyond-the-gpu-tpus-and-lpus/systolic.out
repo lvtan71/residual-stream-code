@@ -1,0 +1,15 @@
+cycle 0: 1 of 9 cells multiplying
+cycle 1: 3 of 9 cells multiplying
+cycle 2: 6 of 9 cells multiplying
+cycle 3: 7 of 9 cells multiplying
+cycle 4: 6 of 9 cells multiplying
+cycle 5: 3 of 9 cells multiplying
+cycle 6: 1 of 9 cells multiplying
+
+result equals A @ B: True   (27 multiply-adds in 7 cycles)
+[[ 18  24  30]
+ [ 54  69  84]
+ [ 90 114 138]]
+n =   3:         27 multiply-adds from      18 values read: each value used   3 times
+n = 128:  2,097,152 multiply-adds from  32,768 values read: each value used 128 times
+n = 256: 16,777,216 multiply-adds from 131,072 values read: each value used 256 times

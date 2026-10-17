@@ -1,0 +1,4 @@
+RunnableSequence of ['ChatPromptTemplate', 'RunnableLambda', 'StrOutputParser']
+(model saw 2 messages, last: 'What is a KV cache?')
+["(model saw 2 messages, last: 'a')", "(model saw 2 messages, last: 'b')"]
+True

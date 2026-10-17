@@ -1,0 +1,4 @@
+the model on the held-out posts: 2.522 bits per character
+stretches of 32+ characters: copied  3.8% at 0.58 bits, repeated  1.6% at 5.15, the rest 94.7% at 2.56
+stretches of 16+ characters: copied 15.4% at 1.07 bits, repeated  6.2% at 3.45, the rest 78.4% at 2.73
+for comparison, the dev slice: 5.6% copied from the rest of the training text (32+)

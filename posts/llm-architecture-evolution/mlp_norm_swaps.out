@@ -1,0 +1,6 @@
+SwiGLU + RMSNorm (baseline) s0: 1000: 2.147 / 2000: 2.053 / 3000: 2.034 / 4000: 2.027  (61 passes)
+GELU MLP, 4D wide         s0: 1000: 2.233 / 2000: 2.077 / 3000: 2.039 / 4000: 2.020  (61 passes)
+LayerNorm instead of RMS  s0: 1000: 2.134 / 2000: 2.047 / 3000: 2.060 / 4000: 2.029  (61 passes)
+SwiGLU + RMSNorm (baseline) s1: 1000: 2.140 / 2000: 2.030 / 3000: 2.023 / 4000: 2.006  (61 passes)
+GELU MLP, 4D wide         s1: 1000: 2.246 / 2000: 2.074 / 3000: 2.022 / 4000: 2.009  (61 passes)
+LayerNorm instead of RMS  s1: 1000: 2.127 / 2000: 2.051 / 3000: 2.028 / 4000: 2.017  (61 passes)

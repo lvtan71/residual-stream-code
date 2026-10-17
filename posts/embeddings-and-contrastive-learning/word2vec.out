@@ -1,0 +1,11 @@
+60,355 words, 1,685 kept (5+ occurrences)
+final loss 2.071 (at the start: (1 + k) log 2 = 4.16)
+attention   -> sparse, multi-head, hybrid, transformer, flashattention, gqa
+cache       -> kv, kv-cache-explained, linearly, per-sequence, quantization, iteration-level
+gradient    -> descent, alive, mse, convex, curvature, failures
+token       -> representation, accepted, dimensional, speculative, decoder, single
+vietnamese  -> english, questions, route, reader, foundations, list
+gpu         -> h100, datasheet, laptop, tflops, cores, bandwidth
+cos(cache, caching) = 0.40, rank 71 of 1,685
+cos(token, tokens) = 0.49, rank 14 of 1,685
+cos(cache, cached) = 0.39, rank 89 of 1,685

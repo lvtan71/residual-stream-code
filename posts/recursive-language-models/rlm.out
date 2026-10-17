@@ -1,0 +1,15 @@
+corpus: 66 posts, 991,185 characters (~255,743 tokens)
+
+task         truth           direct              RLM  calls   sub            fixed program  calls  minutes: direct, RLM, fixed
+needle   ochre-876 wrong: Based on           wrong:       5     2   right: 2 hits, 1 codes     53  0.4, 0.5, 9.3
+needle   amber-365 wrong: Based on           wrong:       5     2   right: 2 hits, 1 codes     53  0.4, 0.5, 8.6
+needle   ochre-514 wrong: Based on           wrong:       5     2   right: 2 hits, 1 codes     53  0.4, 0.5, 8.6
+needle   ochre-466 wrong: Based on           wrong:       5     2   right: 2 hits, 1 codes     53  0.4, 0.5, 8.6
+needle  cobalt-388 wrong: Based on           wrong:       5     2   right: 2 hits, 1 codes     53  0.4, 0.5, 8.6
+count           36         wrong: 3            right      2     0                right: 36     73  0.3, 0.1, 8.2
+count           34         wrong: 3       wrong: 147      3     0                wrong: 32     71  0.3, 0.2, 8.1
+count           14         wrong: 3            right      3     0                wrong: 12     77  0.3, 0.1, 8.3
+count           14         wrong: 2       wrong: 144      3     0                wrong: 10     80  0.3, 0.2, 8.4
+count           37         wrong: 3          wrong:       8     0                wrong: 25     75  0.3, 0.3, 8.2
+
+right: direct 0 of 10, RLM 2 of 10, fixed program 6 of 10

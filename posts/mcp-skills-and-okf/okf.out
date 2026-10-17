@@ -1,0 +1,31 @@
+---
+okf_version: "0.2"
+---
+
+# Residual Stream concepts
+
+- [The KV Cache: How Transformers Avoid Recomputing the Past](concepts/kv-cache.md)
+- [Speculative Decoding, Derived: Draft Models, N-grams, Medusa and EAGLE](concepts/speculative-decoding.md)
+- [Vector Search: Exact Search and the Approximate Indexes](concepts/hnsw.md)
+
+---
+type: Concept
+title: "The KV Cache: How Transformers Avoid Recomputing the Past"
+description: "Why autoregressive decoding wastes work, how caching keys and values turns it from quadratic to linear, worked through with colored matrices step by step — plus the memory cost formula and what it mea..."
+tags: [llm, inference]
+sources:
+  - resource: https://residual-stream.lvtan71.workers.dev/posts/kv-cache-explained/
+    title: "The KV Cache: How Transformers Avoid Recomputing the Past"
+generated:
+  by: process:make_okf
+  at: "2026-10-01"
+status: draft
+---
+
+# Summary
+
+Why autoregressive decoding wastes work, how caching keys and values turns it from quadratic to linear, worked through with colored matrices step by step — plus the memory cost formula and what it means for real models.
+
+# See also
+
+[the full post](https://residual-stream.lvtan71.workers.dev/posts/kv-cache-explained/)

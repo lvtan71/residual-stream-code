@@ -1,0 +1,4 @@
+vector length vs log word frequency: correlation -0.20
+nearest to 'cache' by dot product: kv (4.9), xhat (7.1), kv-cache-explained (5.4), nh (5.7), color-background (7.9), fill (7.4)
+nearest to 'cache' by cosine     : kv (4.9), kv-cache-explained (5.4), linearly (4.6), per-sequence (4.9), quantization (3.8), iteration-level (4.9)
+(vector lengths in brackets; the median word's is 4.3)

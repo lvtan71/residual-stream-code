@@ -1,0 +1,12 @@
+Qwen2.5-1.5B-Instruct
+                                    found  cites right   source line: none / one real post / several / placeholder or invented
+  one retrieval, one answer            23           17      2 / 26 /  0 /  2
+  agent loop                            0            0      4 /  0 /  0 / 26
+  agent, 'always search first'          0            0      5 /  0 /  0 / 25
+  agent, first call forced             18            0     29 /  0 /  1 /  0
+Qwen2.5-3B-Instruct
+                                    found  cites right   source line: none / one real post / several / placeholder or invented
+  one retrieval, one answer            23           23      0 / 30 /  0 /  0
+  agent loop                            4            3      1 /  4 /  0 / 25
+  agent, 'always search first'          9            3      2 /  3 /  1 / 24
+  agent, first call forced             21           10      6 / 15 /  1 /  8

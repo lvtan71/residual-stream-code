@@ -1,0 +1,6 @@
+loss: ours 0.4932, PyTorch 0.4932
+dL/dW1: [-0.2726, 0.0, 0.0, 0.0]   largest gap to PyTorch 0.0e+00
+dL/db1: [-0.2726, 0.0]   largest gap to PyTorch 0.0e+00
+dL/dw2: [-0.1947, 0.0]   largest gap to PyTorch 0.0e+00
+dL/db2: [-0.3894]   largest gap to PyTorch 0.0e+00
+200 random cases, shared weight and (1, 5) bias: largest gap to PyTorch 1.1e-16

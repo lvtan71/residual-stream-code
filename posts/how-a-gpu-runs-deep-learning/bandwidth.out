@@ -1,0 +1,7 @@
+vector_add: read 2 arrays, write 1, in 8.8 ms = 91 GB/s
+PyTorch copy: 92 GB/s
+strided_copy, stride    1:    93 GB/s
+strided_copy, stride    3:    48 GB/s
+strided_copy, stride    9:    17 GB/s
+strided_copy, stride   33:    10 GB/s
+strided_copy, stride 1025:     9 GB/s

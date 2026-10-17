@@ -1,0 +1,14 @@
+446 sections; 30 questions; Qwen2.5-1.5B-Instruct, greedy
+
+                                  found  cites any  cites right  model calls  tool calls  last context  tokens read  no tool  malformed
+one retrieval, one answer            23         28           17          1.0         1.0           427          427        0          0
+agent loop                            0         26            0          1.0         0.0           286          286       30          0
+agent, 'always search first'          0         25            0          1.0         0.0           309          309       30          0
+agent, first call forced             18          1            2          2.0         1.0           710        1,021        0          0
+446 sections; 30 questions; Qwen2.5-3B-Instruct, greedy
+
+                                  found  cites any  cites right  model calls  tool calls  last context  tokens read  no tool  malformed
+one retrieval, one answer            23         30           23          1.0         1.0           427          427        0          0
+agent loop                            4         29            3          1.2         0.2           371          428       24          0
+agent, 'always search first'          9         28            3          1.4         0.4           491          624       17          0
+agent, first call forced             21         24           10          2.0         1.0           720        1,030        0          0

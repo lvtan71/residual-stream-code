@@ -1,0 +1,4 @@
+L2 0.0   3,000 steps: val loss 0.677-0.692 across 5 initialization seeds
+L2 0.0  12,000 steps: val loss 0.778-0.795 across 5 initialization seeds
+L2 0.03  3,000 steps: val loss 0.342-0.343 across 5 initialization seeds
+L2 0.03 12,000 steps: val loss 0.342-0.342 across 5 initialization seeds

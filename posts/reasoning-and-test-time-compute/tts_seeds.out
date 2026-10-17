@@ -1,0 +1,16 @@
+seed 0: 100 problems, 2570 s
+  greedy, direct: 1% right, 3 tokens per answer
+  greedy, chain : 100% right, 215 tokens per answer
+  sampled chain, one sample: 97% right, 178 tokens per answer
+  majority of  1: 97% right (  178 tokens per question); some sample right: 97%
+  majority of  2: 98% right (  357 tokens per question); some sample right: 100%
+  majority of  4: 100% right (  713 tokens per question); some sample right: 100%
+  majority of  8: 100% right ( 1426 tokens per question); some sample right: 100%
+  majority of 16: 100% right ( 2853 tokens per question); some sample right: 100%
+seed 1: 100 problems, 1828 s
+  sampled chain, one sample: 98% right, 175 tokens per answer
+  majority of  1: 99% right (  175 tokens per question); some sample right: 99%
+  majority of  2: 99% right (  351 tokens per question); some sample right: 100%
+  majority of  4: 100% right (  702 tokens per question); some sample right: 100%
+  majority of  8: 100% right ( 1404 tokens per question); some sample right: 100%
+  majority of 16: 100% right ( 2808 tokens per question); some sample right: 100%

@@ -1,0 +1,10 @@
+<|im_start|>system
+You are Qwen, created by Alibaba Cloud. You are a helpful assistant.<|im_end|>
+<|im_start|>user
+What does the KV cache store?<|im_end|>
+<|im_start|>assistant
+The keys and values of every earlier token, so they aren't recomputed.<|im_end|>
+
+54 tokens: 36 of prompt (system, user, assistant header), masked; 18 trained:
+"The keys and values of every earlier token, so they aren't recomputed.<|im_end|>\n"
+targets in the loss: 18 of 53

@@ -1,0 +1,4 @@
+per update: 1,024 start states from replay, 15,360 imagined steps,
+computed as 15 sequential batched steps of 1,024 states each
+  15,360 real steps in a fast simulator (1 ms/step): 15 s
+  15,360 real steps in a robot acting at 20 Hz (50 ms/step): 768 s

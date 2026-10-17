@@ -12,7 +12,7 @@ Run them from this folder:
 | `prefill.py` | Time to the first token of a 2,176-token prompt, computed whole and with its 2,048-token prefix cached. | GPU; time it with nothing else using the GPU |
 | `jump.py` | Constrained JSON decoding, plain and with jump-forward: forward passes and time. | GPU |
 
-`lm.py` loads Qwen2.5-1.5B-Instruct and its tokenizer; the other scripts import it.
+`lm.py` loads Qwen2.5-1.5B-Instruct and its tokenizer; the other scripts import it. The outputs here came from an Apple M4 laptop with torch 2.14.1 and transformers 5.19.0.
 
 ```bash
 pip install torch transformers huggingface_hub

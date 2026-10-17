@@ -1,0 +1,17 @@
+                                    k  current only   both  outdated only  neither
+last k turns                        1            2%     0%             0%      98%
+last k turns                        3            5%     0%             0%      95%
+last k turns                        5            9%     0%             0%      91%
+most relevant k                     1           71%     0%            29%       0%
+most relevant k                     3           62%    35%             2%       0%
+most relevant k                     5           62%    36%             1%       0%
+recency + importance + relevance    1           87%     0%             4%       9%
+recency + importance + relevance    3           63%    36%             0%       0%
+recency + importance + relevance    5           62%    38%             0%       0%
+recency + relevance                 1           60%     0%             3%      37%
+importance + relevance              1           71%     0%            29%       0%
+
+worked: "What is the user's job?"
+  turn 25 'Actually, things changed: I work as a data engineer.'   recency 0.45 + importance 1.00 + relevance 0.84 = 2.29
+  turn 41 'Actually, things changed: My pet is a hamster.'         recency 0.80 + importance 1.00 + relevance 0.30 = 2.10
+  turn  4 'I work as a teacher.'                                   recency 0.06 + importance 1.00 + relevance 1.00 = 2.06

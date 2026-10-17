@@ -1,0 +1,6 @@
+optimal-discriminator value -0.9440; 2 JS - log 4 = -0.9440
+
+model                    modes covered (of 8), per seed   share of samples near a mode
+VAE                                 8  8  8            52%  48%  51%
+GAN (non-saturating)                8  7  8            89%  82%  88%
+WGAN-GP                             8  8  1            72%  65%  2%

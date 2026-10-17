@@ -1,0 +1,12 @@
+logits = similarities / 0.07:
+ [[12.86  2.86  1.43]
+ [ 4.29 11.43  5.71]
+ [ 0.71  5.   10.  ]]
+image -> caption losses: [0.0001 0.0041 0.0068]  caption -> image losses: [0.0002 0.0018 0.0139]
+CLIP loss (symmetric InfoNCE) = mean of both directions = 0.0045
+
+SigLIP per-pair losses:
+ [[1.3133e+00 3.0000e-04 1.0000e-04]
+ [9.0000e-04 2.1269e+00 2.5000e-03]
+ [1.0000e-04 1.5000e-03 3.0486e+00]]
+SigLIP loss = sum over all 9 pairs / 3 images = 2.1647

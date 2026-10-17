@@ -1,0 +1,9 @@
+tool search_posts: Find the blog posts most relevant to a query (BM25 over the full text).
+  input schema: {"type": "object", "properties": {"query": {"title": "Query", "type": "string"}, "k": {"default": 3, "title": "K", "type": "integer"}}, "required": ["query"], "...
+tool read_post: Read the start of one post, by slug.
+  input schema: {"type": "object", "properties": {"slug": {"title": "Slug", "type": "string"}, "max_words": {"default": 400, "title": "Max Words", "type": "integer"}}, "require...
+protocol version: 2026-07-28
+search_posts -> {'result': [{'slug': 'paged-attention-explained', 'title': 'Paged Attention: Managing the KV Cache Like Virtual Memory', 'score': 5.75}, {'slug': 'kv-cache-explained', 'title': 'The KV Cache: How Transformers Avoid Recomputing the Past', 'score': 5.44}, {'slug': 'flashattention-explained', 'title': 'FlashAttention: Exact Attention at the Speed of Memory', 'score': 4.88}]}
+read_post -> [Post 20](/posts/kv-cache-explained/) sized the KV cache, and posts 18 and 23 showed the architectural ways to shrink it: share key-value heads (GQA), or store a
+resource template post://{slug}: A post's full text, for a host to attach as context.
+resources/read -> [Post 13](/posts/residual-stream-explained/) found two thirds of a Transformer b ...

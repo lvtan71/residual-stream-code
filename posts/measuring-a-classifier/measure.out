@@ -1,0 +1,13 @@
+split 0 test: TP 6  FP 2  FN 4  TN 28
+no penalty     acc 0.833  precision 0.795  recall 0.445  F1 0.571  ROC-AUC 0.861  AP 0.714
+L2             acc 0.809  precision 0.776  recall 0.330  F1 0.463  ROC-AUC 0.850  AP 0.688
+L2 + keywords  acc 0.885  precision 0.891  recall 0.615  F1 0.728  ROC-AUC 0.888  AP 0.790
+threshold 0.1: precision 0.563  recall 0.830  cost 197
+threshold 0.2: precision 0.750  recall 0.750  cost 150
+threshold 0.3: precision 0.789  recall 0.710  cost 154
+threshold 0.4: precision 0.830  recall 0.660  cost 163
+threshold 0.5: precision 0.891  recall 0.615  cost 169
+threshold 0.6: precision 0.918  recall 0.560  cost 186
+threshold 0.7: precision 0.934  recall 0.495  cost 209
+threshold 0.8: precision 0.931  recall 0.405  cost 244
+test cost at 0.5: 169;  theory's 1/3: 156;  tuned on validation: 167;  tuned on test itself: 149

@@ -1,0 +1,4 @@
+token_embd shape in the file: [np.uint64(1536), np.uint64(151936)]
+qwen2.5-1.5b-instruct-q8_0.gguf      3.061 bits per token
+qwen2.5-1.5b-instruct-q4_k_m.gguf    3.114 bits per token
+qwen2.5-1.5b-instruct-q3_k_m.gguf    3.185 bits per token

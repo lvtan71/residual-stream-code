@@ -1,0 +1,11 @@
+gamma = 0.25, delta = 2.0: a flat distribution's green share is 0.711
+z for T = 200 tokens at that share: 15.1
+
+green share  z at T=50  z at T=200  tokens for z = 4
+      0.300        0.8         1.6              1201
+      0.350        1.6         3.3               301
+      0.400        2.4         4.9               134
+      0.500        4.1         8.2                48
+      0.711        7.5        15.1                15
+
+false-positive rate at z > 4: normal tail 3.2e-05; exact at T = 50: 1.2e-04; exact at T = 200: 6.2e-05; exact at T = 1000: 4.8e-05

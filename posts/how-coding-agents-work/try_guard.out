@@ -1,0 +1,8 @@
+'npm test'                                                 -> allowed
+'rm -rf build/'                                            -> blocked (exit 2)
+'rm -fr build/'                                            -> blocked (exit 2)
+'rm -r -f build/'                                          -> blocked (exit 2)
+'rm build/old.log'                                         -> allowed
+'git push --force-with-lease'                              -> allowed
+'git push -f origin main'                                  -> blocked (exit 2)
+'python -c \'import shutil; shutil.rmtree("build")\''      -> allowed

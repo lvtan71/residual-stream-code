@@ -1,0 +1,7 @@
+eigenvalues 0.2407 and 30.72, kappa 128
+gradient descent, eta 0.0646:              882 steps   (theory: error shrinks by 0.9844 per step)
+momentum, eta 0.1099, beta 0.701:     108 steps   (theory: 0.8374 per step)
+momentum, beta 0.5, same effective step:     736 steps
+momentum, beta 0.9, same effective step:     630 steps
+momentum, beta 0.99, same effective step:    2302 steps
+first t with sqrt(beta)^t < 1e-6: 78; with t * sqrt(beta)^t < 1e-6: 104

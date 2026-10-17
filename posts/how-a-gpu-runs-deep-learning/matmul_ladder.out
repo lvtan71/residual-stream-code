@@ -1,0 +1,3 @@
+n =  512:   naive   237 GFLOP/s   tiled   518 GFLOP/s   tiled 32   561 GFLOP/s   registers  1325 GFLOP/s   PyTorch  2869 GFLOP/s   (all within 1e-06 of float64)
+n = 1024:   naive   291 GFLOP/s   tiled   514 GFLOP/s   tiled 32   581 GFLOP/s   registers  1308 GFLOP/s   PyTorch  3081 GFLOP/s   (all within 1e-06 of float64)
+n = 2048:   naive   269 GFLOP/s   tiled   491 GFLOP/s   tiled 32   517 GFLOP/s   registers  1201 GFLOP/s   PyTorch  2867 GFLOP/s   (all within 2e-06 of float64)

@@ -1,0 +1,7 @@
+5-minute cache (write 1.25x, read 0.1x): cheaper from use 2 on; at 10 uses it costs 22% of uncached, at 100 uses 11%
+1-hour cache (write 2.0x, read 0.1x): cheaper from use 3 on; at 10 uses it costs 29% of uncached, at 100 uses 12%
+
+20k-token prefix, 1,000 requests: uncached $80.00, cached $4.10
+KV cache for that 20k-token prefix, Qwen2.5-1.5B      :  0.53 GiB
+KV cache for that 20k-token prefix, Qwen2.5-32B       :  4.88 GiB
+KV cache for that 20k-token prefix, DeepSeek-R1 (MLA) :  1.31 GiB

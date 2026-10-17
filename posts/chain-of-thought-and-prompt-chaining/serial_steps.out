@@ -1,0 +1,44 @@
+k = 1
+   direct                                 100%     1.0 calls per problem
+   reasoned                               100%     1.0 calls per problem
+   chained                                 98%     1.0 calls per problem
+   chained, reasoned                      100%     1.0 calls per problem
+   checked by agreement  98%/98%/98% (3 seeds)     2.0 calls per problem
+   checked by oracle     98%/98%/98% (3 seeds)     1.1 calls per problem
+k = 2
+   direct                                  18%     1.0 calls per problem
+   reasoned                               100%     1.0 calls per problem
+   chained                                 95%     2.0 calls per problem
+   chained, reasoned                      100%     2.0 calls per problem
+   checked by agreement  95%/95%/98% (3 seeds)     4.1 calls per problem
+   checked by oracle     98%/98%/95% (3 seeds)     2.1 calls per problem
+k = 3
+   direct                                   2%     1.0 calls per problem
+   reasoned                               100%     1.0 calls per problem
+   chained                                100%     3.0 calls per problem
+   chained, reasoned                       98%     3.0 calls per problem
+   checked by agreement 100%/100%/100% (3 seeds)     6.0 calls per problem
+   checked by oracle    100%/100%/100% (3 seeds)     3.0 calls per problem
+k = 4
+   direct                                   2%     1.0 calls per problem, 1 hit the token cap
+   reasoned                                98%     1.0 calls per problem
+   chained                                 92%     4.0 calls per problem
+   chained, reasoned                       95%     4.0 calls per problem
+   checked by agreement  98%/95%/95% (3 seeds)     8.0 calls per problem
+   checked by oracle     98%/95%/95% (3 seeds)     4.2 calls per problem
+k = 6
+   direct                                   0%     1.0 calls per problem
+   reasoned                                98%     1.0 calls per problem
+   chained                                 80%     6.0 calls per problem, 2 hit the token cap
+   chained, reasoned                       88%     6.0 calls per problem
+   checked by agreement  78%/78%/80% (3 seeds)    12.4 calls per problem
+   checked by oracle     82%/85%/85% (3 seeds)     6.5 calls per problem
+k = 8
+   direct                                   2%     1.0 calls per problem
+   reasoned                                92%     1.0 calls per problem
+   chained                                 70%     8.0 calls per problem, 3 hit the token cap
+   chained, reasoned                       82%     8.0 calls per problem
+   checked by agreement  72%/68%/72% (3 seeds)    16.8 calls per problem
+   checked by oracle     72%/80%/82% (3 seeds)     8.8 calls per problem
+
+one greedy chained step right: 97.1% overall; multiply 98.7%, add or subtract 96.3%; starting from a number of 1,000 or more 81.6% (49 steps)

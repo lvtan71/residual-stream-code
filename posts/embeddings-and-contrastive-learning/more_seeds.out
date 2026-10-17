@@ -1,0 +1,22 @@
+60,355 words, 1,685 kept (5+ occurrences)
+final loss 2.037 (at the start: (1 + k) log 2 = 4.16)
+attention   -> hybrid, multi-head, sparse, sliding, transformer, window
+cache       -> kv, kv-cache-explained, bill, linearly, per-sequence, prefill
+gradient    -> descent, alive, mse, failures, minimum, convex
+token       -> moment, re-read, vocabulary, accepted, ch, representation
+vietnamese  -> english, questions, keywords, rotary, settings, shown
+gpu         -> h100, datasheet, synchronize, laptop, tflops, dense
+cos(cache, caching) = 0.45, rank 46 of 1,685
+cos(token, tokens) = 0.54, rank 13 of 1,685
+cos(cache, cached) = 0.39, rank 103 of 1,685
+60,355 words, 1,685 kept (5+ occurrences)
+final loss 2.030 (at the start: (1 + k) log 2 = 4.16)
+attention   -> hybrid, sparse, shipped, masked, multi-head, cross-attention
+cache       -> kv, kv-cache-explained, hit, per-sequence, matched, vllm-architecture-explained
+gradient    -> descent, mse, separable, reaching, alive, arriving
+token       -> representation, contributes, re-read, character, wasted, decoder
+vietnamese  -> english, questions, part, catch, combined, sends
+gpu         -> h100, datasheet, bandwidth, tflop, ridge, kb
+cos(cache, caching) = 0.50, rank 15 of 1,685
+cos(token, tokens) = 0.48, rank 45 of 1,685
+cos(cache, cached) = 0.49, rank 16 of 1,685

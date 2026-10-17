@@ -1,0 +1,2 @@
+series map's guess    2000 in, 300 out: batch 1  1.47 GPU-s per answer; batch 64   82 ms per answer
+measured here          699 in,  52 out: batch 1  0.26 GPU-s per answer; batch 64   17 ms per answer

@@ -1,0 +1,6 @@
+attention   in all 3 seeds: sparse, multi-head, hybrid;  in 2: transformer
+cache       in all 3 seeds: kv, kv-cache-explained, per-sequence;  in 2: linearly
+gradient    in all 3 seeds: descent, alive, mse;  in 2: convex, failures
+token       in all 3 seeds: representation;  in 2: accepted, decoder, re-read
+vietnamese  in all 3 seeds: english, questions;  in 2: -
+gpu         in all 3 seeds: h100, datasheet;  in 2: laptop, tflops, bandwidth

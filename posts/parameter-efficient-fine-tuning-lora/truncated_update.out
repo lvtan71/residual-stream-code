@@ -1,0 +1,7 @@
+full fine-tune's update cut to rank k in every block matrix (bits per byte)
+  pretrained: blog 1.163, wiki 0.981
+           0: blog 1.162, wiki 0.981
+           1: blog 1.122, wiki 0.998
+           8: blog 1.103, wiki 1.010
+          64: blog 1.078, wiki 1.026
+         all: blog 1.068, wiki 1.047

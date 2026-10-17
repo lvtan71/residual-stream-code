@@ -1,0 +1,2 @@
+GRU:       1024 sequential steps, 0.81 GFLOPs,    9.5 ms
+attention: 1 parallel pass,      1.48 GFLOPs,    1.5 ms

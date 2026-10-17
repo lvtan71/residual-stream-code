@@ -1,0 +1,8 @@
+step   1500   modes 0   near a mode  0.1%   sample std (0.69, 0.43)
+step   3000   modes 0   near a mode  0.8%   sample std (3.05, 2.17)
+step   4500   modes 0   near a mode  0.0%   sample std (0.16, 0.24)
+step   6000   modes 0   near a mode  0.0%   sample std (0.27, 0.63)
+step   7500   modes 0   near a mode  1.0%   sample std (0.99, 2.04)
+step   9000   modes 0   near a mode  0.2%   sample std (1.05, 1.03)
+step  10500   modes 0   near a mode  0.4%   sample std (0.44, 0.83)
+step  12000   modes 0   near a mode  1.4%   sample std (0.89, 1.00)

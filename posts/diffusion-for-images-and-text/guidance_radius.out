@@ -1,0 +1,5 @@
+DDIM 50 steps, 250 samples per mode, all three seeds pooled
+  w  median radius  spread around the mode asked for
+  1           2.00                             0.032
+  3           2.06                             0.081
+  7           3.98                             4.737

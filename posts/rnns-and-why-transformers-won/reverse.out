@@ -1,0 +1,16 @@
+length  5, no attention, seed 0: digits right 0.990, whole sequences right 0.972
+length  5, no attention, seed 1: digits right 0.994, whole sequences right 0.979
+length  5, attention   , seed 0: digits right 0.998, whole sequences right 0.996
+length  5, attention   , seed 1: digits right 1.000, whole sequences right 1.000
+length 10, no attention, seed 0: digits right 0.962, whole sequences right 0.832
+length 10, no attention, seed 1: digits right 0.971, whole sequences right 0.853
+length 10, attention   , seed 0: digits right 0.987, whole sequences right 0.958
+length 10, attention   , seed 1: digits right 0.984, whole sequences right 0.958
+length 20, no attention, seed 0: digits right 0.784, whole sequences right 0.148
+length 20, no attention, seed 1: digits right 0.818, whole sequences right 0.189
+length 20, attention   , seed 0: digits right 0.938, whole sequences right 0.840
+length 20, attention   , seed 1: digits right 0.944, whole sequences right 0.869
+length 40, no attention, seed 0: digits right 0.374, whole sequences right 0.000
+length 40, no attention, seed 1: digits right 0.379, whole sequences right 0.000
+length 40, attention   , seed 0: digits right 0.479, whole sequences right 0.106
+length 40, attention   , seed 1: digits right 0.250, whole sequences right 0.000

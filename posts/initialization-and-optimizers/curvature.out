@@ -1,0 +1,2 @@
+bag of words     largest curvature     0.51, so gradient descent is stable only below 2 / that = 3.9118
+plus raw length  largest curvature   543.91, so gradient descent is stable only below 2 / that = 0.0037

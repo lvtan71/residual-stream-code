@@ -1,0 +1,6 @@
+66 held-out English sections; 118 English/Vietnamese section pairs
+averaged word2vec: average cosine between different held-out windows 0.81
+all-MiniLM-L6-v2 (English): 23M parameters, reads up to 256 tokens
+    same-section recall@1 0.318   English -> Vietnamese recall@1 0.576 (236 sections in 2.0 s)   average cosine between different windows 0.16
+multilingual MiniLM-L12: 118M parameters, reads up to 128 tokens
+    same-section recall@1 0.212   English -> Vietnamese recall@1 1.000 (236 sections in 2.0 s)   average cosine between different windows 0.29

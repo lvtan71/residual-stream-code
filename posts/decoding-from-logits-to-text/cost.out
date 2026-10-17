@@ -1,0 +1,4 @@
+forward pass for one token: 41.0 ms
+choosing the token, greedy: 0.24 ms
+choosing the token, top-p 0.9: 0.91 ms
+choosing the token, T 0.7 + top-k 40 + top-p 0.9 + min-p 0.05 + repetition 1.1: 1.61 ms
