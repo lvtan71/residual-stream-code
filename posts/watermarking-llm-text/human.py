@@ -3,6 +3,7 @@ import re
 import math
 import numpy as np
 import torch
+from huggingface_hub import snapshot_download                       # used by the wm.py lines below
 from transformers import AutoConfig, AutoTokenizer
 
 # False positives on human text: every 200-token window of this blog's
