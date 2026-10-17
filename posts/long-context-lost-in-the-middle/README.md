@@ -11,7 +11,7 @@ The scripts behind [Long Context, and Where It Breaks: Lost in the Middle](https
 | `dilution.py` | Softmax dilution: the attention share of one key that scores a fixed margin above n - 1 equal others. | Python, instant |
 | `sinks.py` | Attention weights of a 1,024-token passage: the share on the first token, the last four and the rest, per layer and per head, and which position gets the most attention when the first token changes. | GPU, a few minutes (estimate); 32-bit eager attention |
 
-`lm.py` loads Qwen2.5-1.5B-Instruct and its tokenizer (the model on first use) and picks the device. `blog_train.txt` links to `../../data/blog_train.txt`, the frozen snapshot of the blog's posts written by [Sequences Before Attention](https://residual-stream.lvtan71.workers.dev/posts/rnns-and-why-transformers-won/).
+`lm.py` loads Qwen2.5-1.5B-Instruct and its tokenizer (the model on first use) and picks the device; it is adapted from the helper of [Decoding](https://residual-stream.lvtan71.workers.dev/posts/decoding-from-logits-to-text/), which loads the same model at the same revision. `blog_train.txt` links to `../../data/blog_train.txt`, the frozen snapshot of the blog's posts written by [Sequences Before Attention](https://residual-stream.lvtan71.workers.dev/posts/rnns-and-why-transformers-won/).
 
 The whole folder takes about 80 minutes on an Apple M4 laptop GPU. The per-script times above are from the post (the "s so far" column); those marked as estimates are the remainder of the 80 minutes. The outputs here came from an Apple M4 laptop with torch 2.14.0 and transformers 5.17.
 

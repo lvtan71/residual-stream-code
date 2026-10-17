@@ -9,7 +9,7 @@ The scripts behind [VAEs and GANs: Two Ways to Sample What You Can't Write Down]
 | `vae_codes.py` | Retrains `gen2d.py`'s VAE for the same 3 seeds and scores decoded reconstructions, codes the encoder could give, and codes from the prior. Loads `gen2d.py`. | CPU, about 10 seconds |
 | `wgan_long.py` | WGAN-GP seed 2 run to 12,000 generator steps and scored every 1,500. Loads `gen2d.py`. | CPU, about 45 seconds |
 
-The whole folder runs in about 3 minutes on a CPU. The outputs here came from an Apple M4 laptop with torch 2.14.0, on its CPU.
+The whole folder runs in about 3 minutes on a CPU. The outputs here came from an Apple M4 laptop with torch 2.14.0, on its CPU. The exception is `gen2d.out`, regenerated on the same laptop's CPU with torch 2.14.1 to recover two lines missing from the saved output; its other lines match the original run.
 
 ```bash
 pip install "numpy==2.*" "torch==2.14.*"

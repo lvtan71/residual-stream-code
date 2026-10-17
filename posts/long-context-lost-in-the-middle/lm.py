@@ -2,7 +2,7 @@ import torch
 from transformers import AutoModelForCausalLM, AutoTokenizer
 from huggingface_hub import snapshot_download
 
-# Qwen2.5-1.5B-Instruct, the model of "The KV Cache" and later posts, loaded
+# Qwen2.5-1.5B-Instruct, the model of "Decoding" and later posts, loaded
 # on first use, so that code needing only the tokenizer doesn't load the weights.
 PATH = snapshot_download("Qwen/Qwen2.5-1.5B-Instruct",
                          revision="989aa7980e4cf806f80c7fef2b1adb7bc71aa306")

@@ -14,7 +14,7 @@ The scripts behind [Watermarking LLM Text: A Signal Hidden in the Sampling](http
 
 `blog-fb57e84.tar.gz` links to `../../data/`: a snapshot of the blog's source at commit fb57e84, the 52 English posts as of the post's run; `tar xzf` unpacks its `content/posts/`, which `human.py` and `other_keys.py` read.
 
-The outputs here came from an Apple M4 laptop with torch 2.14.0 and transformers 5.17. Seeds are fixed, but sampling on another GPU can choose different tokens, so the numbers from `wm.py` and `entropy_paraphrase.py` can differ in detail.
+The outputs here came from an Apple M4 laptop with torch 2.14.0 and transformers 5.17.0. Seeds are fixed, but sampling on another GPU can choose different tokens, so the numbers from `wm.py` and `entropy_paraphrase.py` can differ in detail.
 
 ```bash
 pip install numpy "torch==2.14.*" "transformers==5.17.*" huggingface_hub

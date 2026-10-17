@@ -1,6 +1,6 @@
                                             bytes per token  one 32k sequence  vs baseline
 BF16, every token (baseline)                      819,200 B         25.00 GiB      100.0%
-if it had 8 KV heads (GQA, post 18)               163,840 B          5.00 GiB       20.0%
+if it had 8 KV heads (GQA)                        163,840 B          5.00 GiB       20.0%
 4-bit K and V                                     256,000 B          7.81 GiB       31.2%
 2-bit K and V (KIVI)                              153,600 B          4.69 GiB       18.8%
 keep a quarter of the tokens                      204,800 B          6.25 GiB       25.0%

@@ -9,10 +9,10 @@ The scripts behind [Small and Specialized Models: When Not to Use a Frontier LLM
 
 Helpers: `lm.py` loads Qwen2.5-1.5B-Instruct and its tokenizer. `router_data.py` (the questions and the 120 / 40 / 40 splits) is a copy of the helper from [Features and Overfitting](https://residual-stream.lvtan71.workers.dev/posts/features-overfitting-regularization/); `router4.py` (the four-way softmax router and its calibration error) and `softmax_basics.py` are copies of the helpers from [Cross-Entropy and the Softmax Gradient](https://residual-stream.lvtan71.workers.dev/posts/softmax-and-cross-entropy/). `quiet_machine.py` waits for the machine's load to drop before anything is timed; it is a reconstruction of a lost original and changes no result. `router-questions.csv` links to `../../data/router-questions.csv`, the series' hand-labeled router questions.
 
-The outputs here came from an Apple M4 laptop with torch 2.14.0 and transformers 5.17.
+The outputs here came from an Apple M4 laptop with torch 2.14.0, transformers 5.17 and sentence-transformers 6.1.0. The huggingface_hub version was not recorded, so it is left unpinned.
 
 ```bash
-pip install numpy "torch==2.14.*" "transformers==5.17.*" huggingface_hub sentence-transformers
+pip install "numpy==2.*" "torch==2.14.*" "transformers==5.17.*" huggingface_hub "sentence-transformers==6.1.*"
 python bandwidth.py
 python routing.py
 ```

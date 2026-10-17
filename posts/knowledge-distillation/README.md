@@ -1,6 +1,6 @@
 # Knowledge Distillation: the full code
 
-The scripts behind [Knowledge Distillation: Learning from a Teacher's Distribution](https://residual-stream.lvtan71.workers.dev/posts/knowledge-distillation/). Each `.out` file is what its script printed for the post.
+The scripts behind [Knowledge Distillation: Learning from a Teacher's Distribution](https://residual-stream.lvtan71.workers.dev/posts/knowledge-distillation/). Each `.out` file is what its script printed for the post. One exception: the header line of `three_labels.out` had 6 spaces after `labels` in the original run; `distill_table.py` now prints 10, to line up with the rows, and the `.out` shows the 10-space header.
 
 | Script | What it does | Needs |
 | --- | --- | --- |
@@ -16,7 +16,7 @@ The scripts behind [Knowledge Distillation: Learning from a Teacher's Distributi
 
 `blog_train.txt` and `blog_val.txt` link to `../../data/blog-2026-10-04/`, the text of the blog's posts as they stood on 2026-10-04, written by the data script of [Sequences Before Attention](https://residual-stream.lvtan71.workers.dev/posts/rnns-and-why-transformers-won/). `runlog.py` holds the helper the three runner scripts share: it runs a script as a separate process and appends its summary line to a log, and also prints it to stderr to follow progress.
 
-The nine 400-step training runs take several hours on a T4; per-script times are not recorded. The student's embedding table is frozen so that training fits in 16 GB. The outputs here came from an Apple M4 laptop with torch 2.14.1 and transformers 5.18.0.
+Each 400-step training run took about 30 min on the M4 (each run prints its time). The `[transformers] Token indices sequence length…` warning at the top of `dark_knowledge.out` goes to stderr and is expected; `teacher_val.py` and `soft_check.py` print it again when the runners call them. The student's embedding table is frozen so that training fits in 16 GB. The outputs here came from an Apple M4 laptop with torch 2.14.1 and transformers 5.18.0.
 
 ```bash
 pip install "torch==2.14.*" "transformers==5.18.*" huggingface_hub pyarrow "numpy==2.*"

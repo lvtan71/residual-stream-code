@@ -17,7 +17,7 @@ NAMES = ["q_proj", "k_proj", "v_proj", "o_proj", "gate_proj", "up_proj", "down_p
 KS = (1, 8, 64)
 share = lambda s, k: float((s[:k] ** 2).sum() / (s ** 2).sum())
 torch.manual_seed(0)
-print(f"update from post 25's full fine-tune ({sys.argv[2]}), averaged over the 24 blocks;")
+print(f"update from the full fine-tune of Fine-Tuning, and What It Destroys ({sys.argv[2]}), averaged over the 24 blocks;")
 print("share of the update's squared size captured by the best rank-k matrix, and the rank needed for 90%\n")
 print(f"{'matrix':10s} {'shape':>10s}   " + "   ".join(f"rank {k:<3d}" for k in KS) + "   rank for 90%   random matrix, rank 8 / 64")
 for n in NAMES:

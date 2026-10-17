@@ -5,7 +5,7 @@ Llama 3.1 8B: 8.03B parameters, 6.98B of them in the 7 matrices of each block
   LoRA r = 64 on all 7:  167.8M trainable, 2.09% of the model
 
 Memory for training, weights + gradients + AdamW's two moments (activations not counted):
-  full fine-tune, mixed precision (16 bytes per parameter, post 4.1):  128.5 GB
+  full fine-tune, mixed precision (16 bytes per parameter, Initialization and Optimizers):  128.5 GB
   LoRA r = 16: 16-bit frozen weights 16.1 GB + 16 bytes per LoRA parameter 0.67 GB =   16.7 GB
   QLoRA r = 16: 4-bit block weights, the rest 16-bit 5.6 GB + LoRA 0.67 GB =    6.3 GB
   (plus NF4's block scales: 0.127 bits per weight with double quantization, 0.11 GB)

@@ -13,7 +13,7 @@ for r in (1, 8, 16, 64):
 r16 = L * sum(16 * (i + o) for i, o in mats.values())
 GB = 1e9
 print("\nMemory for training, weights + gradients + AdamW's two moments (activations not counted):")
-print(f"  full fine-tune, mixed precision (16 bytes per parameter, post 4.1): {16 * total / GB:6.1f} GB")
+print(f"  full fine-tune, mixed precision (16 bytes per parameter, Initialization and Optimizers): {16 * total / GB:6.1f} GB")
 print(f"  LoRA r = 16: 16-bit frozen weights {2 * total / GB:.1f} GB + 16 bytes per LoRA parameter "
       f"{16 * r16 / GB:.2f} GB = {(2 * total + 16 * r16) / GB:6.1f} GB")
 q4 = 0.5 * L * per_layer + 2 * (total - L * per_layer)          # 4-bit block matrices, 16-bit embeddings and norms

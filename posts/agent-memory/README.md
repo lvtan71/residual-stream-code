@@ -9,6 +9,6 @@ The scripts behind [Agent Memory: Write, Read, Update, Forget](https://residual-
 The outputs here came from an Apple M4 laptop with torch 2.14.0 and transformers 5.17, on its CPU.
 
 ```bash
-pip install "numpy==2.*" "torch==2.14.*" "transformers==5.17.*" sentence-transformers
+pip install "numpy==2.*" "torch==2.14.*" "transformers==5.17.*" "sentence-transformers==6.1.*"
 python retrieval.py
 ```

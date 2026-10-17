@@ -13,7 +13,7 @@ The scripts behind [How a GPU Runs Deep Learning: Memory, the Roofline, and a Fi
 | `smem_probe.py` | Compiles a probe kernel with 16, 32 and 64 KB of threadgroup memory to find this GPU's limit. | Apple-silicon GPU, instant |
 | `waves.py` | Arithmetic: 128 x 128 tiles in waves over an H100's 132 SMs, and how much of each wave is useful. | CPU, instant |
 
-The kernels are written in Metal and run through `torch.mps.compile_shader`, so every script that imports `gpu_util.py`, and `smem_probe.py`, needs an Apple-silicon Mac; they do not run on CUDA or a CPU. `tile_intensity.py` and `waves.py` are only arithmetic and run anywhere. The whole folder runs in about 2 minutes; the per-script times are estimates from that total. The outputs here came from an Apple M4 laptop with torch 2.11.0 (Python 3.12.13). Timings depend on the machine; time with nothing else using the GPU.
+The kernels are written in Metal and run through `torch.mps.compile_shader`, so every script that imports `gpu_util.py`, and `smem_probe.py`, needs an Apple-silicon Mac; they do not run on CUDA or a CPU. `tile_intensity.py` and `waves.py` are only arithmetic and run anywhere. The whole folder runs in about 2 minutes; the per-script times are estimates from that total. The outputs here came from an Apple M4 laptop with torch 2.11.0 (Python 3.12.13). `smem_probe.py` needs Python 3.12 or later: it puts a backslash inside an f-string expression, which older versions reject. Timings depend on the machine; time with nothing else using the GPU.
 
 ```bash
 pip install "torch==2.11.*"

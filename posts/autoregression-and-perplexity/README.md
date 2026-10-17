@@ -13,10 +13,10 @@ The scripts behind [What "Generative" Means: Autoregression, the Chain Rule, and
 
 `blog_train.txt` and `blog_val.txt` link to `../../data/`: the blog corpus that [Sequences Before Attention](https://residual-stream.lvtan71.workers.dev/posts/rnns-and-why-transformers-won/) froze, the English posts as of 2026-09-30 with two posts (the KV cache and BPE posts) held out, 593,616 training and 56,786 validation characters.
 
-The whole folder runs in about 22 minutes on a CPU; the per-script times are estimates from that total. The outputs here came from an Apple M4 laptop with torch 2.14.0. Seeds are fixed; the timings in `generate.out` depend on the machine.
+The whole folder runs in about 22 minutes on a CPU; the per-script times are estimates from that total. The outputs here came from an Apple M4 laptop with torch 2.14.0 and tokenizers 0.23.2. Seeds are fixed; the timings in `generate.out` depend on the machine.
 
 ```bash
-pip install "torch==2.14.*" tokenizers
+pip install "torch==2.14.*" "tokenizers==0.23.*"
 python bigram.py
 python train_all.py
 python generate.py

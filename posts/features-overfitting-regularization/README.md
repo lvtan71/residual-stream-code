@@ -13,7 +13,7 @@ The scripts behind [Features and Overfitting: How a Model Memorizes, and How L1 
 
 `router_data.py` is the helper the scripts import: it reads the questions, makes the stratified 30/10/10 split per route, and builds the bag-of-words features. `router-questions.csv` links to `../../data/router-questions.csv`: the 200 English and 20 Vietnamese reader questions written for this series, labeled by route.
 
-The whole folder runs in about a minute on a CPU (the per-script times are estimates). The outputs here came from an Apple M4 laptop; the scripts need only numpy.
+The whole folder runs in about a minute on a CPU (the per-script times are estimates). The outputs here came from an Apple M4 laptop with numpy 2.4.4; the scripts need only numpy.
 
 ```bash
 pip install "numpy==2.*"

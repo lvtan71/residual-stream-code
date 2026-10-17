@@ -17,7 +17,9 @@ def clean(text):
 
 def load():
     train, val = [], []
-    for path in sorted(glob.glob(f"{POSTS}/*.mdx")):
+    paths = sorted(glob.glob(f"{POSTS}/*.mdx"))
+    assert paths, f"no posts under {POSTS}/: see the README for the snapshot"
+    for path in paths:
         slug = os.path.basename(path)[:-4]
         (val if slug in HELD_OUT else train).append(clean(open(path).read()))
     return "".join(train), "".join(val)

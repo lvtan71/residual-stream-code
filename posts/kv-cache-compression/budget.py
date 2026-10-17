@@ -6,7 +6,7 @@
 L, H, D, CTX = 40, 40, 128, 32_768
 full = 2 * L * H * D * 2                                     # K and V, BF16
 rows = [("BF16, every token (baseline)", 16, 1.0, H),
-        ("if it had 8 KV heads (GQA, post 18)", 16, 1.0, 8),
+        ("if it had 8 KV heads (GQA)", 16, 1.0, 8),
         ("4-bit K and V", 4 + 1, 1.0, H),
         ("2-bit K and V (KIVI)", 2 + 1, 1.0, H),
         ("keep a quarter of the tokens", 16, 0.25, H),

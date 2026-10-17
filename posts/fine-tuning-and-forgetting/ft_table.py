@@ -13,7 +13,7 @@ for line in open("ft.out"):
 first = next(iter(runs.values()))[0][0]
 print(f"before training: blog {first[0]:.3f}, WikiText {first[1]:.3f}, Vietnamese {first[2]:.3f} bits per byte\n")
 print("bits per byte after each step, seed 0 then seed 1")
-print(f"{'lr      replay':22s}" + "   ".join(f"{'step ' + str(s):11s}" for s in (25, 50, 100, 200, 400)).rstrip())
+print(f"{'lr      replay':23s}" + "   ".join(f"{'step ' + str(s):11s}" for s in (25, 50, 100, 200, 400)).rstrip())
 for (lr, replay), rs in sorted(runs.items()):
     for which, name in ((0, "blog"), (1, "wiki"), (2, "vi")):
         print(f"{lr:<8g}{replay:3d}%  {name:5s}    " +

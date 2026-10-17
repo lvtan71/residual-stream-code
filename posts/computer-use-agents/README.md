@@ -8,7 +8,7 @@ The scripts behind [Computer-Use Agents: Screens as Observations, the Mouse as a
 
 The accessibility trees were snapshots of three live pages (this blog's home page, Hacker News and Wikipedia), captured once with Chrome's devtools as `a11y_blog_home.txt`, `a11y_hackernews.txt` and `a11y_wikipedia.txt`. The files were not kept, and the pages have changed since, so the script skips those three lines of its output when the files are missing. A new snapshot saved under the same name is counted the same way, with different numbers.
 
-The outputs here came from an Apple M4 laptop with transformers 5.17.
+The outputs here came from an Apple M4 laptop with transformers 5.17. The huggingface_hub version was not recorded, so it is left unpinned.
 
 ```bash
 pip install "transformers==5.17.*" huggingface_hub

@@ -8,7 +8,7 @@ The scripts behind [Reasoning Models and Test-Time Compute](https://residual-str
 | `lm.py` | Loads Qwen2.5-1.5B-Instruct and its tokenizer, at a pinned revision, on the first call. | helper, no output; downloads the model (about 3 GB) |
 | `tts.py` | 100 three-step word problems answered directly, with a greedy chain, and with 16 sampled chains combined by majority vote; one seed per call (`python tts.py 0`). | GPU, about 43 minutes for seed 0 and 30 for seed 1 on the M4 |
 | `tts_seeds.py` | Runs `tts.py` with seeds 0 and 1, as the post did. | as `tts.py`, about 73 minutes |
-| `chain.py` | A copy of the experiment script of [Chain-of-Thought and Prompt Chaining](https://residual-stream.lvtan71.workers.dev/posts/chain-of-thought-and-prompt-chaining/). Only its problem generator is used here, by `tts_hard.py`. | not run in this folder |
+| `chain.py` | A copy of `serial_steps.py`, the experiment script of [Chain-of-Thought and Prompt Chaining](https://residual-stream.lvtan71.workers.dev/posts/chain-of-thought-and-prompt-chaining/), saved here as `chain.py`. Only its problem generator is used here, by `tts_hard.py`. | not run in this folder |
 | `tts_hard.py` | 40 problems of eight dependent operations, 16 sampled chains each: majority of k, some sample right, and one line per problem. | GPU, about 13 minutes (estimate) |
 | `hard_stats.py` | Average one-sample accuracy and unbiased pass@k from the per-problem counts in `tts_hard.out`. | CPU, instant |
 

@@ -14,6 +14,8 @@ The scripts behind [Giving Agents Tools and Knowledge: MCP, Skills and OKF](http
 
 The outputs here came from an Apple M4 laptop with mcp 2.2.0 and transformers 5.17.0 (torch 2.14.0).
 
+`SKILL.md` is the example skill the post shows: front matter (name and description, the only part loaded up front) and the body the agent reads when the skill is used.
+
 ```bash
 pip install "mcp==2.2.*" "transformers==5.17.*" huggingface_hub pyyaml
 tar xzf blog-deb8375.tar.gz

@@ -1,6 +1,6 @@
 # Diffusion, for Images and for Text: the full code
 
-The scripts behind [Diffusion, for Images and for Text: Learn to Undo a Little Noise](https://residual-stream.lvtan71.workers.dev/posts/diffusion-for-images-and-text/). Each `.out` file is what its script printed for the post.
+The scripts behind [Diffusion, for Images and for Text: Learn to Undo a Little Noise](https://residual-stream.lvtan71.workers.dev/posts/diffusion-for-images-and-text/). Each `.out` file is what its script printed for the post. `diff2d.out` holds the lines the post printed, rebuilt from its three output blocks (schedule, steps, guidance) in the script's print order; the full output was not kept.
 
 | Script | What it does | Needs |
 | --- | --- | --- |

@@ -12,10 +12,10 @@ Helpers: `gpt.py` and `train.py` are the tiny GPT and its training script from [
 
 `blog_train.txt` and `blog_val.txt` link to `../../data/`: the blog corpus the tiny GPT trained on, the English posts as of 2026-09-30 with two posts held out.
 
-The run time of `mlp_norm_swaps.py` is an estimate from the step count. The outputs here came from an Apple M4 laptop with torch 2.14.0. Seeds are fixed, but runs on another device or torch version can differ in the third decimal.
+The run time of `mlp_norm_swaps.py` is an estimate from the step count. The outputs here came from an Apple M4 laptop with torch 2.14.0 and tokenizers 0.23.2. `mlp_norm_swaps.out` was retyped from the post's lines; it is byte-identical to the original run's output, which was not kept as a file. Seeds are fixed, but runs on another device or torch version can differ in the third decimal.
 
 ```bash
-pip install "torch==2.14.*" tokenizers
+pip install "torch==2.14.*" "tokenizers==0.23.*"
 python mlp_norm_swaps.py
 python inference_memory.py
 python chinchilla.py

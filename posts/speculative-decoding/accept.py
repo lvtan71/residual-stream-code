@@ -1,7 +1,7 @@
 import numpy as np
 import torch
 from transformers import AutoModelForCausalLM, AutoTokenizer
-DEV = "cuda" if torch.cuda.is_available() else "mps" if torch.backends.mps.is_available() else "cpu"   # the post ran on the CPU
+DEV = "cpu"   # the post's numbers come from a CPU run; another device can change the greedy answers
 
 # How often guesses are accepted, measured. Target: Qwen2.5-1.5B-Instruct;
 # draft: Qwen2.5-0.5B-Instruct would be the natural pair; this run uses the

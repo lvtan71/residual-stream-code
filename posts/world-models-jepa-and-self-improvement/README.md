@@ -8,10 +8,10 @@ The scripts behind [World Models, JEPA and Recursive Self-Improvement: Three Bet
 | `dreamer_budget.py` | How many steps one Dreamer-style update imagines at DreamerV3's default batch and horizon, and how long the same number of real steps would take. Plain arithmetic. | CPU, instant |
 | `jepa_collapse.py` | Joint-embedding prediction on a toy world (8-number hidden state rendered into noisy, masked 64-number views): an untrained encoder, a shared encoder with no tricks, stop-gradient, an EMA target with and without a predictor, and VICReg regularizers, 3 seeds each; final loss, embedding spread and a linear probe's R^2. | CPU, about 2.5 minutes |
 
-Run times measured on the M4 for this folder. The outputs here came from an Apple M4 laptop with torch 2.14.0, on the CPU.
+Run times are estimated. The outputs here came from an Apple M4 laptop with torch 2.14.0, on the CPU.
 
 ```bash
-pip install "numpy==2.*" "torch==2.14.*"
+pip install "torch==2.14.*"
 python pendulum_imagination.py
 python dreamer_budget.py
 python jepa_collapse.py

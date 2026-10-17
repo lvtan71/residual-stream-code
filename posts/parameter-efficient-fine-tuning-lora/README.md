@@ -17,7 +17,7 @@ The scripts behind [Parameter-Efficient Fine-Tuning: LoRA, Prefix and Prompt Tun
 
 `blog_train.txt` and `blog_val.txt` link to `../../data/blog-2026-10-04/`: the blog's English posts rebuilt as of 2026-10-04, with two posts (the KV cache and BPE posts) held out.
 
-Run times other than the LoRA runs' are estimates. The outputs here came from an Apple M4 laptop (16 GB) with torch 2.14.1 and transformers 5.18. Seeds are fixed; GPU training is not bit-for-bit deterministic, so the last digit of the table can differ.
+Run times other than the LoRA runs' are estimates. The outputs here came from an Apple M4 laptop (16 GB) with torch 2.14.1 and transformers 5.18.0; `memory.py` ran with the system python3 (Python 3.9.6), as it needs no libraries. Seeds are fixed; GPU training is not bit-for-bit deterministic, so the last digit of the table can differ.
 
 ```bash
 pip install "torch==2.14.*" "transformers==5.18.*" huggingface_hub pandas pyarrow

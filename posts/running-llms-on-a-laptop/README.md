@@ -13,7 +13,7 @@ The scripts behind [Running LLMs on a Laptop: GGUF and llama.cpp](https://residu
 The whole folder takes about a minute after the downloads. The outputs here came from an Apple M4 laptop with llama-cpp-python 0.3.36 built with Metal.
 
 ```bash
-pip install llama-cpp-python gguf huggingface_hub numpy
+pip install "llama-cpp-python==0.3.36" "gguf==0.19.*" huggingface_hub "numpy==2.*"
 tar xzf blog-ed51ca8.tar.gz
 python gguf_contents.py
 python speed.py
