@@ -9,6 +9,6 @@ The script behind [vLLM vs. SGLang vs. TensorRT-LLM: Comparing LLM Serving Archi
 | `reuse.py` | Replays multi-turn ShareGPT chat through each engine's default cache at three cache sizes, then through whole blocks of four sizes. | CPU, under a minute; downloads ShareGPT (673 MB) and Qwen2.5's tokenizer from Hugging Face at pinned revisions |
 
 ```bash
-pip install transformers huggingface_hub
+pip install "transformers==5.19.*" huggingface_hub
 python reuse.py
 ```

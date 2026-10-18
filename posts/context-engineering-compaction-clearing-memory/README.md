@@ -14,7 +14,7 @@ The scripts behind [Context Engineering: Compaction, Tool Clearing, and Memory](
 | `memory.py` | Two sessions with the memory tool; the second run with and without the first one's notes. | API key, about $0.85 |
 | `combined.py` | All three together. | API key, about $0.45 |
 
-The runs used `claude-sonnet-5-5` with `anthropic` 1.13.0, on 2026-10-11 (UTC). Each API script prints its token usage and cost at Sonnet 5.5's list prices. The model is not deterministic, so a rerun gives different turns, reads and summaries; the post reports three runs where one would mislead.
+The runs used `claude-sonnet-5-5` with `anthropic` 1.13.0, on 2026-10-11 (UTC). Each API script prints its token usage and its cost at the model's list prices. Set `MODEL=claude-haiku-5-5` to run everything on Claude Haiku 5.5 instead, for a small fraction of the cost; its answers, summaries and context sizes differ from Sonnet's, so the numbers will not match the post's. The model is not deterministic, so a rerun gives different turns, reads and summaries; the post reports three runs where one would mislead.
 
 ```bash
 pip install "anthropic==1.13.*"

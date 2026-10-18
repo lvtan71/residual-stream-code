@@ -13,7 +13,7 @@ The scripts behind [The Transformer's Three Attention Patterns: Self, Masked, an
 The outputs here came from an Apple M4 laptop with torch 2.14.1 and transformers 5.19.
 
 ```bash
-pip install numpy torch transformers huggingface_hub sentencepiece
+pip install numpy "torch==2.14.*" "transformers==5.19.*" huggingface_hub sentencepiece
 python attention.py
 python scale.py
 python causal.py

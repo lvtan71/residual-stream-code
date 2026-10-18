@@ -17,7 +17,7 @@ Run them from this folder, in this order:
 `lm.py` loads the model and tokenizer; the other scripts import it. The outputs here came from an Apple M4 laptop with torch 2.14.1 and transformers 5.19.0 (`blocksize.py`, plain Python, with the system Python 3.9.6).
 
 ```bash
-pip install torch transformers huggingface_hub pandas pyarrow
+pip install "torch==2.14.*" "transformers==5.19.*" huggingface_hub pandas pyarrow
 python waste.py
 python same.py
 python share.py

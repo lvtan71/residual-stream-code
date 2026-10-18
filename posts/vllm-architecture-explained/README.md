@@ -14,7 +14,7 @@ Run them from this folder:
 `lm.py` loads the model and tokenizer; the other scripts import it. A different GPU will give different times, so `engine.py` run with your own `cost.npy` will give different numbers; the comparison between schedulers is the point. The outputs here came from an Apple M4 laptop with torch 2.14.1 and transformers 5.19.0 (`tp.py`, plain Python, with the system Python 3.9.6).
 
 ```bash
-pip install torch transformers huggingface_hub numpy
+pip install "torch==2.14.*" "transformers==5.19.*" huggingface_hub numpy
 python engine.py       # reads the post's cost.npy
 python lora.py         # GPU
 python tp.py

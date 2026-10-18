@@ -9,7 +9,7 @@ from dataclasses import dataclass, field
 from pathlib import Path
 import anthropic
 
-MODEL = "claude-sonnet-5-5"
+MODEL = os.environ.get("MODEL", "claude-sonnet-5-5")   # the post's runs; MODEL=claude-haiku-5-5 costs far less
 client = anthropic.Anthropic()
 
 N_DOCS, DOC_TOKENS, MAX_TURNS = 6, 12_000, 12
@@ -144,9 +144,8 @@ def run_session(prompt, *, edits=None, memory=None, label="session", max_tokens=
             if getattr(it, "type", "") == "compaction":   # the context the summary replaced
                 s.events.append({"turn": turn, "kind": "compaction", "before": it.input_tokens,
                                  "summary_out": it.output_tokens})
-            for k, v in (("input", it.input_tokens), ("cache_write", getattr(it, "cache_creation_input_tokens", 0)),
-                         ("cache_read", getattr(it, "cache_read_input_tokens", 0)), ("output", it.output_tokens)):
-                USAGE[k] += v or 0
+            bill({"input": it.input_tokens, "cache_write": getattr(it, "cache_creation_input_tokens", 0),
+                  "cache_read": getattr(it, "cache_read_input_tokens", 0), "output": it.output_tokens})
         s.trajectory.append((turn, context_size(u)))
         cm = getattr(resp, "context_management", None)
         for e in getattr(cm, "applied_edits", None) or []:
@@ -187,8 +186,7 @@ def probe(summary, names):
         f"<summary>\n{summary}\n</summary>\n\nUsing only the summary above, answer for each organism. "
         f"Reply with one line per organism in the form `name | lifespan | identifier`, writing "
         f"`unknown` for anything the summary does not state.\n{ask}"}])
-    for it in [reply.usage]:
-        USAGE["input"] += it.input_tokens; USAGE["output"] += it.output_tokens
+    bill({"input": reply.usage.input_tokens, "output": reply.usage.output_tokens})
     lines = {l.split("|")[0].strip(" -`*"): l.split("|")[1:] for l in "".join(b.text for b in reply.content if b.type == "text").splitlines() if l.count("|") >= 2}
     def num(x):
         return re.findall(r"\d+", x)
@@ -255,9 +253,24 @@ def save(name, s, **extra):
     json.dump({"trajectory": s.trajectory, "events": s.events, "reads": s.reads, "peak": s.peak,
                "summaries": s.summaries, **extra}, open(f"results/{name}.json", "w"), indent=1)
 
-PRICE = {"input": 2.00, "cache_write": 2.50, "cache_read": 0.10, "output": 10.00}  # $ per million, Sonnet 5.5
+# $ per million tokens, from platform.claude.com/docs/en/about-claude/pricing
+# (read 2026-10-18). Haiku 5.5 charges more for a request whose prompt, all
+# its input whether cached or not, is over 100,000 tokens.
+PRICES = {"claude-sonnet-5-5": [(None, {"input": 2.00, "cache_write": 2.50, "cache_read": 0.10, "output": 10.00})],
+          "claude-haiku-5-5": [(100_000, {"input": 0.10, "cache_write": 0.125, "cache_read": 0.01, "output": 0.50}),
+                               (None, {"input": 0.50, "cache_write": 0.625, "cache_read": 0.05, "output": 2.50})]}
+COST = [0.0]
+
+def bill(counts):
+    """Add one billed request's token counts to USAGE and its price to COST."""
+    counts = {k: counts.get(k) or 0 for k in USAGE}
+    prompt = counts["input"] + counts["cache_write"] + counts["cache_read"]
+    price = next(p for limit, p in PRICES[MODEL] if limit is None or prompt <= limit)
+    for k in USAGE:
+        USAGE[k] += counts[k]
+    COST[0] += sum(counts[k] * price[k] for k in USAGE) / 1e6
 
 def print_usage():
-    cost = sum(USAGE[k] * PRICE[k] for k in USAGE) / 1e6
+    cost = COST[0]
     print(f"API usage: {USAGE['input']:,} uncached input, {USAGE['cache_write']:,} cache-write, "
           f"{USAGE['cache_read']:,} cache-read, {USAGE['output']:,} output tokens; ${cost:.2f}")

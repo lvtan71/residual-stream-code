@@ -15,7 +15,7 @@ Run them from this folder:
 `lm.py` loads Qwen2.5-1.5B-Instruct and its tokenizer; the other scripts import it. The outputs here came from an Apple M4 laptop with torch 2.14.1 and transformers 5.19.0.
 
 ```bash
-pip install torch transformers huggingface_hub
+pip install "torch==2.14.*" "transformers==5.19.*" huggingface_hub
 python hits.py
 python schedule.py
 python prefill.py      # GPU; time it with nothing else running
