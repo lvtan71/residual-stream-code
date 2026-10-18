@@ -7,11 +7,15 @@ evaluation deterministic for a given binary.
 """
 
 import shutil
+import sys
 from multiprocessing import Pool
 
 import chess
 import chess.engine
 import pandas as pd
+
+if shutil.which("stockfish") is None:
+    sys.exit("engine.py needs a Stockfish binary on PATH; engine.parquet is committed, so engine_ab.py runs without it")
 
 NODES = 20_000
 CAP = 1_500                       # centipawns; a forced mate counts as a decisive +-1500

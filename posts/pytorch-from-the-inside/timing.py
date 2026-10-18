@@ -30,7 +30,7 @@ a = torch.randn(4096, 4096, device=DEVICE)
 a @ a; gpu_sync()
 t0 = time.perf_counter(); a @ a; t_launch = time.perf_counter() - t0
 gpu_sync()
-print(f"4096 matmul on mps, no synchronize: {t_launch * 1e3:.2f} ms 'measured', "
+print(f"4096 matmul on {DEVICE}, no synchronize: {t_launch * 1e3:.2f} ms 'measured', "
       f"{timed(lambda: a @ a, DEVICE) * 1e3:.2f} ms real")
 
 # Synchronizing after every call also measures the round trip to the GPU.
@@ -42,5 +42,5 @@ for _ in range(200):
     a @ a
 gpu_sync()
 queued = (time.perf_counter() - t0) / 200
-print(f"256 matmul on mps: {timed(lambda: a @ a, DEVICE) * 1e6:.0f} us per call waiting each time, "
+print(f"256 matmul on {DEVICE}: {timed(lambda: a @ a, DEVICE) * 1e6:.0f} us per call waiting each time, "
       f"{queued * 1e6:.0f} us per call when 200 are queued ({2 * 256 ** 3 / queued / 1e12:.2f} TFLOP/s)")

@@ -46,7 +46,10 @@ async def start(prompt, n):
     return out, stop, job
 
 async def handle(reader, writer):
-    head = (await reader.readuntil(b"\r\n\r\n")).decode()
+    try:
+        head = (await reader.readuntil(b"\r\n\r\n")).decode()
+    except asyncio.IncompleteReadError:                 # a readiness probe that connects and leaves
+        return writer.close()
     method, path, _ = head.split("\r\n")[0].split(" ")
     headers = {k.lower(): v for k, v in (l.split(": ", 1) for l in head.split("\r\n")[1:] if ": " in l)}
     if path == "/ws":

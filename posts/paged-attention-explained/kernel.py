@@ -2,6 +2,9 @@ import time
 import torch
 import torch.nn.functional as F
 
+if not torch.backends.mps.is_available():
+    raise SystemExit("kernel.py is a Metal kernel and runs only on an Apple-silicon Mac")
+
 # Decode attention over a paged KV cache, as a Metal kernel: one query
 # token per sequence attends over its S cached tokens, reading every key
 # and value through the sequence's block table. Qwen2.5-1.5B's attention
