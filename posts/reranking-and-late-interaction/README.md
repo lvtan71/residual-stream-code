@@ -12,7 +12,7 @@ The scripts behind [Reranking and Late Interaction: Cross-Encoders to ColBERT](h
 
 `sections.py` (the benchmark: each heading is a query, its section the one relevant document) and `retrieval.py` (BM25, the dense encoders, fusion and scoring) are copies of the helpers from [Semantic and Hybrid Search](https://residual-stream.lvtan71.workers.dev/posts/semantic-and-hybrid-search/). `retrieval.py` here stops before that post's encoder measurements, so importing it only loads the data and the retrievers.
 
-The whole folder runs in about 35 minutes on a CPU; the per-script times are estimates from that total. The outputs here came from an Apple M4 laptop with torch 2.14.0 and transformers 5.17.
+The whole folder runs in about 35 minutes on a CPU; the per-script times are estimates from that total. The outputs here came from an Apple M4 laptop with torch 2.14.0 and transformers 5.17. `rerank.out` was timed while other jobs ran on the laptop's GPU; `rerank_quiet.out` is `rerank.py` run again on 2026-10-18 on the same laptop with nothing else running (torch 2.14.1, sentence-transformers 6.1.0), for the times. Its English rows read the rebuilt corpus (296 queries where the post had 297), so only its times and Vietnamese rows stand in for the post's run; the Vietnamese rows match it exactly.
 
 ```bash
 pip install "numpy==2.*" "torch==2.14.*" "transformers==5.17.*" sentence-transformers
