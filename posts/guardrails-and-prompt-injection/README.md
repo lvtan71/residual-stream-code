@@ -9,7 +9,7 @@ The scripts behind [Guardrails and Prompt Injection: Why Filters Reduce Risk and
 
 `blog-77f8212.tar.gz` links to `../../data/blog-77f8212.tar.gz`, the blog's posts at commit `77f8212` (`content/posts`), from which the twelve passages are sampled with a fixed seed.
 
-The outputs here came from an Apple M4 laptop with torch 2.14.0 and transformers 5.17. Decoding is greedy, but 16-bit arithmetic on another GPU can still change a few replies.
+The outputs here came from an Apple M4 laptop with torch 2.14.0 and transformers 5.17. Decoding is greedy, but 16-bit arithmetic on another GPU can still change a few replies. `injection_a6000.out` is what `injection_both.py` printed on an NVIDIA RTX A6000 (torch 2.14.1, CUDA) on 2026-10-17, a second data point the post cites; the RTX 3090 run is saved in the notebook.
 
 ```bash
 pip install "torch==2.14.*" "transformers==5.17.*" huggingface_hub
