@@ -14,7 +14,7 @@ Helpers: `moe.py` is the mixture-of-experts layer (router, experts, and the thre
 
 `blog_train.txt` and `blog_val.txt` link to `../../data/`: the blog corpus the tiny GPT trained on, the English posts as of 2026-09-30 with two posts held out.
 
-Run times are estimates from the step counts. The outputs here came from an Apple M4 laptop with torch 2.14.0 and tokenizers 0.23.2. `balancing.out`, `overfit.out`, `wikitext2.out` and `wikitext2_runs.out` were retyped from the post's lines and the run's printout; each is byte-identical to the original run's output, which was not kept as a file. Seeds are fixed, but runs on another device or torch version can differ in the third decimal.
+Run times are estimates from the step counts. The outputs here came from an Apple M4 laptop with torch 2.14.0 and tokenizers 0.23.2. `balancing.out`, `overfit.out`, `wikitext2.out` and `wikitext2_runs.out` were retyped from the post; the original files were not kept. The notebook's rerun reproduces `overfit.out` (on the M4) and `wikitext2.out` exactly; its GPU runs, on an RTX 3090, differ from `balancing.out` and `wikitext2_runs.out` by up to 0.04 bits per byte, and the busiest-expert shares by up to 4 points (13 in the runs without balancing). Seeds are fixed, but runs on another device or torch version can differ by a few hundredths.
 
 ```bash
 pip install "torch==2.14.*" "tokenizers==0.23.*" huggingface_hub pyarrow

@@ -16,7 +16,7 @@ The scripts behind [PyTorch from the Inside: Tensors, Autograd and Precision](ht
 
 Helpers copied from other posts: `router_data.py` (from "Features and Overfitting"), `router4.py` and `softmax_basics.py` (from "Cross-Entropy and the Softmax Gradient"), `optim.py` (from "Initialization and Optimizers"). `router-questions.csv` links to `../../data/router-questions.csv`, the blog's labeled reader questions.
 
-The whole folder runs in about a minute; per-script run times are estimates. The outputs here came from an Apple M4 laptop with torch 2.11.0 (Python 3.12.13): `timing.py` ran on its GPU through `mps`, the rest on its CPU. The words "on mps" in `timing.py`'s last two lines are fixed text.
+The whole folder runs in about a minute; per-script run times are estimates. The outputs here came from an Apple M4 laptop with torch 2.11.0 (Python 3.12.13): `timing.py` ran on its GPU through `mps`, the rest on its CPU.
 
 ```bash
 pip install "numpy==2.*" "torch==2.11.*"

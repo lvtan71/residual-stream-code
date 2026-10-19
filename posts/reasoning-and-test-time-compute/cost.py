@@ -3,7 +3,7 @@
 #   Qwen2.5-32B: 64 layers, 8 key/value heads of 128 (GQA, "The KV Cache"), BF16;
 #   DeepSeek-R1 (671B, 37B active): 61 layers of multi-head latent
 #   attention, caching a 512-number latent plus a 64-number RoPE key per
-#   token per layer ("Anatomy of a Frontier Model"), BF16.
+#   token per layer ("How LLM Architecture Evolved"), BF16.
 # Decode time, batch 1, bandwidth-bound ("Small and Specialized Models"): each token reads the
 # active weights plus the whole KV cache so far, at one H100's 3.35 TB/s.
 # Qwen2.5-32B fits on one H100; DeepSeek-R1 needs many GPUs to hold its

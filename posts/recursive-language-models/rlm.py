@@ -50,7 +50,7 @@ def chat(messages, max_new=400):
 
 SUB = []                                                  # every sub-call's question and reply
 def llm_query(text, max_new=300):
-    if len(text) > 20000:                                 # ~6k tokens: keeps memory in bounds on this laptop
+    if len(text) > 20000:                                 # ~5k tokens: keeps memory in bounds on this laptop
         return f"error: llm_query takes at most 20,000 characters; this text has {len(text):,}"
     reply = chat([{"role": "user", "content": text}], max_new=max_new)
     SUB.append({"asked": text[-160:], "reply": reply[:160]})

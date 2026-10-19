@@ -15,7 +15,13 @@ def dangerous(command):
     except ValueError:
         return False
     for i, w in enumerate(words):
-        args = words[i + 1:]
+        args = []
+        for a in words[i + 1:]:                                  # this command's arguments end at a separator
+            if a in ("&&", "||", "|", ";"):
+                break
+            args.append(a)
+            if a.endswith(";"):                                  # "main;" ends the command too
+                break
         flags = "".join(a.lstrip("-") for a in args if a.startswith("-") and not a.startswith("--"))
         long = {a for a in args if a.startswith("--")}
         if w == "rm" and ("r" in flags.lower() or "--recursive" in long) and ("f" in flags or "--force" in long):

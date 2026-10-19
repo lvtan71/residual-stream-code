@@ -10,7 +10,7 @@ from partial import PartialBlockCache
 # whole 16-token blocks; TensorRT-LLM matches 32-token blocks and, by
 # default, the matching part of the next one (partial.py). The caches differ
 # in more (TensorRT-LLM evicts only leaf blocks, and by priority); here they
-# share the eviction of radix.py. Then whole blocks alone, at five sizes.
+# share the eviction of radix.py. Then whole blocks alone, at four sizes.
 # The workload is the one from the SGLang post:
 # prefix reuse in real multi-turn chat. ShareGPT conversations with at least
 # three user turns (up to eight), in Qwen2.5's chat format, starting over 40

@@ -8,6 +8,8 @@ The scripts behind [Quantization from Scratch: Scale, Zero-Point, GPTQ and AWQ](
 | `measure.py` | Round-to-nearest (per tensor, per channel, per group of 128; asymmetric, symmetric, NF4), GPTQ and AWQ (scaling, then clipping), implemented in numpy and measured as the layer's output error on 2,048 held-out tokens; and GPTQ with too little calibration. | CPU, about 2 minutes (estimate); reads the `.npy` files `capture.py` writes |
 | `decode_speed.py` | A roofline bound on one decode step of an 8B model on an H100, BF16 against INT4 weights, by batch size. | Python, instant |
 
+A rerun on an NVIDIA RTX 3090 (2026-10-18; outputs saved in [the notebook](https://github.com/lvtan71/residual-stream-code/blob/main/notebooks/quantization-from-scratch.ipynb)) ran the reconstructed `capture.py` and then `measure.py`, and reproduced every number in `measure.out` except two of layer 12's AWQ-with-clipping errors, which differ in the last digit: 10.38% against 10.37% at 4 bits, and 20.51% against 20.52% at 3 bits.
+
 The whole folder runs in about 3 minutes on a CPU; the per-script times are estimates from that total. The outputs here came from an Apple M4 laptop with torch 2.14.0 and transformers 5.17.
 
 ```bash

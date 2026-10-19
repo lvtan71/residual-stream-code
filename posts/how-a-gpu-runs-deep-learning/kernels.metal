@@ -77,7 +77,7 @@ kernel void matmul_registers(device const float* A, device const float* B, devic
     float acc[4][4] = {};
     uint row0 = g.y * 64, col0 = g.x * 64, id = t.y * 16 + t.x;
     for (uint k0 = 0; k0 < n; k0 += 16) {
-        for (uint e = id; e < 1024; e += 256) {              // 256 threads load 1,024 numbers each
+        for (uint e = id; e < 1024; e += 256) {              // 256 threads load each slice's 1,024 numbers, 4 apiece
             As[e / 16][e % 16] = A[(row0 + e / 16) * n + k0 + e % 16];
             Bs[e / 64][e % 64] = B[(k0 + e / 64) * n + col0 + e % 64];
         }

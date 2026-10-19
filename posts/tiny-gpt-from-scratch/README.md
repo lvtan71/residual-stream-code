@@ -22,7 +22,7 @@ Helpers, imported by the scripts above: `gpt.py` is the model; `train.py` holds 
 
 `blog_train.txt` and `blog_val.txt` link to `../../data/`: the blog corpus that Sequences Before Attention froze, the English posts as of 2026-09-30 with two posts (the KV cache and BPE posts) held out, 593,616 training and 56,786 validation characters.
 
-The times above are estimates from the step counts and the measured 0.15 s per step on the M4; the whole folder is about five hours of GPU time. The outputs here came from an Apple M4 laptop with torch 2.14.0 and tokenizers 0.23.2. `collapse_lr.out` was retyped from the post's lines; it is byte-identical to the original run's output, which was not kept as a file. Seeds are fixed. On the M4 (mps) the baseline and cosine-schedule runs reproduce the post exactly (other hardware may differ slightly), and the ablations (no position, learned positions, no residual) can differ in the third decimal.
+The times above are estimates from the step counts and the measured 0.15 s per step on the M4; the whole folder is about five hours of GPU time. The outputs here came from an Apple M4 laptop with torch 2.14.0 and tokenizers 0.23.2. `collapse_lr.out` was retyped from the post; the original output file was not kept. Seeds are fixed. On the M4 (mps) the baseline and cosine-schedule runs reproduce the post exactly (other hardware may differ slightly), and the ablations (no position, learned positions, no residual) can differ in the third decimal.
 
 ```bash
 pip install "torch==2.14.*" "tokenizers==0.23.*"

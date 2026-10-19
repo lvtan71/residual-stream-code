@@ -16,7 +16,7 @@ for name, mods in groups.items():
 print(f"{'total':37s} {total:>9,}")
 formula = lambda L, D, V: 12 * L * D ** 2 + V * D
 print(f"formula 12 L D^2 + V D: {formula(c.L, c.D, c.V):,}  (L={c.L}, D={c.D}, V={c.V})")
-print(f"with post 9's 2,048 BPE tokens instead: {formula(4, 192, 2048):,}, "
+print(f"with the 2,048 BPE tokens of What \"Generative\" Means instead: {formula(4, 192, 2048):,}, "
       f"embedding {2048 * 192 / formula(4, 192, 2048):.0%} of it")
 print(f"GPT-2 small (L=12, D=768, V=50,257): {formula(12, 768, 50257) / 1e6:.1f}M by the formula; "
       f"124M reported, the rest mostly its 1,024 learned position vectors")

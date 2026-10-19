@@ -5,7 +5,7 @@ import torch.nn as nn
 
 # Three generative models on the same 2-D data: 8 Gaussian modes on a ring
 # of radius 2 (std 0.05 each), the standard test for mode collapse. Each is
-# scored on 2,000 samples: modes covered (a mode counts if at least 1% of
+# scored on 2,000 samples: modes covered (a mode counts if more than 1% of
 # samples fall within 3 std of it) and quality (the share of samples within
 # 3 std of some mode). Three seeds each.
 centers = torch.tensor([[2 * math.cos(a), 2 * math.sin(a)] for a in np.arange(8) * math.pi / 4], dtype=torch.float32)
