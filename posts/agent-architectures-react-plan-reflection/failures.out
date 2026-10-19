@@ -16,3 +16,8 @@ paired (same question and run): only the first right / only the second right
 reflection: the critic flagged 44 of 60 first attempts (16 of the 21 right ones, 28 of the 39 wrong ones)
   after the retry: wrong->right 6, right->wrong 5, wrong->wrong 22, right->right 11
   first attempts with the sign flipped: 17; flagged 11; right after the retry 1
+
+years older, wrong: 60; the right number with the wrong sign 51
+ReAct, wrong totals: 14; the reply says a lookup failed 8
+reflection: critic replies other than OK 44; first sentence calls it correct 42
+reflection: unanswered 8; after a retry 7
