@@ -49,7 +49,7 @@ with torch.no_grad():
         x, y = data[s:s + 128], data[s + 1:s + 129]
         logits, state = m(x[None][:, :len(y)], state)
         bits[s + 1:s + 1 + len(y)] = F.cross_entropy(logits[0], y, reduction="none") / math.log(2)
-rows["LSTM (post 9, seed 0)"] = (per_post(bits), None)
+rows["character LSTM, seed 0"] = (per_post(bits), None)
 
 tables = build(6)
 bits = torch.tensor([0.0] + [-math.log2(prob(tables, val[max(0, i - 6):i], val[i])) for i in range(1, len(val))])

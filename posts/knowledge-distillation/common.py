@@ -17,6 +17,7 @@ DEVICE = "cuda" if torch.cuda.is_available() else "mps" if torch.backends.mps.is
 T, B, STEPS, TOPK = 512, 4, 400, 64
 
 tok = AutoTokenizer.from_pretrained(STUDENT)                       # the teacher's vocabulary is identical
+tok.model_max_length = 10**9   # the corpus is tokenized whole, then cut into windows; no warning
 wiki_test = "".join(pq.read_table(WIKI + "test-00000-of-00001.parquet")["text"].to_pylist())[:120_000]
 blog_train, blog_val = open("blog_train.txt").read(), open("blog_val.txt").read()
 ids = lambda s: torch.tensor(tok(s).input_ids)

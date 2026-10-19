@@ -7,6 +7,6 @@ GPT, 1,000 steps                   2.775          1.935                 1.803
 GPT, 2,000 steps                   2.747          1.815                 1.566
 GPT, 3,000 steps                   2.801          1.763                 1.398
 GPT, 4,000 steps                   2.842          1.744                 1.327
-LSTM (post 9, seed 0)              2.944          2.033 
+character LSTM, seed 0             2.944          2.033 
 Kneser-Ney, 6 characters           2.826          2.003 
 bz2 given the training posts       2.480          2.038 

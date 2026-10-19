@@ -2,9 +2,9 @@
    smin on greedy text 0.754; smin on T=1 sampled text 0.715
    lookup 1-token 2-gram 0.422
    greedy spec tokens/step k=4: actual 3.27, iid formula 3.28; k=8 actual 4.32, formula 4.15
-   prompt lookup pl (tokens/step, frac steps with a proposal, frac proposals with >=1 accepted): (np.float64(2.937), np.float64(0.715), np.float64(0.456))
+   prompt lookup pl (tokens/step, frac steps with a proposal, frac proposals with >=1 accepted): (2.937, 0.715, 0.456)
 == open: n=720; greedy agree 0.718 (per-prompt min 0.68 max 0.76)
    smin on greedy text 0.702; smin on T=1 sampled text 0.722
    lookup 1-token 2-gram 0.060
    greedy spec tokens/step k=4: actual 2.82, iid formula 2.87; k=8 actual 3.34, formula 3.37
-   prompt lookup pl (tokens/step, frac steps with a proposal, frac proposals with >=1 accepted): (np.float64(1.125), np.float64(0.403), np.float64(0.179))
+   prompt lookup pl (tokens/step, frac steps with a proposal, frac proposals with >=1 accepted): (1.125, 0.403, 0.179)

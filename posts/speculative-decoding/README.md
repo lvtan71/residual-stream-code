@@ -10,7 +10,7 @@ The scripts behind [Speculative Decoding, Derived: Draft Models, N-grams, Medusa
 
 `blog_val.txt` links to `../../data/blog_val.txt`: the blog corpus that [Sequences Before Attention](https://residual-stream.lvtan71.workers.dev/posts/rnns-and-why-transformers-won/) froze, the English posts as of 2026-09-30, validation split.
 
-`spec_steps.out` holds the lines the post printed; the full output was not kept. The script also prints the two vocabulary sizes, one line per prompt, and a `prompt lookup pl2` line per task (lookup limited to two-token matches).
+`spec_steps.out` holds the lines the post printed, taken from a rerun on 2026-10-19 (same M4, CPU, torch 2.14.0, transformers 5.17.0, 6 minutes) that reproduced every number of the original run. The script also prints the two vocabulary sizes, one line per prompt, and a `prompt lookup pl2` line per task (lookup limited to two-token matches).
 
 The whole folder runs in about 10 minutes; the per-script times are estimates from that total. The outputs here came from an Apple M4 laptop, on its CPU, with torch 2.14.0 and transformers 5.17. Both model scripts run on the CPU, as the post's run did. On a CUDA or Apple GPU the greedy answers, and so every count, can change, and the sampled run will differ.
 

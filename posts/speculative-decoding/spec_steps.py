@@ -110,4 +110,4 @@ for name, prompts in tasks.items():
           f"k=8 actual {np.mean([r['spec8'] for r in rows]):.2f}, formula {(1 - g**9)/(1 - g):.2f}")
     for key in ("pl", "pl2"):
         print(f"   prompt lookup {key} (tokens/step, frac steps with a proposal, frac proposals with >=1 accepted): "
-              f"{tuple(np.round(np.mean([r[key] for r in rows], 0), 3))}", flush=True)
+              f"{tuple(float(x) for x in np.round(np.mean([r[key] for r in rows], 0), 3))}", flush=True)
